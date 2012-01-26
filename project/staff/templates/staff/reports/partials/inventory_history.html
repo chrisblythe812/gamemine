@@ -1,0 +1,92 @@
+<h3>{{ inventory.barcode }}: {{ inventory.item }}</h3>
+
+<dl>
+  <dt>DC: </dt>
+  <dd>{{ inventory.dropship|default:"Not Assigned" }}</dd>
+
+  <dt>Checked: </dt>
+  <dd>{{ inventory.manual_checked|yesno }}{% if inventory.manual_checked_dc %} ({{ inventory.manual_checked_dc.code }}){% endif %}</dd>
+
+  <dt>Condition: </dt>
+  <dd>{{ inventory.is_new|yesno:"NG,UG" }}</dd>
+
+  <dt>Status: </dt>
+  <dd>
+    {{ inventory.get_status_str }}
+        
+    {% if inventory.buyorderitem_set.count %}
+    | Buy Order 
+      {% for i in inventory.buyorderitem_set.all %}
+        <a href="{% url staff:buy_order_details i.order.id %}" target="_blank">#{{ i.order.order_no }}</a>
+      {% endfor %}
+    {% endif %}
+  </dd>
+
+  {% if inventory.trade_item %}
+  <dt>Source: </dt>
+  <dd><a href="{% url staff:trade_order_details inventory.trade_item.order.id %}" target="_blank">{{ inventory.trade_item.order.order_no }}</a></dd>
+  {% endif %} 
+
+{% if user.is_superuser %}
+  <dt>Actions: </dt>
+  <dd><input type="button" id="unreconcile-button" value="Unreconcile" /></dd>
+{% endif %}
+</dl>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order #</th>
+      <th>Customer</th>
+      <th>Status</th>
+      <th>Rent</th>
+      <th>Prepared</th>
+      <th>Shipped</th>
+      <th>Returned</th>
+      <th>Shipped from</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in rent_orders %}
+    <tr>
+      <td>{{ order.order_no }}</td>
+      <td><a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a></td>
+      <td>{{ order.get_status_display }}</td>
+      <td width="70">{{ order.date_rent|date }}</td>
+      <td width="70">{{ order.date_prepared|date }}</td>
+      <td width="70">{{ order.date_shipped|date }}</td>
+      <td width="70">{{ order.get_date_returned_disaplay }}</td>
+      <td>{{ order.source_dc.code }}</td>
+      <td>
+        <a href="{% url staff:rent_order_details order.id %}" target="_blank">Details</a>
+        {% if order.incoming_mail_label %}
+        | <a href="{% url staff:rent_labels %}?ids={{ order.id }}" target="_blank">Labels</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="9">No records found</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+$('#unreconcile-button').click(function () {
+  if (!confirm('Are you sure you want to mark the item as "Unreconciled"?'))
+    return false;
+  var btn = $(this); 
+  btn.attr('disabeled', true);
+  $.get('{% url staff:inventory_history inventory.id %}?unreconcile', function (data, status) {
+    if (status != 'success') {
+      alert('Error');
+      btn.attr('disabled', false);
+      return;
+    }
+    window.location = window.location;
+  });
+  return false;
+});
+</script>

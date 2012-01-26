@@ -1,0 +1,31 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Featured Games</h2>
+  
+  <table>
+    <tr>
+      <th>Preview</th>
+      <th>Game</th>
+      <th>Category</th>
+      <th>Active</th>
+    </tr>
+    {% for b in banners %}
+    <tr>
+      <td class="c" width="280"><a href="{% url staff:content_featured_game_edit b.id %}"><img src="{{ b.image.url }}" width="250" /></a></td>
+      <td><a href="{% url staff:content_featured_game_edit b.id %}">{% if b.game %}{{ b.game.id }} - {{ b.game }}{% else %}{{ b.url }}{% endif %}</a></td>
+      <td class="c">{{ b.category|default:"--" }}</td>
+      <td class="c">{{ b.active|yesno:"Yes,No" }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="actions">  
+    <a href="{% url staff:content_featured_game_add %}">Add Banner</a>
+  </div>
+</div>
+
+{% endblock right %}
+

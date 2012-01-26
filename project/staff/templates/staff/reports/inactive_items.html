@@ -1,0 +1,42 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  
+  <a class="excel-link float-right" href="#">Download XLS</a>
+
+  <form method="get">
+    <div>
+      {{ form.platform.label }} {{ form.platform }} 
+      <input type="submit" value="Search" />
+    </div>
+  </form>
+
+  <div>
+    <table>
+      <tr>
+        <th>PID</th>
+        <th>UPC</th>
+        <th>Game Title</th>
+        <th>Platform</th>
+        <th>Relese Date</th>
+      </tr>
+      {% for i in items %}
+      <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.upc }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.category }}</td>
+        <td>{{ i.release_date|date }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+    {% pagination %}
+  </div>
+</div>
+
+{% endblock right %}

@@ -1,0 +1,30 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module" style="border: none">
+  <table style="width: 500px">
+    <tr>
+      <th>CID</th>
+      <th>Description</th>
+      <th>1 Day</th>
+      <th>2-3 Days</th>
+      <th>4-10 Days</th>
+      <th>10-30 Days</th>
+      <th>31+</th>
+    </tr>
+    {% for d in data %}
+    <tr>
+      <td>{{ d.cid }}</td>
+      <td>{{ d.description }}</td>
+      <td>{{ d.values.0 }}</td>
+      <td>{{ d.values.1 }}</td>
+      <td>{{ d.values.2 }}</td>
+      <td>{{ d.values.3 }}</td>
+      <td>{{ d.values.4 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock right %}

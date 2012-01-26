@@ -1,0 +1,55 @@
+{% extends "members/account/account.html" %}
+
+{% block page-class %}{{ block.super }} page-profile-image{% endblock page-class %}
+
+{% block heading %}
+    <li class="selected"><a href="{% url members:profile_image %}">Profile Image</a></li>
+    <li><a href="{% url members:profile_favorite_genre %}">Favorite Genre</a></li>
+    <li><a href="{% url members:profile_game_reviews %}">Game Reviews</a></li>
+    <li><a href="{% url members:profile_game_ratings %}">Game Ratings</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+<div id="page-profile-image-content">
+    
+    <div id="current-profile-image">
+        <p>Current Pic</p>
+        <img src="{{ user.get_profile.get_icon_url }}" width="200" height="200" />
+    </div>
+
+	<form action="{% url members:profile_image %}" method="post" class="form1" enctype="multipart/form-data">{% csrf_token %}
+		<div class="fields">
+	        <p>To Upload a new image please browse to your image, images may be max of 500k in GIF or
+			JPG format. Photos may not contain nudity, violent or offensive material.</p>
+        
+			{% if form.image.errors %}
+			    <ul class="errors">
+			    {% for error in form.image.errors %}
+			        <li><strong>{{ error|escape }}</strong></li>
+			    {% endfor %}
+			    </ul>
+			{% endif %}
+			
+			{{ form.image }}
+		</div>
+			
+	    <div class="actions">
+	        <a href="{% url members:profile_image %}" class="cancel-button">Cancel</a>
+	        <input type="submit" value="Save" class="save-button" />
+	    </div>
+	</form>
+
+    <form action="{% url members:profile_image %}" method="post" class="form2">{% csrf_token %}
+	    <input type="hidden" name="set" value="" />
+		<h2>or select another default image...</h2>
+		<div id="page-profile-image-default-images">
+	        {% include "members/profile/partials/default_avatars_grid.html" %}
+		</div>
+		<div class="actions">
+{% comment %}
+	        <a href="{% url members:profile_image %}" class="cancel-button">Cancel</a><input type="submit" value="Save" class="save-button" />
+{% endcomment %}
+		</div>
+    </form>
+</div>
+{% endblock page-content %}

@@ -1,0 +1,58 @@
+#form-signup-member-1 {
+    font-size: 11px;
+    
+    h3 {
+        padding: 5px 10px 20px;
+        font-size: 13px;
+        font-weight: bold;
+        
+        em {
+            font-size: 11px;
+            font-weight: normal;
+        }
+    }
+    
+    .side-2 {
+        width: 340px;
+        margin-left: 400px;
+        height: 240px;
+        
+        h3 {
+            padding-left: 0;
+        }
+        
+        dt {
+            float: left;
+            padding-top: 4px;
+            text-align: right;
+            width: 100px;  
+        }
+        
+        dd.field {
+            float: left;
+            margin-left: 8px;
+            width: 210px;
+            margin-bottom: 7px;
+            
+            .input {
+                width: 210px;
+            }
+        }
+    }
+    
+    .clear { clear: left; }
+    
+    .actions {
+        // background: rgba(255, 0, 0, 0.2);
+        float: right;
+        margin: -30px 25px 0 !important;
+        height: 23px;
+        clear: both;
+        width: 700px;
+        
+        .continue-button,
+        .checkout-button {
+            float: right;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <table>
+    <thead>
+     <tr>
+       <td>Date</td>
+       <td>Status</td>
+       <td>Customer</td>
+       <td>Order</td>
+       <td>Claim</td>
+       <td>&nbsp;</td>
+     </tr>
+    </thead>
+    <tbody>
+    {% for t in tickets %}
+      <tr class="case-status-{{ t.status }}">
+       <td>{{ t.date|date }} {{ t.date|time }}</td>
+       <td>{{ t.get_status_display }}</td>
+       <td><a href="{% url staff:customer_view t.user.id %}" target="_blank">{{ t.user.get_profile.get_name_display }}</a></td>
+       <td><a href="#" target="_blank">{{ t.claim_object }}</a></td>
+       <td>{{ t.get_normalized_display }}</td>
+       <td><a href="#">Details</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% pagination %}
+
+{% endblock right %}

@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+{% load i18n %}
+
+{% block titulo %}%trans "Cancel"%}{% endblock %}
+
+{% block content %}
+<div style="padding:30px 0 30px 0; width:450px; margin:0 auto;">
+	{%if msg%}
+		{{msg}}
+	{%else%}	
+	 <form action="" method="post">
+	 {% csrf_token %}
+	   {% blocktrans %}Would you like to receive informatives{%endblocktrans%} {{profile.name}}? <br/>
+	   {{form.subscription}}
+	   {%if os3_marketing_public_list%}
+	   </br>
+	   {% blocktrans %}Please choose below which informatives you would like to receive in your email:{%endblocktrans%}<br/>
+	   {{form.list}}
+	   {%endif%}
+	   <br/><br/><br/>
+	   <input name="teste" type="submit" value="{%trans "Confirm"%}" />   
+	   <br/><br/><br/>
+	 </form>
+	 {%endif%}
+ </div>
+{% endblock %}
+

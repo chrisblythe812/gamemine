@@ -1,0 +1,40 @@
+{% extends "new_rent/landings/base.html" %}
+
+{% block page-class %}rent landings landing3{% endblock %}
+
+{% block aftertop %}
+{# Start Content Wrapper #}
+<div class="container_full">
+  <div class="shadow"></div>
+  <div id="container">
+    <!-- Featured Area -->
+    <div class="featured_row">
+      <div class="featured_pic_left"></div>
+      <div class="featured_pic_center">
+        <!-- Membership Banner -->
+        <div class="membership">
+          <div class="mem_limited">
+            <h2>Limited Monthly 1 Game Plan</h2>
+            <div class="one_cd"></div>
+            <p><span class="red">1 GAME OUT AT A TIME</span><br />$6.95 FIRST MONTH</p>
+            <a href="{% url new_rent:sign_up rental_plan_slug='unlimited1' %}" title="Start Now!" class="link-dialog btn_start_now">Start Now</a>
+            <p class="price">$13.95/month</p>
+          </div>
+          <div class="mem_unlim">
+            <span class="best_val_label"></span>
+            <h2>Unlimited Monthly 2 Game Plan</h2>
+            <div class="two_cd"></div>
+            <p><span class="red">SAVE OVER 40%</span><br />$10.95 FIRST MONTH</p>
+            <a href="{% url new_rent:sign_up rental_plan_slug='unlimited2' %}" title="Start Now!" class="link-dialog btn_start_now">Start Now</a>
+            <p class="price">$20.95/month</p>
+          </div>
+        </div>
+      </div>
+      <div class="featured_pic_right"></div>
+    </div>
+    <!-- Carousel area -->
+    <div class="carousel_row"></div>
+  </div>
+</div>
+{# End Content Wrapper #}
+{% endblock %}

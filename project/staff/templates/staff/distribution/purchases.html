@@ -1,0 +1,40 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+<h2>Purchases</h2>
+<table>
+<thead>
+<tr>
+  <th>PO#</th>
+  <th>Created</th>
+  <th>Status</th>
+  <th>Distributor</th>
+  <th>Items</th>
+  <th>New/Used</th>
+  <th>Print</th>
+</tr>
+</thead>
+<tbody>
+{% for purchase in purchases %}
+<tr>
+  <td>{{ purchase.id }}</td>
+  <td>{{ purchase.created|date }}</td>
+  <td>{{ purchase.get_status_display }}</td>
+  <td>{{ purchase.distributor.name }}</td>
+  <td>{{ purchase.items.all.count }}</td>
+  <td>{% if purchase.is_new %}New{% else %}Used{% endif %}</td>
+  <td>
+  	  <a target="_blank" href="{% url staff:purchase_order purchase.id %}">Print Order</a>
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+</div>
+
+<p><a class="btn" href="{% url staff:page 'Distribution/Create-Purchase' %}">New Purchase</a></p>
+
+{% endblock right %}

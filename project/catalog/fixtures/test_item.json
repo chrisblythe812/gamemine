@@ -1,0 +1,61 @@
+[
+  {
+    "pk": 106329, 
+    "model": "catalog.item", 
+    "fields": {
+      "rating": 130021, 
+      "number_of_players": null, 
+      "trade_price_incomplete": "5.25", 
+      "sold_amount": 105, 
+      "rent_flag": true, 
+      "trade_flag": true, 
+      "base_trade_price": "5.52", 
+      "retail_price_used": "16.99", 
+      "bre_id": "100-ALLT-FA-DS", 
+      "hot_trade": false, 
+      "category": 7, 
+      "votes": "{\"amount\": 0, \"total\": 0, \"ratio\": 0.0, \"details\": [0, 0, 0, 0, 0]}",
+      "ratio": 0.0, 
+      "game_weight": null, 
+      "number_of_online_players": null, 
+      "retail_price_new": "18.99", 
+      "tags": [
+        1205, 
+        1203, 
+        247, 
+        74, 
+        1206, 
+        1204
+      ], 
+      "base_retail_price_used": "17.95", 
+      "rent_amount": 0, 
+      "top_rental": false, 
+      "type": 1, 
+      "trade_price": "7.00", 
+      "muze_cache": "{u\"videos\": [], u\"expanded_description\": u\"100 All-Time Favorites provides a huge selection of easy to pick up classics games - over 100 board games, card games and puzzles. Players can challenge family and friends with the multiplayer mode, watch tutorial videos to learn to play new games, unlock new games with high scores, and much more.\", u\"front_image\": None, u\"work_id\": u\"GW0000074072\", u\"screenshots\": [{u\"file_name\": u\"GI/00/00/95/21/GI0000952113.jpg\", u\"caption\": u\"Screenshot courtesy of Hardcore Gaming 101 - hg101.classicgaming.gamespy.com\"}], u\"msrp\": 19.989999999999998, u\"videos2\": []}", 
+      "description": "With 100 All-time Favorites, you can rediscover your favorite classics. Choose among a great variety of board games, card games and puzzles. Have fun with your family and friends or simply take a moment or hours to have fun and relax while playing alone.", 
+      "short_name": "100 All-Time Favorites", 
+      "trade_amount": 0, 
+      "rent_status": 0, 
+      "genres": [
+        12, 
+        9
+      ], 
+      "details_page_views": 54, 
+      "game": 430, 
+      "active": true, 
+      "slug": "100-All-Time-Favorites-Nintendo-DS", 
+      "publisher": 2, 
+      "bsid": null, 
+      "name": "100 All-Time Favorites", 
+      "release_date": "2009-10-27", 
+      "prebook_date": null, 
+      "upc": "008888165675", 
+      "pre_owned": false, 
+      "base_retail_price_new": "19.99", 
+      "genre_list": "Kids & Family Puzzle", 
+      "tag_list": "Card Classic Board Game Compilation Mini-Games Parlor Games Puzzle", 
+      "ingram_code": null
+    }
+  }
+]

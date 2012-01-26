@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+    html {
+	      background: left top #D6D6D6 url("{{ STATIC_URL }}img/footer-bg-new.png") repeat-x;
+
+    	{% ifequal bg_type "black" %}
+    		background-color:black;
+    		background-image:none;
+        {%endifequal%}
+    	{% ifequal bg_type "d0cfd0" %}
+    		background-color:#d0cfd0;
+    		background-image:none;
+        {%endifequal%}
+    	{% ifequal bg_type "browse" %}
+    		background-color:#d8d8d8;
+    		background: left top #D6D6D6 url("{{ STATIC_URL }}img/footer-bg-browse-game.png") repeat-x;
+        {%endifequal%}
+
+   }
+
+    body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        width: 418px;
+        height: 50px;
+       background: transparent right 10px url("{{ STATIC_URL }}img/Credit_Cards_1.png") no-repeat;
+   }
+
+    #footer-buttons-authorizenet {
+        float: left;
+        padding: 0 !important;
+    }
+
+    #AuthorizeNetText {
+        display: none !important;
+    }
+
+    .AuthorizeNetSeal {
+        width: 62px !important;
+        height: 50px !important;
+
+    }
+
+    .AuthorizeNetSeal img {
+        width: 62px !important;
+        height: 50px !important;
+    }
+
+    #footer-buttons-verisign {
+        float: left;
+        padding: 0 !important;
+    }
+
+    #footer-buttons-verisign a {
+        margin: 9px 0 0 10px !important;
+        padding: 0 !important;
+        display: block;
+        width: 64px;
+        height: 32px;
+        background: url("{{ STATIC_URL }}img/Verisign Trust Seal.gif");
+        text-indent: -9999px;
+        overflow: hidden;
+    }
+
+    #footer-buttons-bbb {
+        float: left;
+        padding: 0 !important;
+        margin: 0 10px;
+    }
+
+    #footer-buttons-bbb * {
+        text-decoration: none;
+        border: none;
+    }
+
+    .upfront_badge {
+      margin: 14px 0 0 10px;
+      float: left;
+    }
+    </style>
+</head>
+<body id="footer-buttons-iframe">
+{% if 1 %}
+  <div id="footer-buttons-authorizenet">
+    <!-- (c) 2005, 2010. Authorize.Net is a registered trademark of CyberSource Corporation -->
+    <div class="AuthorizeNetSeal">
+      <script type="text/javascript" language="javascript">
+        var ANS_customer_id="c07c7c08-dee3-4b1e-b9ab-4d2cb1bb7f76";
+      </script>
+      <script type="text/javascript" language="javascript" src="https://verify.authorize.net/anetseal/seal.js" ></script>
+      <a href="http://www.authorize.net/" id="AuthorizeNetText" target="_blank">Accept Credit Card Payments</a>
+    </div>
+  </div>
+
+  <a class="upfront_badge" target="_blank" href="http://www.thefind.com/store/about-gamemine" title="TheFind Upfront"><img border="0" src="{{ STATIC_URL }}img/TheFind_Logo.png" alt="Gamemine is upfront"/></a>
+
+  <div id="footer-buttons-verisign">
+    <script type="text/javascript" src="https://seal.verisign.com/getseal?host_name=www.gamemine.com&amp;size=S&amp;use_flash=NO&amp;use_transparent=YES&amp;lang=en"></script>
+    <a href="https://trustsealinfo.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=www.gamemine.com&amp;lang=en" target="_blank">ABOUT SSL CERTIFICATES</a>
+  </div>
+{% endif %}
+{% comment %}
+  <div id="footer-buttons-bbb">
+    <a href="http://www.bbb.org/south-east-florida/business-reviews/video-games-rental-and-leasing/gameminecom-main-corporate-office-in-pompano-beach-fl-92018889" target="_blank"><img src="{{ STATIC_URL }}img/BBB.png" alt="BBB"/></a>
+  </div>
+{% endcomment %}
+</body>
+</html>

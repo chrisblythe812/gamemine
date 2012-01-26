@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/staff/staff.css?rev={{ REV }}" />
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js?rev={{ REV }}"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js?rev={{ REV }}"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/searchbox.js?rev={{ REV }}"></script>
+  <title>{% block title %}{% endblock title %}</title>
+  {% block head %}{% endblock head %}
+
+  <script type="text/javascript">
+  $(document).ready(function () {
+    $('a.excel-link').click(function () {
+      var href = '' + window.location; 
+      if (href.indexOf('?') != -1)
+        href += '&excel';
+      else
+        href += '?excel';
+      window.location = href;
+      return false;
+    });
+  });
+  </script>
+</head>
+<body class="{% block page-class %}staff-page{% endblock page-class %}">
+
+
+<div id="header">
+<div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.jpg" width="109" height="70" /></a></div>
+<ul>
+  <li><a href="{% url staff:customer %}">Customer Information</a></li>
+  <li><a href="{% url staff:fulfillment %}">Fulfillment</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+{% block content %}{% endblock %}
+</body>
+</html>
+

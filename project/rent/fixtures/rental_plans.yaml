@@ -1,0 +1,155 @@
+- model: rent.rentalplan
+  pk: 0
+  fields:
+    description: Monthly 1 Game Plan
+    first_month: '8.99'
+    thereafter_months: '8.99'
+    months: 1
+    expire_in: null
+    store_credits: '0.00'
+    games_allowed: 1
+
+- model: rent.rentalplan
+  pk: 1
+  fields:
+    description: Monthly 2 Game Plan
+    first_month: '13.99'
+    thereafter_months: '19.99'
+    months: 1
+    expire_in: null
+    store_credits: '0.00'
+    games_allowed: 2
+
+- model: rent.rentalplan
+  pk: 2
+  fields:
+    description: Monthly 3 Game Plan
+    first_month: '29.99'
+    thereafter_months: '29.99'
+    months: 1
+    expire_in: null
+    store_credits: '0.00'
+    games_allowed: 3
+
+- model: rent.rentalplan
+  pk: 3
+  fields:
+    description: 3 Months 2 Game Plan
+    first_month: '59.99'
+    thereafter_months: null
+    months: null
+    expire_in: 4
+    store_credits: '10.00'
+    games_allowed: 2
+
+- model: rent.rentalplan
+  pk: 4
+  fields:
+    description: 6 Months 2 Game Plan
+    first_month: '119.99'
+    thereafter_months: null
+    months: null
+    expire_in: 7
+    store_credits: '15.00'
+    games_allowed: 2
+
+- model: rent.rentalplan
+  pk: 11
+  fields:
+    description: 1 Game Plan - Monthly
+    first_month: '14.99'
+    thereafter_months: '14.99'
+    months: 1
+    expire_in: null
+    store_credits: '0.0'
+    games_allowed: 1
+
+- model: rent.rentalplan
+  pk: 12
+  fields:
+    description: 1 Game Plan - 6 months
+    first_month: '83.70'
+    thereafter_months: null
+    months: null
+    expire_in: 6
+    store_credits: '0.0'
+    games_allowed: 1
+    
+- model: rent.rentalplan
+  pk: 13
+  fields:
+    description: 1 Game Plan - 12 Months
+    first_month: '11.95'
+    thereafter_months: null
+    months: null
+    expire_in: 12
+    store_credits: '0.0'
+    games_allowed: 1
+        
+- model: rent.rentalplan
+  pk: 14
+  fields:
+    description: 2 Games Plan
+    first_month: '20.95'
+    thereafter_months: '20.95'
+    months: 1
+    expire_in: null
+    store_credits: '0.0'
+    games_allowed: 2
+        
+- model: rent.rentalplan
+  pk: 17
+  fields:
+    description: 2 Games Plan - 6 Months
+    first_month: '18.95'
+    thereafter_months: null
+    months: null
+    expire_in: 6
+    store_credits: '0.0'
+    games_allowed: 2
+        
+- model: rent.rentalplan
+  pk: 18
+  fields:
+    description: 2 Games Plan - 12 Months 
+    first_month: '17.95'
+    thereafter_months: null
+    months: null
+    expire_in: 12
+    store_credits: '0.0'
+    games_allowed: 2
+        
+        
+- model: rent.rentalplan
+  pk: 19
+  fields:
+    description: 3 Games Plan 
+    first_month: '28.95'
+    thereafter_months: '28.95'
+    months: 1
+    expire_in: null
+    store_credits: '0.0'
+    games_allowed: 3
+        
+- model: rent.rentalplan
+  pk: 20
+  fields:
+    description: 3 Games Plan - 6 Months
+    first_month: '26.95'
+    thereafter_months: null
+    months: null
+    expire_in: 6
+    store_credits: '0.0'
+    games_allowed: 3
+        
+- model: rent.rentalplan
+  pk: 21
+  fields:
+    description: 3 Games Plan - 12 Months
+    first_month: '25.45'
+    thereafter_months: null
+    months: null
+    expire_in: 12
+    store_credits: '0.0'
+    games_allowed: 3
+        

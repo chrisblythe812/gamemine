@@ -1,0 +1,86 @@
+{% load comments %}
+{% load percents %}
+{% load mask_username %}
+
+<h3>Member Reviews (<span class="review-count">{{ comment_count }}</span>)</h3>
+<div class="member-reviews-filter">
+    <a href="{{ item.get_absolute_url }}get-all-reviews/" class="reviews-filter">View all reviews</a> 
+	<span class="separator">|</span> 
+	<a href="{{ item.get_absolute_url }}get-helpful-reviews/" class="reviews-filter">Show helpful</a> 
+	<span class="separator">|</span> 
+	<a href="#write-review" class="goto-write-review">Write a review</a>
+</div>
+
+<div class="member-reviews-items">
+{% if reviews %}
+	<ul class="member-reviews-list{% if not user.is_authenticated %} not-authenticated{% endif %}">
+	{% for review in reviews %}
+		{% if user.is_authenticated and forloop.counter0 < DEFAULT_REVIEWS_COUNT or forloop.counter0 < 1 %}
+		<li class="member-review" id="member-review-{{ review.id }}">
+			<div class="review-usericon"><img src="{{ review.user.get_profile.get_icon_url }}" width="60" height="60" /></div>
+			<div class="review-content">
+				{% if review.title %}
+				<h4>{{ review.title }}</h4>
+				{% endif %}
+				<div class="review-comment">
+					{{ review.comment|linebreaks }}
+				</div>
+				<div class="review-meta">
+					<div class="catalog-item-rating"><div class="catalog-item-rating-content" style="width: {{ review.rating|percents:5 }}%">{{ review.rating|percents:5 }}&nbsp;of&nbsp;100</div></div>
+					<div class="review-author">Posted {{ review.timestamp|timesince }} ago by {{ review.user.username|mask_username }}</div>
+					{% if user != review.user %}
+					<div class="review-helpful">Was this helpful? <a href="{% url catalog:mark_useful review.id 'yes' %}" class="review-vote-button small-yes-button">Yes</a> <a href="{% url catalog:mark_useful review.id 'no' %}" class="review-vote-button small-no-button">No</a></div>
+					{% endif %}
+				</div>
+			</div>
+		</li>
+		{% endif %}
+	{% endfor %}
+	</ul>
+	{% if user.is_authenticated and reviews|length > DEFAULT_REVIEWS_COUNT %}
+	<div class="member-reviews-list-actions">
+		<a class="get-more" href="{{ item.get_absolute_url }}get-more-reviews/">View more reviews...</a>
+	</div>
+	{% endif %}
+{% else %}
+    {% if not user.is_authenticated %}
+    <ul class="member-reviews-list{% if not user.is_authenticated %} not-authenticated{% endif %}">
+        <li class="member-review" id="member-review-{{ review.id }}">
+            <div class="review-usericon"><img src="{{ STATIC_URL }}img/avatar.png" /></div>
+            <div class="review-content">
+                <h4>Amazing!</h4>
+                <div class="review-comment">
+                    <p>The game was very fun and interactive. It kept me engaged all night nonstop with my friend and family who couldn't believe the continuous gameplay!</p>
+                </div>
+                <div class="review-meta">
+                    <div class="catalog-item-rating"><div class="catalog-item-rating-content" style="width: 60%">60&nbsp;of&nbsp;100</div></div>
+                    <div class="review-author">Posted 1 month ago by Radhames Brito</div>
+                    <div class="review-helpful">Was this helpful? <a href="#" class="review-vote-button small-yes-button">Yes</a> <a href="#" class="review-vote-button small-no-button">No</a></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    {% endif %}
+
+	<div class="item-reviews-be-first">
+		Be The First To Write A Review!
+	</div>
+{% endif %}
+</div>
+
+<div class="member-reviews-items-form{% if not user.is_authenticated %} not-authenticated{% endif %}">
+{% if user.is_authenticated %}
+	<h3>Write Your Review...</h3>
+
+	<div class="item-reviews-form">
+	{% with review_form as form %}
+		{% include "catalog/partials/review.form.html" %}
+	{% endwith %}
+	</div>	
+{% else %}
+	<div class="form-actions">
+		<a href="{% url members:login %}" class="login-button">Login</a>
+		<a href="{% url members:create_account %}" class="signup-button">Sign Up</a>
+	</div>
+{% endif %}
+</div>

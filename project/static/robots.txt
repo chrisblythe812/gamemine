@@ -1,0 +1,7 @@
+User-Agent: *
+Disallow:
+
+User-Agent: MJ12bot
+Disallow:
+
+Sitemap: http://www.gamemine.com/sitemap.xml

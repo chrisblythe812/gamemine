@@ -1,0 +1,181 @@
+#trade-add-dialog {
+	width: 730px;
+
+	#dialog-heading {
+		padding: 5px 15px;
+		height: 47px;
+	}
+	
+	#trade-add-game-details {
+//		background: rgba(255, 255, 0, .3);
+		height: 47px;
+		width: 550px;
+		overflow: hidden; 
+
+		img {
+			float: left;
+			margin-right: 10px;
+		}
+		
+		h1 {
+			color: #333;
+			font-weight: bold;
+			margin-top: 7px;
+			font-size: 13px;
+			line-height: 16px;
+		}
+		
+		.game-details {
+			color: #2f66ca;
+			font-size: 13px;
+			line-height: 16px;
+			
+			strong {
+				font-weight: bold;
+			}
+		}
+	}
+	
+	#dialog-title {
+		margin-top: -50px;
+	}
+	
+	#trade-add-form-hint {
+		// background: rgba(255, 255, 0, .3);
+		float: right;
+		width: 357px;
+		color: #333;
+		margin: -30px -5px 0 0;
+
+    .boxed-wrapper {
+      height: 175px;
+      padding: 15px;
+    }
+
+		h2 {
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 1em;
+		}
+		
+		ul {
+			list-style: disc outside;
+			font-size: 11px;
+			
+			li {
+				margin: 0 0 7px 13px;
+			}
+		}
+		
+		p {
+		  margin-top: 4px;
+			font-size: 11px;
+		}
+		
+		label,
+		a {
+			font-size: 11px;
+      color: #0764c4;
+      font-style: italic;
+		  margin: 7px 0 0 0;
+		}
+		
+		input {
+		  margin: 7px 0 0 0;
+		  padding: 0;
+		}
+	}
+	
+	#trade-add-form {
+		#trade-add-choices {
+			// background: rgba(255, 255, 0, .3);
+			height: 200px;
+			width: 330px;
+
+			li.item {
+				height: 100px;
+				padding-left: 100px;
+				margin-left: 20px;
+				
+				.choice {
+					color: #333;
+					font-size: 12px;
+					line-height: 16px;
+					padding: 34px 0 0 0;
+					width: 155px;
+					float: left;
+          margin: 0;
+
+					input {
+						float: left;
+						height: 16px;
+						margin: 0;
+						padding: 0;
+					}
+
+					label {
+						margin-left: 20px;
+						display: block;
+						font-weight: bold;
+					
+						span {
+							display: block;
+							font-weight: normal;
+						}
+					}
+					
+					ul {
+					   clear: both;
+					   margin-left: 20px;
+			       list-style: none;
+					}
+				}
+				
+				.price {
+					padding: 34px 0 0 0;
+					width: 55px;
+					float: right;
+					font-size: 12px;
+					line-height: 16px;
+          margin: 0;
+					
+					span {
+						display: block;
+						font-weight: bold;
+						color: #e30e17;
+					}
+				}				
+			
+				.out-of-stock {
+					color: #e30e17;
+				}
+			}
+
+			#trade-add-complete {
+				background: left center url($images_url + 'icons/disc-icon-1.png') no-repeat;
+		  }
+	
+			#trade-add-incomplete {
+				background: left center url($images_url + 'icons/disc-icon-no-cover.png') no-repeat;
+		  }
+		}
+	}
+	
+	.actions {
+	  clear: both;
+		margin-top: 10px;
+		padding: 0 0 0 50px;
+		*padding-top: 10px;
+
+		.right {
+		  width: 366px;
+			float: right;
+			text-align: center;
+
+			input {
+			  margin-left: 20px;
+			}
+		}
+	}
+}
+

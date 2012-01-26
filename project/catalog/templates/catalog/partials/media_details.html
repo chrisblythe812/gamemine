@@ -1,0 +1,144 @@
+{% with item.get_videos.0 as clip %}
+<div id="item-media-details-dialog">
+	<div id="dialog-heading">
+		<div id="item-media-details-dialog-title">
+			<h1>{{ item.name }}</h1>
+			<div class="caption">{{ clip.caption }}</div>
+		</div>
+		<div id="dialog-title"><a class="close-button" href="#" title="Close">Close</a></div>
+	</div>
+
+  <script type="text/javascript">
+    var videoClips = [{% for v in videos %}{ f1: '{{ MEDIA_URL }}muze/Clip/{{ v.f2 }}', f2: '{{ MEDIA_URL }}muze/Clip/{{ v.f1 }}' }{% if not forloop.last %}, {% endif %}{% endfor %}];
+    var currentVideoClip = 0;
+  </script>
+
+	<div id="dialog-content">
+		<div id="item-media-details-sidebar">
+			{% if videos %}
+			<div class="videos">
+				<h4>Game Videos</h4>
+				<div class="scroll up"><input type="button" value="Prev"/></div>
+				<div class="viewport">
+				  <ul>
+				  {% for i in videos %}
+					  <li><a href="#clip-{{ forloop.counter0 }}" title="{{ i.caption }}"><img src="{{ i.thumb_url }}" title="{{ i.caption }}" width="40" height="25" /></a></li>
+				  {% endfor %}
+				  </ul>
+  			</div>
+				<div class="scroll down"><input type="button" value="Next"/></div>
+			</div>
+			{% endif %}
+			{% if screenshots %}
+			<div class="screenshots">
+				<h4>Screen Shots</h4>
+				<div class="scroll up"><input type="button" value="Prev"/></div>
+				<div class="viewport">
+				  <ul>
+				  {% for i in screenshots %}
+					  <li><a href="{{ MEDIA_URL }}thumbs/muze/719x403/{{ i.file_name }}"><img src="{{ MEDIA_URL }}thumbs/muze/40x25/{{ i.file_name }}" title="{{ i.caption }}" width="40" height="25" /></a></li>
+				  {% endfor %}
+				  </ul>
+				</div>
+				<div class="scroll down"><input type="button" value="Next"/></div>
+			</div>
+			{% endif %}
+		</div>
+
+		<div id="item-media-details-media-container">
+  {% if videos %}
+		  <div id="media-player-hilo">Select Resolution <a id="media-player-lo" href="#">LO</a> | <a id="media-player-hi" href="#">HI</a></div>
+  {% endif %}
+			<div class="media-container">
+				<div id="media-player"><div id="video-player">&nbsp;</div></div>
+				<div id="media-viewer">&nbsp;</div>
+			</div> 
+		</div>
+
+  <script type="text/javascript">
+
+  {% if videos %}
+      flowplayer(
+        "video-player", 
+        "{{ STATIC_URL }}flowplayer-3.2.3.swf",
+        {       
+        canvas: {backgroundColor: "#525252"},
+        plugins: {
+           controls: {
+              timeBorder: '0px solid rgba(0, 0, 0, 0.3)',
+              volumeSliderColor: '#2e2e2e',
+              backgroundGradient: 'none',
+              buttonOverColor: '#ffffff',
+              bufferGradient: 'none',
+              volumeBorder: '1px solid rgba(128, 128, 128, 0.7)',
+              autoHide: 'never',
+              timeSeparator: ' / ',
+              progressGradient: 'none',
+              sliderColor: '#525252',
+              backgroundColor: '#222222',
+              volumeSliderGradient: 'none',
+              progressColor: '#112233',
+              borderRadius: '0px',
+              buttonColor: '#7a7a7a',
+              timeColor: '#ffffff',
+              tooltipTextColor: '#ffffff',
+              sliderBorder: '1px solid rgba(128, 128, 128, 0.7)',
+              durationColor: '#FF000B',
+              sliderGradient: 'none',
+              timeBgColor: '#161616',
+              tooltipColor: '#000000',
+              volumeColor: '#161616',
+              bufferColor: '#445566',
+              height: 30,
+              opacity: 1.0
+           }
+        }});
+  {% endif %}
+
+			function enableScrollButtons($o, page, page_count) {
+		    if (page == 0)
+		      $o.find('.scroll.up').addClass('disabled');
+	      else
+		      $o.find('.scroll.up').removeClass('disabled');
+	      if (page >= page_count-1)
+		      $o.find('.scroll.down').addClass('disabled');
+	      else
+		      $o.find('.scroll.down').removeClass('disabled');
+			}
+
+      function setupPaginator(selector, count, count_per_page) {
+			  var page_count = Math.ceil(count / count_per_page);
+			  var page = 0;
+        var $o = $(selector);
+
+			  $o.find('.scroll.up input').click(function(){
+		      if (page) {
+  		      $o.find('.viewport ul').animate({'top': '+=120px'}, 500);
+  		      --page;
+  		    }
+  		    enableScrollButtons($o, page, page_count);
+		      return false;
+			  });
+			  $o.find('.scroll.down input').click(function(){
+		      if (page < page_count-1) {
+  		      $o.find('.viewport ul').animate({'top': '-=120px'}, 500);
+		        ++page;
+		      }
+  		    enableScrollButtons($o, page, page_count);
+		      return false;
+			  });
+		    enableScrollButtons($o, page, page_count);
+			}
+
+			$(document).ready(function(){
+        setupPaginator('.videos', {{ videos|length }}, 8);
+        setupPaginator('.screenshots', {{ screenshots|length }}, 8);
+			});
+		</script>
+	</div>
+</div>
+
+<script type="text/javascript">
+	catalogItem.prepareMediaDialog();
+</script>
+{% endwith %}

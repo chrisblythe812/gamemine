@@ -1,0 +1,117 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block head %}{{ block.super }}
+
+<style type="text/css">
+.selected {
+  background: #FFFF99;
+  color: #993300;
+  font-weight: bold;
+}
+
+#process-cashout-order .errorlist {
+  color: red;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#process-cashout-order .errorlist .ul {
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+{% endblock head %}
+
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Cashout Statistics</h2>
+  
+  <table>
+    <tr>
+      <th>PayPal Payments</th>  
+      <th>Check Payments</th>  
+      <th>Unprocessed Payments</th>  
+    </tr>
+    <tr>
+      <td class="c">${{ paypal_payments_amount|floatformat:2 }}</td>
+      <td class="c">${{ check_payments_amount|floatformat:2 }}</td>
+      <td class="c selected">${{ unprocessed_payments_amount|floatformat:2 }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Pending PayPal Payments</h2>
+  
+  <table>
+    <tr>
+      <th>Customer Name</th>  
+      <th>Credits</th>  
+      <th>Order Date</th>  
+      <th>Email ID</th>  
+      <th>Labels / Packslips</th>  
+    </tr>
+    {% for o in paypal_orders %}
+    <tr>
+      <td width="300"><a href="{% url staff:customer_view o.user.id %}" target="_blank">{{ o.user.get_profile.get_name_display }}</a></td>
+      <td class="r" width="70">${{ o.amount|floatformat:2 }}</td>
+      <td class="c" width="70">{{ o.submit_date|date }}</td>
+      <td>{{ o.paypal_id|default:"--" }}</td>
+      <td width="130" class="c"><a href="#">Process</a></td>
+    </tr>
+    {% endfor %}
+    <tbody class="total">
+      <tr>
+        <td><a href="#">Process Batch</a></td>
+        <td class="r">${{ paypal_orders_total|floatformat:2 }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Pending Check Payments</h2>
+  
+  <table>
+    <tr>
+      <th>Customer Name</th>  
+      <th>Credits</th>  
+      <th>Order Date</th>  
+      <th>Address</th>  
+      <th>Labels / Packslips</th>  
+    </tr>
+    {% for o in check_orders %}
+    <tr>
+      <td width="300"><a href="{% url staff:customer_view o.user.id %}" target="_blank">{{ o.user.get_profile.get_name_display }}</a></td>
+      <td class="r" width="70">${{ o.amount|floatformat:2 }}</td>
+      <td class="c" width="70">{{ o.submit_date|date }}</td>
+      <td>{{ o.address1 }}{% if o.address2 %}<br />{{ o.address2 }}{% endif %}<br />{{ o.city }}, {{ o.state }} {{ o.zip_code }}</td>
+      <td width="130" class="c"><a href="{% url staff:trade_cashout_checks %}?ids={{ o.id }}" target="_blank">Label</a> | <a href="{% url staff:process_cashout o.id %}" class="ajax-action">Process</a></td>
+    </tr>
+    {% endfor %}
+    <tbody class="total">
+      <tr>
+        <td>{% if check_orders_ids %}<a href="{% url staff:trade_cashout_checks %}?ids={{ check_orders_ids }}" target="_blank">Generate Address List</a>{% endif %}</td>
+        <td class="r">${{ check_orders_total|floatformat:2 }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('a.ajax-action').colorbox();
+  });
+</script>
+
+{% endblock right %}

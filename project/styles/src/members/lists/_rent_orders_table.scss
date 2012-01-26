@@ -1,0 +1,150 @@
+#rent-orders-table {    
+    .order-number {
+        color: #C80000 !important;
+    }
+}
+
+
+#rent-list-table {
+    width: 100%;
+    color: #333;
+    
+    th {
+        background-color: #c2c2c2;
+        height: 35px;
+        border-left: 2px solid #cbcbcb;
+        font-size: 11px;
+        text-align: center;
+        padding: 0 20px !important;
+    }
+    
+    th.column-item {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    tr.dragging {
+        td {
+            background: #fff;
+        }
+    }
+    
+    td {
+        background-color: #eaeaea;
+        border-left: 2px solid #fff;
+        font-size: 11px;
+        text-align: center;
+        
+    }
+
+    td.column-item {
+        padding: 10px !important;
+    }
+    
+    .column-item {
+        border: none !important;
+        text-align: left;
+        
+        .item-position {
+            float: left;
+            margin-top: 20px;
+            width: 29px;
+            text-align: center;
+            // background: rgba(255, 255, 0, .3);
+
+            .counter {
+                display: block;
+                border: 2px solid #EBC2C8;
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                text-align: center;
+                font-size: 13px;
+            }
+            
+            .move-top-button {
+                margin: 7px auto 0;
+            }
+        }
+        
+        .item-details {
+            // background: rgba(255, 255, 0, .3);
+            margin-left: 35px;
+
+            .item-title {
+                font-weight: bold;
+            }
+
+            a {
+                color: #333;
+            }
+            
+            img {
+                float: left;
+            }
+            
+            ul.rating {
+                clear: none;
+                margin-top: 5px;
+            }
+            
+            .item-details-info {
+                margin-left: 65px;
+                padding-top: 20px;
+            
+                a {
+                    @include heading-anchor;
+                    color: #333;                
+                }
+            }
+            
+            .item-notes {
+                margin-left: 65px;
+                padding: 5px 0;
+                
+                a {
+                    text-decoration: none;
+                }
+            }
+            
+            .item-details-actions {
+                padding: 5px 0;
+                clear: left;
+            }
+        }
+    }
+    
+    .column-platform { width: 100px; }
+    .column-rate { width: 100px; }
+    .column-availability { width: 70px; }
+    .column-esrb { width: 90px; }
+    .column-actions { width: 50px; }
+
+    .column-condition { 
+       width: 90px;
+       a {
+           color: #333;
+       } 
+    }
+    .column-tradein { width: 90px; }
+    .column-value { width: 90px; }
+    
+    .catalog-item-stars {
+        margin: 0 auto;
+        width: 70px;
+    }
+    
+    .empty {
+        padding: 20px;
+        text-align: left;
+        border: none;
+    }
+
+    tr.inset {
+        td {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 6px !important;
+        }
+    }
+}

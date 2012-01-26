@@ -1,0 +1,22 @@
+<div id="intro-wimgw-page-grid">
+
+  {% include "partials/wimgw_search_area.html" %}
+
+  <ul class="consoles">
+  {% for category in categories %}
+    <li class="console {{ category.slug|lower }}">
+      <h2>{{ category.description }}</h2>
+      <ul>
+      {% for item in category.list_top_trades %}
+        <li>
+          <a href="{{ item.get_absolute_url }}" class="item-title"><span>{{ item.get_cropped_name }}</span></a>
+          <span class="price">{% if item.trade_price %}${{ item.trade_price }}{% else %}--{% endif %}</span>
+        </li>
+      {% endfor %}
+      </ul>
+      <div class="view-all"><a href="{% url search:search %}?order_by=4&amp;platform={{ category.name }}">View All</a></div>
+    </li>
+  {% endfor %}
+  </ul>
+
+</div>

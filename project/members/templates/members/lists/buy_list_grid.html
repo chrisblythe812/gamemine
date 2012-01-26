@@ -1,0 +1,70 @@
+{% load percents %}
+{% load star_rating %}
+
+<form method="post" id="trade-list-form">
+{% csrf_token %}
+
+<table id="rent-list-table">
+	<tr>
+		<th class="column-item">Buy List ({{ buy_list|length }})</th>
+		<th class="column-condition">Condition</th>
+		<th class="column-platform">Platform</th>
+		<th class="column-buy">Buy</th>
+		<th class="column-price">Price</th>
+		<th class="column-actions">Remove</th>
+	</tr>
+	{% for r in buy_list %}
+	{% with r.item as item %}
+	<tr>
+		<td class="column-item">
+			<div class="item-details" style="margin-left:0;">
+				<a href="{{ item.get_absolute_url }}"><img src="{{ item.get_thumb_image }}" width="55" height="70" /></a>
+				<div class="item-details-info">
+					<div class="item-title"><a href="{{ item.get_absolute_url }}">{{ item.short_name }}</a></div>
+					{{ item|star_rating:user }}
+	    			{{ item.release_date|date }}
+				</div>
+			</div>
+		</td>
+		<td class="column-condition"><a class="link-dialog" href="{% url members:buy_list_change r.id %}">{% if r.is_new %}NG{% else %}UG{% endif %}</td>
+		<td class="column-platform">{{ item.category.description }}</td>
+		<td class="column-buy">
+        {% if r.buy_alert %}
+            <img title="Buy Alert" src="{{ STATIC_URL }}img/alert-icon.png" width="16" height="16" />
+        {% else %}
+      		  <input type="checkbox" id="id-item-{{ r.id }}" name="item-{{ r.id }}" class="buy-list-item" {% if not r.get_price %}disabled="disabled" {% endif %}/>
+		    {% endif %}
+	  </td>
+		<td class="column-price">{% if r.get_price %}${{ r.get_price }}{% else %}--{% endif %}</td>
+		<td class="column-actions"><a href="{% url buy:remove_from_list r.id %}" class="delete-cart-item-button buy-list-action remove-item" title="Remove">Remove</a></td>
+	</tr>
+	{% endwith %}
+	{% empty %}
+	<tr>
+	  <td class="column-item" colspan="6">&nbsp;</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% if buy_list %}
+<div id="trade-list-footer">
+	<input type="submit" class="add-to-cart-button" value="Add to Cart"/>
+	<p>Buy List is your wishlist of games that you can purchase by selecting the
+	"Buy" checkbox and clicking the "Add to Cart" button</p>
+</div>
+{% endif %}
+
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#trade-list-form').submit(function(){
+    if (!$('.buy-list-item:checked').length) {
+      alert('Please select some games to buy.');
+      return false;
+    }
+    return true;
+  });
+});
+</script>
+

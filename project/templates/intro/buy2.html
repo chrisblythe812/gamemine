@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Buy Xbox, PS3, PS2, PSP, Wii, DS – Great Prices!{% endblock %}
+{% block meta-description %}Gamemine offers more than 7,000 game titles to Buy, Trade or Rent online by mail - New Video Game Releases, Preowned and Used Video Games right from the comfort of your home. All your video game needs in one place all the time. – The Game Station!{% endblock meta-description %}
+{% block meta-keywords %}buy games, buy video games, buy sell video games, buy xbox games, buy nintendo games, buy playstation games, buy ps3 video games, buy ps3 games, buy xbox video games, buy ps3 video games, games to buy, used video games, buy video game, buy ps2 games, cheap video games, discount video games, buy cheap games, buy console games, buy ps2 video games, buy used games, buy new games, video game to buy, video games to buy, buying video games, buy video games online, buy used video games, cheapest video games, preplayed video games, buy new video games, buy cheap video games, buy xbox 360 video games, buying video game, where to buy video games, buy videogames, buy video game online, buy old video games, buy rite video games, preorder video games, where can i buy video games, best place to buy video games, buy 2 get 1 free video games, buy used video games online, places to buy video games, buy video games online cheap, where to buy used video games, buy used videogames, buy new videogames, used video game store, used video games, used video game, wholesale video games, wholesale video game{% endblock meta-keywords %}
+
+{% block head %}
+  <link href="{{ STATIC_URL }}css/editor.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="{{ STATIC_URL }}js/intro.js?rev={{ REV }}"></script>
+
+  <script type="text/javascript">
+  var catalogConfig = {
+    autoFilter: {{ auto_filter|yesno:"true,false" }},
+    mediaUrl: "{{ STATIC_URL }}"
+  };
+  </script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/catalog.js?rev={{ REV }}"></script>
+{% endblock %}
+
+{% block page-class %}banner-page intro-buy2-page intro2-page{% endblock %}
+
+{% block content-header %}
+  <div class="banner-featured-game">
+    <div class="banner-content">
+      <div class="banner-header"></div>
+
+      <a href="{% url catalog:index %}" id="item-catalog-index">
+        <div class="link-content"></div>
+      </a>
+    </div>
+
+    <div class="banner-carousel">
+      <div id="intro-best-sellers">
+        <ul id="intro-carousel" class="games-thumb-list">
+        {% for i in best_sellers %}
+          <li>
+            <div class="catalog-item-2">
+              <a class="image" href="{{ i.get_absolute_url }}"><img src="{{ i.get_thumb_image3 }}" width="120" height="160" /></a>
+
+              <div class="title"><a href="{{ i.get_absolute_url }}" title="{{ i }}">{{ i.get_cropped_name_15 }}</a></div>
+              <div class="price">${{ i.get_min_price }}</div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="banner-categories">
+      <ul>
+        {% for c in CATALOG_CATEGORIES %}
+        <li id="banner-category-{{ c.0 }}"{% if forloop.last  %} class="last-item"{% endif %}><a href="{% url catalog:category c.0 %}"{% if category.slug == c.0 %} class="current"{% endif %}><span>{{ c.1 }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock content-header %}
+
+{% block content %}
+
+<div id="intro-buy2-page-content">
+
+  <div id="catalog-grid">
+    <div id="catalog-grid-title">
+      <div class="legend">
+        = Pre-Owned Games
+      </div>
+
+      <div class="paginator">
+        {% if page_range.left_end %}
+          {% for p in page_range.left_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+          ...
+        {% endif %}
+        {% for p in page_range.range %}
+          {% ifequal p page.number %}
+          <span class="current">{{ p }}</span>
+          {% else %}
+          <a href="?p={{ p }}">{{ p }}</a>
+          {% endifequal %}
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+        {% if page_range.right_end %}
+          ...
+          {% for p in page_range.right_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div id="catalog-grid-content">
+      <ul class="catalog-items{% if not page.object_list %} empty{% endif %}">
+      {% for item in page.object_list %}
+        <li class="catalog-item" id="catalog-item-{{ item.id }}">
+          <div class="catalog-item-record">
+            <div class="catalog-item-cover{% if not item.get_catalog_grid_cover %} empty{% endif %}">
+              <a href="{{ item.get_absolute_url }}" title="{{ item }}">
+              {% if item.get_catalog_grid_cover %}
+                <img src="{{ item.get_cover }}" width="170" height="220" />
+              {% else %}
+                {{ item }}
+              {% endif %}
+              </a>
+            </div>
+            <div class="catalog-item-title">
+              <a href="{{ item.get_absolute_url }}" title="{{ item }}"><span>{{ item.get_cropped_name }}</span></a>
+              <div class="catalog-item-title-overlay"></div>
+            </div>
+            <div class="catalog-item-category">
+              {{ item.category }}
+            </div>
+            <div class="catalog-item-price">
+              <span{% if item.is_pre_owned %} class="pre_owned"{% endif %}>{% if item.get_min_price %}${{ item.get_min_price }}{% else %}--{% endif %}</span>
+            </div>
+            <div class="catalog-item-actions">
+              <a href="{% url cart:add item.id %}{% if item.is_pre_owned %}?is_pre_owned=True{% endif %}" class="link-dialog catalog-item-action-buy" title="Buy">Buy</a>
+              <a href="{% url trade:add item.id %}" class="link-dialog catalog-item-action-trade" title="Trade">Trade</a>
+              <a href="{% url rent:add item.id %}" class="link-dialog catalog-item-action-rent" title="Rent">Rent</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+
+    <div id="catalog-grid-footer">
+      <div class="paginator">
+        {% if page_range.left_end %}
+          {% for p in page_range.left_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+          ...
+        {% endif %}
+        {% for p in page_range.range %}
+          {% ifequal p page.number %}
+          <span class="current">{{ p }}</span>
+          {% else %}
+          <a href="?p={{ p }}">{{ p }}</a>
+          {% endifequal %}
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+        {% if page_range.right_end %}
+          ...
+          {% for p in page_range.right_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div id="catalog-sidebar">
+    <div id="catalog-sidebar-filters">
+      <div class="sidebar-block checkbox-block-type-1">
+        <h4>Genres</h4>
+        <ul id="genres-filter">
+          <li class="checked"><input type="checkbox" class="first" id="genre-all" checked="true" /><label for="genre-all">View All <span>({{ all_games_count }})</span></label></li>
+        {% for g in genres %}
+          <li><input name="genre" class="other" type="checkbox" id="genre-{{ g.id }}" /><label for="genre-{{ g.id }}">{{ g.name }} <span>({{ g.item_count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-1">
+        <h4>Date Released</h4>
+        <ul id="years-filter">
+        {% comment %}
+          <li class="checked"><input type="checkbox" class="first" id="years-all" checked="true" /><label for="years-all">View All <span>({{ all_games_count }})</span></label></li>
+        {% endcomment %}
+        {% for y in years %}
+          <li><input name="year" class="other" type="checkbox" id="year-{{ y.year }}" /><label for="year-{{ y.year }}">{{ y.year }} <span>({{ y.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block checkbox-block-type-2">
+        <h4>User Rating</h4>
+        <ul id="rating-filter">
+        {% for r in ratings %}
+          <li><input name="rating" class="other" type="checkbox" id="rating-{{ r.rating }}" /><label for="rating-{{ r.rating }}">{{ r.rating }} stars <span>({{ r.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-2">
+        <h4>Price</h4>
+        <ul id="price-filter">
+        {% for r in prices %}
+          <li><input name="price" class="other" type="checkbox" id="price-{{ r.price }}" /><label for="price-{{ r.price }}">{{ r.text }} <span>({{ r.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block checkbox-block-type-2">
+        <h4>ESBR Ratings</h4>
+        <ul id="esrb-filter">
+        {% for r in esrb %}
+          <li><input name="esrb" class="other" type="checkbox" id="esrb-{{ r.id }}" /><img src="{{ r.image.url }}" height="30" /><label for="esrb-{{ r.id }}"> {{ r.title }} <span>({{ r.item_count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-3">
+        <h4>Coming soon</h4>
+        <ul id="coming-filter">
+        {% for g in coming %}
+          <li><input name="coming" type="checkbox" id="coming-{{ g.id }}" /><label for="coming-{{ g.id }}">{{ g.name }} <span>({{ g.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div id="catalog-sidebar-banners">
+      <span id="buySAFE_Kicker" name="buySAFE_Kicker" type="Kicker Guaranteed Ribbon 200x90"></span>
+    </div>
+  </div>
+
+  <div class="clear">&nbsp;</div>
+
+  {%if offer_msg%}
+  <div class="bottom-message" style="color: #000;">
+    {%autoescape off%}
+    {{offer_msg}}
+    {%endautoescape%}
+  </div>
+  {%endif%}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends "members/account/account.html" %}
+
+{% block content %}
+
+<h1 style="color: #D3242B;">Account Hold</h1>
+
+<div id="id_reactivation_date">
+  <p>You account is currently scheduled to automatically reactivate on <strong>{{ current_rental_plan.hold_reactivate_timestamp|date:"F j, Y" }}</strong>.</p>
+  <p>On that date, we will send you the next available game in your Rent List and bill you for your next month of membership.</p>
+  <p>To change your account reactivation date, please select the date you would like your account to automatically reactivate.
+    You may put your account on hold up to 30 days. Your new reactivation date must be between
+    <strong>{{ fromdate }}</strong> and <strong>{{ todate }}</strong>.</p>
+
+  <form method="post" action="{% url members:change_reactivation_date %}" id="id_reactivation_date_form" style="margin-top: 40px;">
+    {% csrf_token %}
+    <div style="float:left; width: 170px; margin-left: 280px;">
+      {{ form.d.errors }}
+      {{ form.d }}
+    </div>
+    <div style="float:left; width: 170px;">
+      <input type="submit" value="Change Reactivation Date" class="change-reactivation-date-blue-button"/>
+    </div>
+  </form>
+</div>
+
+<div id="id_reactivation_date_changed" style="display:none;">
+  <p>You are now scheduled to reactivate your account on <strong>{{ current_rental_plan.hold_reactivate_timestamp|date:"F j, Y" }}</strong>.
+    On that date, we will bill you for your next month of membership.</p>
+  <div class="form-actions"><a href="{% url members:rent_list %}" class="return-to-rent-list-blue-button">Return to Rent List</a></div>
+</div>
+
+<div style="clear:both"></div>
+
+<script type="text/javascript">
+$(function(){
+  $('#id_reactivation_date_form').submit(function(){
+    $(this).ajaxSubmit(function(){
+      $('#id_reactivation_date').hide();
+      $('#id_reactivation_date_changed').show();
+    });
+    return false;
+  });
+  $('select').setupSelect('w150px');
+});
+</script>
+
+{% endblock content %}
+

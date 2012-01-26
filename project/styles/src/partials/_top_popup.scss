@@ -1,0 +1,50 @@
+.top-popup {
+	position: absolute;
+	top: 0;
+	top: -500px;
+	width: 329px;
+	margin-left: 610px;
+	overflow: hidden;
+	display: none;
+	z-index: 1000; 
+
+	.top-popup-header {
+		height: 30px;
+
+		h2 {
+			font-size: 11px;
+			color: #666;
+			text-transform: uppercase;
+		}
+
+		.top-popup-header-content {
+			height: 30px;
+			width: 250px;
+			overflow: hidden;
+			margin-left: 30px;
+		}
+		
+		.close-action {
+			float: right;
+      @include inline-block-ex;
+			@include image-anchor(13px, 13px, -658px 0 url($images_url + "top-popup-bg.png") no-repeat);
+			margin: -30px 10px 0 0;
+		}
+	}
+
+	.top-popup-content-wrapper {
+		margin: 0 !important;
+		padding: 0 9px !important;
+		background: -329px 0 url($images_url + "top-popup-bg.png") repeat-y;
+	}
+	
+	.top-popup-content {
+		padding: 10px 0 1px !important;
+		background: #fff left bottom url($images_url + "top-popup-gradient.png") repeat-x;
+	}
+
+	.top-popup-footer {
+		height: 16px;
+		background: url($images_url + "top-popup-bg.png") no-repeat;
+	}
+}

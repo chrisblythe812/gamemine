@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>{% block title %}{{ object.title }}{% endblock %}</title>
+  </head>
+  <body>
+	  <table width="100%%">
+	  	<tr>
+	  	<td align="center">
+		  {% block body %}
+		    {{ content|safe }}
+		  {% endblock %}
+		</td>
+		</tr>
+	  </table>	  
+  </body>
+</html>
+
+
+
+
+

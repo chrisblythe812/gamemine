@@ -1,0 +1,42 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>Please remember, we pride ourselves in the relentless effort to offer the
+best level of service possible for video game rentals and the more titles you
+have on your Rent List, the faster turnaround times we can provide.</p>
+
+<p>Please login at <a href="{{ SITE_URL }}{% url members:rent_list }}">{{ SITE_URL }}{% url members:rent_list }}</a>
+and add up to five (5) or more games you want to play and we will ship them to
+you with no due dates or late fees.</p>
+
+<p>Your Rent List is how Gamemine knows which games you want to play. Add the
+games you want to play!  Based on availability we will ship the games in the
+order you select them.</p>
+
+<p><strong>To add a game:</strong><ol>
+<li>Select the system you want to rent for</li>
+<li>Find your desired game to play</li>
+<li>Select the Rent action icon or button</li>
+</ol></p>
+
+<p>Here is your account information:</p>
+
+{% with user.get_profile as p %}
+<table class="grid">
+<tr><th>Login ID</th><td>{{ user.email }}</td></tr>
+<tr><th>Name:</th><td>{{ user.first_name }} {{ user.last_name }}</td></tr>
+<tr><th rowspan="2">Address:</th><td>{{ p.shipping_address1 }} {{ p.shipping_address2 }}</td></tr>
+<tr><td>{{ p.shipping_city }} {{ p.shipping_county }}, {{ p.shipping_state }} {{ p.shipping_zip }}</td></tr>
+</table>
+{% endwith %}
+
+<p>If you need additional help adding games to your Rent List contact our customer service team:
+<a href="mailto:customerservice@gamemine.com">customerservice@gamemine.com</a>.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}
+

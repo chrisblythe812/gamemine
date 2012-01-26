@@ -1,0 +1,16 @@
+<div id="signup-wizard">
+    <div id="dialog-heading">
+        <div id="dialog-heading-step">&nbsp;</div>
+        {% if form.title %}<h1>{{ form.title }}</h1>{% endif %}
+        <div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>{{ wizard.title }}</div>
+    </div>
+    
+  {% if step0 == 0 %}
+    {% include "trade/authentication/step0.html" %}
+  {% else %}
+    {% if step0 == 1 %}
+        {% include "trade/authentication/step1.html" %}
+    {% endif %}
+  {% endif %}
+</div>
+

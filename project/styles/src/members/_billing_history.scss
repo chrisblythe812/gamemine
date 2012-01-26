@@ -1,0 +1,84 @@
+#billing-history-t1 {
+  border: none;
+  width: 432px;
+  margin: 15px auto 10px;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  tr {
+    height: 32px;
+
+    &.underlined {
+      border-bottom: 1px #3967bd solid;
+    }
+  }
+  
+  th {
+    padding-left: 19px;
+    color: #3967bd;
+  }
+  
+  td {
+    padding-right: 19px;
+    font-weight: normal;
+    color: #646464;
+    strong {
+      font-weight: normal !important;
+    }
+  }
+}
+
+.toggle-year {
+  text-decoration: none;
+  color: #666;
+
+  &.current {
+    color: #cd0700;
+  }
+}
+
+#billing-history-month-switcher {
+  text-align: center;
+  margin: 0 0 10px;
+
+  .toggle-month {
+    text-decoration: none;
+    color: #666;
+
+    &.current {
+      color: #cd0700;
+    }
+  }
+}
+
+.billing-history-wrapper {
+  width: 744px;
+  margin: 0 auto;
+  display: none;
+}
+
+.billing-history-wrapper {
+  td {
+    padding: 4px;
+  }
+
+  .date-column {
+    width: 150px;
+    text-align: center;
+  }
+  
+  .payment-method-column {
+    width: 150px;
+    text-align: center;
+  }
+  
+  .subtotal-column {
+    width: 150px;
+    text-align: right;
+  }
+  
+  .total-column {
+    width: 75px;
+    text-align: right;
+  }
+}

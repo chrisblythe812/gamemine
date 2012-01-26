@@ -1,0 +1,92 @@
+@import "mixins";
+@import "constants";
+@import "compass/css3";
+
+#trade-address {
+  .description {
+    padding: 39px 16px;
+    color: #333;
+
+    h2 {
+      color: #c60000;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    p.required {
+      font-weight: bold;
+      color: #0764c4;
+    }
+
+    a {
+      font-weight: bold;
+    }
+  }
+  
+  .address {
+    margin-top: 25px;
+    color: #0764c4;
+    text-align: center;
+
+    .address-button {
+      margin-bottom: 10px;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+  }
+  
+  .form {
+    width: 490px;
+    margin: 0 auto;
+    
+    .item {
+      width: 490px;
+      margin: 10px 0;
+
+      label {
+        float: left;
+        width: 150px;
+        text-align: right;
+        margin: 4px 10px 0 0;
+        color: #333;
+      }
+
+      .input {
+        width: 280px;
+      }
+
+      .select {
+        margin-left: 160px;
+      }
+      
+      .hint {
+        margin-left: 160px;
+        font-size: 80%;
+        color: #333;
+      }
+
+      .errorlist {
+        margin: 0;
+        padding: 0 !important;
+        margin-left: 160px;
+        font-size: 80%;
+        color: #c60000;
+      }
+    }
+    .short {
+      .input {
+        width: 150px;
+      }
+    }
+    
+    .buttons {
+      margin: 32px auto;
+      text-align: center;
+    }
+  }
+}
+

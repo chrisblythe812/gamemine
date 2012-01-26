@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1 id="header-logo"><a href="#">Gamemine</a></h1>
+{% endblock %}
+
+{% block footer %}
+<div class="footer_full">
+<div id="footer">
+<div class="left_foot">
+  <p>Portions of content provided by Rovi Data Solutions, Inc. and IGN Entertainment, Inc.<br />
+  Joint copyright &copy; 2010 Rovi Data Solutions, Inc. and IGN Entertainment, Inc.<br />
+  Images are copyright by their respectful owners and are intended only for display use</p>
+</div>
+<div class="righ_foot">
+<div class="clear"></div>
+<p>&copy; Gamemine Direct, LLC 2011, All Rights Reserved. <a href="{% url simple-page 'Terms' %}">Terms of Use</a> | <a href="{% url simple-page 'Privacy' %}">Privacy Policy</a></p>
+<div class="foot_row">
+    {% include "partials/footer_icons.html" %}
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+{% endblock %}

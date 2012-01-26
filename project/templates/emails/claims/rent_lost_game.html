@@ -1,0 +1,31 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>We're sorry to hear that <strong>{{ claim.claim_object.item }}</strong> was lost in the mail. 
+  Unfortunately games do go missing during shipment from time to time, so it is our policy to 
+  accommodate for the occasional game lost during shipment. According to our records, you have 
+  reported the following game(s) as lost in the mail.</p>
+
+<table>
+  <tr>
+    <th>Date Reported</th>
+    <th>Game Title</th>
+  </tr>
+  <tr>
+    <td>{{ claim.date|date }}</td>
+    <td>{{ claim.claim_object.item }}</td>
+  </tr>
+</table>
+
+<p>If we receive any of these game(s) from the post office, we'll let you know as soon as they 
+  arrive.</p>
+
+<p>If a replacement game is available, it will be shipped to you as soon as possible; otherwise, 
+  your next game on your Rent List should be on its way soon. We apologize for the inconvenience.</p>
+
+<p>- The Gamemine Team</p> 
+
+{% endblock content %}

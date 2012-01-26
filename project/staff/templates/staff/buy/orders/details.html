@@ -1,0 +1,205 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module general-info">
+  <h2>Buy Order: {{ order.order_no }} {% if order.can_be_canceled %}<button id="btn-cancel-order">Cancel Order</button>{% endif %}</h2>
+ 
+<script type="text/javascript">
+$(function () {
+  $('#btn-cancel-order').click(function () {
+    if (!confirm('Are you sure you want to cancel this order?')) {
+      return;
+    } 
+    var button = $(this); 
+    button.attr('disabled', true);     
+    $.get('?action=cancel', function (data, status) {
+      button.attr('disabled', false);
+      if (status == 'success') {
+        window.location.reload();
+      }
+    });
+  });
+});
+</script>
+ 
+  <ul>
+    <li>
+      <strong>Customer</strong>
+      <a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a>
+    </li>
+
+    <li>
+      <strong>Status</strong>
+      {{ order.get_status_display }}
+    </li>
+
+    <li>
+      <strong>Order Date</strong>
+      {{ order.create_date|date|default:"--" }} {{ order.create_date|time }}
+    </li>
+
+    <li>
+      <strong>Size</strong>
+      {{ order.size }}
+    </li>
+
+    <li>
+      <strong>Shipping info</strong>
+      {{ order.first_name }} {{ order.last_name }} <br />
+      {{ order.shipping_address1 }} <br />
+      {% if order.shipping_address2 %}{{ order.shipping_address2 }} <br />{% endif %}
+      {{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}
+    </li>
+
+    <li>
+      <strong>Billing info</strong>
+      {{ order.billing_first_name }} {{ order.billing_last_name }} <br />
+      {{ order.billing_address1 }} <br />
+      {% if order.billing_address2 %}{{ order.billing_address2 }} <br />{% endif %}
+      {{ order.billing_city }}, {{ order.billing_state }} {{ order.billing_zip_code }}
+    </li>
+
+    <li>
+      <strong>Total</strong>
+      ${{ order.total }} (+${{ order.get_tax_amount }} Tax -${{ order.discounts }} Discounts)<br />
+      {% if order.payment_transaction %}<a href="{% url staff:transaction_details order.payment_transaction.id %}" target="_blank">Details</a>{% endif %}
+    </li>
+
+    <li>
+      <strong>Applied credits</strong>
+      ${{ order.applied_credits }}
+    </li>
+  </ul>
+</div>
+
+<div class="module">
+  <h2>Items</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Item</td>
+        <td>Platform</td>
+        <td>UPC</td>
+        <td>Condition</td>
+        <td>Price</td>
+        <td>Barcode</td>
+        <td>Date Shipped</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in order.items.all %}
+      <tr>
+        <td><a href="{{ item.item.get_absolute_url }}" target="_blank">{{ item.item.short_name }}</a></td>
+        <td>{{ item.item.category }}</td>
+        <td>{{ item.item.upc }}</td>
+        <td>{{ item.is_new|yesno:"NG,UG" }}</td>
+        <td>${{ item.price }}</td>
+        <td>
+        {% if item.inventory.barcode %}
+          <a href="{% url staff:page 'Reports/Inventory' %}?q={{ item.inventory.barcode|default:item.inventory.id }}" target="_blank">{{ item.inventory.barcode|default:"Not Assigned" }}</a>
+        {% else %}
+          --
+        {% endif %}
+        </td>
+        <td>{{ item.date_shipped|date|default:"--" }}</td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Event History</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <td>Action</td>     
+        <td>Date and Time</td>      
+        <td>Comments</td>     
+      </tr>
+    </thead>
+    <tbody>
+    {% for e in order.events.all %}
+      <tr>
+        <td>{{ e.get_action_display }}</td>     
+        <td>{{ e.timestamp|date }} {{ e.timestamp|time }}</td>     
+        <td>{{ e.comment|default:"--" }}</td>      
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<hr />
+
+{% for packslip in order.packslip_set.all %}
+  <h1 id="pack-slip-{{ packslip.id }}">Tracking Number: {{ packslip.tracking_number|default:"--" }}</h1>
+
+  <p>
+    <a href="{% url staff:buy_labels %}?ids={{ packslip.id }}" target="_blank">Mailing Label</a>
+    | <a href="{% url staff:buy_pack_slips %}?ids={{ packslip.id }}" target="_blank">Pack Slip</a>
+  </p>
+
+  <div class="module">
+    <h2>Packslip Items</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <td>Item</td>
+          <td>Platform</td>
+          <td>UPC</td>
+          <td>Condition</td>
+          <td>Price</td>
+          <td>Barcode</td>
+          <td>Date Shipped</td>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in packslip.items.all %}
+        <tr>
+          <td><a href="{{ item.item.get_absolute_url }}" target="_blank">{{ item.order_item.item.short_name }}</a></td>
+          <td>{{ item.order_item.item.category }}</td>
+          <td>{{ item.order_item.item.upc }}</td>
+          <td>{{ item.order_item.is_new|yesno:"NG,UG" }}</td>
+          <td>${{ item.order_item.price }}</td>
+          <td>
+          {% if item.order_item.inventory.barcode %}
+            <a href="{% url staff:page 'Reports/Inventory' %}?q={{ item.order_item.inventory.barcode|default:item.order_item.inventory.id }}" target="_blank">{{ item.order_item.inventory.barcode|default:"Not Assigned" }}</a>
+          {% else %}
+            --
+          {% endif %}
+          </td>
+          <td>{{ item.order_item.date_shipped|date|default:"--" }}</td>
+        </tr>
+      {% endfor %}      
+      </tbody>
+    </table>
+
+    <h2>Mail Tracking Scans</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <td>Status Code</td>     
+          <td>Status Message</td>      
+          <td>Date and Time</td>     
+        </tr>
+      </thead>
+      <tbody>
+      {% for c in packslip.get_mail_tracking_scan %}
+        <tr>
+          <td>{{ c.code }}</td>     
+          <td>{{ c.message }}</td>      
+          <td>{{ c.timestamp|date }} {{ c.timestamp|time }}</td>     
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endfor %}
+
+{% endblock right %}

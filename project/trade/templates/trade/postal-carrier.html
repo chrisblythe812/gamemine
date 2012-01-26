@@ -1,0 +1,93 @@
+{% extends "trade/base.html" %}
+
+{% block heading %}
+	<li>Submit Trade-Ins</li>
+	<li>Manage Address</li>
+	<li class="selected">Select Shipping Method</li>
+	<li>Print Shipping Label</li>
+{% endblock heading %}
+
+{% block page-content %}
+<div id="trade-carrier">
+
+  <form method="post">
+  {% csrf_token %}
+  <div class="text">
+    <h2>Submit Your <em>Trade-In</em></h2>
+    
+    <p>Please select a shipping method and click <em>"Continue"</em> below.</p>
+  </div>
+
+  {% comment %}
+  <div id="warning" class="box">
+    <div class="top"></div>
+    <div class="content">
+      &#8220;USP&#8221; or &#8220;Carrier of Your Choice&#8221; are the only
+      shipping methods available for Video Game Items
+      <div class="hint">If you need assistance with shipping, please <a href="#" class="contact-us">contact us</a>.</div>
+    </div>
+  </div>
+  {% endcomment %}
+
+  <div class="buttons">
+    <input type="submit" value="Continue" class="continue-red-button" />
+  </div>
+
+  <div id="carriers" class="box">
+    <div class="top"></div>
+    <div class="content">
+      <ul>
+        {% comment %}
+        <li class="odd">
+          <div class="left">
+            <label for="id_ups"><img src="{{ STATIC_URL }}img/ups.gif" alt="UPS" /></label>
+            <input type="radio" name="carrier" value="ups" id="id_ups" />
+          </div>
+          <div class="text">
+            Free UPS Drop-Off (Estimated delivery time is 2-6 business days):
+            <div class="hint">You affix a per-paid UPS shipping label to the package and take it to an authorized UPS shipping location<br/>
+              Please use the <a href="#">UPS Drop-Off Locator</a> to find a convinient location.
+            </div>
+          </div>
+          <div class="clear"></div>
+        </li>
+        <li class="even">
+          <div class="left">
+            <label for="id_usps"><img src="{{ STATIC_URL }}img/usps.gif" alt="USPS" /></label>
+            <input type="radio" name="carrier" value="usps" id="id_usps" />
+          </div>
+          <div class="text">
+            Free U.S. Postal Service Drop-Off (Estimated delivery time is 2-10 business days):
+            <div class="hint">You affix a per-paid U.S. Postal Service shipping label to the package and give it to your local carrier or<br/>
+              take your package to your <a href="#">local postal office.</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </li>
+        {% endcomment %}
+        <li class="odd">
+          <div class="left">
+            <label for="id_custom"><img src="{{ STATIC_URL }}img/custom-carrier.gif" alt="Carrier of Your Choice" /></label>
+            <input type="radio" name="carrier" value="custom" checked="checked" id="id_custom" />
+          </div>
+          <div class="text">
+            Carrier of Your Choice:
+            <div class="hint">Take the package to the post office or other mailing service.
+              You will need to pay shipping charges directly to the carrier.
+            </div>
+          </div>
+          <div class="clear"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="buttons">
+    <input type="submit" value="Continue" class="continue-red-button" />
+  </div>
+
+  </form>
+
+</div>
+{% endblock page-content %}
+

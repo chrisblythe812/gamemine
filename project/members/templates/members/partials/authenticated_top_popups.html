@@ -1,0 +1,96 @@
+{% extends "partials/top_popup.html" %}
+
+{% block top-popup-id %}header-user-popup{% endblock %}
+
+{% block top-popup-header %}
+<h2>My Account</h2>
+{% endblock top-popup-header %}
+
+{% block top-popup-conent %}
+<div id="header-user-popup-content">
+	<dl class="part-1">
+		<dt>Account Info</dt>
+		<dd>
+			<ul>
+				<li><a href="{% url members:name_and_address %}">Name and Address</a></li>
+				<li><a href="{% url members:payment_method %}">Payment Method</a></li>
+				<li><a href="{% url members:login_and_password %}">Login/Password</a></li>
+				<li><a href="{% url members:billing_history %}">Billing History</a></li>
+				<li><a href="{% url members:report_problems %}">Report Problem</a></li>
+			</ul>
+		</dd>
+		
+		<dt>Settings</dt>
+		<dd>
+			<ul>
+				<li><a href="{% url members:settings_my_systems %}">Consoles Owned</a></li>
+				<li><a href="{% url members:settings_parental_controls %}">Parental Controls</a></li>
+			</ul>
+		</dd>
+		
+		<dt>Profile</dt>
+		<dd>
+			<ul>
+                <li><a href="{% url members:profile_image %}">Profile Image</a></li>
+				<li><a href="{% url members:profile_favorite_genre %}">Favorite Genre</a></li>
+				<li><a href="{% url members:profile_game_reviews %}">Game Reviews</a></li>
+				<li><a href="{% url members:profile_game_ratings %}">Game Ratings</a></li>
+			</ul>
+		</dd>
+
+		<dd>
+			<ul>
+				<li><a href="{% url members:logout %}">Logout</a></li>
+			</ul>
+		</dd>
+	</dl>
+
+	<dl class="part-2">
+		<dt>Buy</dt>
+		<dd>
+			<ul>
+				<li><a href="{% url members:buy_list %}">List</a></li>
+				<li><a href="{% url members:buy_history %}">Order History</a></li>
+			</ul>
+		</dd>
+		
+		<dt>Trade</dt>
+		<dd>
+			<ul>
+				<li><a href="{% url trade:list %}">List</a></li>
+				<li><a href="{% url members:trade_history %}">Trade History</a></li>
+        <li><a href="{% url members:store_credits %}">Store Credits</a></li>
+			</ul>
+		</dd>
+		
+		<dt>Rent</dt>
+		<dd>
+			<ul>
+				<li><a href="{% url members:rent_list %}">List</a></li>
+        {% if current_rental_plan %}
+        <li><a href="{% url members:rent_history %}">Rent History</a></li>
+				<li><a href="{% url new_rent:change_plan %}">Change Plan</a></li>
+        {% if current_rental_plan.is_holdable %}
+        <li><a href="{% url members:put_on_hold %}">Put On Hold</a></li>
+        {% endif %}
+				<li><a href="{% url members:cancel_membership %}">Cancel Membership</a></li>
+        <li><a href="{% url members:terms_and_details %}">Terms &amp; Details</a></li>
+        {% else %}
+        <li><a class="link-dialog" href="{% url new_rent:change_plan %}">Rental Signup</a></li>
+        {% endif %}
+			</ul>
+		</dd>
+		
+    {% comment %}
+		<dt>Gift Certificates &amp; Special Offers</dt>
+		<dd>
+			<ul>
+				<li><a href="#">Buy | Redeem</a></li>
+			</ul>
+		</dd>
+    {% endcomment %}
+	</dl>
+	
+	<div class="clear"></div>
+</div>
+{% endblock top-popup-conent %}

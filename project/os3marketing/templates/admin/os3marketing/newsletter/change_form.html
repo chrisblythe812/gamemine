@@ -1,0 +1,23 @@
+{% extends "admin/change_form.html" %}
+{% block extrastyle %}
+ 	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery/plugins/jquery-ui/css/ui-lightness/jquery-ui-1.7.3.custom.css"/>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}jquery/plugins/jquery-ui/js/jquery-ui-1.7.3.custom.min.js"></script>		
+	<script type="text/javascript" language="javascript">
+        $(function () {        	
+            $("#form_template").dialog({
+                autoOpen: false,
+                width: 350,
+                height: 50,
+                modal: true
+            });          	              
+        });
+	</script>
+{%endblock%} 	
+{% block content %}
+	{{block.super}}
+	<div id="form_template" title="Choose a template">
+		<div id="form_template_content"></div>
+	</div>	
+{%endblock%}

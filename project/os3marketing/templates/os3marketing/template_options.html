@@ -1,0 +1,8 @@
+{% load i18n %}
+<select id="template_id" style="width:250px;"> 
+	<option value="-1">[{%trans "choose a template" %}]</option> 
+{%for t in templates%}
+	<option value="{{t.id}}">{{t.title}}</option> 								
+{%endfor%}
+</select>	
+<input type="button" onclick="select_template();" style="border:none; height:25px; border:solid 1px #ccc;" value="{%trans "choose"%}" />

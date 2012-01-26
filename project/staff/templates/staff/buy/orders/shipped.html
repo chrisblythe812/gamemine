@@ -1,0 +1,60 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %} 
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Shipped Games</h2>
+  <table>
+    <thead>
+      <tr>
+        <td colspan="2">#</td>
+        <td>Title</td>
+        <td>Inventory ID</td>
+        <td>Platform</td>
+        <td>Condition</td>
+        <td style="width: 75px; text-align: center;">Shipped Date</td>
+        <td style="width: 75px; text-align: center;">Delivered Date</td>
+        <td>DC</td>
+        <td>Tracking No</td>
+      </tr>
+    </thead>
+  {% for pack_slip in pack_slips %}
+    <tbody>
+      <tr class="subgroup">
+        <td colspan="2"><strong>{{ forloop.counter|add:counter_offset }}</strong></td>
+        <td colspan="4"><strong>Order #{{ pack_slip.order.order_no }}, Customer: <a href="{% url staff:customer_view pack_slip.order.user.id %}" target="_blank">{{ pack_slip.order.user.get_profile.get_name_display }}</a></strong></td>
+        <td style="width: 75px; text-align: center;">{{ pack_slip.created|date }}</td>
+        <td style="width: 75px; text-align: center;">{{ pack_slip.date_delivered|date }}</td>
+        <td>{{ pack_slip.source_dc.code }}</td>
+        <td>
+          {% if pack_slip.tracking_number %}
+          <a href="{% url staff:buy_labels %}?ids={{ pack_slip.id }}" target="_blank">{{ pack_slip.tracking_number }}</a>
+          | 
+          {% endif %}
+          <a href="{% url staff:buy_order_details pack_slip.order.id %}#pack-slip-{{ pack_slip.id }}">Details</a>
+        </td>
+      </tr>
+      {% for item in pack_slip.items.all %}
+      <tr>
+        {% if forloop.counter0 == 0 %}
+        <td rowspan="{{ pack_slip.items.count }}">&nbsp;</td>
+        {% endif %}
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{{ item.order_item.item.get_absolute_url }}" target="_blank">{{ item.order_item.item.name }}</a></td>
+        <td>{{ item.order_item.inventory.barcode }}</td>
+        <td>{{ item.order_item.item.category }}</td>
+        <td>{{ item.order_item.is_new|yesno:"NG,UG" }}</td>
+        <td style="width: 75px; text-align: center;">{{ item.added|date }}</td>
+        {% if forloop.counter0 == 0 %}
+        <td colspan="3" rowspan="{{ pack_slip.items.count }}">&nbsp;</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  {% endfor %}
+  </table>
+</div>
+{% pagination %}                                                                                       
+
+{% endblock right %}

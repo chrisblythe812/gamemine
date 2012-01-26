@@ -1,0 +1,671 @@
+.intro2-wimgw-page {
+  
+  &.banner-page {
+    #content-header {
+      height: 740px;
+    }
+  }
+
+  .banner-content {
+    height: 345px !important;
+    background-color: #fff !important;
+  }
+  
+  #item-catalog-index div {
+    height: 345px;
+    width: 215px;
+//    background: rgba(255, 255, 0, .3);
+  }
+
+  .mb {
+    span {
+      display: none;
+    }
+    
+    display: block;
+    width: 160px;
+    height: 300px;
+    position: absolute;
+    margin-top: -315px;
+  }
+  
+  #mb-1 {
+//    background: rgba(255, 0, 0, .3);
+    margin-left: 216px;
+  }
+  
+  #mb-2 {
+//    background: rgba(0, 255, 0, .3);
+    margin-left: 378px;
+    width: 176px;
+  }
+  
+  #mb-3 {
+//    background: rgba(0, 0, 255, .3);
+    margin-left: 556px;
+  }
+
+  
+  .rb {
+    span {
+      display: none;
+    }
+    
+    display: block;
+    width: 245px;
+    height: 115px;
+    position: absolute;
+    margin-left: 737px;
+  }
+  
+  #rb-1 {
+    margin-top: -344px;
+//    background: rgba(255, 0, 0, .3);
+  }
+  
+  #rb-2 {
+    margin-top: -229px;
+//    background: rgba(0, 255, 0, .3);
+  }
+  
+  #rb-3 {
+    margin-top: -114px;
+//    background: rgba(0, 0, 255, .3);
+  }
+  
+  .banner-carousel {
+    height: 232px;
+    background: 0 0 url($images_url + 'wimgw/carousel-f.jpg') no-repeat !important;
+    margin-top: 4px;
+    overflow: hidden;
+    
+    &.trade {
+      background-position: 0 -232px !important;
+    }
+    
+    &.rent {
+      background-position: 0 -464px !important;
+    }
+
+    .intro-best-sellers {
+      #switchto-most-rentals { margin-top: 170px; }
+      #switchto-hottest-tradins { margin-top: 190px; }
+    }
+
+    .intro-most-rentals {
+      #switchto-best-sellers { margin-top: 170px; }
+      #switchto-hottest-tradins { margin-top: 190px; }
+    }
+
+    .intro-hottest-tradins {
+      #switchto-most-rentals { margin-top: 170px; }
+      #switchto-best-sellers { margin-top: 190px; }
+    }
+    
+    #banner-carousel-content {
+      .switcher {
+        position: absolute;
+        display: block;
+        // background: rgba(255, 255, 0, .2);
+        margin-left: -155px;
+        width: 150px;
+        height: 14px;
+        
+        span { display: none; }
+      }
+    
+      // background: rgba(255, 255, 0, .2);
+      width: 775px;
+      position: absolute;
+      margin: 10px 0 0 185px;
+
+      .jcarousel-clip {
+        // background: rgba(255, 255, 0, .2);
+        margin: 0 0 0 50px;
+        width: 674px;
+      }
+    
+      .jcarousel-item {
+        //background: rgba(255, 0, 0, .2);
+          width: 134px;
+          height: 215px;
+          margin: 0 !important;
+      }   
+
+      .jcarousel-next {
+          width: 50px;
+          height: 60px;
+          cursor: pointer;
+          // background: rgba(255, 255, 0, .2);
+          margin-top: -150px;
+          float: right;
+      }
+
+      .jcarousel-prev {
+          width: 50px;
+          height: 60px;
+          cursor: pointer;
+          // background: rgba(255, 255, 0, .2);
+          position: absolute;
+          margin-top: -150px;
+      }
+
+      .catalog-item-2 {
+        margin: 0 4px;
+        height: 210px;
+        width: 120px;
+        overflow: hidden;
+        // background: rgba(255, 255, 0, .2);
+        
+        a.image {
+            display: block; 
+            width: 120px;
+            height: 160px;
+            overflow: hidden;
+        }
+        
+        div.title {
+          margin-top: 10px;
+          font-weight: bold;            
+          
+          a {
+            color: #fff;
+            text-decoration: none;          
+            width: 140px;
+            margin-left: -10px;
+            display: block;
+            text-align: center;
+          }
+        }
+        
+        div.price {
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+          color: #1F8DDC;
+          margin-top: 4px;            
+        }
+      }
+    }
+  }
+  
+  .banner-line {
+    height: 60px;
+    overflow: hidden;
+    background: #D8D8D8;
+    margin-top: 5px;
+    padding: 0 !important;
+    
+    #banner-line-a {
+//      background: rgba(255, 0, 0, .2);
+      width: 370px;
+      height: 60px;
+      float: left;
+      margin: 0 !important;
+      
+      #id_sidebar_subscription {
+        width: 291px;
+        margin: 0 0 0 40px;
+        background: center bottom url($images_url + 'wimgw/subscribe.gif') no-repeat;
+        height: 60px;
+        
+        form {
+          margin-top: 0;
+          padding: 13px 0 0 130px;
+          text-align: left;
+          
+          input[type=submit] {
+            margin: 3px 0 0 3px;
+          }
+        } 
+      }
+    }
+    
+    #banner-line-b {
+//      background: rgba(0, 255, 0, .2);
+      width: 240px;
+      height: 60px;
+      float: left;
+      
+      a {
+        display: block;
+        width: 223px;
+        height: 60px;
+        background: center center url($images_url + 'wimgw/free-shipping.png') no-repeat;
+        margin: 0 auto;
+              
+        span { display: none; }
+      }
+    }
+    
+    #banner-line-c {
+//      background: rgba(0, 0, 255, .2);
+      width: 370px;
+      height: 60px;
+      float: right;
+      
+      a {
+        display: block;
+        width: 261px;
+        height: 60px;
+        background: center center url($images_url + 'wimgw/rating.png') no-repeat;
+        margin: 0 0 0 40px;
+              
+        span { display: none; }
+      }
+    }
+  }
+
+  .banner-categories {
+    height: 58px !important;
+    background: url($images_url + 'intro/buy2/cats.jpg') no-repeat !important;
+    margin-top: 18px;
+    
+    ul {
+      padding-left: 315px;
+      overflow: hidden;
+    
+      span { display: none; }
+      
+      a { 
+        display: block; 
+        width: 50px; 
+        height: 58px; 
+        
+        &:hover,
+        &.selected{
+          background: -316px -58px url($images_url + 'intro/buy2/cats.jpg') no-repeat !important;
+        }     
+      }
+      
+      li {
+        float: left;
+        padding-left: 1px;
+      }
+      
+      #banner-category-Xbox-360-Games a      { width: 71px; }
+      #banner-category-Xbox-Games a          { width: 88px; } 
+      #banner-category-PlayStation-3-Games a { width: 82px; } 
+      #banner-category-PlayStation-2-Games a { width: 86px; } 
+      #banner-category-Sony-PSP-Games a      { width: 85px; } 
+      #banner-category-Nintendo-Wii-Games a  { width: 69px; } 
+      #banner-category-Nintendo-DS-Games a   { width: 112px; } 
+      #banner-category-GameCube-Games a      { width: 66px; } 
+
+      #banner-category-Xbox-360-Games a.selected,      #banner-category-Xbox-360-Games a:hover      { background-position: -316px -58px !important; }
+      #banner-category-Xbox-Games a.selected,          #banner-category-Xbox-Games a:hover          { background-position: -388px -58px !important; } 
+      #banner-category-PlayStation-3-Games a.selected, #banner-category-PlayStation-3-Games a:hover { background-position: -477px -58px !important; } 
+      #banner-category-PlayStation-2-Games a.selected, #banner-category-PlayStation-2-Games a:hover { background-position: -560px -58px !important; } 
+      #banner-category-Sony-PSP-Games a.selected,      #banner-category-Sony-PSP-Games a:hover      { background-position: -647px -58px !important; } 
+      #banner-category-Nintendo-Wii-Games a.selected,  #banner-category-Nintendo-Wii-Games a:hover  { background-position: -733px -58px !important; } 
+      #banner-category-Nintendo-DS-Games a.selected,   #banner-category-Nintendo-DS-Games a:hover   { background-position: -803px -58px !important; } 
+      #banner-category-GameCube-Games a.selected,      #banner-category-GameCube-Games a:hover      { background-position: -916px -58px !important; } 
+    }
+  }
+  
+  .clear { clear: both; }
+  
+  .bottom-message {
+    font-size: 11px;
+    color: #666;
+    padding: 20px 10px 30px;
+    line-height: 13px;
+    
+    span.tag {
+        padding-left: 18px;
+        background: left top url($images_url + 'intro/buy2/tag-s.png') no-repeat;
+    }
+  }
+}
+
+#intro-wimgw-page-content {
+
+  .search-area {
+//      background: yellow;
+    height: 50px;
+    padding-left: 200px;
+  
+    .input {
+      @include input-box-icon($images_url + "icons/header-search-icon.gif");
+      width: 170px;
+    }
+    
+    .field {
+      float: left;
+      margin: 0 2px;
+    }
+
+    input[type=submit] {
+        width: 15px;
+        height: 15px;
+        margin: 4px 0;
+        padding: 0;
+        border: none;
+        background: url($images_url + 'signup-button.gif') no-repeat;
+        @include hide-text;
+    }
+  }
+
+
+  #intro-wimgw-page-grid {
+    width: 742px;
+
+    padding-top: 140px;
+    overflow: hidden;
+    background: top center url($images_url + 'wimgw/wimgw-banner.jpg') no-repeat;
+//    background-color: rgba(255, 255, 0, .3);
+    float: left;
+  
+    h2 {
+      color: #08172d;
+      font-size: 20px;
+      background: 40px top no-repeat;
+      // background-color: rgba(255, 255, 0, .3);
+      padding-top: 120px;
+    }
+    
+    .xbox-360-games h2 { background-image: url($images_url + 'consoles-s/xbox360.jpg'); }
+    .nintendo-wii-games h2 { background-image: url($images_url + 'consoles-s/wii.jpg'); }
+    .nintendo-ds-games h2 { background-image: url($images_url + 'consoles-s/ds.jpg'); }
+    .playstation-3-games h2 { background-image: url($images_url + 'consoles-s/ps3.jpg'); }
+    .playstation-2-games h2 { background-image: url($images_url + 'consoles-s/ps2.jpg'); }
+    .sony-psp-games h2 { background-image: url($images_url + 'consoles-s/psp.jpg'); }
+    .xbox-games h2 { background-image: url($images_url + 'consoles-s/xbox.jpg'); }
+    .gamecube-games h2 { background-image: url($images_url + 'consoles-s/gc.jpg'); }
+    
+    .consoles {
+//      background: rgba(255, 255, 0, .2);
+      padding: 0 0 0 0 !important;
+      margin: 0 0 !important;
+    
+      li.console {
+        // background: rgba(255, 255, 0, .2);
+        width: 200px;
+        @include inline-block-ex;
+        margin: 0 20px 20px;
+        
+        color: #000;
+        font-size: 13px;
+        
+        a {
+          color: #000;
+        }
+
+        ul {
+          padding: 0 !important;
+          
+          li {
+            margin: 0 0 4px 0 !important;
+            
+            a {
+              // background: rgba(255, 255, 0, .2);
+              display: block;
+              width: 155px;
+              overflow: hidden;
+              line-height: 1.2em;
+              
+              span {
+                display: block;
+                width: 500px;
+              }
+            }
+            
+            span.price {
+              float: right;
+              margin-top: -1.2em;
+              line-height: 1.2em;
+            }
+          }
+        }
+        
+        .view-all {
+          text-align: right;
+          
+          a {
+            color: #c00;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  
+    .search-results-title {
+      color: #6B6B6B;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: right;
+      font-size: 13px; 
+    }
+  
+    .search-results-title-bottom {
+      color: #6B6B6B;
+      font-weight: bold;
+      margin: 10px 0;
+      text-align: right;
+      font-size: 13px; 
+    }
+
+    #search-results-table {
+      .row1 {
+        background-color: #F2F2F2 !important;
+      }
+      
+      td { 
+        padding: 4px 10px;
+        color: #6B6B6B;
+      }
+      
+      .image {
+        padding-left: 20px !important;
+      }
+      
+      .name {
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+         width: 100px;
+        
+        a {
+          text-decoration: none;
+          color: #6B6B6B; 
+          line-height: 1.3em;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      
+      .description {
+        font-size: 11px;
+        line-height: 1.3em;
+      }
+      
+      .category {
+        width: 100px;
+      
+        div {
+          background: center center url($images_url + 'consoles-t/xbox360.jpg') no-repeat;
+        }
+
+        span { display: none }
+
+        .category-Xbox-360-Games      { background-image: url($images_url + 'consoles-t/xbox360.png'); height: 32px; }
+        .category-Xbox-Games          { background-image: url($images_url + 'consoles-t/xbox.png'); height: 24px; } 
+        .category-PlayStation-3-Games { background-image: url($images_url + 'consoles-t/ps3.png'); height: 23px; } 
+        .category-PlayStation-2-Games { background-image: url($images_url + 'consoles-t/ps2.png'); height: 13px; } 
+        .category-Sony-PSP-Games      { background-image: url($images_url + 'consoles-t/psp.png'); height: 23px; } 
+        .category-Nintendo-Wii-Games  { background-image: url($images_url + 'consoles-t/wii.png'); height: 25px; } 
+        .category-Nintendo-DS-Games   { background-image: url($images_url + 'consoles-t/ds.png'); height: 13px; } 
+        .category-GameCube-Games      { background-image: url($images_url + 'consoles-t/gc.png'); height: 40px; } 
+      }
+      
+      .value {
+        width: 120px;
+        padding-right: 20px !important;
+        text-align: center;
+        
+        .trade-value {
+          font-weight: bold;
+          font-size: 13px;
+          color: #D10004;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  #catalog-grid {
+//    background: rgba(255, 255, 0, .3);
+    
+    width: 717px;
+    float: left;
+    margin-left: 25px;
+    
+    #catalog-grid-title {
+      // background: rgba(255, 255, 0, .3);
+      
+      padding-left: 0;
+      margin-bottom: 1em;
+      font-size: 14px;
+      height: 30px;
+      
+      .legend {
+        float: left;
+        font-size: 12px;
+        line-height: 21px;
+        padding-left: 30px;
+        background: left top url($images_url + 'intro/buy2/tag-l.png') no-repeat;
+        height: 21px;
+        color: #333;
+      }
+    }
+    
+    #catalog-path {
+      // background: rgba(255, 255, 0, .3);
+    
+      float: right;
+      font-style: italic;
+      color: #333;
+      font-size: 13px;
+      padding-right: 15px;
+      
+      a {
+        color: #333;
+        @include heading-anchor;
+      }
+    }
+  
+    #catalog-grid-content {
+      //background: rgba(255, 255, 0, .2);
+      margin-left: -3px;
+
+      &.loading {
+        background: center center url($images_url + 'catalog/loading.gif') no-repeat;
+        height: 300px;
+        
+        .catalog-items {
+          display: none;
+        }
+      }
+      
+      .catalog-items 
+      {
+        padding: 0 !important;
+        
+    &.empty {
+        background: center top url($images_url + 'catalog/qs_no_item.gif') no-repeat;
+        height: 200px;
+    }
+
+        .catalog-item {
+          // background: rgba(255, 255, 0, .3);
+          
+          @include inline-block-ex;
+          width: 170px;
+          padding: 0 !important;
+          margin: 0 0 30px 6px;
+          overflow: hidden;
+          
+          .catalog-item-cover {
+            // background: rgba(255, 0, 0, 0.1);
+            height: 220px;
+            margin-bottom: 10px;
+
+            a {
+              // background: rgba(255, 255, 0, 0.3);
+              background: transparent;
+              display: block;
+              width: 170px;
+              height: 220px;
+              overflow: hidden;
+            }
+          }
+          
+          .catalog-item-title {
+            height: 15px;
+            overflow: hidden;
+            font-size: 13px;
+            
+            a {
+              // background: rgba(255, 255, 0, 0.3);
+              @include heading-anchor;
+              color: #333;
+              
+              overflow: hidden;
+              height: 20px;
+              width: 2000px;
+              display: block;
+              font-size: 14px;
+              font-weight: bold;
+              padding-left: 15px;
+            }
+          }
+          
+          .catalog-item-category {
+            padding-left: 15px;
+            font-size: 12px;
+            color: #666;
+            height: 20px;
+          }
+          
+          .catalog-item-price {
+            padding-left: 15px;
+            color: #E52429;
+            font-weight: bold;
+            font-size: 18px;
+            height: 20px;
+            
+            .pre_owned {
+                background: right top url($images_url + 'intro/buy2/tag-l.png') no-repeat;
+                padding-right: 32px;
+            }
+          }
+          
+          .catalog-item-actions {
+            padding-left: 13px;
+            padding-top: 5px;
+            height: 20px;
+
+            a {
+              // @include inline-block-ex;
+              display: block;
+              @include image-anchor(20px, 20px, url($images_url + "catalog/catalog-actions.png") no-repeat);
+              float: left;
+              margin-right: 4px;
+            }
+
+            a.catalog-item-action-rent { background-position: -40px 0; }
+            a.catalog-item-action-trade { background-position: -20px 0; }
+          }
+        }
+        
+        .empty-list {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .clear { clear: both; }
+}
+

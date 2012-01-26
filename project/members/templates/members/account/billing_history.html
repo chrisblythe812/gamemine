@@ -1,0 +1,125 @@
+{% extends "members/account/account.html" %}
+
+{% block heading %}
+	<li><a href="{% url members:name_and_address %}">Name and Address</a></li>
+	<li><a href="{% url members:payment_method %}">Payment Method</a></li>
+	<li><a href="{% url members:login_and_password %}">Login/Password</a></li>
+	<li class="selected"><a href="{% url members:billing_history %}">Billing History</a></li>
+	<li><a href="{% url members:report_problems %}">Report Problem</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+<table id="billing-history-t1">
+<tbody>
+<tr class="underlined">
+  <th>Membership Terms:</th>
+  <td>{{ current_rental_plan.description3|default:"--" }}</td>
+</tr>
+<tr class="underlined">
+  <th>Plan Terms:</th>
+  <td>{% if price %}{{ price }}{% else %}--{% endif %}</td>
+</tr>
+<tr>
+  <th>Transactions:</th>
+  <td>
+    {% for y in years %}
+      <a class="toggle-year" id="toggle-year-{{ y }}" href="#">{{ y }}</a>
+      {% if not forloop.last %} | {% endif %}
+    {% endfor %}
+  </td>
+</tr>
+</tbody>
+</table>
+
+<div id="billing-history-month-switcher">
+</div>
+
+{% for k, h in history.iteritems %}
+<div class="billing-history-wrapper" id="billing-history-{{ k|date:"Y" }}-{{ k|date:"m" }}">
+<table class="candy-table">
+<thead>
+	<tr>
+		<td class="left">&nbsp;</td>
+		<td class="inner date-column">Date</td>
+		<td class="inner payment-method-column">Payment Method</td>
+		<td class="inner">Description</td>
+		<td class="inner subtotal-column">Subtotal</td>
+    <td class="right total-column">Total</td>
+	</tr>
+</thead>
+<tbody>
+{% for i in h %}
+	<tr class="{% cycle 'odd' 'even' %}">
+		<td{% if i.refund %} rowspan="2"{% endif %} class="left">{{ forloop.counter }}.</td>
+		<td class="inner date-column">{{ i.timestamp|date }} {{ i.timestamp|time }}</td>
+		<td class="inner payment-method-column">{{ i.payment_method }}</td>
+		<td class="inner">{{ i.description }}{% if i.status == 3 %} ({{ i.get_status_display }}){% endif %}</td>
+    <td class="inner subtotal-column">${{ i.debit }} (+${{ i.tax|default:"0.00" }} tax{% if i.applied_credits %} -${{ i.applied_credits }}{% endif %})</td>
+		<td class="right total-column">${{ i.get_debit_total }}</td>
+	</tr>
+  {% if i.refund %}
+  <tr>
+    <td colspan="4" class="refund" style="text-align: right">Refund at {{ i.refund.timestamp|date }} {{ i.refund.timestamp|time }}: {{ i.refund.comment|default:"--" }}</td>
+    <td class="right total-column">${{ i.refund.amount }}</td>
+  </tr>
+  {% endif %}
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endfor %}
+
+<script type="text/javascript">
+var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var months = [ {% for k in months %}['{{ k|date:"Y" }}','{{ k|date:"m" }}']{% if not forloop.last %},{% endif %}{% endfor %} ];
+function setHistoryMonth(y, m) {
+  if (!m) {
+    for (var i in months) {
+      if (months[i][0] == y) {
+        m = months[i][1];
+        break;
+      }
+    }
+  }
+
+  $('.billing-history-wrapper').hide();
+  $('#billing-history-' + y + '-' + m).show();
+
+  var t = '';
+  for (var i in months) {
+    if (months[i][0] == y) {
+      month = months[i][1];
+      if (t) t += ' | ';
+      t += '<a class="toggle-month" id="toggle-month-' + y + '-' + month + '" href="#"><strong>' + monthNames[parseInt(month, 10) - 1] + ' ' + y.substring(2) + '</strong></a>';
+    }
+  }
+  $('#billing-history-month-switcher').html(t);
+
+  $('.toggle-month').click(function(){
+    var id = $(this).attr('id');
+    var y = id.substring(13, 17);
+    var m = id.substring(18);
+    setHistoryMonth(y, m);
+    return false;
+  });
+
+  $('.toggle-year').removeClass('current');
+  $('#toggle-year-' + y).addClass('current');
+  $('.toggle-month').removeClass('current');
+  $('#toggle-month-' + y + '-' + m).addClass('current');
+}
+$(document).ready(function(){
+  if (months.length) {
+    var m = months[months.length-1];
+    setHistoryMonth(m[0], m[1]);
+  }
+  $('.toggle-year').click(function(){
+    var y = $(this).attr('id').substring(12);
+    setHistoryMonth(y);
+    return false;
+  });
+});
+</script>
+
+{% endblock page-content %}
+

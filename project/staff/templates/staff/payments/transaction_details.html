@@ -1,0 +1,108 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block page-class %}{{ block.super }} staff-page-refund-transaction{% endblock %}
+
+{% block right %}{{ block.super }}
+
+<div class="module details">
+  <h2>Details</h2>
+  
+  <dl>
+    <dt>ID</dt>
+    <dd>{{ trans.id }}</dd>
+
+    <dt>Authorize.net ID</dt>
+    <dd>{{ trans.aim_transaction_id|default:'--' }}</dd>
+
+    <dt>Status</dt>
+    <dd>{{ trans.get_status_display }}</dd>
+
+    {% if trans.message %}
+    <dt>&nbsp;</dt>
+    <dd>{{ trans.message }}</dd>
+    {% endif %}
+
+    <dt>Customer</dt>
+    <dd><a href="{% url staff:customer_view trans.user.id %}" target="_blank">{{ trans.user.get_profile.get_name_display }}</a></dd>
+
+    <dt>Time</dt>
+    <dd>{{ trans.timestamp|date }} {{ trans.timestamp|time }}</dd>
+
+    <dt>Method</dt>
+    <dd>{{ trans.payment_method }}</dd>
+
+    <dt>Description</dt>
+    <dd>
+      {{ trans.description }}
+      {% if trans.buyorder %}
+        | <a target="_blank" href="{% url staff:buy_order_details trans.buyorder.id %}">Order details</a>
+      {% endif %}
+    </dd>
+
+    <dt>Debit</dt>
+    <dd style="width: 75px; text-align: right">${{ trans.get_net_debit|default:'0.00' }}</dd>
+
+    <dt>Tax</dt>
+    <dd style="width: 75px; text-align: right">+ ${{ trans.tax|default:'0.00' }}</dd>
+
+    <dt>Applied Credits</dt>
+    <dd style="width: 75px; text-align: right">- ${{ trans.applied_credits|default:'0.00' }}</dd>
+
+    <dt>Total</dt>
+    <dd style="width: 75px; text-align: right"><strong>${{ trans.get_debit_total|default:'0.00' }}</strong></dd>
+
+    <dt>Refund Amount</dt>
+    <dd>{% if trans.refund %}${{ trans.refund.amount }}{% else %}--{% endif %}</dd>
+
+    <dt>Refund Comment</dt>
+    <dd>{{ trans.refund.comment|default:"--" }}</dd>
+
+    {% if trans.refundable %}
+    <dt>&nbsp;</dt>
+    <dd><a href="{% url staff:refund_transaction trans.id %}" class="ajax-action">Refund</a></dd>
+    {% endif %}
+  </dl>
+</div>
+
+{% if user.is_superuser and trans.get_transaction_details %}
+  <div class="module">
+    <table>
+    {% for d in trans.get_transaction_details %}
+      <tr>
+        <th style="border: none; width: 50%"><h3>Authorize.net Request</h3></th>
+        <th style="border: none; width: 50%"><h3>Authorize.net Response</h3></th>
+      </tr>
+      <tr>
+        <td style="vertical-align: top; border: none">
+          <table>
+          {% for k in d.request.list_data %}
+            <tr>
+              <th style="text-align: left">{{ k.0 }}</th>
+              <td>{{ k.1 }}</td>
+            </tr>
+          {% endfor %}
+          </table>
+        </td>
+        <td style="vertical-align: top; border: none">
+          <table>
+          {% for k in d.response.list_data %}
+            <tr>
+              <th style="text-align: left">{{ k.0 }}</th>
+              <td>{{ k.1 }}</td>
+            </tr>
+          {% endfor %}
+          </table>
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
+{% endif %}
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('a.ajax-action').colorbox();
+  });
+</script>
+
+{% endblock right %}

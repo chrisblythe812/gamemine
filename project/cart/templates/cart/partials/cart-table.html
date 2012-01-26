@@ -1,0 +1,84 @@
+<table id="cart-table">
+	<tr>
+		<th class="column-game-title">Game Title</th>
+		<th class="column-condition">Condition</th>
+		<th class="column-platform">Platform</th>
+		<th class="column-quantity">Quantity</th>
+		<th class="column-actions">Remove</th>
+		<th class="column-price">Price Per Unit</th>
+		<th class="column-order-summary">Order Summary ({{ cart.size }} item{{ cart.size|pluralize }})</th>
+	</tr>
+	{% for item in cart.get_items %}
+	<tr class="cart-table-item-row">
+		<td class="column-game-title">
+			<span class="row-counter">{{ forloop.counter }}.</span>
+			<a href="{{ item.item.get_absolute_url }}">
+			{% if item.item.get_nano_thumb %}
+				<img src="{{ item.item.get_nano_thumb }}" width="37" height="47" />
+			{% else %}
+				<img src="{{ STATIC_URL }}img/icons/disc-icon-2.png" width="37" height="47" />
+			{% endif %}
+		    </a>
+			<a href="{{ item.item.get_absolute_url }}">{{ item.item.short_name }}</a>
+		</td>
+		<td class="column-condition"><a href="{% url cart:update item.id %}" class="link-dialog refresh-after-dialog-close">{{ item.is_new|yesno:"NG,UG" }}</a></td>
+		<td class="column-platform">{{ item.item.category }}</td>
+		<td class="column-quantity">
+			<form action="{% url cart:update_quantity %}" method="post" class="cart-table-form">{% csrf_token %}
+                <input type="text" class="quantity-input do_not_wrap" name="i-{{ item.id }}" value="{{ item.quantity }}" />
+				<a href="#" class="submit">Update</a>
+            </form>
+		</td>
+		<td class="column-actions"><a href="{% url cart:remove item.id %}" class="cart-action-remove delete-cart-item-button" title="Remove">Remove</a></td>
+		<td class="column-price">{% if item.price %}${{ item.price|floatformat:2 }}{% else %}--{% endif %}</td>
+		{% if forloop.counter0 == 0 %}
+		<td class="column-order-summary" rowspan="{{ cart.items.all|length|add:1 }}">
+			{% include "cart/partials/cart-order-summary.html" %}
+		</td>
+		{% endif %}
+	</tr>
+	{% empty %}
+	<tr class="cart-table-item-spacer">
+		<td class="column-game-title">&mdash;</td>
+		<td class="column-condition">&mdash;</td>
+		<td class="column-platform">&mdash;</td>
+		<td class="column-quantity">&mdash;</td>
+		<td class="column-actions">&mdash;</td>
+		<td class="column-price">&mdash;</td>
+		<td class="column-order-summary" rowspan="2">&nbsp;</td>
+	</tr>
+	{% endfor %}
+	<tr>
+		<td class="column-game-title">&nbsp;</td>
+		<td class="column-condition">&nbsp;</td>
+		<td class="column-platform">&nbsp;</td>
+		<td class="column-quantity">&nbsp;</td>
+		<td class="column-actions">&nbsp;</td>
+		<td class="column-price">&nbsp;</td>
+	</tr>
+</table>
+
+<div class="bottom-actions">
+	<span class="total">Total: ${{ cart.total|floatformat:2|default:"0.00" }}</span>
+	<div class="actions">
+       <a href="{% url catalog:index %}" class="continue-shopping-button">Continue Shopping</a>
+	   <a href="{% url cart:checkout %}" class="complete-order-button link-dialog">Complete Order</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.complete-order-button:not(.initialized)').each(function () {
+    $(this)
+      .addClass('initialized')
+      .click(function () {
+        var size = $('.cart-table-item-row').size();
+        if (size == 0) {
+          alert('Your cart is empty.');
+          return false;          
+        }
+        return true;
+      });
+  });
+});
+</script>

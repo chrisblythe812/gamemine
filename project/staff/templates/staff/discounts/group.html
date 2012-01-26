@@ -1,0 +1,45 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<form method="post">{% csrf_token %}
+  {{ formset.management_form }}
+<div class="module">
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Games</td>
+        <td>New, %</td>
+        <td>Used, %</td>
+        <td>Trade Complete, %</td>
+        <td>Delete</td>
+      </tr>  
+    </thead>
+    <tbody>
+    {% for form in formset.forms %}
+      <tr>
+        <td>{{ form.instance.name }}{{ form.id }}</td>
+        <td>
+          <ol>
+          {% for item in form.instance.items.all %}
+            <li><a href="{{ item.get_absolute_url }}" target="_blank">{{ item }} ({{ item.category }})</a></li>
+          {% endfor %}
+          </ol>
+        </td>
+        <td>{{ form.ajdust_percent_new }}{{ form.ajdust_percent_new.errors }}</td>
+        <td>{{ form.ajdust_percent_used }}{{ form.ajdust_percent_used.errors }}</td>
+        <td>{{ form.adjust_trade_complete }}{{ form.adjust_trade_complete.errors }}</td>
+        <td><input type="checkbox" name="{{ form.prefix }}-DELETE" id="{{ form.prefix }}-DELETE" /></td>
+      </tr>  
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="actions">
+    <input type="submit" value="Save values" />
+    <a href="{% url staff:add_group_discount %}">Add new</a>  
+  </div>
+</div>
+</form>
+
+{% endblock right %}

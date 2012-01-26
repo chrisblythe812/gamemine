@@ -1,0 +1,13 @@
+{% extends "members/account/account.html" %}
+
+{% block page-class %}{{ block.super }} profile-history-page{% endblock page-class %}
+
+{% block page-content %}
+
+<div id="history-page-content">
+    <h1>{{ title }}</h1>
+
+    {% block history-page-content %}{% endblock history-page-content %}
+</div>
+
+{% endblock page-content %}

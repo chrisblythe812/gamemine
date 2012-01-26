@@ -1,0 +1,44 @@
+{% extends 'staff/customer/base.html' %}
+{% load pagination %}
+
+{% block page-class %}{{ block.super }} staff-page-customer-feedbacks{% endblock page-class %}
+
+{% block right %}
+
+<div class="module">
+  <table>
+    <thead>
+     <tr>
+       <td>Date</td>
+       <td>Status</td>
+       <td>E-mail</td>
+       <td>Form</td>
+       <td>Item ID</td>
+       <td>Score</td>
+       <td>Category</td>
+       <td>Subcategory</td>
+       <td>&nbsp;</td>
+     </tr>
+    </thead>
+    <tbody>
+    {% for f in feedbacks %}
+      <tr class="case-status-{{ f.status }}">
+       <td>{{ f.timestamp|date }} {{ f.timestamp|time }}</td>
+       <td>{{ f.get_status_display }}</td>
+       <td>{{ f.email }}</td>
+       <td>{{ f.form_id }}</td>
+       <td>{{ f.item_id }}</td>
+       <td>{{ f.score }}</td>
+       <td>{{ f.category }}</td>
+       <td>{{ f.subcategory }}</td>
+       <td><a href="{% url staff:feedback_details f.id %}">Details</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% pagination %}
+
+{% endblock right %}
+

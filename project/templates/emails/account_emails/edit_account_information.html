@@ -1,0 +1,15 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p> 
+
+<p>We are sending this e-mail to let you know that the {{ changed_info }} on your Gamemine account 
+  has been changed and/or updated.</p>
+
+<p>Please visit "<strong>My Account</strong>" to review you're buying, trading and renting activity including management of 
+  your lists and much more.</p>
+
+<p>- Your Friends @ Gamemine!</p> 
+
+{% endblock content %}

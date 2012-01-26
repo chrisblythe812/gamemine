@@ -1,0 +1,37 @@
+{% extends "members/account/account.html" %}
+
+{% block content %}
+
+<h1 style="color: #D3242B;">Account Hold</h1>
+
+<div id="id_reactivate">
+{% csrf_token %}
+<p>You are currently scheduled to reactivate your account on <strong>{{ current_rental_plan.hold_reactivate_timestamp|date:"F j, Y" }}</strong>.
+  If you reactivate now, we will automatically ship the next available game in your Rent List.</p>
+  <div class="form-actions">
+    <a id="id_reactivate_now" href="#" class="reactivate-account-now-blue-button">Reactivate Account Now</a>
+  </div>
+</div>
+<div id="id_reactivate_done" style="display:none;">
+  <p>Congratulations &mdash; your account is no longer on hold! Your game is on the way!</p>
+  <div class="form-actions">
+    <a href="{% url members:rent_list %}" class="return-to-rent-list-blue-button">Return to Rent List</a>
+  </div>
+</div>
+
+<div style="clear:both"></div>
+
+<script type="text/javascript">
+$(function(){
+  $('#id_reactivate_now').click(function(){
+    $.post('{% url members:reactivate %}',{csrfmiddlewaretoken : $('input[name="csrfmiddlewaretoken"]').val()} ,function(){
+      $('#id_reactivate').hide();
+      $('#id_reactivate_done').show();
+    });
+    return false;
+  });
+});
+</script>
+
+{% endblock content %}
+

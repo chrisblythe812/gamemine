@@ -1,0 +1,134 @@
+@mixin debug {
+//  background: rgba(255, 255, 0, .2);
+}
+
+#form-signup-1 {
+  @include debug;
+  font-size: 11px;
+  
+    h3 {
+        padding: 5px 10px 20px;
+        font-size: 13px;
+        font-weight: bold;
+        
+        em {
+            font-size: 11px;
+            font-weight: normal;
+        }
+    }
+
+    .side-1 {
+        // background: rgba(255, 255, 0, .2);
+        float: left;
+        width: 400px;
+        height: 220px;
+        padding-top: 60px;
+        
+        dt {
+            float: left;
+            clear: left;
+            width: 100px;
+            text-align: right;
+            padding-top: 4px;
+        }
+        
+        dd.field {
+            float: left;
+            margin-left: 8px;
+            width: 190px;
+            margin-bottom: 7px;
+            
+            .input {
+                width: 190px;
+            }
+        }
+        
+        dd.help {
+            float: left;
+            padding-top: 4px;
+            margin-left: 6px;
+        }
+        
+        .extra {
+            clear: left;
+            padding: 15px;
+            
+            p.message {
+                color: #666;
+            }
+            
+            .error {
+                .boxed-wrapper {
+                    padding: 10px 10px 10px 70px;
+                    background: 5px center #fff url($images_url + 'attention-w.png') no-repeat;
+                }
+            
+                .title {
+                    color: #E61824;
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-bottom: 2px;
+                }
+            }
+        }
+    }
+    
+    .side-2 {
+        // background: rgba(0, 255, 255, .2);
+        width: 340px;
+        margin-left: 400px;
+        height: 220px;
+        padding-top: 60px;
+        
+        h3 {
+            padding-left: 0;
+        }
+        
+        dt {
+            float: left;
+            padding-top: 4px;
+            text-align: right;
+            width: 100px;  
+        }
+        
+        dd.field {
+            float: left;
+            margin-left: 8px;
+            width: 210px;
+            margin-bottom: 7px;
+            
+            .input {
+                width: 210px;
+            }
+        }
+    }
+    
+    .clear { clear: left; }
+    
+    .actions {
+        // background: rgba(255, 0, 0, 0.2);
+        float: right;
+        margin: -30px 25px 0 !important;
+        height: 23px;
+        clear: both;
+        width: 700px;
+        
+        .continue-button,
+        .checkout-button {
+            float: right;
+        }
+    }
+}
+
+
+#form-signup-2 {
+  color: #333;
+  p {
+    margin: 80px;
+    line-height: 1.3em;
+  }
+  .actions {
+    text-align: right;
+    padding-right: 80px;
+  }
+}

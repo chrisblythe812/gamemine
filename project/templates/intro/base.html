@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}{% endblock title %}
+{% block meta-description %}{{ block.super }}{% endblock meta-description %}
+{% block meta-keywords %}{{ block.super }}{% endblock meta-keywords %}
+
+{% block head %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/intro.js?rev={{ REV }}"></script>
+{% endblock %}
+
+{% block page-class %}intro-page{% endblock %}
+
+{% block content %}
+{% if slim_banner %}
+  <a href="{{ slim_banner.url }}" id="slim_banner" class="{{ slim_banner.class }}"><span>{{ slim_banner.title }}</span></a>
+{% endif %}
+<div id="{% block banner-id %}{% endblock %}">
+	{% block inside-banner %}
+	<a href="{% url catalog:index %}" id="item-catalog-index">
+	<div class="banner-part" id="banner-part-1"></div>
+	<div class="banner-part" id="banner-part-2"></div>
+	<div class="banner-part" id="banner-part-3"></div>
+	<div class="banner-part" id="banner-part-4"></div>
+	<div class="banner-part" id="banner-part-5"></div>
+	</a>
+	{% endblock %}
+	<div id="intro-new-releases">
+		<ul id="intro-new-releases-carousel" class="games-thumb-list">
+		{% for i in new_releases %}
+			<li><div class="catalog-item{% if not i.get_thumb_image %} empty{% endif %}"><a href="{{ i.get_absolute_url }}">{% if i.get_thumb_image %}<img src="{{ i.get_thumb_image }}" width="55" height="70" />{% else %}{{ i }}{% endif %}</a></div></li>
+		{% endfor %}
+		</ul>
+	</div>
+
+  {% block welcome-link %}<a href="/Browse-Games/#new-releases" id="item-welcome">New Releases</a>{% endblock %}
+	
+	<div id="intro-actions">
+		{% include "partials/footer_menu.html" %}
+	</div>
+</div>
+{% endblock content %}
+
+{% block footer-menu %}
+{% endblock footer-menu %}

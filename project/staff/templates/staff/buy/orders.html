@@ -1,0 +1,144 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module simple-filter-form">
+  <form method="post">{% csrf_token %}
+    <label for="id_barcode">Enter Barcode ID:</label>
+    <input type="text" id="id_barcode" name="barcode" autocomplete="off" />
+    <input type="submit" value="Add to prepared list" />
+    {% if message %}
+    <div class="message"><strong>MESSAGE:</strong> {{ message|safe }}</div>
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function () {
+        $('#id_barcode').searchbox('Enter "Manually" or "Scan with barcode scanner"');
+      });      
+    </script>    
+  </form>
+</div>
+
+<div class="module">
+  <h2>Picked List</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>UPC</td>
+        <td>Platform</td>
+        <td>Type</td>
+        <td>Condition</td>
+        <td>DC</td>
+        <td>Pick Quantity</td>
+        <td>&nbsp;</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for picked in picked_list %}
+      <tr>
+        <td><a href="{{ picked.item.get_absolute_url }}" target="_blank">{{ picked.item.name }}</a></td>
+        <td>{{ picked.item.upc }}</td>
+        <td>{{ picked.item.category }}</td>
+        <td>Buy</td>
+        <td>{{ picked.is_new|yesno:"NG,UG" }}</td>
+        <td>{{ picked.dropship.code }}</td>
+        <td>
+          {% if picked.dropship %}
+          <a class="pick_list_detais" href="{% url staff:buy_pick_list_details picked.item.id picked.dropship.id %}">{{ picked.quantity }}</a>
+          {% endif %}
+        </td>
+        <td>
+        {% if user.is_superuser %}
+          <a href="{% url staff:page 'Reports/Inventory' %}?dc={{ picked.dropship.id }}&buy_only=True&status=3&platform={{ picked.item.category.id }}&q={{ picked.item.upc }}" target="_blank">Lookup</a>
+        {% endif %}
+        </td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+    <tbody class="total">
+      <tr>
+        <td colspan="6">All Picked Games</td>
+        <td>{{ all_picked_games }}</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="pick_list_detais"></div>
+
+<div class="module">
+  <h2>Prepared List</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Title</td>
+        <td>Inventory ID</td>
+        <td>Platform</td>
+        <td>Condition</td>
+        <td>Date</td>
+        <td>DC</td>
+        <td>Labels</td>
+      </tr>
+    </thead>
+  {% for pack_slip in prepared_list %}
+    <tbody>
+      <tr class="subgroup">
+        <td colspan="5"><strong>Order #{{ pack_slip.order.order_no }}, Customer: <a href="{% url staff:customer_view pack_slip.order.user.id %}" target="_blank">{{ pack_slip.order.user.get_profile.get_name_display }}</a></strong></td>
+        <td>{{ pack_slip.created|date }}</td>
+        <td>{{ pack_slip.source_dc.code }}</td>
+        <td>
+          <a href="{% url staff:buy_labels %}?ids={{ pack_slip.id }}" target="_blank">Mailing</a>
+          | <a href="{% url staff:buy_order_details pack_slip.order.id %}#pack-slip-{{ pack_slip.id }}" target="_blank">Details</a>
+        </td>
+      </tr>
+      {% for item in pack_slip.items.all %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{{ item.order_item.item.get_absolute_url }}" target="_blank">{{ item.order_item.item.name }}</a></td>
+        <td>{{ item.order_item.inventory.barcode }}</td>
+        <td>{{ item.order_item.item.category }}</td>
+        <td>{{ item.order_item.is_new|yesno:"NG,UG" }}</td>
+        <td>{{ item.added|date }}</td>
+        <td colspan="2">&nbsp;</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  {% endfor %}
+    <tbody class="total">
+      <tr>
+        <td colspan="8">
+        {% if prepared_list_ids %}
+          <a href="{% url staff:buy_labels %}?ids={{ prepared_list_ids|join:"," }}" target="_blank">Print All Labels</a>
+          | <a href="{% url staff:buy_pack_slips %}?ids={{ prepared_list_ids|join:"," }}" target="_blank">Print All Pack Slips</a>
+          | <a href="{% url staff:buy_mark_shipped %}?ids={{ prepared_list_ids|join:"," }}">Clear Prepared List</a>
+        {% else %}
+        &nbsp;
+        {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('a.pick_list_detais').click(function () {
+    $.get($(this).attr('href'), function(data, status) {
+      if (status != 'success') {
+        alert('error');
+        return;
+      }      
+      var target = $('#pick_list_detais');
+      target.empty().append(data);
+      $('html, body').animate({scrollTop: target.offset().top}, 500);
+    });
+    return false;
+  });
+});
+</script>
+
+{% endblock right %}

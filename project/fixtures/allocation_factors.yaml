@@ -1,0 +1,174 @@
+- pk: account_type_special_promo_code
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: account_type_no_special_promo_code
+  fields:
+    value: 1
+  model: rent.allocationfactor
+
+- pk: buy_threshold_a
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: buy_threshold_b
+  fields:
+    value: 4
+  model: rent.allocationfactor
+
+- pk: buy_threshold_c
+  fields:
+    value: 6
+  model: rent.allocationfactor
+
+- pk: buy_threshold_d
+  fields:
+    value: 8
+  model: rent.allocationfactor
+
+- pk: trade_threshold_a
+  fields:
+    value: 1
+  model: rent.allocationfactor
+
+- pk: trade_threshold_b
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: trade_threshold_c
+  fields:
+    value: 3
+  model: rent.allocationfactor
+
+- pk: trade_threshold_d
+  fields:
+    value: 4
+  model: rent.allocationfactor
+
+- pk: rental_threshold_a
+  fields:
+    value: -1
+  model: rent.allocationfactor
+
+- pk: rental_threshold_b
+  fields:
+    value: 0
+  model: rent.allocationfactor
+
+- pk: rental_threshold_c
+  fields:
+    value: 1
+  model: rent.allocationfactor
+
+- pk: rental_threshold_d
+  fields:
+    value: 3
+  model: rent.allocationfactor
+
+- pk: declined_rental_billing_status_a
+  fields:
+    value: -2
+  model: rent.allocationfactor
+
+- pk: declined_rental_billing_status_b
+  fields:
+    value: -3
+  model: rent.allocationfactor
+
+- pk: last_game_shipped_a
+  fields:
+    value: 0
+  model: rent.allocationfactor
+
+- pk: last_game_shipped_b
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: last_game_shipped_c
+  fields:
+    value: 3
+  model: rent.allocationfactor
+
+- pk: claim_threshold_a
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: claim_threshold_b
+  fields:
+    value: -1
+  model: rent.allocationfactor
+
+- pk: claim_threshold_c
+  fields:
+    value: -3
+  model: rent.allocationfactor
+
+- pk: dc_transfer_threshold_a
+  fields:
+    value: 0
+  model: rent.allocationfactor
+
+- pk: dc_transfer_threshold_b
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: dc_transfer_threshold_c
+  fields:
+    value: 3
+  model: rent.allocationfactor
+
+- pk: last_priority_shipped_threshold_a
+  fields:
+    value: 0
+  model: rent.allocationfactor
+
+- pk: last_priority_shipped_threshold_b
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: last_priority_shipped_threshold_c
+  fields:
+    value: 3
+  model: rent.allocationfactor
+
+- pk: queue_priority_rank_a
+  fields:
+    value: 4
+  model: rent.allocationfactor
+
+- pk: queue_priority_rank_b
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: queue_priority_rank_c
+  fields:
+    value: 0
+  model: rent.allocationfactor
+
+- pk: membership_tenure_a
+  fields:
+    value: 0
+  model: rent.allocationfactor
+
+- pk: membership_tenure_b
+  fields:
+    value: 1
+  model: rent.allocationfactor
+
+- pk: membership_tenure_c
+  fields:
+    value: 2
+  model: rent.allocationfactor
+
+- pk: membership_tenure_d
+  fields:
+    value: 3
+  model: rent.allocationfactor

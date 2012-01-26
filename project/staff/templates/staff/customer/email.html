@@ -1,0 +1,37 @@
+{% extends 'staff/customer/base.html' %}
+
+{% block page-class %}{{ block.super }} staff-page-customer-email{% endblock page-class %}
+
+{% block right %}
+
+<div class="module">
+  <table>
+    <col width="100" />
+    <col />
+    <tr>
+      <th>Date</th><td>{{ email.created|date }} {{ email.created|time }}</td>
+    </tr>
+    <tr>
+      <th>Subject</th><td>{{ email.subject }}</td>
+    </tr>
+    <tr>
+      <th>From</th><td>{{ email.mailfrom }}</td>
+    </tr>
+    <tr>
+      <th>To</th><td>{{ email.mailto }}</td>
+    </tr>
+    <tr>
+      <th>Status</th><td>{{ email.get_status_display }}</td>
+    </tr>
+    <tr>
+      <th>Last Error</th><td>{{ email.last_error|default:"" }}</td>
+    </tr>
+    <tr>
+      <th>Message</th><td>
+        <iframe src="{% url staff:customer_email_body user.id email.id %}" width="800" height="500" frameborder="0"></iframe>
+      </td>
+    </tr>
+  </table>
+</div>
+
+{% endblock right %}

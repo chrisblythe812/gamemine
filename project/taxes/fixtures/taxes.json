@@ -1,0 +1,18 @@
+[
+    {
+        "pk": 50,
+        "model": "taxes.bycountytax",
+        "fields": {
+            "county": 224,
+            "value": "6.5000"
+        }
+    },
+    {
+        "pk": 224,
+        "model": "taxes.county",
+        "fields": {
+            "state": "FL",
+            "name": "Palm Beach"
+        }
+    }
+]

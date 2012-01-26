@@ -1,0 +1,102 @@
+@mixin star-rating($star_matrix, $star_size)
+{
+	width: $star_size * 5;
+	height: $star_size;
+	margin: 0 0 20px 0;
+	padding: 0 !important;
+	list-style: none;
+	clear: both;
+	position: relative;
+	background: url($images_url + $star_matrix) no-repeat 0 0;
+
+  /* add these classes to the ul to effect the change to the correct number of stars */
+  &.stars0 { background-position:0 0; }
+  &.stars1 { background-position:0 -1 * $star_size; }
+  &.stars2 { background-position:0 -2 * $star_size; }
+  &.stars3 { background-position:0 -3 * $star_size; }
+  &.stars4 { background-position:0 -4 * $star_size; }
+  &.stars5 { background-position:0 -5 * $star_size; }
+
+  li {
+	  cursor: pointer;
+    /*ie5 mac doesn't like it if the list is floated\*/
+	  float: left;
+	  /* end hide*/
+	  text-indent: -999em;
+
+    a {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: $star_size;
+	    height: $star_size;
+	    text-decoration: none;
+	    z-index: 200;
+
+      &:hover {
+	      z-index: 2;
+	      width: $star_size * 5;
+	      height: $star_size;
+	      overflow: hidden;
+	      left: 0 !important;
+	      background: url($images_url + $star_matrix) no-repeat 0 0;
+      }
+    }
+
+    &.star1 {
+      a {
+        left: 0;
+        &:hover { background-position: 0  -6 * $star_size; }
+      }
+    }
+
+    &.star2 {
+      a {
+        left: $star_size;
+        &:hover { background-position: 0  -7 * $star_size; }
+      }
+    }
+
+    &.star3 {
+      a {
+        left: 2 * $star_size;
+        &:hover { background-position: 0  -8 * $star_size; }
+      }
+    }
+
+    &.star4 {
+      a {
+        left: 3 * $star_size;
+        &:hover { background-position: 0  -9 * $star_size; }
+      }
+    }
+
+    &.star5 {
+      a {
+        left: 4 * $star_size;
+        &:hover { background-position: 0 -10 * $star_size; }
+      }
+    }
+  }
+}
+
+ul.rating
+{
+  @include star-rating('star-matrix-big.gif', 15px);
+}
+
+ul.rating.large
+{
+  @include star-rating('star-matrix-large.gif', 24px);
+}
+
+ul.rating-widget
+{
+  @include star-rating('star-matrix-large.gif', 24px);
+}
+
+#rent-list-table .column-item ul,
+#rent-orders-table .column-rate ul,
+#rent-list-table .column-rate ul {
+  @include star-rating('star-matrix.gif', 11px);
+}

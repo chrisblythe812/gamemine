@@ -1,0 +1,14 @@
+@import "trade/index";
+@import "trade/_check_upc";
+@import "trade/_add_dialog";
+@import "trade/_cart";
+@import "trade/_address";
+@import "trade/_carrier";
+@import "trade/_print";
+
+#trade-heading {
+	// background: rgba(255, 255, 0, .3);
+	margin: 0 auto 5px;
+	width: 981px;
+	text-align: right;
+}

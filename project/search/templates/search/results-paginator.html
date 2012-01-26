@@ -1,0 +1,25 @@
+<div class="paginator">
+{% if page_range.left_end %}
+  {% for p in page_range.left_end %}
+  	<a href="?{{ base_url }}&amp;p={{ p }}">{{ p }}</a>
+    {% if not forloop.last %}|{% endif %}
+  {% endfor %}
+  ...
+{% endif %}
+{% for p in page_range.range %}
+  {% ifequal p page.number %}
+  <span class="current">{{ p }}</span>
+  {% else %}
+	<a href="?{{ base_url }}&amp;p={{ p }}">{{ p }}</a>
+  {% endifequal %}
+  {% if not forloop.last %}|{% endif %}
+{% endfor %}
+{% if page_range.right_end %}
+  ...
+  {% for p in page_range.right_end %}
+  	<a href="?{{ base_url }}&amp;p={{ p }}">{{ p }}</a>
+    {% if not forloop.last %}|{% endif %}
+  {% endfor %}
+{% endif %}
+</div>
+

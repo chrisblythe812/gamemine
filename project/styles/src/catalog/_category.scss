@@ -1,0 +1,321 @@
+@import "constants";
+@import "forms";
+@import "mixins";
+@import "compass/css3/inline-block";
+
+
+#catalog-toolbar {
+	height: 36px;
+	overflow: hidden;
+	background: #bbb 0 -36px url($images_url + "catalog/catalog-toolbar.png") repeat-x;
+	
+	#catalog-toolbar-left {
+		float: left;
+		width: 5px;
+		height: 36px;
+		background: -5px 0 url($images_url + "catalog/catalog-toolbar.png") no-repeat;
+	}
+	
+	#catalog-toolbar-content {
+		height: 36px;
+		//overflow: hidden;
+		margin-right: 5px;
+		background: #bbb 0 -36px url($images_url + "catalog/catalog-toolbar.png") repeat-x;
+	}
+
+	#catalog-toolbar-right {
+		float: right;
+		width: 5px;
+		height: 36px;
+		margin-top: -36px;
+		background: 0 0 url($images_url + "catalog/catalog-toolbar.png") no-repeat;
+	}
+}
+
+#catalog-toolbar-filter {
+	//background: rgba(255, 255, 0, .3);
+	height: 36px;
+	padding: 0 !important;
+	margin: 0 !important;
+	
+	li {
+		float: left;
+		padding: 0 !important;
+		margin: 6px 4px 0 !important;
+		height: 24px;
+
+		.left-decoration,
+		.right-decoration {
+			//@include inline-block;
+			width: 10px;
+			height: 24px;
+			float: left;
+		}
+		
+		a {
+			@include heading-anchor;
+			//@include inline-block;
+			color: #505050;
+			font-size: 13px;
+			font-weight: bold;
+			line-height: 24px;
+			height: 24px;		
+			float: left;
+		}
+		
+		&.selected {
+			a {
+				color: #fff;
+				background: #4175c9;
+			}
+
+			.left-decoration,
+			.right-decoration {
+				background: 0 -72px url($images_url + "catalog/catalog-toolbar.png") no-repeat;
+			}
+	
+			.right-decoration {
+				background-position: -10px -72px;
+			}
+		}
+	}
+}
+
+#catalog-toolbar-search {
+	//background: rgba(255, 255, 0, .3);
+	background: -10px 0 url($images_url + "catalog/catalog-toolbar.png") no-repeat;
+	float: right;
+	margin: -36px 5px 0 0;
+	padding-left: 11px;
+	height: 36px;
+
+	.input {
+		@include input-box-icon($images_url + "icons/header-search-icon.gif");
+
+		width: 150px;
+		margin-top: 8px;
+	}
+}
+
+#catalog-content {
+	padding-top: 15px;
+
+	#catalog-grid {
+		//background: rgba(255, 255, 0, .3);
+		
+		width: 745px;
+		float: left;
+		
+		#catalog-grid-title {
+			// background: rgba(255, 255, 0, .3);
+			
+			padding-left: 1em;
+			margin-bottom: 1em;
+			font-size: 14px;
+			height: 20px;
+			
+			#catalog-filter-by-genre {
+				//background: rgba(255, 255, 0, .3);
+				float: left;
+
+				#catalog-filter-by-genre-current {				
+					color: #333;
+					@include heading-anchor;
+
+					span {
+						@include inline-block;
+						color: #c60;
+						font-size: 11px;
+						padding: 0 2px;
+						margin-top: -4px;
+					}
+				}
+
+				#catalog-genre-list {
+					position: absolute;
+					display: none;
+					margin-top: -10px;
+					margin-left: -10px;
+					
+					.popop-title {
+						background: 0 -40px url($images_url + 'catalog/catalog-genre-menu.png') no-repeat;
+						padding: 10px 0 0 10px;
+						a {
+							color: #333;
+							text-decoration: none;
+							
+							span {
+								@include inline-block;
+								color: #c60;
+								font-size: 11px;
+								padding: 0 2px;
+								margin-top: -4px;
+							}
+						}
+					}
+					
+					ul {
+						background: left bottom url($images_url + 'catalog/catalog-genre-menu.png') no-repeat;
+						padding: 10px 0 15px 0 !important;
+						margin: 0 !important;
+						font-size: 11px;
+						font-weight: bold;
+						width: 166px;
+						
+						li {
+							padding: 0 !important;
+							margin: 0 4px 0 2px !important;
+						}
+						
+						a {
+							text-decoration: none;
+							display: block;
+							padding: 4px 10px;
+							color: #cf161e;
+							
+							&:hover {
+								color: #fff;
+								background: #4175c9 !important;
+							}
+							
+							&.even {
+								background: url($images_url + 'catalog/catalog-genre-menu.png') no-repeat;
+							}
+						}
+					} 
+				}
+			}
+		}
+		
+		#catalog-path {
+			// background: rgba(255, 255, 0, .3);
+		
+			float: right;
+			font-style: italic;
+			color: #333;
+			font-size: 13px;
+			padding-right: 5px;
+			
+			a {
+				color: #333;
+				@include heading-anchor;
+			}
+		}
+	
+		#catalog-grid-content {
+			//background: rgba(255, 255, 0, .2);
+			margin-left: -3px;
+
+			&.loading {
+				background: center center url($images_url + 'catalog/loading.gif') no-repeat;
+				height: 300px;
+				
+				.catalog-items {
+					display: none;
+				}
+			}
+			
+			.catalog-items 
+			{
+				padding: 0 !important;
+				
+				&.empty {
+				    background: center top url($images_url + 'catalog/qs_no_item.gif') no-repeat;
+				    height: 200px;
+				}
+				
+				.catalog-item {
+					// background: rgba(255, 255, 0, .3);
+					
+					@include inline-block-ex;
+					width: 140px;
+					padding: 0 !important;
+					margin: 0 0 30px 6px;
+					overflow: hidden;
+					
+					.catalog-item-cover {
+						// background: rgba(255, 0, 0, 0.1);
+						height: 190px;
+						margin-bottom: 5px;
+
+						&.empty { 
+							background: -30px center url($images_url + "paymentplan-images.png") no-repeat;
+							a {
+								text-indent: -9999px;
+							}
+						}
+						
+						a {
+							// background: rgba(255, 255, 0, 0.3);
+							background: transparent;
+							display: block;
+							width: 140px;
+							height: 190px;
+							overflow: hidden;
+						}
+					}
+					
+					.catalog-item-title {
+						height: 20px;
+						overflow: hidden;
+						font-size: 13px;
+						
+						a {
+							// background: rgba(255, 255, 0, 0.3);
+							@include heading-anchor;
+							color: #333;
+							
+							overflow: hidden;
+							height: 20px;
+							width: 2000px;
+							display: block;
+						}
+						
+						/*
+						.catalog-item-title-overlay {
+							position: absolute;
+							margin-left: 121px;
+							margin-top: -1.5em;
+							background: url($images_url + 'catalog/catalog-title-ovelay.png') repeat-y;
+							width: 20px;
+							height: 1.5em;
+						}
+						*/
+					}
+					
+					.catalog-item-actions {
+						padding-top: 5px;
+						height: 20px;
+
+						a {
+              // @include inline-block-ex;
+              display: block;
+							@include image-anchor(20px, 20px, url($images_url + "catalog/catalog-actions.png") no-repeat);
+							float: left;
+							margin-right: 4px;
+						}
+
+						a.catalog-item-action-rent { background-position: -40px 0; }
+						a.catalog-item-action-trade { background-position: -20px 0; }
+					}
+				}
+				
+				.empty-list {
+					margin-left: 10px;
+				}
+			}
+		}
+	}
+	
+	#catalog-sidebar {
+		// background: rgba(255, 255, 0, .3);
+		// height: 200px;
+		
+		margin-left: 20px;
+		width: 195px;
+		float: left;
+		overflow: hidden;
+	}
+
+	.clear { clear: both; }
+}

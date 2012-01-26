@@ -1,0 +1,119 @@
+@import "mixins";
+@import "constants";
+@import "compass/css3";
+
+#trade-cart {
+  .text {
+    padding: 39px 16px 1em;
+    color: #333;
+
+    h2 {
+      color: #c60000;
+    }
+    
+    a {
+      font-weight: bold;
+    }
+  }
+
+  .control-panel {
+    background-color: #ebebeb;
+    height: 49px;
+    
+    .buttons {
+      float: right;
+      margin: 13px 18px 0 0;
+      
+      a,
+      input[type=submit] {
+        float: left;
+        margin-left: 6px;
+      }
+    }
+
+    p {
+      padding: 16px 0 0 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  table {
+    margin-top: 22px;
+    clear: both;
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    td.counter {
+      width: 28px;
+      color: #b4b4b4;
+      text-align: center;
+    }
+
+    td.cover {
+      width: 160px;
+    }
+
+    td.desc {
+      font-weight: bold;
+      
+      div {
+        margin: 3px 0;
+      }
+           
+      .name {
+        // font-size: 20px;
+        color: #0764c4;
+        
+        &.hot-trade {
+          background: right center url($images_url + 'intro/trade2/flame-s.png') no-repeat;
+          padding-right: 16px !important;
+        }
+      }
+      
+      .publisher {      
+        color: #c60000;
+        // text-decoration: underline;
+      }
+    }
+
+    td.quantity {
+      width: 180px;
+      text-align: center;
+      font-weight: bold;
+      
+      input {
+        text-align: center;
+        width: 40px;
+      }
+    }
+
+    td.price {
+      width: 180px;
+      text-align: center;
+      font-weight: bold;
+      color: #c60000;
+    }
+
+    tbody.total {
+      border-top: 1px solid #eaeaea;
+      border-bottom: 1px solid #eaeaea;
+    }
+  }
+  
+  .update-quantities {
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+

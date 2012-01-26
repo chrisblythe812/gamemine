@@ -1,0 +1,159 @@
+#cart-add-dialog {
+	width: 730px;
+
+	#dialog-heading {
+		padding: 5px 15px;
+		height: 47px;
+	}
+	
+	#cart-add-game-details {
+//		background: rgba(255, 255, 0, .3);
+		height: 47px;
+		width: 550px;
+		overflow: hidden; 
+		
+		img {
+			float: left;
+			margin-right: 10px;
+		}
+		
+		h1 {
+			color: #333;
+			font-weight: bold;
+			margin-top: 7px;
+			font-size: 13px;
+			line-height: 16px;
+		}
+		
+		.game-details {
+			color: #2f66ca;
+			font-size: 13px;
+			line-height: 16px;
+			
+			strong {
+				font-weight: bold;
+			}
+		}
+	}
+	
+	#dialog-title {
+		margin-top: -50px;
+	}
+	
+	#cart-add-form-hint {
+		// background: rgba(255, 255, 0, .3);
+		float: right;
+		width: 304px;
+		color: #333;
+		margin: 0 25px 0 0;
+
+    .boxed-wrapper {
+      // height: 132px;
+      padding: 15px;
+    }
+
+		h2 {
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 1em;
+		}
+		
+		ul {
+			list-style: disc;
+			list-style-position: outside;
+			font-size: 11px;
+
+			li {
+				margin: 0 0 5px 10px;
+			}
+		}
+	}
+	
+	#cart-add-form {
+		#cart-add-choices {
+			// background: rgba(255, 255, 0, .3);
+			height: 200px;
+			width: 350px;
+			
+			li {
+			  display: block;
+				height: 100px;
+				padding-left: 100px;
+				margin-left: 20px;
+				background: left center url($images_url + 'icons/disc-icon-1.png') no-repeat;
+
+				.choice {
+					// background: rgba(255, 255, 0, .3);
+					margin: 0;
+					color: #333;
+					font-size: 12px;
+					line-height: 16px;
+					padding: 42px 0 0;
+					width: 140px;
+					display: block;
+					float: left;
+
+					input {
+						float: left;
+					  height: 16px;
+					  margin: 0;
+					  padding: 0;
+					}
+					
+					label {
+						margin-left: 30px;
+						display: block;
+						font-weight: bold;
+					
+						span {
+							display: block;
+							font-weight: normal;
+						}
+					}
+				}
+				
+				.price {
+					// background: rgba(255, 255, 0, .3);
+					padding: 42px 0 0;
+					width: 80px;
+					margin: 0;
+					font-size: 12px;
+					line-height: 16px;
+					display: block;
+					float: right;
+
+					span {
+						display: block;
+						font-weight: bold;
+						color: #e30e17;
+					}
+				}				
+			
+				.out-of-stock {
+					color: #e30e17;
+				}
+				
+				.prereleased {
+				    color: #103B9A;
+				}
+			}
+		}
+	}
+	
+	.actions {
+	  clear: both;
+		margin-top: 10px;
+		padding: 0 0 0 50px;
+		
+		.right {
+		  width: 366px;
+			float: right;
+			text-align: center;
+
+			input {
+			  margin-left: 20px;
+			}
+		}
+	}
+}
+

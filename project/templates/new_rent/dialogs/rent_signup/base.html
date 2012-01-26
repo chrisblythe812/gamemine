@@ -1,0 +1,17 @@
+<div id="signup-wizard">
+  <div id="dialog-heading">
+    <div id="dialog-heading-step">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</div>
+    <h1>{% block dialog_title %}{% endblock %}</h1>
+
+    <div id="signup-wizard-header-plan-info" class="plan-{% if not plan.plan %}1{% else %}2{% endif %}">
+      <div class="title">{{ plan.title }}</div>
+      <div class="details">{{ plan.subtitle }}</div>
+      <div class="price">{{ plan.price }}</div>
+    </div>
+
+    <div id="dialog-title">
+     <a class="dialog-close-button" href="#" title="Close">Close</a>
+    </div>
+  </div>
+  {% block dialog_content %}{% endblock %}
+</div>

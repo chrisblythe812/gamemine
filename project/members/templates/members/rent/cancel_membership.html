@@ -1,0 +1,73 @@
+{% extends "members/rent/base.html" %}
+
+{% block heading %}
+	<li><a href="{% url new_rent:change_plan %}">{% if current_rental_plan %}Change Plan{% else %}Rental Signup{% endif %}</a></li>
+{% if current_rental_plan %}
+	<li class="selected"><a href="{% url members:cancel_membership %}">Cancel Membership</a></li>
+{% endif %}
+{% if current_rental_plan and current_rental_plan.is_holdable %}
+  <li><a href="{% url members:put_on_hold %}">Put on Hold</a></li>
+{% endif %}
+{% if current_rental_plan %}
+  <li><a href="{% url members:terms_and_details %}">Terms &amp; Details</a></li>
+{% endif %}
+{% endblock heading %}
+
+{% block page-class %}{{ block.super }} members-cancel-rent-plan{% endblock %}
+
+{% block page-content %}
+{% if not rent_plan %}
+	<p>You don't have active rent plan.</p>
+{% else %}
+	<form action="." method="post" class="simple">{% csrf_token %}
+		{% include "partials/form_errors.html" %}
+
+		<div class="notes">
+			<p><strong>PLEASE NOTE</strong></p>
+			<ul>
+				<li>$50.00 authorization is assessed for each outstanding game and is removed when returned.</li>
+				<li>Cancellation will be effective immediately / no refunds for partial months.</li>
+				<li>We'll send you an email confirming your cancellation.</li>
+			</ul>
+		</div>
+		<div class="notes-1">
+			<p><strong>Before you go, have you considered?</strong></p>
+			<ul>
+				<li><a href="{% url new_rent:change_plan %}" class="link-dialog">Trying a cheaper plan &gt;&gt;&gt;</a></li>
+				<li><a href="{% url members:put_on_hold %}">Placing you rent account on hold &gt;&gt;&gt;</a></li>
+			</ul>
+		</div>
+		<div class="notes">
+			<p><strong>If you still want to cancel, that's fine, reactivate anytime!</strong></p>
+		</div>
+		<div class="notes-1">
+			<p><strong>Please select your Cancellation Reason:</strong></p>
+			<ul class="reasons-1">
+    			<li>{{ form.shipping_to_slow }} {{ form.shipping_to_slow.label }}</li>
+    			<li>{{ form.too_many_shipping_problems }} {{ form.too_many_shipping_problems.label }}</li>
+    			<li>{{ form.website_is_not_user_friendly }} {{ form.website_is_not_user_friendly.label }}</li>
+    			<li>{{ form.switching_to_another_service }} {{ form.switching_to_another_service.label }}</li>
+    			<li>{{ form.not_enough_variety_of_games }} {{ form.not_enough_variety_of_games.label }}</li>
+			</ul>
+			<ul class="reasons-2">
+    			<li>{{ form.moving_traveling }} {{ form.moving_traveling.label }}</li>
+    			<li>{{ form.poor_customer_service }} {{ form.poor_customer_service.label }}</li>
+    			<li>{{ form.service_costs_too_much }} {{ form.service_costs_too_much.label }}</li>
+    			<li>{{ form.only_signed_up_for_promotion }} {{ form.only_signed_up_for_promotion.label }}</li>
+    			<li>{{ form.poor_inventory_availability }} {{ form.poor_inventory_availability.label }}</li>
+			</ul>
+		</div>
+		<div class="notes">
+			<p><strong>Additional Cancellation Notes: (optionals)</strong></p>
+			<p>{{ form.notes }}</p>
+			<p>{{ form.accept_terms_of_cancellation }} {{ form.accept_terms_of_cancellation.label }}
+				{{ form.accept_terms_of_cancellation.errors }}
+			</p>
+		</div>
+		<div class="form-actions">
+			<input class="complete-cancellation-button" value="Complete Cancellation" type="submit" />
+			<a href="{% url new_rent:change_plan %}" class="back-to-account-button">Back to My Account</a>
+		</div>
+	</form>
+{% endif %}
+{% endblock page-content %}

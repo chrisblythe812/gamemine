@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-11 22:25+0200\n"
+"PO-Revision-Date: 2009-07-11 22:23+0100\n"
+"Last-Translator: trbs <info@trbs.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: links.py:6
+msgid "Share on"
+msgstr "Stem of voeg toe aan"
+
+#: links.py:11
+msgid "NUjij"
+msgstr ""
+
+#: links.py:12
+msgid "eKudos"
+msgstr ""
+
+#: links.py:13
+msgid "MSN Reporter"
+msgstr ""
+
+#: links.py:14
+msgid "GeenRedactie"
+msgstr ""
+
+#: links.py:15
+msgid "Grubb"
+msgstr ""
+
+#: links.py:16
+msgid "Tipt"
+msgstr ""
+
+#: links.py:16
+msgid "Tip dit artikel!"
+msgstr ""
+
+#: links.py:17 links.py:23
+msgid "Bligg"
+msgstr ""
+
+#: links.py:18
+msgid "Wat vinden wij over"
+msgstr ""
+
+#: links.py:19
+msgid "Tagmos"
+msgstr ""
+
+#: links.py:22
+msgid "MSN Reporter België"
+msgstr ""
+
+#: links.py:24
+msgid "Netjes"
+msgstr ""
+
+#: links.py:28
+msgid "Delicious"
+msgstr ""
+
+#: links.py:29
+msgid "Digg"
+msgstr ""
+
+#: links.py:30
+msgid "Technorati"
+msgstr ""
+
+#: links.py:30
+msgid "Add to favorites on Technorati"
+msgstr "Voeg toe aan je favorieten op Technorati"
+
+#: links.py:31
+msgid "Google"
+msgstr ""
+
+#: links.py:31
+msgid "Add to Google bookmarks"
+msgstr "Voeg toe aan je Google bladwijzers"
+
+#: links.py:32
+msgid "Furl"
+msgstr ""
+
+#: links.py:33
+msgid "StumbleUpon"
+msgstr ""
+
+#: links.py:33
+msgid "Stumble it!"
+msgstr ""
+
+#: links.py:36
+msgid "Facebook"
+msgstr ""
+
+#: links.py:36
+msgid "Add to Facebook-profile"
+msgstr "Voeg toe aan je Facebook-profiel"
+
+#: links.py:39
+msgid "Twit This"
+msgstr ""
+
+#: links.py:39
+msgid "Post tweet on Twitter"
+msgstr "Plaats dit bericht op Twitter"
+
+#: links.py:42
+msgid "Slashdot"
+msgstr ""
+
+#: links.py:43
+msgid "Yahoo"
+msgstr ""
+
+#: links.py:44
+msgid "Bobrdobr.ru"
+msgstr ""
+
+#: links.py:47
+msgid "Rumarkz.ru"
+msgstr ""
+
+#: links.py:48
+msgid "Vaau.ru"
+msgstr ""
+
+#: links.py:49
+msgid "Memori.ru"
+msgstr ""
+
+#: links.py:50
+msgid "Rucity.com"
+msgstr ""
+
+#: links.py:51
+msgid "Moemesto.ru"
+msgstr ""
+
+#: links.py:52
+msgid "News2.ru"
+msgstr ""
+
+#: links.py:53
+msgid "Mister-Wong.ru"
+msgstr ""
+
+#: links.py:54
+msgid "Yandex.ru"
+msgstr ""
+
+#: links.py:55
+msgid "Myscoop.ru"
+msgstr ""
+
+#: links.py:56
+msgid "100zakladok.ru"
+msgstr ""
+
+#: links.py:57
+msgid "Reddit"
+msgstr ""
+
+#: templates/social_bookmarks/social_bookmarks_links.html:3
+msgid "Add to"
+msgstr "Plaatsen/Stemmen op"

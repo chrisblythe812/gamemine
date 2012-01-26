@@ -1,0 +1,133 @@
+{% extends "staff/index.html" %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block page-class %}{{ block.super }} {{ page_class }}{% endblock page-class %}
+
+
+{% block menu %}
+<h3>Fulfillment</h3>
+
+{{ staff_main_menu|safe }}
+
+{% comment %}
+<ul class="level1">
+  <li>Content
+    <ul>
+      <li>FAQs</li>
+      <li>How It Works</li>
+      <li>Help Pages</li>
+      <li>Contact Us</li>
+      <li>Form E-mails</li>
+      <li>Terms of Use</li>
+      <li>Privacy Policy</li>
+      <li>Meta Tags</li>
+      <li>ESRB Ratings</li>
+      <li>MPAA Ratings</li>
+    </ul>
+  </li>
+  <li>Reports
+    <ul>
+      <li><a href="{% url staff:page 'Reports/Purchase-Forecast' %}">Purchase Forecast</a></li>
+      <li>Membership
+        <ul>
+          <li>Members</li>
+          <li>Rent (subscribers)
+            <ul>
+              <li>By State and DC</li>
+              <li>Future Billings</li>
+              <li>Upgrades/Downgrades</li>
+              <li>Game Rotation</li>
+              <li>2xSPEED Activation</li>
+              <li>Top Rentals</li>
+              <li>No Games - On List</li>
+              <li>Restricted
+                <ul>
+                  <li>Address Update</li>
+                  <li>Personal Game</li>
+                </ul>
+              </li>
+              <li>Canceled
+                <ul>
+                  <li>By Active Days</li>
+                  <li>By Affiliate</li>
+                  <li>By Reason</li>
+                </ul>
+              </li>
+              <li>Suspended
+                <ul>
+                  <li>Excessive Claims</li>
+                  <li>Terms of Use</li>
+                </ul>
+              </li>
+              <li>Collections</li>
+            </ul>
+          </li>
+          <li>Buy (paid users)
+            <ul>
+              <li>By State and DC</li>
+              <li>Best Sellers</li>
+              <li>Suspended
+                <ul>
+                  <li>Excessive Returns</li>
+                  <li>Terms of Use</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Trade-Ins
+            <ul>
+              <li>By State and DC</li>
+              <li>Top Trades</li>
+              <li>Suspended
+                <ul>
+                  <li>Excessive Returns</li>
+                  <li>Terms of Use</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Discounts / Promotions</li>
+      <li>Taxes</li>
+      <li>Revenue
+        <ul>
+          <li>By City and State</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Website Creatives
+    <ul>
+      <li>Landing Pages
+        <ul>
+          <li>Welcome (Signed-Out)</li>
+          <li>Member (Signed-In)</li>
+          <li>Lists</li>
+        </ul>
+      </li>
+      <li>Newsletters</li>
+    </ul>
+  </li>
+  <li>Marketing Database
+    <ul>
+      <li>Total Database
+        <ul>
+          <li>Active</li>
+          <li>Canceled</li>
+          <li>Email Registration</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+{% endcomment %}
+
+{% endblock %}
+
+{% block right %}
+    {% if title %}
+	   <h2>{{ title }}</h2>
+	{% endif %}
+{% endblock right %}

@@ -1,0 +1,71 @@
+<form method="post" id="trade-cart-form">
+{% csrf_token %}
+<div class="control-panel">
+  <div class="buttons">
+    <a href="/" class="add-another-item-button-block">Add another Item</a>
+    <input type="submit" value="Submit" class="submit-button"/>
+  </div>
+  <p>By Submitting your Trade-Ins, you agree to the <a href="#">Trade-In Terms of Use.</a></p>
+</div>
+
+<table>
+<tbody>
+  <tr>
+    <th colspan="3">&nbsp;</th>
+    <th>Quantity</th>
+    <th>Trade-In Value</th>
+  </tr>
+  {% for item in cart_items %}
+  <tr>
+    <td class="counter">{{ forloop.counter }}.</td>
+    <td class="cover">
+      {% if item.item.get_catalog_grid_cover %}<img src="{{ item.item.get_catalog_grid_cover }}" alt="{{ item.name }}" />{% else %}&nbsp;{% endif %}
+    </td>
+    <td class="desc">
+      <div><span class="name{% if item.hot_trade %} hot-trade{% endif %}">{{ item.item.short_name }}</span> by <span class="publisher">{{ item.item.publisher }}</span></div>
+      <div>Platform: {{ item.item.category.description }}</div>
+    </td>
+    <td class="quantity">
+      <input name="i-{{ item.id }}" value="{{ item.quantity }}" class="quantity-input do_not_wrap" />
+      <br/>
+      <a href="#" class="update-quantities">Update</a>
+    </td>
+    <td class="price">
+      $<span id="i-{{ item.id }}-price">{{ item.get_total_value|floatformat:2 }}</span>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
+<tbody class="total">
+  <tr>
+    <td colspan="3">&nbsp;</td>
+    <td class="quantity"><span id="total-quantity">{{ total_quantity }}</span></td>
+    <td class="price">$<span id="total-amount">{{ total_amount }}</span></td>
+  </tr>
+</tbody>
+</table>
+
+<div class="control-panel">
+  <div class="buttons">
+    <a href="/" class="add-another-item-button-block">Add another Item</a>
+    <input type="submit" value="Submit" class="submit-button"/>
+  </div>
+  <p>By Submitting your Trade-Ins, you agree to the <a href="#">Trade-In Terms of Use.</a></p>
+</div>
+
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('.update-quantities').click(function(){
+    $('#trade-cart-form').ajaxSubmit({target: '#trade-cart-grid'});
+    return false;
+  });
+
+  $(".quantity-input").keydown(function(event){
+    if (!(event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode >= 48 && event.keyCode <= 57))
+      event.preventDefault(); 
+  });
+});
+</script>

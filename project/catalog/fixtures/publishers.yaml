@@ -1,0 +1,780 @@
+- fields: {description: '', name: Square Enix, type: 1, url: 'http://www.square-enix.com/'}
+  model: catalog.publisher
+  pk: 1
+- fields: {description: '', name: Ubisoft, type: 1, url: 'http://www.ubi.com'}
+  model: catalog.publisher
+  pk: 2
+- fields: {description: '', name: WB Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 3
+- fields: {description: "<p><strong>Activision Inc.</strong> is an <a href=\"http://en.wikipedia.org/wiki/United_States\"\
+      \ title=\"United States\">American</a> <a href=\"http://en.wikipedia.org/wiki/Video_game_developer\"\
+      \ title=\"Video game developer\">video game developer</a> and <a href=\"http://en.wikipedia.org/wiki/Video_game_publisher\"\
+      \ title=\"Video game publisher\">publisher</a>. It was founded on October 1,\
+      \ 1979.<sup id=\"cite_ref-1\" class=\"reference\"><a href=\"http://en.wikipedia.org/wiki/Activision#cite_note-1\"\
+      \ title=\"\">[2]</a></sup>, and was the first independent developer and distributor\
+      \ of <a href=\"http://en.wikipedia.org/wiki/Video_games\" title=\"Video games\"\
+      \ class=\"mw-redirect\">video games</a> for <a href=\"http://en.wikipedia.org/wiki/Video_game_console\"\
+      \ title=\"Video game console\">gaming consoles</a>. Its first products were\
+      \ cartridges for the <a href=\"http://en.wikipedia.org/wiki/Atari_2600\" title=\"\
+      Atari 2600\">Atari 2600</a> video console system. Activision is now one of the\
+      \ largest <a href=\"http://en.wiktionary.org/wiki/third_party\" title=\"wiktionary:third\
+      \ party\" class=\"extiw\">third party</a> video game publishers in the world\
+      \ and was also the top publisher for 2007 in the <a href=\"http://en.wikipedia.org/wiki/United_States\"\
+      \ title=\"United States\">United States</a> <sup id=\"cite_ref-2\" class=\"\
+      reference\"><a href=\"http://en.wikipedia.org/wiki/Activision#cite_note-2\"\
+      \ title=\"\">[3]</a></sup> On January 18, 2008, Activision announced they were\
+      \ the top US publisher in 2007, according to the <a href=\"http://en.wikipedia.org/wiki/NPD_Group\"\
+      \ title=\"NPD Group\">NPD Group</a>.<sup id=\"cite_ref-3\" class=\"reference\"\
+      ><a href=\"http://en.wikipedia.org/wiki/Activision#cite_note-3\" title=\"\"\
+      >[4]</a></sup></p>\r\n<p>On December 2, 2007, it was announced that Activision\
+      \ would be acquired by <a href=\"http://en.wikipedia.org/wiki/Vivendi_Games\"\
+      \ title=\"Vivendi Games\">Vivendi Games</a>. The merger took place on July 9,\
+      \ 2008, with the newly formed company <a href=\"http://en.wikipedia.org/wiki/Activision_Blizzard\"\
+      \ title=\"Activision Blizzard\">Activision Blizzard</a>, owned by the <a href=\"\
+      http://en.wikipedia.org/wiki/French_company\" title=\"French company\" class=\"\
+      mw-redirect\">French company</a>, <a href=\"http://en.wikipedia.org/wiki/Vivendi\"\
+      \ title=\"Vivendi\">Vivendi</a>. <sup id=\"cite_ref-4\" class=\"reference\"\
+      ><a href=\"http://en.wikipedia.org/wiki/Activision#cite_note-4\" title=\"\"\
+      >[5]</a></sup></p>", name: Activision, type: 1, url: 'http://www.activision.com'}
+  model: catalog.publisher
+  pk: 4
+- fields: {description: '<strong>Electronic Arts</strong> (EA) (<a href="http://en.wikipedia.org/wiki/NASDAQ"
+      title="NASDAQ">NASDAQ</a>:&nbsp;<a rel="nofollow" href="http://quotes.nasdaq.com/asp/SummaryQuote.asp?symbol=ERTS&amp;selected=ERTS"
+      title="http://quotes.nasdaq.com/asp/SummaryQuote.asp?symbol=ERTS&amp;selected=ERTS"
+      class="external text">ERTS</a>) is an international <a href="http://en.wikipedia.org/wiki/Video_game_developer"
+      title="Video game developer">developer</a>, marketer, <a href="http://en.wikipedia.org/wiki/Video_game_publisher"
+      title="Video game publisher">publisher</a>, distributor and of <a href="http://en.wikipedia.org/wiki/Video_game"
+      title="Video game">video games</a>. Established in 1982 by <a href="http://en.wikipedia.org/wiki/Trip_Hawkins"
+      title="Trip Hawkins">Trip Hawkins</a>, the company was a pioneer of the early
+      <a href="http://en.wikipedia.org/wiki/Home_computer" title="Home computer">home
+      computer</a> games industry and was notable for promoting the designers and
+      programmers responsible for its games. Originally, EA was a home computing game
+      publisher. In the late 1980s, the company began developing games in-house and
+      supported consoles by the early 1990s. EA later grew via acquisition of several
+      successful developers. By the early 2000s, EA had become one of the world''s
+      largest third-party publishers. Also partly developed by out of Cincinnati,
+      Ohio by Drew Fischer. In 2007 EA ranked 8th on the list of largest software
+      companies in the world.<sup id="cite_ref-3" class="reference"><a href="http://en.wikipedia.org/wiki/Electronic_Arts#cite_note-3"
+      title="">[4]</a></sup> In May 2008, the company reported net annual revenue
+      of <a href="http://en.wikipedia.org/wiki/United_States_dollar" title="United
+      States dollar">US</a>$4.02 billion in fiscal year 2008.<sup id="cite_ref-Q4_report_1-1"
+      class="reference"><a href="http://en.wikipedia.org/wiki/Electronic_Arts#cite_note-Q4_report-1"
+      title="">[2]</a></sup> Currently, EA''s most successful products are sports
+      games published under its <a href="http://en.wikipedia.org/wiki/EA_Sports" title="EA
+      Sports">EA Sports</a> label, games based on popular movie licenses such as <em>Harry
+      Potter</em> and games from long-running franchises like <em><a href="http://en.wikipedia.org/wiki/Need_for_Speed_series"
+      title="Need for Speed series" class="mw-redirect">Need for Speed</a></em>, <em><a
+      href="http://en.wikipedia.org/wiki/Medal_of_Honor_series" title="Medal of Honor
+      series" class="mw-redirect">Medal of Honor</a></em>, <em><a href="http://en.wikipedia.org/wiki/The_Sims_%28series%29"
+      title="The Sims (series)">The Sims</a></em>, <em><a href="http://en.wikipedia.org/wiki/Battlefield_series"
+      title="Battlefield series" class="mw-redirect">Battlefield</a></em> and the
+      later games in the <em><a href="http://en.wikipedia.org/wiki/Burnout_%28video_game%29"
+      title="Burnout (video game)">Burnout</a></em> and <em><a href="http://en.wikipedia.org/wiki/Command_%26_Conquer_series"
+      title="Command &amp; Conquer series" class="mw-redirect">Command &amp; Conquer
+      series</a></em>.', name: Electronic Arts, type: 1, url: 'http://www.ea.com'}
+  model: catalog.publisher
+  pk: 5
+- fields: {description: '', name: Take Two, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 6
+- fields: {description: '', name: Interplay Productions, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 7
+- fields: {description: "<p><b>Crystal Dynamics</b> is an <a title=\"United States\"\
+      \ href=\"http://en.wikipedia.org/wiki/United_States\">American</a> <a title=\"\
+      Video game developer\" href=\"http://en.wikipedia.org/wiki/Video_game_developer\"\
+      >video game developer</a> based in the <a title=\"San Francisco Bay Area\" href=\"\
+      http://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">San Francisco Bay Area</a>.\
+      \ It was acquired by <a title=\"Eidos Interactive\" href=\"http://en.wikipedia.org/wiki/Eidos_Interactive\"\
+      >Eidos Interactive</a>, a <a title=\"Great Britain\" href=\"http://en.wikipedia.org/wiki/Great_Britain\"\
+      >British</a> <a title=\"Video game publisher\" href=\"http://en.wikipedia.org/wiki/Video_game_publisher\"\
+      >video game publisher</a>, in <a title=\"1998 in video gaming\" href=\"http://en.wikipedia.org/wiki/1998_in_video_gaming\"\
+      >1998</a>, and is still part of the Eidos group. Eidos Interactive has been\
+      \ subsequently acquired by British entertainment company <a class=\"mw-redirect\"\
+      \ title=\"SCi\" href=\"http://en.wikipedia.org/wiki/SCi\">SCi</a> in <a title=\"\
+      2005 in video gaming\" href=\"http://en.wikipedia.org/wiki/2005_in_video_gaming\"\
+      >2005</a>.</p>\r\n<p>Crystal Dynamics was formed in <a title=\"1992 in video\
+      \ gaming\" href=\"http://en.wikipedia.org/wiki/1992_in_video_gaming\">mid-1992</a>\
+      \ by <a title=\"Sega\" href=\"http://en.wikipedia.org/wiki/Sega\">Sega</a> veterans\
+      \ <a class=\"new\" title=\"Judy Lange (page does not exist)\" href=\"http://en.wikipedia.org/w/index.php?title=Judy_Lange&amp;action=edit&amp;redlink=1\"\
+      >Judy Lange</a> (sales and acting CEO), <a class=\"new\" title=\"Madeline Canepa\
+      \ (page does not exist)\" href=\"http://en.wikipedia.org/w/index.php?title=Madeline_Canepa&amp;action=edit&amp;redlink=1\"\
+      >Madeline Canepa</a> (marketing) and <a class=\"mw-redirect\" title=\"Dave Morse\"\
+      \ href=\"http://en.wikipedia.org/wiki/Dave_Morse\">Dave Morse</a> (Amiga). Crystal\
+      \ was the first licensed developer for <a title=\"3DO\" href=\"http://en.wikipedia.org/wiki/3DO\"\
+      >3DO</a>, a gaming hardware platform simultaneously funded by Kleiner Perkins.</p>\r\
+      \n<p>In 1993 <a class=\"new\" title=\"Strauss Zelnick (page does not exist)\"\
+      \ href=\"http://en.wikipedia.org/w/index.php?title=Strauss_Zelnick&amp;action=edit&amp;redlink=1\"\
+      >Strauss Zelnick</a>, then president of <a title=\"20th Century Fox\" href=\"\
+      http://en.wikipedia.org/wiki/20th_Century_Fox\">20th Century Fox</a>'s film\
+      \ studio, was hired to run Crystal Dynamics. This made national news and helped\
+      \ to touch off the frenzy of multimedia investments of the mid-1990s.</p>\r\n\
+      <p>3DO's launch during the <a title=\"1993 in video gaming\" href=\"http://en.wikipedia.org/wiki/1993_in_video_gaming\"\
+      >1993</a> Christmas season was a commercial failure, undermining Crystal's one-platform\
+      \ software strategy. Zelnick, Lange and <a title=\"Mark Cerny\" href=\"http://en.wikipedia.org/wiki/Mark_Cerny\"\
+      >Mark Cerny</a> all resigned at about this time.</p>", name: Crystal Dynamics,
+    type: 1, url: 'http://www.crystald.com'}
+  model: catalog.publisher
+  pk: 8
+- fields: {description: "<p><strong>American Laser Games</strong> was a company based\
+      \ in Albuquerque, New Mexico that created a wide variety of light gun laserdisc\
+      \ video games. The company was founded in the late 1980's by Richard Grebe,\
+      \ who had originally created the system to train police officers, and later\
+      \ adapted the technology to more mainstream entertainment.</p>\r\n<p><br>\r\n\
+      The company lasted until the late 1990's, by which time it had begun making\
+      \ games for the 3DO and \"games for girls\" for the PC (under the moniker Her\
+      \ Interactive), beginning with McKenzie &amp; Co.. In 2001, the development\
+      \ and publishing rights to all of the games that were produced by American Laser\
+      \ Games were purchased by Digital Leisure, Inc. Many of these games were then\
+      \ re-released for the PC and in DVD-Video format.</p>", name: American Laser
+      Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 9
+- fields: {description: "<p><b>GameTek</b> was a video game publisher based in <a\
+      \ title=\"North Miami Beach, Florida\" href=\"http://en.wikipedia.org/wiki/North_Miami_Beach,_Florida\"\
+      >North Miami Beach, Florida</a> well known for publishing video game adaptations\
+      \ of <a title=\"Game show\" href=\"http://en.wikipedia.org/wiki/Game_show\"\
+      >game shows</a> in the early 1990s. GameTek was a trade name for IJE, the owner\
+      \ of electronic publishing rights to <i><a title=\"Jeopardy!\" href=\"http://en.wikipedia.org/wiki/Jeopardy%21\"\
+      >Jeopardy!</a></i> and <i><a class=\"mw-redirect\" title=\"Wheel of Fortune\
+      \ (US game show)\" href=\"http://en.wikipedia.org/wiki/Wheel_of_Fortune_%28US_game_show%29\"\
+      >Wheel of Fortune</a></i>. Originally IJE licensed these titles to ShareData\
+      \ of <a title=\"Chandler, Arizona\" href=\"http://en.wikipedia.org/wiki/Chandler,_Arizona\"\
+      >Chandler, Arizona</a>; however, when IJE saw ShareData's success with the titles,\
+      \ IJE decided to publish the titles themselves, resulting in the founding of\
+      \ GameTek.</p>\r\n<p>After establishing distribution for the game show titles,\
+      \ GameTek branched out by licensing <a title=\"Europe\" href=\"http://en.wikipedia.org/wiki/Europe\"\
+      >European</a> titles for the <a title=\"North America\" href=\"http://en.wikipedia.org/wiki/North_America\"\
+      >North American</a> market, including <i><a title=\"Frontier: Elite II\" href=\"\
+      http://en.wikipedia.org/wiki/Frontier:_Elite_II\">Frontier: Elite II</a></i>\
+      \ and <i><a title=\"The Humans\" href=\"http://en.wikipedia.org/wiki/The_Humans\"\
+      >The Humans</a></i>.</p>", name: Gametek, type: 1, url: 'http://www.gametek.com'}
+  model: catalog.publisher
+  pk: 10
+- fields: {description: '', name: Tetragon, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 11
+- fields: {description: '', name: Psygnosis, type: 1, url: 'http://www.psygnosis.com'}
+  model: catalog.publisher
+  pk: 12
+- fields: {description: '', name: Time Warner Interactive, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 13
+- fields: {description: '', name: Prolific Publishing, type: 1, url: 'http://www.prolific.com/'}
+  model: catalog.publisher
+  pk: 14
+- fields: {description: '', name: Pixis, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 15
+- fields: {description: '', name: Kirin Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 16
+- fields: {description: '', name: !!python/str "Humongous\xC2 Entertainment", type: 1,
+    url: ''}
+  model: catalog.publisher
+  pk: 17
+- fields: {description: '', name: Silmarils, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 18
+- fields: {description: '', name: L3 Interactive, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 19
+- fields: {description: '', name: LucasArts Entertainment Company, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 20
+- fields: {description: '', name: Mechadeus, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 21
+- fields: {description: '', name: VideocastV, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 22
+- fields: {description: '', name: T&E Soft, type: 1, url: 'http://www.tes.co.jp/'}
+  model: catalog.publisher
+  pk: 23
+- fields: {description: "<p>Sega was founded in 1940 as <strong>Standard Games</strong>\
+      \ (later <strong>Service Games</strong>) in <a class=\"mw-redirect\" title=\"\
+      Honolulu, Hawaii\" href=\"http://en.wikipedia.org/wiki/Honolulu,_Hawaii\">Honolulu,\
+      \ Hawaii</a>, United States,<sup class=\"reference\" id=\"cite_ref-5\"><a title=\"\
+      \" href=\"http://en.wikipedia.org/wiki/Sega#cite_note-5\">[6]</a></sup> by <a\
+      \ title=\"Martin Bromely (page does not exist)\" class=\"new\" href=\"http://en.wikipedia.org/w/index.php?title=Martin_Bromely&amp;action=edit&amp;redlink=1\"\
+      >Martin Bromely</a>, <a title=\"Irving Bromberg (page does not exist)\" class=\"\
+      new\" href=\"http://en.wikipedia.org/w/index.php?title=Irving_Bromberg&amp;action=edit&amp;redlink=1\"\
+      >Irving Bromberg</a>, and <a title=\"James Humpert (page does not exist)\" class=\"\
+      new\" href=\"http://en.wikipedia.org/w/index.php?title=James_Humpert&amp;action=edit&amp;redlink=1\"\
+      >James Humpert</a>\r\nto provide coin-operated amusements for American servicemen\
+      \ on military\r\nbases. Bromely suggested that the company move to Tokyo, Japan\
+      \ in 1951\r\nand in May 1952 \"<strong>SE</strong>rvice <strong>GA</strong>mes\
+      \ of Japan\" was registered.</p>\r\n<p>In 1954, another <a title=\"United States\"\
+      \ href=\"http://en.wikipedia.org/wiki/United_States\">American</a> businessman,\
+      \ David Rosen, fell in love with <a title=\"Tokyo\" href=\"http://en.wikipedia.org/wiki/Tokyo\"\
+      >Tokyo</a> and established his own <a title=\"Company\" href=\"http://en.wikipedia.org/wiki/Company\"\
+      >company</a>, <a title=\"Rosen Enterprises (page does not exist)\" class=\"\
+      new\" href=\"http://en.wikipedia.org/w/index.php?title=Rosen_Enterprises&amp;action=edit&amp;redlink=1\"\
+      >Rosen Enterprises</a>,\r\nInc., in Japan to export art. When the company imported\
+      \ coin-operated\r\ninstant photo booths, it stumbled on a surprise hit: The\
+      \ booths were\r\nvery popular in <a title=\"Japan\" href=\"http://en.wikipedia.org/wiki/Japan\"\
+      >Japan</a>. Business was booming, and Rosen Enterprises expanded by importing\
+      \ coin-operated electro-mechanical <a title=\"Games\" href=\"http://en.wikipedia.org/wiki/Games\"\
+      >games</a>.</p>", name: SEGA, type: 1, url: 'http://www.sega.com'}
+  model: catalog.publisher
+  pk: 24
+- fields: {description: '', name: Midway Games West, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 25
+- fields: {description: '', name: Sony Pictures Home Entertainment, type: 2, url: ''}
+  model: catalog.publisher
+  pk: 28
+- fields: {description: "<p><strong><a title=\"20th Century Fox\" href=\"http://en.wikipedia.org/wiki/20th_Century_Fox\"\
+      >20th Century Fox</a> Home Entertainment</strong> is the <a title=\"Home video\"\
+      \ href=\"http://en.wikipedia.org/wiki/Home_video\">home video</a> distribution\
+      \ arm of the <a title=\"20th Century Fox\" href=\"http://en.wikipedia.org/wiki/20th_Century_Fox\"\
+      >20th Century Fox</a> film studio. It was established in <a title=\"1976\" href=\"\
+      http://en.wikipedia.org/wiki/1976\">1976</a> as <strong><a title=\"Magnetic\
+      \ Video\" href=\"http://en.wikipedia.org/wiki/Magnetic_Video\">Magnetic Video</a>\
+      \ Corporation</strong>, and later as <strong>20th Century Fox Video</strong>,\
+      \ <strong><a title=\"CBS/Fox Video\" href=\"http://en.wikipedia.org/wiki/CBS/Fox_Video\"\
+      >CBS/Fox Video</a></strong> and <strong>Fox Video</strong>. The company also\
+      \ is best known for distributing the world's highest grossing film of all time\
+      \ <a class=\"mw-redirect\" title=\"Titanic\" href=\"http://en.wikipedia.org/wiki/Titanic\"\
+      >Titanic</a> which took in <a class=\"mw-redirect\" title=\"U.S.\" href=\"http://en.wikipedia.org/wiki/U.S.\"\
+      >U.S.</a> 1.8 <a class=\"mw-redirect\" title=\"1,000,000,000 (number)\" href=\"\
+      http://en.wikipedia.org/wiki/1,000,000,000_%28number%29\">billion</a> dollars\
+      \ worldwide.</p>\r\n<p><strong>CBS/FOX</strong> became <strong>Fox Video</strong>\
+      \ in <a title=\"1991\" href=\"http://en.wikipedia.org/wiki/1991\">1991</a>,\
+      \ alternating with the <strong>CBS/FOX</strong> name until 1998. It was re-named\
+      \ as <strong>20th Century Fox Home Entertainment</strong> in <a title=\"1995\"\
+      \ href=\"http://en.wikipedia.org/wiki/1995\">1995</a>, alternating with the\
+      \ <strong>Fox Video</strong> name until <a title=\"1999\" href=\"http://en.wikipedia.org/wiki/1999\"\
+      >1999</a>. They also currently distribute <a title=\"Path&#233;\" href=\"http://en.wikipedia.org/wiki/Path%C3%A9\"\
+      >Path&#233;</a><a title=\"DVD\" href=\"http://en.wikipedia.org/wiki/DVD\">DVD</a>\
+      \ and <a title=\"VHS\" href=\"http://en.wikipedia.org/wiki/VHS\">VHS</a> titles\
+      \ in the UK, and <a class=\"mw-redirect\" title=\"HIT Entertainment\" href=\"\
+      http://en.wikipedia.org/wiki/HIT_Entertainment\">HIT Entertainment</a>, <a title=\"\
+      Anchor Bay Entertainment\" href=\"http://en.wikipedia.org/wiki/Anchor_Bay_Entertainment\"\
+      >Anchor Bay Entertainment</a> and <a title=\"Yari Film Group\" href=\"http://en.wikipedia.org/wiki/Yari_Film_Group\"\
+      >Yari Film Group</a> DVD titles in North America.<sup class=\"noprint Template-Fact\"\
+      ><span style=\"white-space: nowrap;\" title=\"This claim needs references to\
+      \ reliable sources&lt;!-- WP_SPACEHOLDER -->since November 2008\">[<em><a title=\"\
+      Wikipedia:Citation needed\" href=\"http://en.wikipedia.org/wiki/Wikipedia:Citation_needed\"\
+      >citation needed</a></em>]</span></sup></p>\r\n<p>They also distribute <a class=\"\
+      mw-redirect\" title=\"MGM\" href=\"http://en.wikipedia.org/wiki/MGM\">MGM</a>\
+      \ <a title=\"DVD\" href=\"http://en.wikipedia.org/wiki/DVD\">DVD</a> titles\
+      \ worldwide under the <a title=\"MGM Home Entertainment\" href=\"http://en.wikipedia.org/wiki/MGM_Home_Entertainment\"\
+      >MGM Home Entertainment</a> label since MGM ended their home video agreement\
+      \ with <a title=\"Sony Pictures Home Entertainment\" href=\"http://en.wikipedia.org/wiki/Sony_Pictures_Home_Entertainment\"\
+      >Sony Pictures Home Entertainment</a>, with the exception of certain MGM/<a\
+      \ title=\"United Artists\" href=\"http://en.wikipedia.org/wiki/United_Artists\"\
+      >UA</a>/<a title=\"Columbia Pictures\" href=\"http://en.wikipedia.org/wiki/Columbia_Pictures\"\
+      >Columbia</a> <a title=\"TriStar Pictures\" href=\"http://en.wikipedia.org/wiki/TriStar_Pictures\"\
+      >TriStar</a>\r\nco-productions (in such cases, SPHE continues to own domestic\
+      \ video\r\nrights). Fox's best selling DVD titles are currently the various\
+      \ season\r\nboxsets of <em><a title=\"The Simpsons\" href=\"http://en.wikipedia.org/wiki/The_Simpsons\"\
+      >The Simpsons</a></em>.</p>\r\n<p><a rel=\"nofollow\" title=\"http://www.tvshowsondvd.com/newsitem.cfm?NewsID=1229\"\
+      \ class=\"external autonumber\" href=\"http://www.tvshowsondvd.com/newsitem.cfm?NewsID=1229\"\
+      >[1]</a>. <a rel=\"nofollow\" title=\"http://hollywoodreporter.com/thr/article_display.jsp?vnu_content_id=&amp;imw=Y\"\
+      \ class=\"external autonumber\" href=\"http://hollywoodreporter.com/thr/article_display.jsp?vnu_content_id=&amp;imw=Y\"\
+      >[2]</a></p>\r\n<p>They also once served as the U.S. distributor for television\
+      \ and/or movie products released by the <a class=\"mw-redirect\" title=\"British\
+      \ Broadcasting Corporation\" href=\"http://en.wikipedia.org/wiki/British_Broadcasting_Corporation\"\
+      >BBC</a> from the 1980s to the 1990s, but those U.S. distribution rights expired\
+      \ at the start of 1999, and were then given to <a title=\"Warner Home Video\"\
+      \ href=\"http://en.wikipedia.org/wiki/Warner_Home_Video\">Warner Home Video</a>.</p>\r\
+      \n<p>They will also distribute <a title=\"4Kids Entertainment\" href=\"http://en.wikipedia.org/wiki/4Kids_Entertainment\"\
+      >4Kids Entertainment</a> releases as it has a deal with <a title=\"The CW4Kids\"\
+      \ href=\"http://en.wikipedia.org/wiki/The_CW4Kids\">The CW4Kids</a> and <a class=\"\
+      mw-redirect\" title=\"4Kids TV\" href=\"http://en.wikipedia.org/wiki/4Kids_TV\"\
+      >4Kids TV</a>, since its morning block was first aired on <a class=\"mw-redirect\"\
+      \ title=\"FOX\" href=\"http://en.wikipedia.org/wiki/FOX\">FOX</a>.</p>", name: Fox
+      Home Entertainment, type: 2, url: ''}
+  model: catalog.publisher
+  pk: 29
+- fields: {description: '', name: Tartan Video, type: 2, url: ''}
+  model: catalog.publisher
+  pk: 30
+- fields: {description: '', name: Geneon, type: 2, url: ''}
+  model: catalog.publisher
+  pk: 31
+- fields: {description: "<div><strong>Anchor Bay Entertainment</strong> is a home\
+      \ entertainment company and a division of <a title=\"Starz Media\" href=\"http://en.wikipedia.org/wiki/Starz_Media\"\
+      >Starz Media</a>, which is a <a title=\"Strategic business unit\" href=\"http://en.wikipedia.org/wiki/Strategic_business_unit\"\
+      >unit</a> of <a title=\"Starz, LLC\" href=\"http://en.wikipedia.org/wiki/Starz,_LLC\"\
+      >Starz, LLC</a>. It was previously owned by IDT Entertainment until 2006 when\
+      \ IDT was purchased by <a title=\"Starz Media\" href=\"http://en.wikipedia.org/wiki/Starz_Media\"\
+      >Starz Media</a>.<sup class=\"reference\" id=\"cite_ref-pressrel_0-0\"><a title=\"\
+      \" href=\"http://en.wikipedia.org/wiki/Anchor_Bay_Entertainment#cite_note-pressrel-0\"\
+      >[1]</a></sup> Anchor Bay markets and sells <a title=\"Feature film\" href=\"\
+      http://en.wikipedia.org/wiki/Feature_film\">feature films</a>, <a title=\"Television\
+      \ program\" href=\"http://en.wikipedia.org/wiki/Television_program\">series</a>,\
+      \ <a title=\"Television special\" href=\"http://en.wikipedia.org/wiki/Television_special\"\
+      >television specials</a> and <a class=\"mw-redirect\" title=\"Short film\" href=\"\
+      http://en.wikipedia.org/wiki/Short_film\">short films</a> to consumers worldwide.\
+      \ Anchor Bay Entertainment is headquartered in <a title=\"Troy, Michigan\" href=\"\
+      http://en.wikipedia.org/wiki/Troy,_Michigan\">Troy, Michigan</a>. Currently,\
+      \ its titles are distributed by <a title=\"20th Century Fox Home Entertainment\"\
+      \ href=\"http://en.wikipedia.org/wiki/20th_Century_Fox_Home_Entertainment\"\
+      >20th Century Fox Home Entertainment</a>.</div>\r\n<div>\r\n<p>Anchor Bay Entertainment\
+      \ can date its origins back to 1985, when <a title=\"Video Treasures\" href=\"\
+      http://en.wikipedia.org/wiki/Video_Treasures\">Video Treasures</a> was founded\
+      \ as a publisher and distributor of <a title=\"Home video\" href=\"http://en.wikipedia.org/wiki/Home_video\"\
+      >home video</a> programming.<sup class=\"reference\" id=\"cite_ref-treasures_1-0\"\
+      ><a title=\"\" href=\"http://en.wikipedia.org/wiki/Anchor_Bay_Entertainment#cite_note-treasures-1\"\
+      >[2]</a></sup> Video Treasures, later renamed Anchor Bay Entertainment<sup class=\"\
+      reference\" id=\"cite_ref-2\"><a title=\"\" href=\"http://en.wikipedia.org/wiki/Anchor_Bay_Entertainment#cite_note-2\"\
+      >[3]</a></sup> was sold to <a title=\"Handleman Company (page does not exist)\"\
+      \ class=\"new\" href=\"http://en.wikipedia.org/w/index.php?title=Handleman_Company&amp;action=edit&amp;redlink=1\"\
+      >Handleman Company</a> in <a title=\"1989\" href=\"http://en.wikipedia.org/wiki/1989\"\
+      >1989</a>. The company became known as \"Anchor Bay Entertainment\" in <a title=\"\
+      1996\" href=\"http://en.wikipedia.org/wiki/1996\">1996</a>.</p>\r\n<p>Anchor\
+      \ Bay remained part of Handleman until <a title=\"2003\" href=\"http://en.wikipedia.org/wiki/2003\"\
+      >2003</a>, when it was acquired by <a class=\"mw-redirect\" title=\"IDT Entertainment\"\
+      \ href=\"http://en.wikipedia.org/wiki/IDT_Entertainment\">IDT Entertainment</a>.<sup\
+      \ class=\"reference\" id=\"cite_ref-3\"><a title=\"\" href=\"http://en.wikipedia.org/wiki/Anchor_Bay_Entertainment#cite_note-3\"\
+      >[4]</a></sup></p>\r\n<p><a title=\"Liberty Media\" href=\"http://en.wikipedia.org/wiki/Liberty_Media\"\
+      >Liberty Media</a>, the owner of the <a title=\"Starz (TV network)\" href=\"\
+      http://en.wikipedia.org/wiki/Starz_%28TV_network%29\">Starz</a> cable network,\
+      \ purchased IDT Entertainment from <a title=\"IDT Corp.\" href=\"http://en.wikipedia.org/wiki/IDT_Corp.\"\
+      >IDT Corp.</a> in <a title=\"2006\" href=\"http://en.wikipedia.org/wiki/2006\"\
+      >2006</a> and renamed it <a title=\"Starz Media\" href=\"http://en.wikipedia.org/wiki/Starz_Media\"\
+      >Starz Media</a>,<sup class=\"reference\" id=\"cite_ref-pressrel_0-1\"><a title=\"\
+      \" href=\"http://en.wikipedia.org/wiki/Anchor_Bay_Entertainment#cite_note-pressrel-0\"\
+      >[1]</a></sup></p>\r\n<p>In <a title=\"May 2007\" href=\"http://en.wikipedia.org/wiki/May_2007\"\
+      >May 2007</a>, Anchor Bay became known as <em>Starz Home Entertainment</em>.\
+      \ SHE announced on <a title=\"June 19\" href=\"http://en.wikipedia.org/wiki/June_19\"\
+      >June 19</a>, <a title=\"2007\" href=\"http://en.wikipedia.org/wiki/2007\">2007</a>\
+      \ that they will be releasing high definition versions of their films exclusively\
+      \ in the <a class=\"mw-redirect\" title=\"Blu-ray\" href=\"http://en.wikipedia.org/wiki/Blu-ray\"\
+      >Blu-ray</a> format.</p>\r\n<p>In 2008, <a title=\"Starz Media\" href=\"http://en.wikipedia.org/wiki/Starz_Media\"\
+      >Starz Media</a> re-instated the <em>Anchor Bay Entertainment</em> brand and\
+      \ all future releases will bear this name.</p>&nbsp;</div>", name: Anchor Bay
+      Entertainment, type: 2, url: ''}
+  model: catalog.publisher
+  pk: 32
+- fields: {description: '', name: Test, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 33
+- fields: {description: '', name: Lions Gate Home Entertainment, type: 2, url: ''}
+  model: catalog.publisher
+  pk: 34
+- fields: {description: '', name: SouthPeak Interactive, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 35
+- fields: {description: '', name: SCEA, type: 1, url: 'http://www.scea.com/'}
+  model: catalog.publisher
+  pk: 36
+- fields: {description: '', name: 2K Sports, type: 1, url: 'http://www.2ksports.com/'}
+  model: catalog.publisher
+  pk: 37
+- fields: {description: '', name: Crave Entertainment, type: 1, url: 'http://www.cravegames.com'}
+  model: catalog.publisher
+  pk: 38
+- fields: {description: '', name: Atari, type: 1, url: 'http://www.atari.com'}
+  model: catalog.publisher
+  pk: 39
+- fields: {description: '', name: Capcom Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 40
+- fields: {description: '<strong>Paramount Pictures Corporation</strong> is an American
+      <a class="mw-redirect" title="Motion picture" href="http://en.wikipedia.org/wiki/Motion_picture">motion
+      picture</a> <a title="Production company" href="http://en.wikipedia.org/wiki/Production_company">production</a>
+      and <a class="mw-redirect" title="Distribution company" href="http://en.wikipedia.org/wiki/Distribution_company">distribution
+      company</a>, located on <a title="Melrose Avenue" href="http://en.wikipedia.org/wiki/Melrose_Avenue">Melrose
+      Avenue</a> in <a class="mw-redirect" title="Hollywood, California" href="http://en.wikipedia.org/wiki/Hollywood,_California">Hollywood,
+      California</a>. Founded in 1912, it is the oldest existing Hollywood film studio,
+      beating <a title="NBC Universal" href="http://en.wikipedia.org/wiki/NBC_Universal">NBC
+      Universal</a>''s <a title="Universal Studios" href="http://en.wikipedia.org/wiki/Universal_Studios">Universal
+      Studios</a> by a month. Paramount is owned by <a title="Media conglomerate"
+      href="http://en.wikipedia.org/wiki/Media_conglomerate">media conglomerate</a>
+      <a title="Viacom" href="http://en.wikipedia.org/wiki/Viacom">Viacom</a>. In
+      2007, Paramount was the highest grossing studio in the United States with a
+      gross of $1,499.3 million.', name: Paramount Home Video, type: 2, url: ''}
+  model: catalog.publisher
+  pk: 41
+- fields: {description: '', name: Gathering, type: 1, url: 'http://www.godgames.com'}
+  model: catalog.publisher
+  pk: 42
+- fields: {description: "<p><strong>Warner Bros. Entertainment, Inc.</strong> (also\
+      \ known as <strong>Warner Bros. Pictures</strong>, or simply <strong>Warner\
+      \ Bros.</strong>) is one of the world's largest <a title=\"Film producer\" href=\"\
+      http://en.wikipedia.org/wiki/Film_producer\">producers</a> of <a title=\"Film\"\
+      \ href=\"http://en.wikipedia.org/wiki/Film\">film</a> and <a title=\"Television\"\
+      \ href=\"http://en.wikipedia.org/wiki/Television\">television entertainment</a>.</p>\r\
+      \n<p>It is a subsidiary of <a title=\"Time Warner\" href=\"http://en.wikipedia.org/wiki/Time_Warner\"\
+      >Time Warner</a>, with its headquarters in <a title=\"Burbank, California\"\
+      \ href=\"http://en.wikipedia.org/wiki/Burbank,_California\">Burbank, California</a>\
+      \ and <a title=\"New York City\" href=\"http://en.wikipedia.org/wiki/New_York_City\"\
+      >New York City</a>. Warner Bros. has several subsidiary companies, including\
+      \ Warner Bros. Studios, Warner Bros. Pictures, <a title=\"Warner Bros. Interactive\
+      \ Entertainment\" href=\"http://en.wikipedia.org/wiki/Warner_Bros._Interactive_Entertainment\"\
+      >Warner Bros. Interactive Entertainment</a>, <a title=\"Warner Bros. Television\"\
+      \ href=\"http://en.wikipedia.org/wiki/Warner_Bros._Television\">Warner Bros.\
+      \ Television</a>, <a title=\"Warner Bros. Animation\" href=\"http://en.wikipedia.org/wiki/Warner_Bros._Animation\"\
+      >Warner Bros. Animation</a>, <a title=\"Warner Home Video\" href=\"http://en.wikipedia.org/wiki/Warner_Home_Video\"\
+      >Warner Home Video</a>, <a title=\"The WB Television Network\" href=\"http://en.wikipedia.org/wiki/The_WB_Television_Network\"\
+      >TheWB.com</a> and <a title=\"DC Comics\" href=\"http://en.wikipedia.org/wiki/DC_Comics\"\
+      >DC Comics</a>. Warner owns half of <a title=\"The CW Television Network\" href=\"\
+      http://en.wikipedia.org/wiki/The_CW_Television_Network\">The CW Television Network</a>.</p>\r\
+      \n<p>Founded in 1918 by <a title=\"Jew\" href=\"http://en.wikipedia.org/wiki/Jew\"\
+      >Jewish</a> immigrants from <a title=\"Poland\" href=\"http://en.wikipedia.org/wiki/Poland\"\
+      >Poland</a>, Warner Bros. is the third-oldest American movie studio in continuous\
+      \ operation, after <a title=\"Paramount Pictures\" href=\"http://en.wikipedia.org/wiki/Paramount_Pictures\"\
+      >Paramount Pictures</a>, founded in 1912 as Famous Players, and <a title=\"\
+      Universal Studios\" href=\"http://en.wikipedia.org/wiki/Universal_Studios\"\
+      >Universal Studios</a>, also founded in 1912.</p>", name: Warner Bros. Pictures,
+    type: 2, url: ''}
+  model: catalog.publisher
+  pk: 43
+- fields: {description: '', name: Namco, type: 1, url: 'http://www.namco.com'}
+  model: catalog.publisher
+  pk: 44
+- fields: {description: '', name: Nintendo, type: 1, url: 'http://www.nintendo.com'}
+  model: catalog.publisher
+  pk: 45
+- fields: {description: '', name: Acclaim, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 46
+- fields: {description: '', name: O3 Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 47
+- fields: {description: '', name: Globalstar, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 48
+- fields: {description: '', name: TDK, type: 1, url: 'http://www.tdk.com/'}
+  model: catalog.publisher
+  pk: 49
+- fields: {description: '', name: Paradign Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 50
+- fields: {description: '', name: Vivendi Universal, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 51
+- fields: {description: '', name: UBI Soft, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 52
+- fields: {description: '', name: Eidos, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 53
+- fields: {description: '', name: Majesco, type: 1, url: 'http://www.majescoentertainment.com/'}
+  model: catalog.publisher
+  pk: 54
+- fields: {description: '', name: THQ, type: 1, url: 'http://www.thq.com'}
+  model: catalog.publisher
+  pk: 55
+- fields: {description: '', name: Take 2, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 56
+- fields: {description: '', name: Capcom, type: 1, url: 'http://www.capcom.com'}
+  model: catalog.publisher
+  pk: 57
+- fields: {description: '', name: Sierra, type: 1, url: 'http://www.sierra.com'}
+  model: catalog.publisher
+  pk: 58
+- fields: {description: '', name: Bandai, type: 1, url: 'http://www.bandai.com'}
+  model: catalog.publisher
+  pk: 59
+- fields: {description: '', name: Encore, type: 1, url: 'http://www.encoreusa.com/'}
+  model: catalog.publisher
+  pk: 60
+- fields: {description: '', name: Midway, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 61
+- fields: {description: '', name: Konami, type: 1, url: 'http://www.konami.com'}
+  model: catalog.publisher
+  pk: 62
+- fields: {description: '', name: Lucas Arts, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 63
+- fields: {description: '', name: Natsume, type: 1, url: 'http://www.natsume.com'}
+  model: catalog.publisher
+  pk: 64
+- fields: {description: '', name: BAM, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 65
+- fields: {description: '', name: Infogrames, type: 1, url: 'http://www.infogrames.com'}
+  model: catalog.publisher
+  pk: 66
+- fields: {description: '', name: Kemco, type: 1, url: 'http://www.kemco.jp/'}
+  model: catalog.publisher
+  pk: 67
+- fields: {description: '', name: Codemasters, type: 1, url: 'http://www.codemasters.com'}
+  model: catalog.publisher
+  pk: 68
+- fields: {description: '', name: Bethesda, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 69
+- fields: {description: '', name: Ignition Entertainment, type: 1, url: 'http://www.ignitionent.com'}
+  model: catalog.publisher
+  pk: 70
+- fields: {description: '', name: DSI Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 71
+- fields: {description: '', name: South Peak Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 72
+- fields: {description: '', name: The Game Factory, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 73
+- fields: {description: '', name: 2K Games, type: 1, url: 'http://www.2kgames.com/'}
+  model: catalog.publisher
+  pk: 74
+- fields: {description: '', name: XS Games, type: 1, url: 'http://www.xsgames.biz'}
+  model: catalog.publisher
+  pk: 75
+- fields: {description: '', name: Disney Interactive, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 76
+- fields: {description: '', name: Dreamcatcher, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 77
+- fields: {description: '', name: Legacy Interactive, type: 1, url: 'http://www.legacyinteractive.com/'}
+  model: catalog.publisher
+  pk: 78
+- fields: {description: '', name: Atlus, type: 1, url: 'http://www.atlus.com'}
+  model: catalog.publisher
+  pk: 79
+- fields: {description: '', name: 505 Games, type: 1, url: 'http://www.505gamestreet.com/'}
+  model: catalog.publisher
+  pk: 80
+- fields: {description: '', name: Zoo Games, type: 1, url: 'http://www.zoogamesinc.com'}
+  model: catalog.publisher
+  pk: 81
+- fields: {description: '', name: Deep Silver, type: 1, url: 'http://www.deepsilver.net/'}
+  model: catalog.publisher
+  pk: 82
+- fields: {description: '', name: Mumbo Jumbo, type: 1, url: 'http://www.mumbojumbo.com/'}
+  model: catalog.publisher
+  pk: 83
+- fields: {description: '', name: Buena Vista Games, type: 1, url: 'http://disney.go.com/disneyinteractivestudios/'}
+  model: catalog.publisher
+  pk: 84
+- fields: {description: '', name: Gamecock Media Group, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 85
+- fields: {description: '', name: D3P, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 86
+- fields: {description: '', name: O Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 87
+- fields: {description: '', name: UFO Interactive, type: 1, url: 'http://www.ufointeractivegames.com/'}
+  model: catalog.publisher
+  pk: 88
+- fields: {description: '', name: Orbital Media, type: 1, url: 'http://www.orbitalmedia.com'}
+  model: catalog.publisher
+  pk: 89
+- fields: {description: '', name: Mastiff, type: 1, url: 'http://www.mastiff-games.com/'}
+  model: catalog.publisher
+  pk: 90
+- fields: {description: '', name: Brash Entertainment, type: 1, url: 'http://www.brashent.com/'}
+  model: catalog.publisher
+  pk: 91
+- fields: {description: '', name: LucasArts, type: 1, url: 'http://www.lucasarts.com'}
+  model: catalog.publisher
+  pk: 92
+- fields: {description: '', name: Empire Interactive, type: 1, url: 'http://www.empireinteractive.com/'}
+  model: catalog.publisher
+  pk: 93
+- fields: {description: '', name: Rockstar, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 94
+- fields: {description: '', name: Sony Computer Entertainment, type: 1, url: 'http://www.scea.com/'}
+  model: catalog.publisher
+  pk: 95
+- fields: {description: '', name: Valcon Games, type: 1, url: 'http://www.valcongames.com'}
+  model: catalog.publisher
+  pk: 96
+- fields: {description: '', name: Conspiracy, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 97
+- fields: {description: '', name: Tecmo, type: 1, url: 'http://www.tecmogames.com/'}
+  model: catalog.publisher
+  pk: 98
+- fields: {description: '', name: Aksys, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 99
+- fields: {description: '', name: Destineer, type: 1, url: 'http://www.destineerstudios.com/'}
+  model: catalog.publisher
+  pk: 100
+- fields: {description: '', name: D3 Publisher, type: 1, url: 'http://www.d3publisher.com'}
+  model: catalog.publisher
+  pk: 101
+- fields: {description: '', name: Agetec, type: 1, url: 'http://www.agetec.com'}
+  model: catalog.publisher
+  pk: 102
+- fields: {description: '', name: SNK, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 103
+- fields: {description: '', name: Detn8 Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 104
+- fields: {description: '', name: Koei, type: 1, url: 'http://www.koei.co.jp'}
+  model: catalog.publisher
+  pk: 105
+- fields: {description: '', name: XSeed Games, type: 1, url: 'http://www.xseedgames.com/'}
+  model: catalog.publisher
+  pk: 106
+- fields: {description: '', name: Zenimax Media, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 107
+- fields: {description: '', name: Interplay, type: 1, url: 'http://www.interplay.com'}
+  model: catalog.publisher
+  pk: 108
+- fields: {description: '', name: Gotham Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 109
+- fields: {description: '', name: NovaLogic, type: 1, url: 'http://www.novalogic.com/'}
+  model: catalog.publisher
+  pk: 110
+- fields: {description: '', name: Working Designs, type: 1, url: 'http://www.workingdesigns.com'}
+  model: catalog.publisher
+  pk: 111
+- fields: {description: '', name: Evolved Games, type: 1, url: 'http://www.evolvedgames.com/'}
+  model: catalog.publisher
+  pk: 112
+- fields: {description: '', name: Red Octane, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 113
+- fields: {description: '', name: 3DO, type: 1, url: 'http://www.3do.com'}
+  model: catalog.publisher
+  pk: 114
+- fields: {description: '', name: Sony, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 115
+- fields: {description: '', name: Bandai Namco, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 116
+- fields: {description: '', name: Buena Vista Interactive, type: 1, url: 'http://studio.go.com/bvinteractive/'}
+  model: catalog.publisher
+  pk: 117
+- fields: {description: '', name: Hip Interactive, type: 1, url: 'http://www.hipinteractive.com'}
+  model: catalog.publisher
+  pk: 118
+- fields: {description: '', name: Enix, type: 1, url: 'http://www.enix.com'}
+  model: catalog.publisher
+  pk: 119
+- fields: {description: '', name: Sammy Studios, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 120
+- fields: {description: '', name: Titus, type: 1, url: 'http://www.titusgames.com'}
+  model: catalog.publisher
+  pk: 121
+- fields: {description: '', name: Epic Games, type: 1, url: 'http://www.epicgames.com'}
+  model: catalog.publisher
+  pk: 122
+- fields: {description: '', name: Jaleco, type: 1, url: 'http://www.jalecogames.co.jp/'}
+  model: catalog.publisher
+  pk: 123
+- fields: {description: '', name: Sony Online Entertainment, type: 1, url: 'http://www.station.sony.com'}
+  model: catalog.publisher
+  pk: 124
+- fields: {description: '', name: Namco Bandai, type: 1, url: 'http://www.bandainamco.co.jp/en/'}
+  model: catalog.publisher
+  pk: 125
+- fields: {description: '', name: Touchstone Home Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 126
+- fields: {description: '', name: Universal Home Video, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 127
+- fields: {description: '', name: MGM, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 128
+- fields: {description: '', name: Columbia Pictures, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 129
+- fields: {description: '', name: New Line Home Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 130
+- fields: {description: '', name: Warner Home Video, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 131
+- fields: {description: '', name: Dimension Home Video, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 132
+- fields: {description: '', name: Eagle Rock Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 133
+- fields: {description: '', name: Miramax, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 134
+- fields: {description: '', name: Walt Disney Home Video, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 135
+- fields: {description: '', name: HBO Video, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 136
+- fields: {description: '', name: Screen Gems, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 137
+- fields: {description: '', name: Sanctuary Visual Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 138
+- fields: {description: '', name: Dreamworks Pictures, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 139
+- fields: {description: '', name: Columbia Home Video, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 140
+- fields: {description: '', name: Hollywood Pictures Home Ent., type: 1, url: ''}
+  model: catalog.publisher
+  pk: 141
+- fields: {description: '', name: King Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 142
+- fields: {description: '', name: Microsoft, type: 1, url: 'http://www.microsoft.com/games/'}
+  model: catalog.publisher
+  pk: 143
+- fields: {description: '', name: Greenwave, type: 1, url: 'http://www.greenwavegames.com/'}
+  model: catalog.publisher
+  pk: 144
+- fields: {description: '', name: Bioware Corp., type: 1, url: ''}
+  model: catalog.publisher
+  pk: 145
+- fields: {description: '', name: Aspyr, type: 1, url: 'http://www.aspyr.com/'}
+  model: catalog.publisher
+  pk: 146
+- fields: {description: '', name: ID Soft, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 147
+- fields: {description: '', name: Enlight Interactive, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 148
+- fields: {description: '', name: VIS Entertaiment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 149
+- fields: {description: '', name: South Peak Interactive, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 150
+- fields: {description: '', name: Zoo Publishing Inc., type: 1, url: ''}
+  model: catalog.publisher
+  pk: 151
+- fields: {description: '', name: SVG, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 152
+- fields: {description: '', name: Tommo, type: 1, url: 'http://www.tommo.com/'}
+  model: catalog.publisher
+  pk: 153
+- fields: {description: '', name: Warner Brothers, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 154
+- fields: {description: '', name: Play Logic, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 155
+- fields: {description: '', name: Storm City Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 156
+- fields: {description: '', name: 2K Play, type: 1, url: 'http://www.2kgames.com/2kplay/'}
+  model: catalog.publisher
+  pk: 157
+- fields: {description: '', name: TOMY Corporation, type: 1, url: 'http://www.tomy-usa.com/videogames.php'}
+  model: catalog.publisher
+  pk: 158
+- fields: {description: '', name: Graffiti Entertainment, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 159
+- fields: {description: '', name: Pop Cap Games, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 160
+- fields: {description: '', name: City Interactive, type: 1, url: ''}
+  model: catalog.publisher
+  pk: 161

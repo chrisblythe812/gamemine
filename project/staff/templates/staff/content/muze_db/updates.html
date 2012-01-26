@@ -1,0 +1,35 @@
+{% extends "staff/fulfillment.html" %}
+
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Updates Log</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Date</td>
+        <td>Status</td>
+        <td>Filename</td>
+        <td>Checksum</td>
+        <td>Message</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.timestamp|date }} {{ r.timestamp|time }}</td>
+        <td>{{ r.get_status_display }}</td>
+        <td>{{ r.filename }}</td>
+        <td>{{ r.checksum }}</td>
+        <td>{{ r.message|linebreaksbr }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  
+  {% pagination %}
+</div>
+
+{% endblock right %}

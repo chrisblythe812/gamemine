@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+<head>
+  <style type="text/css">
+  @page {
+    size: a4;
+    margin: 1.5cm;
+  }
+
+  @font-face {
+     font-family: "Tw Cen MT Condensed";
+     src: url("{{ STATIC_URL }}fonts/tccm.ttf");
+     font-weight: normal;
+  }
+
+  @font-face {
+     font-family: "Tw Cen MT Condensed";
+     src: url("{{ STATIC_URL }}fonts/tccb.ttf");
+     font-weight: bold;
+  }
+
+  .page {
+    page-break-after: always;
+    font-family: "Tw Cen MT Condensed";
+    line-height: 1em;
+  }
+
+  .header { margin-bottom: 1cm; }
+  .header td { vertical-align: top; font-weight: bold; font-size: 18pt; }
+  .header span { color: #666; }
+
+
+  .addresses { margin-bottom: 1cm; margin-left: 10pt; }
+  .addresses td { width: 33%; vertical-align: top; font-size: 16pt; }
+  .addresses span { color: #979797; font-weight: bold; }
+
+
+  .content { margin-bottom: 1cm; font-size: 14pt; }
+  .content th {
+    background-color: #000;
+    color: #fff;
+    text-align: left;
+    padding: 3pt 10pt 1pt 10pt;
+    border-left: 0.1pt solid #eaeaea;
+  }
+  .content td {
+    padding: 0.3em 1em 0;
+  }
+  .content .main-details th {
+    background-color: #979797;
+    font-weight: normal;
+    border-left: 0.5pt solid #eaeaea;
+  }
+  .content .item-details th {
+    background-color: #eaeaea;
+    color: #979797;
+  }
+  .content .item-details td {
+    padding: 3pt 10pt 1pt 10pt;
+    font-weight: bold;
+  }
+
+  .r,
+  .content .item-details th.r {
+    text-align: right;
+  }
+
+  .content th.c,
+  .content .main-details th.c {
+    text-align: center;
+  }
+
+  .row2 { background-color: #eaeaea; }
+
+  .footer { font-weight: bold; margin: 0 0 10pt 0; font-size: 14pt; color: #3F3F3F }
+  .footer td { vertical-align: bottom; }
+  .footer span,
+  .footer strong { color: #707070; }
+
+  .total td { margin: 0; padding: 0 }
+  .total th { text-align: left; color: #6D6D6D }
+  .total .r { color: #000; }
+
+  .total-line td,
+  .total-line th { border-top: 1pt solid #6D6D6D; padding-top: 0.2em }
+  </style>
+</head>
+<body>
+{% for slip in pack_slips %}
+  <div class="page">
+
+    <table class="header">
+      <tr>
+        <td>
+          <img width="1600" src="{{ STATIC_URL }}img/buy/gm.jpg" />
+        </td>
+        <td style="text-align: right" width="150">
+           <span style="color:#363636">PACKING SLIP</span></br>
+           <span>Date: {{ slip.created|date:"m/d/Y" }}</span></br>
+           <span>Order # {{ slip.order.order_no }}</span></br>
+           Customer ID {{ slip.order.user.id }}
+        </td>
+      </tr>
+    </table>
+
+    <table class="addresses">
+      <tr>
+        <td>
+          &nbsp;<br />
+          GAMEMINE<br />
+          PO Box 810940<br />
+          Boca Raton, FL 33481-0940
+        </td>
+        <td>
+          <span>BILL TO:</span><br />
+          {{ slip.order.billing_first_name }} {{ slip.order.billing_last_name }}<br />
+          {{ slip.order.billing_address1 }}<br/>
+          {% if slip.order.billing_address2 %}{{ slip.order.billing_address2 }}<br />{% endif %}
+          {{ slip.order.billing_city }}, {{ slip.order.billing_state }} {{ slip.order.billing_zip_code }}
+        </td>
+        <td>
+          <span>SHIP TO:</span><br />
+          {{ slip.order.first_name }} {{ slip.order.last_name }}<br />
+          {{ slip.order.shipping_address1 }}<br/>
+          {% if slip.order.shipping_address2 %}{{ slip.order.shipping_address2 }}<br />{% endif %}
+          {{ slip.order.shipping_city }}, {{ slip.order.shipping_state }} {{ slip.order.shipping_zip_code }}
+        </td>
+      </tr>
+    </table>
+
+    <table class="content">
+      <tr>
+        <th width="100">ITEM #</th>
+        <th width="250" class="c">SHIP DATE</th>
+        <th colspan="2">SHIP VIA</th>
+      </tr>
+      <tr class="main-details">
+        <th>{{ slip.order_no }}</th>
+        <th class="c">{{ slip.date_shipped|default:today|date:"m/d/Y" }}</th>
+        <th colspan="2">USPS - FIRST CLASS MAIL</th>
+      </tr>
+      <tr class="item-details">
+        <th>ITEM #</th>
+        <th>DESCRIPTION</th>
+        <th>QTY</th>
+        <th class="r">PRICE</th>
+      </tr>
+      {% for i in slip.list_items_for_print %}
+      {% with i.order_item.item as item %}
+      <tr class="item-details{% if forloop.counter|divisibleby:2 %} row2{% endif %}">
+      {% if item %}
+        <td style="font-weight: norma;">{{ item.upc }}</td>
+        <td>{{ item }} ({{ item.category }})</td>
+        <td>1</td>
+        <td class="r">${{ i.order_item.price }}</td>
+      {% else %}
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      {% endif %}
+      </tr>
+      {% endwith %}
+      {% endfor %}
+    </table>
+
+    <table class="footer">
+    <tr>
+      <td width="350" style="padding: 0 1cm 0 10pt;">
+        <p>
+          <strong>Other Comments or Special Instructions</strong><br />
+          For detailed information about this and other orders, please visit My Account. You can
+          review orders, change your e-mail address and payment settings at
+          <span>https://www.gamemine.com/Account/Name-and-Address/</span>
+        </p>
+      </td>
+      <td>
+        <table class="total">
+          <tr>
+            <th>SUBTOTAL</th><td class="r">${{ slip.get_subtotal }}</td>
+          </tr>
+          <tr>
+            <th>TAX RATE</th><td class="r">{{ slip.get_tax_rate|floatformat:3 }}%</td>
+          </tr>
+          <tr>
+            <th>TAX</th><td class="r">{% if slip.get_tax %}${{ slip.get_tax|floatformat:2 }}{% else %}--{% endif %}</td>
+          </tr>
+          <tr>
+            <th>S &amp; H</th><td class="r">--</td>
+          </tr>
+          <tr>
+            <th>OTHER</th><td class="r">--</td>
+          </tr>
+          <tr class="total-line">
+            <th>TOTAL</th><td class="r">${{ slip.get_total|floatformat:2 }}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+
+    <table class="footer">
+    <tr>
+      <td width="350" style="padding: 0 1cm 0 10pt;">
+        <p>
+          <span style="color: #000">Return Policy!</span><br />
+          <span>Visit http://www.gamemine.com/Terms/</span>
+        </p>
+        <p>
+          If you have any questions or concerns about this order, please contact
+          <span>customerservice@gamemine.com</span><br/>
+          Thank You For Your Business!
+        </p>
+      </td>
+      <td>
+        <p style="text-align: center; font-size: 19pt;">
+          <span style="color: #979797;">** THIS IS NOT A BILL **</span>
+          {% if slip.order.payment_transaction %}
+          <br/>
+          <span style="color: #7C7C7C;">PAID VIA {{ slip.order.get_pay_via_display|upper }}</span>
+          {% endif %}
+        </p>
+      </td>
+    </tr>
+    </table>
+
+  </div>
+{% endfor %}
+</body>
+</html>

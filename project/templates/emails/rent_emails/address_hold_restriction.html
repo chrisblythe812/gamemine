@@ -1,0 +1,31 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>This is to notify you that your recent video game rental could not be
+delivered because it was marked <i>“Returned to Sender”</i> by the United
+States Postal Service. Your account has temporarily been placed on hold until
+your address is confirmed and/or updated.</p>
+
+<p>Here is your account information:</p>
+
+{% with user.get_profile as p %}
+<table class="grid">
+<tr><th>Login ID</th><td>{{ user.email }}</td></tr>
+<tr><th>Name:</th><td>{{ user.first_name }} {{ user.last_name }}</td></tr>
+<tr><th rowspan="2">Address:</th><td>{{ p.shipping_address1 }} {{ p.shipping_address2 }}</td></tr>
+<tr><td>{{ p.shipping_city }} {{ p.shipping_county }}, {{ p.shipping_state }} {{ p.shipping_zip }}</td></tr>
+</table>
+{% endwith %}
+
+<p>Please update your account information: <a href="{{ SITE_URL }}{% url members:name_and_address %}">{{ SITE_URL }}{% url members:name_and_address %}</a></p>
+
+<p>Once your address information is updated, the address hold will be removed.
+If your address is not updated, your account will be permanently restricted.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}
+

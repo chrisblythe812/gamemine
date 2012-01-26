@@ -1,0 +1,66 @@
+{% extends "members/account/account.html" %}
+
+{% block page-class %}{{ block.super }} account-report-problems{% endblock page-class %}
+
+{% block heading %}
+	<li><a href="{% url members:name_and_address %}">Name and Address</a></li>
+	<li><a href="{% url members:payment_method %}">Payment Method</a></li>
+	<li><a href="{% url members:login_and_password %}">Login/Password</a></li>
+	<li><a href="{% url members:billing_history %}">Billing History</a></li>
+	<li class="selected"><a href="{% url members:report_problems %}">Report Problem</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<div id="account-report-problems-content">
+    <h2>To Report Problem, Select Game:</h2>
+	
+	<table class="games-list">
+        {% if rent_items %}
+		<tbody class="rent-items">
+		{% for i in rent_items %}
+            <tr class="{% cycle 'row1' 'row2' as rowcolors %}">
+            	<td class="column-image"><a href="{{ i.item.get_absolute_url }}"><img src="{{ i.item.get_thumb_image2 }}" width="80" height="100" /></a></td>
+				<td class="column-title"><a href="{{ i.item.get_absolute_url }}">{{ i.item.short_name }}</a></td>
+                <td class="column-sphere">Rent</td>
+                <td class="column-platform">{{ i.item.category }}</td>
+                <td class="column-shipped">Shipped {{ i.date_shipped|date|default:"--" }}</td>
+                <td class="column-action"><a class="select-button" href="{% url members:report_claim 'Rent' i.id %}">Select</a></td>
+            </tr>
+        {% endfor %}
+		</tbody>
+        {% endif %}
+
+        {% if trade_items %}
+        <tbody class="trade-items">
+        {% for i in trade_items %}
+            <tr class="{% cycle rowcolors %}">
+                <td class="column-image"><a href="{{ i.item.get_absolute_url }}"><img src="{{ i.item.get_thumb_image2 }}" width="80" height="100" /></a></td>
+                <td class="column-title"><a href="{{ i.item.get_absolute_url }}">{{ i.item.short_name }}</a></td>
+                <td class="column-sphere">Trade</td>
+                <td class="column-platform">{{ i.item.category }}</td>
+                <td class="column-shipped">Order Date {{ i.order.create_date|date|default:"--" }}</td>
+                <td class="column-action"><a class="select-button" href="{% url members:report_claim 'Trade' i.id %}">Select</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        {% endif %}
+
+		{% if buy_items %}
+        <tbody class="buy-items">
+        {% for i in buy_items %}
+            <tr class="{% cycle rowcolors %}">
+                <td class="column-image"><a href="{{ i.item.get_absolute_url }}"><img src="{{ i.item.get_thumb_image2 }}" width="80" height="100" /></a></td>
+                <td class="column-title"><a href="{{ i.item.get_absolute_url }}">{{ i.item.short_name }}</a></td>
+                <td class="column-sphere">Buy</td>
+                <td class="column-platform">{{ i.item.category }}</td>
+                <td class="column-shipped">Order Date {{ i.order.create_date|date|default:"--" }}</td>
+                <td class="column-action"><a class="select-button" href="{% url members:report_claim 'Buy' i.id %}">Select</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+		{% endif %}
+	</table>
+</div>
+
+{% endblock page-content %}

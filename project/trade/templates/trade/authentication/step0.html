@@ -1,0 +1,86 @@
+<div id="form-signup-non-member-1" class="legacy">
+<form action="{% url trade:login %}" method="post">{% csrf_token %}
+    <div class="side-1">
+        <h3>Your Profile</h3>
+
+        <dl>
+            <dt>Email Address</dt>
+            <dd class="field">{{ form.email }}</dd>
+            <dd class="help">Used for login</dd>
+
+            <dt>User Name</dt>
+            <dd class="field">{{ form.username }}</dd>
+            <dd class="help">Gamer Profile</dd>
+
+            <dt>Create Password</dt>
+            <dd class="field">{{ form.password }}</dd>
+            <dd class="help">6-15 characters</dd>
+
+            <dt>Confirm Password</dt>
+            <dd class="field">{{ form.confirm_password }}</dd>
+
+            <dt>Phone Number</dt>
+      		<dd class="field">{{ form.phone_number }}</dd>
+      		<dd class="help">(XXX) XXX-XXXX</dd>
+
+            <dt>How did you hear about us?</dt>
+            <dd class="field">{{ form.how_did_you_hear }}</dd>
+        </dl>
+
+        <div class="extra">
+        {% if form.form_error %}
+            <div class="boxed error">
+                <div class="title">{{ form.form_error }}</div>
+                <div class="details">{{ form.form_error_message|default:"Please check the information and try again." }}</div>
+            </div>
+        {% else %}
+            <p class="message">Your email address is safe. Gamemine will not sell, rent or
+            disclose your email address to third parties. We will only use this email to
+            provide special offers and information regarding our services.</p>
+        {% endif %}
+        </div>
+    </div>
+
+    <div class="side-2">
+        <h3>Shipping information <em>(Where games will be delivered)</em></h3>
+
+        <dl>
+            <dt>First Name</dt>
+            <dd class="field">{{ form.first_name }}</dd>
+
+            <dt>Last Name</dt>
+            <dd class="field">{{ form.last_name }}</dd>
+
+            <dt>Address 1</dt>
+            <dd class="field">{{ form.address1 }}</dd>
+
+            <dt>Address 2</dt>
+            <dd class="field">{{ form.address2 }}</dd>
+
+            <dt>City</dt>
+            <dd class="field">{{ form.city }}</dd>
+
+            <dt>State</dt>
+            <dd class="field">{{ form.state }}</dd>
+
+            <dt>Zip Code</dt>
+            <dd class="field">{{ form.zip_code }}</dd>
+        </dl>
+
+        <div class="clear"></div>
+    </div>
+
+    <div class="actions">
+        <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+        {{ previous_fields|safe }}
+        <input type="submit" class="continue-button" value="Continue" />
+    </div>
+</form>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#id_0-how_did_you_hear').setupSelect('w190px');
+  $('#id_0-state').setupSelect('w210px');
+});
+</script>
+</div>
+

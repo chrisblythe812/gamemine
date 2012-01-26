@@ -1,0 +1,27 @@
+{% extends "members/base.html" %}
+
+{% block title %}Subscription Cancellation{% endblock title %}
+
+{% block page-class %}{{ block.super }} create-account-complete{% endblock page-class %}
+
+{% block content %}
+
+<ul class="heading">
+    <li class="selected">Subscription Cancellation</li>
+</ul>
+
+<div id="create-account-complete-content">
+    <div class="side1">
+        <h2>Complete cancellation</h2>
+    
+    <p>You need to confirm cancellation of your subscription.</p>
+    </div>
+    
+    <div class="side2">
+        <h2>Email has been sent</h2>
+        
+        <p>When you receive email, follow the direction to confirm cancellation.</p>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+<div id="signup-wizard">
+    <div id="dialog-heading">
+        <div id="dialog-heading-step">Step {{ step|add:1 }} of {{ step_count|add:1 }}</div>
+        {% if form.title %}<h1>{{ form.title }}</h1>{% endif %}
+        
+        <div id="signup-wizard-header-plan-info" class="plan-{% if not plan.plan %}1{% else %}2{% endif %}">
+            <div class="title">Order Summary</div>
+            <div class="details">{{ cart.size }} Item{{ cart.size|pluralize }}</div>
+            <div class="price">${{ cart.total }}</div>
+        </div>
+        
+        <div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>{{ wizard.title }}</div>
+    </div>
+    
+    {% include "cart/checkout/non_authenticated.form.html" %}
+</div>

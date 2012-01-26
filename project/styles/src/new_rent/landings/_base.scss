@@ -1,0 +1,265 @@
+@import "rent/landings/btn_pick_now/*.png";
+
+.rent.landings {
+    background: #D0D0D0;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: normal;
+    color: #999;
+    overflow-x: hidden;
+
+    #root::after, #root .after {
+        background: none;
+    }
+
+    .red {
+        color: #CA242B;
+    }
+
+    #header_wrapper {
+        height: 82px;
+    }
+
+    .container_full {
+        width: 100%;
+        position: relative;
+    }
+
+    .carousel_row {
+        width: 982px;
+        height: 89px;
+        position: relative;
+
+        #carousel {
+            height: 78px;
+            margin-left: 455px;
+            margin-top: 15px;
+            overflow: hidden;
+            position: absolute;
+            width: 541px;
+        }
+
+        .btn_popular {
+            width: 111px;
+            height: 40px;
+            overflow: hidden;
+            cursor: pointer;
+            text-indent: -9999px;
+            position: absolute;
+            top: 25px;
+            left: 330px;
+            background: image-url("intro/btn_most_popular.png") 0 0 no-repeat;
+            z-index: 10;
+        }
+        
+        .jcarousel-container {
+	    //background: rgba(255, 255, 0, .2);
+	    width: 515px;
+            
+	    .jcarousel-clip {
+	        margin: 0 0 0 35px;
+	        width: 440px;
+	    }
+            
+	    .jcarousel-item {
+	        //background: rgba(255, 0, 0, .2);
+	        width: 63px;
+	        height: 70px;
+	        margin: 0 !important;
+	    }
+            
+	    .jcarousel-next {
+	        width: 30px;
+	        height: 37px;
+	        cursor: pointer;
+	        margin-top: -50px;
+	        float: right;
+	        background: -30px 0 image-url("carousel-prev-next.png") no-repeat;
+	    }
+            
+	    .jcarousel-prev {
+	        width: 30px;
+	        height: 37px;
+	        cursor: pointer;
+	        background: red;
+	        position: absolute;
+	        margin-top: -50px;
+	        background: 0 0 image-url("carousel-prev-next.png") no-repeat;
+	    }
+            
+	    .jcarousel-next-disabled {
+	        background-position: -30px -37px;
+	    }
+            
+	    .jcarousel-prev-disabled {
+	        background-position: 0 -37px;
+	    }
+            
+	    .catalog-item {
+	        margin: 0 4px;
+	        height: 70px;
+	        width: 55px;
+                
+	        a {
+		    display: block;
+		    width: 55px;
+		    height: 70px;
+		    overflow: hidden;
+	        }
+                
+	        &.empty {
+		    a {
+		        text-indent: -9999px;
+		    }
+	        }
+	    }
+        }
+    }
+
+    .shadow {
+        width: 1047px;
+        height: 760px;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 50%;
+        margin-left: -524px;
+        background: image-url("intro/main_shadow.png") 0 -120px no-repeat;
+    }
+
+    .left_side {
+        width: 519px;
+        height: 620px;
+        position: absolute;
+        left: 50%;
+        margin-left: -1010px;
+    }
+
+    .right_side {
+        width: 519px;
+        height: 620px;
+        position: absolute;
+        left: 50%;
+        margin-left: 491px;
+    }
+
+
+    #container {
+        width:982px;
+        min-height:400px;
+        position:relative;
+        z-index:20;
+        margin:0 auto;
+        background-color: #000;
+    }
+
+    .featured_row {
+        width:982px;
+        position:relative;
+        overflow:hidden;
+    }
+
+    .membership {
+	width:519px;
+	height:338px;
+	padding:46px 10px 11px;
+	overflow:hidden;
+	position:absolute;
+	background: image-url("rent/landings/pick_membership_bg.png") 0 0 no-repeat;
+
+        p {
+            font-size: 13px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+            margin: 0 0 14px;
+            text-indent: 0;
+
+            &.price {
+                font-weight: bold;
+                font-style: italic;
+                color: #666;
+            }
+        }
+
+        .btn_start_now {
+            width: 122px;
+            height: 60px;
+            margin: 0 auto 11px;
+            display: block;
+            overflow: hidden;
+            text-indent: -9999px;
+            line-height: 9999px;
+            @include btn_pick_now-sprite(btn_pick_now);
+        }
+
+        .best_val_label {
+            position: absolute;
+            top: 58px;
+            right: 185px;
+            width: 70px;
+            height: 70px;
+            display: block;
+            overflow: hidden;
+            background: image-url("rent/best_value_label.png") 0 0 no-repeat;
+        }
+
+        .one_cd, .two_cd {
+            width: 135px;
+            height: 86px;
+            display: block;
+            margin: 0 auto 11px;
+        }
+
+        .one_cd {
+            /* @include background-image("rent/landings/cd1_pic.png"); */
+            background: image-url("rent/landings/cd1_pic.png") 0 0 no-repeat;
+        }
+
+        .two_cd {
+            background: image-url("rent/landings/cd2_pic.png") 0 0 no-repeat;
+        }
+
+        .mem_limited {
+            width: 160px;
+            height: 314px;
+            padding: 12px 50px;
+            overflow: hidden;
+            float: left;
+        }
+
+        .mem_unlim {
+            width: 159px;
+            height: 314px;
+            padding: 12px 50px;
+            overflow: hidden;
+            float: right;
+        }
+
+        .mem_limited h2, .mem_unlim h2 {
+            width: 91px;
+            height: 63px;
+            display: block;
+            text-indent: -9999px;
+            line-height: 9999px;
+            margin: 0 auto 9px;
+        }
+
+        .mem_limited h2 {
+            background: image-url("rent/text_unlim1_title.png") 0 0 no-repeat;
+        }
+
+        .mem_unlim h2 {
+            background: image-url("rent/text_unlim_title.png") 0 0 no-repeat;
+        }
+    }
+
+    #footer {
+        .free_shipping {
+            background: image-url("rent/landings/free_shipping.png") 0 0 no-repeat;
+        }
+        .left_foot {
+            padding-top: 0;
+        }
+    }
+}

@@ -1,0 +1,92 @@
+#form-signup-member-1, #form-signup-non-member-1 {
+   .side-1 {
+      float: left;
+      width: 385px;
+
+      dt {
+         float: left;
+         clear: left;
+         width: 100px;
+         text-align: right;
+         padding-top: 4px;
+      }
+
+      dd.field {
+         float: left;
+         margin-left: 8px;
+         width: 190px;
+         margin-bottom: 7px;
+
+         .input {
+            width: 190px;
+         }
+      }
+
+      dd.help {
+         float: left;
+         padding-top: 4px;
+         margin-left: 6px;
+
+         .small {
+            font-size: 9px;
+         }
+      }
+
+      .email_policy {
+         clear: left;
+         padding: 15px;
+         color: #333;
+      }
+   }
+
+   .side-2 {
+      width: 300px;
+      overflow: hidden;
+      float: right;
+
+      h3 {
+         padding-left: 0;
+      }
+
+      dt {
+         float: left;
+         padding-top: 4px;
+         text-align: right;
+         width: 100px;
+      }
+
+      dd.field {
+         float: left;
+         margin-left: 8px;
+         width: 190px;
+         margin-bottom: 7px;
+
+         .input {
+            width: 190px;
+         }
+      }
+   }
+}
+
+//
+// For legacy compatibility
+//
+.legacy {
+   &#form-signup-member-1, &#form-signup-non-member-1 {
+      .side-1 {
+         width: 375px;
+         margin-left: -10px;
+      }
+      .extra {
+         margin-top: 150px;
+      }
+      .side-2 {
+         width: 315px;
+      }
+   }
+   &#form-signup-member-2, &#form-signup-non-member-2 {
+      .confirm-button {
+         right: 10px;
+      }
+   }
+}

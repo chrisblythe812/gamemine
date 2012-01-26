@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% load i18n adminmedia %}
+
+{% block breadcrumbs %}
+{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="../../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+     <a href="../">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
+     {%trans "Import"%}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  <p>{%blocktrans%}Import contacts from a .csv or .txt file. Save the file separating the entries with ";". Before sending the file, certify that the following fields are filled: Email, Name and Last Name.{%endblocktrans%}    
+  </p>
+    <form action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <fieldset class="module aligned">
+        <div class="form-row list">
+        	{{form.list.errors}}
+            <label for="id_list">{%trans "Mailing list:"%}</label>
+            {{form.list}}
+            <div style="font-style:italic;">
+            {%trans "You have the option to attribute an email list for the contacts to be imported using the field above."%} 
+            </div>
+        </div>
+        <div class="form-row file">
+        	{{form.file.errors}}
+            <label for="id_file">{%trans "CSV file (.csv) :"%}</label>
+            {{form.file}}
+        </div>
+
+      </fieldset>
+      <div class="submit-row">
+        <input type="submit" class="default" value="Importar" />
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

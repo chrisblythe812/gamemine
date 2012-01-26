@@ -1,0 +1,39 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Dear {{ user.first_name|default:user.username }},</p>
+
+<p>This is to notify you that your rental account with Gamemine has been successfully 
+  placed <strong>"On Hold"</strong> until <strong>{{ plan.hold_reactivate_timestamp|date }}</strong> 
+  at which point your account will automatically reactivate. Please note during this time no 
+  billing occurs and games will not be shipped to your address from your Rent List.</p>
+
+{% if orders %}
+<p>Please note below are the games you still have rented on your account that must be returned by 
+  their specified due dates to avoid a unreturned replacement fee in the amount of $50.00 plus 
+  applicable taxes being charge to your account for each game that is unreturned:</p>
+
+<table>
+  <tr>
+    <th>Due Date</th>
+    <th>Game Title</th>
+  </tr>
+  {% for o in orders %}
+  <tr>
+    <th>{{ due_date|date }}</th>
+    <th>{{ o.item }} ({{ o.item.category }})</th>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+
+<p>If you have any questions at all, please give Customer Service a
+call at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}

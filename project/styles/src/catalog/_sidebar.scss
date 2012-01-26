@@ -1,0 +1,36 @@
+@import "constants";
+@import "mixins";
+
+#id_sidebar_subscription {
+    margin: 20px 0 0 0;
+    text-align: center;
+    border-bottom: 1px #e2e2e2 solid;
+
+    form {
+        width: 153px;
+        margin: 16px auto 0;
+        line-height: 21px;
+
+        .input {
+            float: left;
+            width: 135px;
+        }
+        
+        input[type=submit] {
+            width: 15px;
+            height: 15px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: url($images_url + 'signup-button.gif') no-repeat;
+            @include hide-text;
+        }
+    }
+    
+    .note {
+        clear: both;
+        margin: 24px 0 40px 0;
+        color: #333;
+        font-size: 12px;
+    }
+}

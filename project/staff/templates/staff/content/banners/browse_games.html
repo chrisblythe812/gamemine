@@ -1,0 +1,27 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <table>
+    <tr>
+      <th>Preview</th>
+      <th>URL</th>
+      <th>Active</th>
+    </tr>
+    {% for b in banners %}
+    <tr>
+      <td class="c" width="280"><a href="{% url staff:content_featured_game_edit b.id %}"><img src="{{ b.image.url }}" width="250" /></a></td>
+      <td><a href="{% url staff:edit_browse_game_banner b.id %}">{{ b.url }}</a></td>
+      <td class="c">{{ b.active|yesno:"Yes,No" }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="actions">  
+    <a href="{% url staff:add_browse_game_banner %}">Add Banner</a>
+  </div>
+</div>
+
+{% endblock right %}
+

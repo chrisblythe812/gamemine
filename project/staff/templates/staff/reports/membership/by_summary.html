@@ -1,0 +1,230 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block head %}{{ block.super }}
+<style type="text/css">
+  #main-report-table td,
+  #main-report-table th {
+    border: none;    
+    border-top: 1px dotted #eee;    
+  }
+  
+  #main-report-table .h1 {
+    font-weight: bold;
+    font-size: 16px;    
+  }
+  
+  #main-report-table .h2 {
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 20px;    
+  }
+  
+  #main-report-table .h3 {
+    font-weight: bold;
+    padding-left: 40px;    
+  }
+  
+  #main-report-table .l2 {
+    padding-left: 20px;    
+  }
+
+  #main-report-table .l3 {
+    padding-left: 40px;    
+  }
+  
+  #main-report-table .l4 {
+    padding-left: 60px;    
+  }
+  
+  #main-report-table .all-years {
+    width: 200px;
+    background-color: #ccc;
+  }
+</style>
+{% endblock head %}
+
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <table id="main-report-table">
+  <thead>
+    <tr>
+      <th style="width: 400px"></th>
+      {% for y in years %}
+      <th>{{ y }}</th>
+      {% endfor %}
+      <th class="all-years">All-YEARS COMBINED</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="{{ years|length|add:1 }}" class="h1">GAME RENTAL</td>
+      <td class="all-years"></td>
+    </tr>
+    <tr>
+      <td colspan="{{ years|length|add:1 }}" class="h2">Subscriber information:</td>
+      <td class="all-years"></td>
+    </tr>
+    <tr>
+      <td class="h3">Subscribers: beginning of period</td>
+      {% for v in data.rent.beginning_of_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l3">Gross subscribers additions: during period</td>
+      {% for v in data.rent.gross_subscribers_additions_during_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l4">Gross subscriber additions year-to-year change</td>
+      {% for v in data.rent.gross_subscriber_additions_year_to_year_change %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|floatformat:2 }}%</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l3">Less subscriber cancellations: during period</td>
+      {% for v in data.rent.less_subscriber_cancellations_during_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="h3">Subscribers: end of period</td>
+      {% for v in data.rent.subscribers_end_of_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l4">Subscribers year-to-year change</td>
+      {% for v in data.rent.subscribers_year_to_year_change %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|floatformat:2 }}%</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="h2">Rent subscribers: end of period</td>
+      {% for v in data.rent.rent_subscribers_end_of_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l3">Paid subscribers year-to-year change</td>
+      {% for v in data.rent.paid_subscribers_year_to_year_change %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l2">Average monthly revenue per paying subscriber</td>
+      {% for v in data.rent.average_monthly_revenue_per_paying_subscriber %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="h2">Churn</td>
+      {% for v in data.rent.churn %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|floatformat:2 }}%</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l2">Subscriber acquisition cost</td>
+      {% for v in data.rent.subscriber_acquisition_cost %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="h2">Revenue</td>
+      {% for v in data.rent.revenue %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+  </tbody>
+  <tbody>
+  </tbody>
+    <tr>
+      <td colspan="{{ years|length|add:1 }}" class="h1">GAME SOFTWARE</td>
+      <td class="all-years"></td>
+    </tr>
+    <tr>
+      <td colspan="{{ years|length|add:1 }}" class="h2">Customer information:</td>
+      <td class="all-years"></td>
+    </tr>
+    <tr>
+      <td class="h3">Customers: beginning of period</td>
+      {% for v in data.buy.beginning_of_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l3">Gross Customers additions: during period</td>
+      {% for v in data.buy.gross_customers_additions_during_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l4">Gross Customer additions year-to-year change</td>
+      {% for v in data.buy.gross_customers_additions_year_to_year_change %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|floatformat:2 }}%</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="h3">Customers: end of period</td>
+      {% for v in data.buy.end_of_period %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|default:'-' }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l4">Customers year-to-year change</td>
+      {% for v in data.buy.customers_year_to_year_change %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|floatformat:2 }}%</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l2">New video game software</td>
+      {% for v in data.buy.new_games %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l2">Used video game software</td>
+      {% for v in data.buy.used_games %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l2">Average monthly revenue per paying Customer</td>
+      {% for v in data.buy.average_monthly_revenue_per_paying_customer %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="h2">Returns</td>
+      {% for v in data.buy.returns %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">{{ v|floatformat:2 }}%</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="l2">Customer acquisition cost</td>
+      {% for v in data.buy.customer_acquisition_cost %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td class="h2">Projected Revenue</td>
+      {% for v in data.buy.projected_revenue %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="h1">TOTAL REVENUE</td>
+      {% for v in data.total_revenue %}
+      <td class="r{% if forloop.last %} all-years{% endif %}">${{ v|floatformat:2 }}</td>
+      {% endfor %}
+    </tr>
+  </tbody>
+  </table>
+</div>
+
+{% endblock right %}

@@ -1,0 +1,93 @@
+{% load percents %}
+{% load star_rating %}
+
+<table id="rent-orders-table">
+	<tr>
+		<th class="column-item">Rent Orders</th>
+		<th class="column-platform">Platform</th>
+		<th class="column-rate">Rate Game</th>
+		<th class="column-shipped">Shipped</th>
+		<th class="column-xxx">Keep?</th>
+		<th class="column-xxx-1">Price</th>
+	</tr>
+	{% for r in rent_orders %}
+	{% with r.item as item %}
+	<tr>
+		<td class="column-item">
+			<div class="order-number"><strong>ORDER NUMBER: {{ r.order_no }}</strong></div>
+		    <div class="item"><strong>1.</strong><a href="{{ r.item.get_absolute_url }}">{{ r.item.short_name }}</a></div>
+		</td>
+		<td class="column-platform">{{ item.category.description }}</td>
+		<td class="column-rate">
+            {{ item|star_rating }}
+		</td>
+		<td class="column-shipped">{{ r.date_shipped|date|default:"&mdash;" }}</td>
+		<td class="column-xxx">&nbsp;</td>
+		<td class="column-xxx-1">&nbsp;</td>
+	</tr>
+	{% endwith %}
+	{% endfor %}
+	<tr>
+		<td colspan="6" class="column-info">
+			{% if rent_plan %}
+				{% if rent_plan.is_active or rent_plan.is_new %}
+					You are currently in the <strong>{{ rent_plan.games_at_time }} at-a-time {% if rent_plan.expire_in %}({{ rent_plan.expire_in }} month{{ rent_plan.expire_in|pluralize }}){% endif %} plan</strong> and 
+					{% if rent_plan.rentals_remaining == -1 %}
+            unlimited rentals 
+					{% else %}
+					  {{ rent_plan.rentals_remaining }} rental{{ rent_plan.rentals_remaining|pluralize }}
+          {% endif %}
+           remaining{% if rent_plan.expire_in %} for this period{% endif %}.
+					
+					{% if rent_plan.next_period_date %}
+					Your next period begins on {{ rent_plan.next_payment_date|date }}
+					{% else %}
+					Your period ends on {{ rent_plan.expiration_date|date }}
+					{% endif %}
+					<a href="{% url new_rent:change_plan %}" class="link-dialog">UPGRADE NOW</a>
+				{% else %}
+				  {% if rent_plan.status == 8 %}
+          <div class="autoboxed boxed problem-message">
+            <div class="title">Your Rental Account is pending for cancellation!</div>
+            <div class="details">You have to return outstanding Games within 7 days of cancelling to avoid charges to your credit card.</div>
+          </div>
+				  {% else %}
+            {% if rent_plan.status == 2 %}
+    					<div class="autoboxed boxed problem-message">
+    						<div class="actions">
+    							<a href="{% url members:payment_method %}">Update Credit Card</a> or <a href="{% url members:cancel_membership %}">Cancel Membership</a>
+    						</div> 
+    						<div class="title">Credit Card Problems &ndash; Your Rental Account is on Hold!</div>
+    						<div class="details">Please visit the Payment Method page in Your Account and review the credit card details currently on file.</div>
+    					</div>
+            {% else %}{% if rent_plan.status == 12 %}
+              <div class="autoboxed boxed problem-message">
+                <div class="title">Your Rental Account is on Hold!</div>
+                <div class="details">While your account is on hold, you will not receive games. Other site services will remain available. Your account is scheduled to reactivate on <strong>{{ current_rental_plan.hold_reactivate_timestamp|date:"F j, Y" }}</strong>.</div>
+                <div style="margin: 10px 70px 0 0; text-align: center;">
+                  <a href="{% url members:reactivate %}" class="reactivate-account-blue-button">Reactivate Account</a>
+                  <a href="{% url members:change_reactivation_date %}" class="change-reactivation-date-blue-button">Change Reactivation Date</a>
+                </div>
+              </div>
+            {% else %}
+              <div class="autoboxed boxed problem-message">
+                <div class="title">Your Rental Account is on Hold!</div>
+                <div class="details">Please contact Gamemine to resolve this issue.</div>
+              </div>
+            {% endif %}{% endif %}
+					{% endif %}
+				{% endif %}
+			{% else %}
+			<div class="no-plan-message">
+				<div class="no-plan-message-text">
+				You are currently not subscribed in any game rental plan.
+				</div>
+				<div class="start-now">
+					<a href="{% url new_rent:sign_up %}" class="start-now-red-button link-dialog">Start Now</a>
+					<div class="start-now-text">Starting at <strong>${{ minimal_rent_charge }}</strong> a month</div>
+				</div> 
+			</div>
+			{% endif %} 
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,100 @@
+{% extends "members/account/base.html" %}
+
+{% block page-class %}{{ block.super }} claim-page{% endblock page-class %}
+
+{% block content %}
+
+<ul class="heading">
+    <li class="selected">Problems ({{ shpere|upper }})</li>
+</ul>
+
+<div id="claim-page-content">
+    <div id="claim-page-order-no">
+    	{% block order-info %}<strong>ORDER NUMBER:</strong> {{ order.order_no }}{% endblock order-info %}
+	</div>
+
+	<div id="claim-page-item-details">
+		<a href="{{ game.get_absolute_url }}"><img src="{{ game.get_cover }}" width="170" height="220" /></a>
+        <div class="game-title"><a href="{{ game.get_absolute_url }}">{{ game.short_name }}</a></div>
+        <div class="game-platform">{{ game.category.description }}</div>
+		{% block game-shipped-date %}
+        <div class="game-shipped-date">Shipped: {{ shipped_date|date|default:"--" }}</div>
+        {% endblock game-shipped-date %}
+	</div>
+	
+	<div id="claim-page-claims">
+        <dl class="claims-list">
+        {% block page-content %}
+            <dt><a class="minimize-action" href="#">Minimize</a>Game is damaged, scratched or uplayable</dt>
+            <dd>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec convallis interdum ante, eget iaculis enim pulvinar venenatis. Vestibulum tempor aliquam hendrerit. Proin fringilla augue non erat sagittis egestas. Suspendisse feugiat lobortis neque et faucibus. Mauris consequat sapien mi, ac ornare mi. Cras a orci quis eros iaculis porta id eu odio. Nunc malesuada, tellus auctor lobortis fringilla, ipsum nisl volutpat eros, vitae interdum libero mi nec sapien. Quisque pulvinar magna vitae arcu tempus eu vestibulum ligula faucibus. Etiam dignissim imperdiet arcu, vitae laoreet odio auctor nec. Nulla bibendum luctus mi quis tincidunt. Ut porta purus ut diam aliquam blandit. Pellentesque lacinia sapien eget risus tincidunt blandit et ac ligula. Cras scelerisque, nisi imperdiet porta viverra, leo turpis feugiat ligula, vel lobortis arcu erat at ante. Mauris adipiscing tellus eros, ut hendrerit purus. Duis velit urna, iaculis vitae malesuada ac, congue at est.
+            </dd>
+		{% endblock page-content %}
+        </dl>
+	</div>
+	
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+		function toggleSection() {
+			var dt = $(this),
+                section = dt.next('dd');
+			if (dt.hasClass('collapsed')) {
+				dt.toggleClass('collapsed');
+                section.slideDown(200);
+			} 
+			else {
+                section.slideUp(200, function () { dt.toggleClass('collapsed'); });
+			}
+		}
+		
+        var claimsList = $('#claim-page-claims dl.claims-list');
+		
+		claimsList.find('dt').click(toggleSection);
+		
+		claimsList.find('dt a.minimize-action').click(function () {
+			toggleSection.apply($(this).parents('dt'), []);
+			return false;
+		});
+		
+		claimsList.find('input[type=reset]').click(function () {
+			toggleSection.apply($(this).parents('dd').prev(), []);
+		});
+		
+		claimsList.find('select').setupSelect('w150px');
+		
+		claimsList.find('a.update-your-address').click(function () {
+            var a = $(this);
+			a.addClass('hidden');
+			var p = a.parents('dd');
+			p.find('.address-info').addClass('hidden');
+			p.find('dl.address-form').removeClass('hidden');
+			return false;			
+		});	
+		
+		$.extend(DateInput.DEFAULT_OPTS, {
+			stringToDate: function(string) {
+				var matches = string.match(/^(\d{2,2})-(\d{2,2})-(\d{4,4})$/);
+				if (matches)
+					return new Date(matches[3], matches[1] - 1, matches[2]);
+    			return null;
+			},
+			
+			dateToString: function(date) {
+				var month = (date.getMonth() + 1).toString();
+				var dom = date.getDate().toString();
+				if (month.length == 1) month = "0" + month;
+				if (dom.length == 1) dom = "0" + dom;
+				return month + "-" + dom + "-" + date.getFullYear();
+			}
+		});
+		
+		claimsList.find('.date-input input').date_input();
+        
+		claimsList.find('dt[class!="expanded-by-default"]').each(toggleSection);
+	});	
+</script>
+
+{% endblock content %}

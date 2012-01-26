@@ -1,0 +1,89 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module" id="feedback-details">
+  <dl>
+    <dt>Date:</dt>
+    <dd>{{ feedback.timestamp|date }} {{ feedback.timestamp|time }}</dd>
+    
+    <dt>Status:</dt>
+    <dd>
+      <form action="." method="post">{% csrf_token %}
+        {{ status_form.status }}
+        <script type="text/javascript">
+        $(document).ready(function () {
+          $('#id_status').change(function () {
+            $(this).parents('form').submit();
+          });
+        });
+        </script>
+      </form>
+    </dd>
+
+    <dt>Customer:</dt>
+    <dd>{% if feedback.user %}<a href="{% url staff:customer_view feedback.user.id %}" target="_blank">{{ feedback.user.get_profile.get_name_display }}</a>{% else %}--{% endif %}</dd>
+
+    <dt>E-mail:</dt>
+    <dd><a href="mailto:{{ feedback.email }}">{{ feedback.email }}</a></dd>
+
+    <dt>Form ID:</dt>
+    <dd>{{ feedback.form_id }}</dd>
+
+    <dt>Item ID:</dt>
+    <dd>{{ feedback.item_id }}</dd>
+
+    <dt>Score:</dt>
+    <dd>{{ feedback.score }}</dd>
+
+    <dt>Category:</dt>
+    <dd>{{ feedback.category }}</dd>
+
+    <dt>Subcategory:</dt>
+    <dd>{{ feedback.subcategory }}</dd>
+
+    <dt>Feedback</dt>
+    <dd>{{ feedback.feedback|linebreaksbr }}</dd>
+  </dl>
+</div>
+
+{% if replies %}
+<div class="module replies-list">
+  <h2>Replies</h2>
+  <table>
+    <thead>
+     <tr>
+       <td>Date</td>
+       <td>Status</td>
+       <td>E-mail</td>
+       <td>Message</td>
+     </tr>
+    </thead>
+    <tbody>
+  {% for r in replies %}
+     <tr>
+       <td>{{ r.timestamp|date }} {{ r.timestamp|time }}</td>
+       <td>{{ r.get_status_display }}</td>
+       <td>{{ r.mailed_to }}</td>
+       <td>{{ r.message|linebreaksbr }}</td>
+     </tr>
+  {% endfor %}
+    <tbody>
+  </table>
+</div>
+{% endif %}
+
+<div class="module">
+  <h2>Send reply</h2>
+  <form action="{% url staff:reply_to_feedback feedback.id %}" method="post">{% csrf_token %}
+  <table>
+    {{ reply_form.as_table }}
+    <tr>
+      <th>&nbsp;</th><td><input type="submit" /></td>
+    </tr>
+  </table>
+  </form>
+</div>
+
+{% endblock right %}

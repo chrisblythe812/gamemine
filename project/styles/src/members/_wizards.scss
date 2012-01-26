@@ -1,0 +1,71 @@
+@import "wizards/non_members_rent_signup/non_members_rent_signup";
+@import "wizards/members_rent_signup/members_rent_signup";
+@import "wizards/change_plan/change_plan";
+@import "wizards/signup/signup";
+@import "wizards/rent_signup";
+
+
+[id$="wizard"], .dialog {
+   [id^="form"] {
+      padding: 10px 20px;
+      font-size: 11px;
+
+      h3 {
+         font-size: 13px;
+         font-weight: bold;
+         margin-bottom: 15px;
+
+         em {
+            font-size: 11px;
+            font-weight: normal;
+         }
+      }
+
+      .clear { clear: left; }
+   }
+
+   .actions {
+      height: 37px;
+      clear: both;
+      position: relative;
+
+      [class$="button"] {
+         position: absolute;
+         bottom: -2px;
+      }
+      .back-button {
+         left: 0;
+      }
+      .continue-button, .checkout-button, .start-now-red-button {
+         right: 0;
+      }
+   }
+
+   .extra {
+      p.message {
+         color: #666;
+      }
+
+      .boxed {
+         width: 380px;
+         margin: 0 auto;
+      }
+
+      .boxed-wrapper {
+         min-height: 30px;
+         padding: 0 10px 5px 70px;
+      }
+
+      .error {
+         .boxed-wrapper {
+            background: 5px center #fff url($images_url + 'attention-w.png') no-repeat;
+         }
+         .title {
+            color: #E61824;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 2px;
+         }
+      }
+   }
+}

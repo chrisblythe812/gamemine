@@ -1,0 +1,37 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <form method="get">
+      {{ form.state.label }} {{ form.state }} {{ form.dc.label }} {{ form.dc }} <input type="submit" value="Search" />
+    </form>
+  </div>
+
+  <div>
+    <table>
+      <tr>
+        <th>Customer</th>
+        <th>Email</th>
+        <th>State</th>
+        <th>Home DC</th>
+        <th>Games</th>
+      </tr>
+      {% for user in users %}
+      <tr>
+        <td><a href="{% url staff:customer_view user.id %}" target="_blank">{{ user.get_profile.get_name_display }}</a></td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.get_profile.shipping_state }}</td>
+        <td>{{ user.get_profile.dropship.code }}</td>
+        <td>{{ user.item_count }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+    {% pagination %}
+  </div>
+</div>
+
+{% endblock right %}

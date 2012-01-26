@@ -1,0 +1,25 @@
+@import "mixins";
+
+.paginator {
+	height: 23px;
+	text-align: right;
+	color: #666;
+	font-family: Arial;
+	font-size: 12px;
+
+	a {
+		text-decoration: none;
+  	color: #666;
+
+		&:hover {
+		  text-decoration: underline;
+			color: #b42024;
+		}
+	}
+	
+  .current {
+    font-weight: bold;
+    font-size: 15px !important;
+  }
+}
+

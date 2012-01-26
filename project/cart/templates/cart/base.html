@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} – Cart{% endblock %}
+
+{% block head %}
+ 	<link href="{{ STATIC_URL }}css/cart/cart.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+    <link href="{{ STATIC_URL }}css/members/members.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+
+{% block page-class %}cart-page{% endblock %}
+
+{% block content-header %}
+	<div id="cart-heading">
+		{% block cart-heading %}{% endblock cart-heading %}
+	</div>
+	<div id="cart-title">
+		<div id="cart-title-heading">
+		{% block cart-title %}<h1>Cart</h1>{% endblock cart-title %}
+		</div>
+		<div id="cart-title-content">
+		{% block cart-title-content %}{% endblock cart-title-content %}
+		</div>
+	</div>
+{% endblock content-header %}

@@ -1,0 +1,22 @@
+[
+    {
+        "pk": 15603, 
+        "model": "inventory.inventory", 
+        "fields": {
+            "status": 3, 
+            "tmp_saved_dc_code": null, 
+            "dropship": 1, 
+            "manual_checked": false, 
+            "barcode": "001080002100000077", 
+            "is_new": true, 
+            "not_expected_to_return": false, 
+            "item": 100000077, 
+            "added_at_manual_check": false, 
+            "manual_check_discarded": false, 
+            "tmp_new_dc_code_aproved": null, 
+            "purchase_item": null, 
+            "buy_only": false, 
+            "manual_checked_dc": null
+        }
+    }
+]

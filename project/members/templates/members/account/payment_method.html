@@ -1,0 +1,138 @@
+{% extends "members/account/account.html" %}
+
+{% block heading %}
+	<li><a href="{% url members:name_and_address %}">Name and Address</a></li>
+	<li class="selected"><a href="{% url members:payment_method %}">Payment Method</a></li>
+	<li><a href="{% url members:login_and_password %}">Login/Password</a></li>
+	<li><a href="{% url members:billing_history %}">Billing History</a></li>
+	<li><a href="{% url members:report_problems %}">Report Problem</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<form method="post" action="{% url members:payment_method %}" class="simple400w">
+	{% csrf_token %}
+
+  {% if form.correction_warning %}
+    <div class="autoboxed boxed information" style="margin-bottom: 30px;">
+        <div class="title">Your name and your address have been formatted according to US Postal standards.</div>
+    </div>
+  {% else %}
+  	{% include "partials/form_errors.html" %}
+  {% endif %}
+
+	<div class="input-field">
+		<label for="id_type">Select Card Type</label> {{ form.type }}
+		{{ form.type.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_number">{{ form.number.label }}</label> {{ form.number }}
+		{{ form.number.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_code">Card ID Number</label>
+	  <div class="group">
+  		<div class="first-half">{{ form.code }}</div>
+  		<div class="second-half">
+  		  <a class="hint-link" href="#" id="id_what_is_ccv">what's this?</a>
+  		  <div id="id_what_is_ccv_hint" class="tooltip">
+  		    <div class="picture"></div>
+          <div class="description"></div>
+  		  </div>
+	    </div>
+		  <div class="clear"></div>
+		</div>
+		{{ form.code.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_first_name">Name on Card</label>
+	  <div class="group">
+  		<div class="first-half">{{ form.first_name }}<div class="subscription">(First Name)</div></div>
+  		<div class="second-half">{{ form.last_name }}<div class="subscription">(Last Name)</div></div>
+		  <div class="clear"></div>
+	  </div>
+	  {{ form.first_name.errors }}
+		{{ form.last_name.errors }}
+	</div>
+
+  <div id="use-shipping-address-wrapper">
+    <input type="checkbox" id="use-shipping-address"/><label for="use-shipping-address">Use information from my shipping address</label>
+  </div>
+	
+	<div class="input-field">
+		<label for="id_number">Expiration Date</label>
+	  <div class="group">
+		  <div style="float: left;">{{ form.exp_month }}</div><div style="float: left;">{{ form.exp_year }}</div>
+  	  <span style="font-size: 10px; font-weight: bold;">e.g. (MM/YYYY)</span>
+		  <div class="clear"></div>
+	  </div>
+	</div>
+
+	<div class="input-field">
+		<label for="id_address1_name">{{ form.address1.label }}</label> {{ form.address1 }}
+		{{ form.address1.errors }}
+	</div>
+	
+	<div class="input-field">
+		<label for="id_address2_name">{{ form.address2.label }}</label> {{ form.address2 }}
+		{{ form.address2.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_city_name">{{ form.city.label }}</label> {{ form.city }}
+		{{ form.city.errors }}
+	</div>
+	
+	<div class="input-field">
+		<label for="id_state_name">{{ form.state.label }}</label> {{ form.state }}
+		{{ form.state.errors }}
+	</div>
+	
+	<div class="input-field zip-code-field">
+		<label for="id_zip_code_name">Billing Zip Code</label> {{ form.zip_code }}
+		{{ form.zip_code.errors }}
+	</div>
+
+	<div class="form-actions">
+		<a class="cancel-button dialog-close-button" href="{% url index %}">Cancel</a>
+		<input type="submit" value="Save" class="save-button" />
+	</div>
+	
+	<script type="text/javascript">
+	  $(document).ready(function(){
+      $('#id_type').setupSelect('w150px');
+      $('#id_exp_month').setupSelect('w94px');
+      $('#id_exp_year').setupSelect('w75px');
+      $('#id_state').setupSelect('w179px');
+
+      $('#use-shipping-address').click(function(){
+        if ($(this).is(':checked')) {
+          $('#id_first_name').val('{{ user.first_name|default:""|escapejs }}');
+          $('#id_last_name').val('{{ user.last_name|default:""|escapejs }}');
+          $('#id_address1').val('{{ user.get_profile.shipping_address1|default:""|escapejs }}');
+          $('#id_address2').val('{{ user.get_profile.shipping_address2|default:""|escapejs }}');
+		      $('#id_city').val('{{ user.get_profile.shipping_city|default:""|escapejs }}');
+		      $('#id_state').val('{{ user.get_profile.shipping_state|default:""|escapejs }}');
+		      $('#id_zip_code').val('{{ user.get_profile.shipping_zip|default:""|escapejs }}');
+        } else {
+          $('#id_first_name').val('{{ form.initial.first_name|default:""|escapejs }}');
+          $('#id_last_name').val('{{ form.initial.last_name|default:""|escapejs }}');
+          $('#id_address1').val("{{ form.initial.address1|default:""|escapejs }}");
+          $('#id_address2').val("{{ form.initial.address2|default:""|escapejs }}");
+		      $('#id_city').val("{{ form.initial.city|default:""|escapejs }}");
+		      $('#id_state').val('{{ form.initial.state|default:""|escapejs }}');
+		      $('#id_zip_code').val('{{ form.initial.zip_code|default:""|escapejs }}');
+        }
+        $('#id_state').updateValue();
+      });
+
+      setupCCVTooltip($('#id_what_is_ccv'), $('#id_what_is_ccv_hint'), $('#id_type'));
+	  });
+	</script>
+</form>
+
+{% endblock page-content %}
+

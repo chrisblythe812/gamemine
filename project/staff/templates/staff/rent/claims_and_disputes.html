@@ -1,0 +1,22 @@
+{% extends "staff/fulfillment.html" %}
+
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <form method="get">
+      {{ form.status.label }} {{ form.status }}
+      {{ form.type.label }} {{ form.type }}
+      {{ form.q }}
+      <input type="submit" value="Search" />
+    </form>
+  </div>
+  
+  {% include "staff/rent/partials/claims_list.html" %}
+
+  {% pagination %}
+</div>
+
+{% endblock right %}

@@ -1,0 +1,140 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block head %}{{ block.super }}
+
+<style type="text/css">
+  #filter-form {
+    width: 300px;
+  }
+  
+  #filter-form th {
+    width: 100px;
+  }
+</style>
+
+{% endblock head %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+  <form method="get" id="filter-form">
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <th>&nbsp;</th>
+        <td><input type="submit"></td>
+      </tr>
+    </table>
+  </form>
+  </div>
+
+  <div>
+    <h3>Member signups</h3>
+    <p>{{ member_signups_count }}</p>
+
+    <table style="width: 300px">
+      {% for c in member_signups %}
+      <tr>
+        <td>{{ c.campaign }}</td>
+        <td align="right"><a href="/Staff/Customer/?campaign={{ c.cid }}" target="_blank">{{ c.count }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div>
+    <h3>Email registrations</h3>
+    <p>{{ email_registrations_count }}</p>
+
+    <table style="width: 300px">
+    {% for c in email_registrations_signups %}
+      <tr>
+        <td>{{ c.campaign }}</td>
+        <td align="right"><a href="/Staff/Customer/?campaign={{ c.cid }}" target="_blank">{{ c.count }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  
+  <div>
+    <h3>New Registrations</h3>
+    <p>{{new_reqistrations_total}}</p>
+    <table style="width: 300px">
+    {% for p in new_reqistrations %}
+      <tbody>
+      <tr>
+        <th colspan="2">{{ p.title }}</th>
+      </tr>
+      {% for c in p.campaigns %}
+      <tr>
+        <td>{{ c.campaign }}</td>
+        <td align="right"><a href="/Staff/Customer/?campaign={{ c.cid }}&plan={{ p.plan }}" target="_blank">{{ c.count }}</a></td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>&nbsp;</td>
+        <td align="right"><strong>{{ p.total }}</strong></td>
+      </tr>
+      </tbody>
+    {% endfor %}
+    </table>
+  </div>
+  
+  <div>
+    <h3>Buy Orders</h3>
+    <p>{{ buy_orders_total }}</p>
+    <table style="width: 300px">
+    {% for c in buy_orders %}
+      <tr>
+        <td>{{ c.campaign }}</td>
+        <td align="right"><a href="/Staff/Customer/?buy_orders=True" target="_blank">{{ c.count }}</a></td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
+  
+  <div>
+    <h3>Trade Orders</h3>
+    <p>{{ trade_orders_total }}</p>
+    <table style="width: 300px">
+    {% for c in trade_orders %}
+      <tr>
+        <td>{{ c.campaign }}</td>
+        <td align="right"><a href="/Staff/Customer/?trade_orders=True" target="_blank">{{ c.count }}</a></td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
+  
+  <div>
+    <h3>Cancellations</h3>
+    <p><strong>Cancelled:</strong> {{ cancellations_total }}</p>
+    <p><strong>Cancelled pending:</strong> {{ cancellations_pending_total }}</p>
+    <table style="width: 400px">
+      <tr>
+        <th>Campaign</th>
+        <th>Cancelled</th>
+        <th>Pending</th>
+        <th>Total</th>
+      </tr>
+      {% for c in cancellations %}
+      <tr>
+        <td>{{ c.campaign }}</td>
+        <td align="right">{{ c.cancelled }}</td>
+        <td align="right">{{ c.pending }}</td>
+        <td align="right">{{ c.total }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th>Total</th>
+        <th align="right">{{ cancellations_total }}</th>
+        <th align="right">{{ cancellations_pending_total }}</th>
+        <th align="right">{{ cancellations_total_all }}</th>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+{% endblock right %}

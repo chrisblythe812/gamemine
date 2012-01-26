@@ -1,0 +1,67 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  
+  <form method="get">
+    <div>
+      {{ form.platform.label }} {{ form.platform }}
+      {{ form.q.label }} {{ form.q }} <input type="submit" value="Search" />
+    </div>
+  </form>
+
+  <div>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Platform</th>
+        <th>Publisher</th>
+        <th>Release Date</th>
+        <th>UPC</th>
+        <th>Total Count</th>
+        <th>In Stock Count</th>
+        <th>Unassigned Count</th>
+        <th></th>
+      </tr>
+      {% for i in items %}
+      <tr id="item-id-{{ i.id }}">
+        <td>{{ i.id }}</td>
+        <td><a href="{{ i.get_absolute_url }}" target="_blank">{{ i }}</a></td>
+        <td>{{ i.category }}</td>
+        <td>{{ i.publisher }}</td>
+        <td>{{ i.release_date|date }}</td>
+        <td>{{ i.upc }}</td>
+        <td>{{ i.get_total_count }}</td>
+        <td>{{ i.get_instock_count }}</td>
+        <td>{{ i.get_unassigned_count }}</td>
+        <td>{% if i.get_total_count %}<a href="{% url staff:inventory_admin_entries i.id %}" class="entries-details">Entries</a>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+    {% pagination %}
+  </div>
+  
+  <div id="entries-details">
+  </div>
+  
+  <script type="text/javascript">
+  $(document).ready(function () {
+    $('.entries-details').click(function () {
+      $('#entries-details').load($(this).attr('href'), function (data, status) {
+        if (status != 'success')
+          return;
+        var target = $('#entries-details');
+        $('html, body').animate({scrollTop: target.offset().top}, 500);
+      });
+      return false;
+    });    
+  });
+  </script>
+</div>
+
+{% endblock right %}

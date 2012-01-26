@@ -1,0 +1,27 @@
+{% extends "members/base.html" %}
+
+{% block title %}Account Confirmation{% endblock title %}
+
+{% block page-class %}{{ block.super }} create-account-complete{% endblock page-class %}
+
+{% block content %}
+
+<ul class="heading">
+    <li class="selected">Account Confirmation</li>
+</ul>
+
+<div id="create-account-complete-content">
+    <div class="side1">
+        <h2>Verify your email address</h2>
+		
+		<p>You can access all the enhanced features of your Gamemine account by verifying you email address.</p>
+    </div>
+    
+    <div class="side2">
+        <h2>Email has been sent</h2>
+        
+        <p>When you receive your sign in information, follow the direction in email to confirm your email address.</p>
+    </div>
+</div>
+
+{% endblock content %}

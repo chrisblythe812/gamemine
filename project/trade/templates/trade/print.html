@@ -1,0 +1,138 @@
+{% extends "trade/base.html" %}
+
+{% block heading %}
+	<li>Submit Trade-Ins</li>
+	<li>Manage Address</li>
+	<li>Select Shipping Method</li>
+	<li class="selected">Print Shipping Label</li>
+{% endblock heading %}
+
+{% block page-content %}
+<div id="trade-print">
+
+  <div class="text">
+    <h2>Print <em>Packaging Slip</em></h2>
+
+    <p>Thanks for submitting your trade-in request! Next, please print the packaging
+      slip and include it with your trade-in items. “All games on this list must be postmarked no later than
+	  <em>{{ mailing_date }}.</em></p>
+
+    <p>We ONLY accept games in good condition and credits for your trade-ins
+      will not be deposited into your account until items have been received,
+      inspected and verified as matching your order.</p>
+  </div>
+
+  <div class="box">
+    <div class="top"></div>
+    <div class="content">
+      <div id="trade-print-address">
+        <h3>Ship your trade-in items to:</h3>
+        <div>GAMEMINE</div>
+        <div>P.O. Box 810579</div>
+        <div>Boca Raton, FL 33481-0579</div>
+{% comment %}
+        <div>{{ gm_address.company }}</div>
+        <div>{{ gm_address.address1 }}</div>
+        <div>{{ gm_address.address2 }}</div>
+        <div>{{ gm_address.city }}, {{ gm_address.state }} {{ gm_address.zip_code }}</div>
+{% endcomment %}
+      </div>
+      <div id="trade-print-t1">Packing slip for your trade-in items</div>
+      <div class="grayed">
+        <ul>
+          <li>Total Trade-In Value: ${{ total }}</li>
+          <li>Total Number of Items: {{ quantity }}</li>
+          <li>Shipping Reimbursements: ${{ shipping_reimbursements }}</li>
+        </ul>
+
+        <div id="print-button">
+          <a href="/Trade/Shipping-Slip/{{ order_number }}/" target="_blank">Print</a>
+        </div>
+
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <a href="/Trade/Finish/" class="continue-red-button">Continue</a>
+  </div>
+
+  <div id="trade-shipping-instructions">
+    <h3>Instructions for Shipping Your Trade-In Items:</h3>
+    <ol>
+      <li class="odd">Print the packing slip.</li>
+      <li class="even">Make sure your games match the packing slip.</li>
+      <li class="odd">Securely pack the games in protective packaging such as a box or envelope and include the packing slip in the package.</li>
+      <li class="even">Mail your game(s) by {{ mailing_date }} using your shipping carrier of choice.</li>
+    </ol>
+  </div>
+
+</div>
+{% endblock page-content %}
+
+{% block body_end %}{{ block.super }}
+
+<!-- Google Code for Trade 1 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 994558147;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "cGMECJW79QEQw4Gf2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/994558147/?label=cGMECJW79QEQw4Gf2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Google Code for Trade 2 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 996118130;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "tkJGCL6TgwIQ8pz-2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/996118130/?label=tkJGCL6TgwIQ8pz-2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+
+<!-- Google Code for TRADE Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1037374983;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "SYLCCJvW5AEQh6zU7gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1037374983/?label=SYLCCJvW5AEQh6zU7gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+{% endblock %}

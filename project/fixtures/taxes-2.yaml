@@ -1,0 +1,5 @@
+- fields:
+    value: '7.00'
+    state: NJ
+  model: taxes.bystatetax
+  pk: 1

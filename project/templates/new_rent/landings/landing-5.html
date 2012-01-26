@@ -1,0 +1,24 @@
+{% extends "new_rent/landings/base.html" %}
+
+{% block page-class %}rent landings landing5{% endblock %}
+
+{% block aftertop %}
+{# Start Content Wrapper #}
+<div class="container_full">
+  <div class="left_side"></div>
+  <div class="right_side"></div>
+  <div id="container">
+    <!-- Featured Area -->
+    <div class="featured_row">
+      <div class="featured_pic">
+        <a href="{% url new_rent:sign_up %}" class="game_link link-dialog"></a>
+        <a href="{% url new_rent:sign_up %}" title="Start Now!" class="featured_banner link-dialog btn_start_now">Start for only $7.95 or try for free</a>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!-- Carousel area -->
+    <div class="carousel_row"></div>
+  </div>
+</div>
+{# End Content Wrapper #}
+{% endblock %}

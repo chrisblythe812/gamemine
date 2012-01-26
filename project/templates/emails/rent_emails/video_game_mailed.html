@@ -1,0 +1,21 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>This is confirmation that the video game below has been mailed. </p>
+
+<table>
+<tr><th>Game Title:</th><td>{{ order.item.name }}</td></tr>
+<tr><th>Platform:</th><td>{{ order.item.category }}</td></tr>
+</table>
+
+<p>The video game was shipped from our {{ dc_name }} and should arrive in a couple of days.</p>
+
+<p>Have Fun Conquering the Game!</p>
+
+<p>- The Gamemine Team </p>
+
+{% endblock content %}
+

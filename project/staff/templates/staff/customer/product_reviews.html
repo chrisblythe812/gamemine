@@ -1,0 +1,36 @@
+{% extends 'staff/customer/base.html' %}
+{% load pagination %}
+
+{% block right %}
+
+<div class="module">
+  <h2>Product Reviews</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Game</th>
+        <th>Ratio</th>
+        <th>Date</th>
+        <th>IP Address</th>
+        <th>Review</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ review.item.short_name }} ({{ review.item.category }})</td>
+        <td>{{ review.ratio }}</td>
+        <td>{{ review.timestamp|date }} {{ review.timestamp|time }}</td>
+        <td>{{ review.ip_address }}</td>
+        <td><h3>{{ review.review.title }}</h3> {{ review.review.comment }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% pagination %}
+</div>
+
+{% endblock right %}

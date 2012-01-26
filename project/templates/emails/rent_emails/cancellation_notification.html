@@ -1,0 +1,20 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>Thank you for using the Gamemine game rent service, we're sorry to see you
+leave but hope you will return one day and enjoy game rentals again real
+soon.</p>
+
+<p>Once again, thank you for your patronage and if we can ever be of any
+assistance, please visit Customer Service at
+<a href="{{ help_url }}">{{ help_url }}</a> or call us at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}
+

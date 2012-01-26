@@ -1,0 +1,19 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Dear {{ user.first_name|default:user.username }},</p>
+
+<p>Due to infractions of our <a href="http://www.gamemine.com/Terms/">Terms of Use</a>, 
+  your <strong>"Rent Account"</strong> with the Gamemine service has been suspended. 
+  Any attempts to use the Rent service on the website will be denied.</p>
+
+<p>If you feel that you have received this in error, please visit Customer Service 
+  at <a href="http://www.gamemine.com/">http://www.gamemine.com/</a> 
+  or call us at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}

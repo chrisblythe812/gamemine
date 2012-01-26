@@ -1,0 +1,20 @@
+{% extends "members/account/account.html" %}
+
+{% block page-class %}{{ block.super }} profile-page-with-grid{% endblock page-class %}
+
+{% block heading %}
+    <li><a href="{% url members:profile_image %}">Profile Image</a></li>
+	<li><a href="{% url members:profile_favorite_genre %}">Favorite Genre</a></li>
+	<li class="selected"><a href="{% url members:profile_game_reviews %}">Game Reviews</a></li>
+	<li><a href="{% url members:profile_game_ratings %}">Game Ratings</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<div class="page-with-grid-content">
+    <h3>{{ title }}</h3>
+    
+    {% include "members/profile/game_reviews.table.html" %}     
+</div>
+    
+{% endblock page-content %}

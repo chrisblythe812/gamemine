@@ -1,0 +1,83 @@
+{% extends "new_rent/dialogs/rent_signup/base.html" %}
+
+{% block dialog_title %}Shipping Information{% endblock %}
+
+{% block dialog_content %}
+<div id="form-signup-non-member-1">
+<form action="{% url new_rent:sign_up %}" method="post">{% csrf_token %}
+  {{ wizard.management_form }}
+  <div class="side-1">
+    <h3>Your Profile</h3>
+    {% if request.user.is_authenticated %}
+      {% include "new_rent/dialogs/rent_signup/profile_member.html" %}
+    {% else %}
+      {% include "new_rent/dialogs/rent_signup/profile_non_member.html" %}
+    {% endif %}
+
+    	<p class="email_policy">Your email address is safe. Gamemine will not sell, rent or
+    	  disclose your email address to third parties. We will only use this email to
+    	  provide special offers and information regarding our services.</p>
+
+    </div>
+
+	<div class="side-2">
+		<h3>Shipping Information <em>(Where games will be delivered)</em></h3>
+
+        <dl>
+            <dt>First Name</dt>
+            <dd class="field">{{ wizard.form.first_name }}</dd>
+
+            <dt>Last Name</dt>
+            <dd class="field">{{ wizard.form.last_name }}</dd>
+
+            <dt>Address 1</dt>
+            <dd class="field">{{ wizard.form.address1 }}</dd>
+
+            <dt>Address 2</dt>
+            <dd class="field">{{ wizard.form.address2 }}</dd>
+
+            <dt>City</dt>
+            <dd class="field">{{ wizard.form.city }}</dd>
+
+            <dt>State</dt>
+            <dd class="field">{{ wizard.form.state }}</dd>
+
+            <dt>Zip Code</dt>
+            <dd class="field">{{ wizard.form.zip_code }}</dd>
+		</dl>
+
+		<div class="clear"></div>
+	</div>
+
+    <div class="actions">
+     {{ previous_fields|safe }}
+      {# if not wizard.form.form_error #}
+      <input type="submit" class="wizard-back-button back-button" value="Back" />
+      {# endif #}
+
+      <input type="submit" class="continue-button" value="Continue" />
+
+      <div class="extra">
+        {% if wizard.form.error %}
+          {% if "has been formatted" in wizard.form.error %}
+          <div class="boxed information">
+            <div class="title">{{ wizard.form.error }}</div>
+          </div>
+     	  {% else %}
+          <div class="boxed error">
+            <div class="title">{{ wizard.form.error|safe }}</div>
+            <div class="details">{{ wizard.form.error_message|default:"Please check the information and try again."|safe }}</div>
+          </div>
+     	  {% endif %}
+        {% endif %}
+      </div>
+
+    </div>
+
+	<script type="text/javascript">
+	  $("#id_1-how_did_you_hear").setupSelect("w190px");
+          $("#id_1-state").setupSelect("w190px");
+	</script>
+</form>
+</div>
+{% endblock %}

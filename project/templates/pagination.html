@@ -1,0 +1,10 @@
+{% ifnotequal pages 1 %}    
+<p class="paginator">
+Search Results ({{ page_item_count }})&nbsp;&nbsp;|&nbsp;&nbsp;Pages:  
+{% if lower_page %}<a href="{{ get_params }}page={{ lower_page }}">prev</a>{% endif %}
+{% for number in page_list %}{% ifequal number "." %}...{% else %}{% ifnotequal number page %}<a href="{{ get_params }}page={{ number }}">{{ number }}</a>{% else %}<b>{{ number }}</b>{% endifnotequal %}  {% endifequal %}{% endfor %}
+{% if higher_page %}<a href="{{ get_params }}page={{ higher_page }}">next</a>{% endif %}
+</p>
+{% else %}
+<p class="paginator">Search Results ({{ page_item_count }})</p>
+{% endifnotequal %}

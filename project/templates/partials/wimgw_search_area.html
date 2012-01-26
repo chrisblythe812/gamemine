@@ -1,0 +1,45 @@
+<div class="search-area">
+  <form method="get">
+    <div class="field">
+      <input id="search-query" type="text" name="q" value="{{ q }}" />
+    </div>
+    <div class="field">
+      <select name="c">
+        <option value="">All Platforms</option>
+      {% for c in categories %}
+        <option value="{{ c.slug }}" {% if current_category == c %}selected="selected"{% endif %}>{{ c.description }}</option>
+      {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <input type="submit" value="Search" />
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $.fn.prepareFormWidgets();
+        $('#intro-wimgw-page-content .search-area input[name=q]').searchbox('Title, Publisher, UPC');
+        $('select[name=c]').setupSelect('w145px');
+        
+        $('#intro-wimgw-page-content .search-area form').ajaxForm({
+          success: function (data, status) {
+            if (status != 'success') {
+              alert('Error');
+              return false;
+            }
+            $('#intro-wimgw-page-content-center').html(data);
+            return false;
+          },
+          beforeSerialize: function () {
+            var c = $('.search-area input[name=q]');
+            if (c.val() == ('Title, Publisher, UPC'))
+              c.val('');
+          }});
+        
+        $('.banner-categories a').removeClass('selected');
+        {% if current_category %}
+        $('#banner-category-{{ current_category.slug }} a').addClass('selected');
+        {% endif %}
+      });
+    </script>
+  </form>
+</div>

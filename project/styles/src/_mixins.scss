@@ -1,0 +1,64 @@
+@import "compass/css3/inline-block";
+
+@mixin inline-block-ex
+{
+  zoom: 1; // IE 7 hack
+  @include inline-block;
+}
+
+@mixin hide-text
+{
+  text-indent: -9999px;
+  overflow: hidden;
+  *text-indent: 0;
+  *line-height: 9999px;
+  vertical-align: top;
+}
+
+@mixin heading-anchor {
+	text-decoration: none;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+@mixin image-anchor($width, $height, $bg) {
+  @include hide-text;
+	width: $width;
+	height: $height;
+	background: $bg;
+	text-align: left;
+}
+
+@mixin sprite-button($left, $top, $width, $height) {
+  @include inline-block-ex;
+	@include image-anchor($width, $height, -$left (0px-$top) url($images_url + 'buttons.png') no-repeat);
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+@mixin sprite-button-block($left, $top, $width, $height) {
+  display: block;
+  @include image-anchor($width, $height, -$left (0px-$top) url($images_url + 'buttons.png') no-repeat);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+@mixin box($color) {
+  margin-top: 20px;
+  padding: 0 0 7px 0;
+  background: url($images_url + 'rb-bottom-' + $color + '.gif') no-repeat left bottom;
+
+  .top {
+    height: 7px;
+    background: url($images_url + 'rb-top-' + $color + '.gif') no-repeat left top;
+  }
+
+  .content {
+    border-left: 2px solid #017bd7;
+    border-right: 2px solid #017bd7;
+  }
+}

@@ -1,0 +1,76 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+{% if attempt >= 1 and attempt <= 4 %}
+  <p>Thank you for being a Gamemine member. We attempted to charge your credit
+  card for the balance due on your rent subscription account. Unfortunately, we
+  were unable to process your {{ credit_card_type }} ending in {{ credit_card_number }}.</p>
+
+  {% if attempt == 1 %}
+    <p>We value your business and hope that you can resolve things by following these steps.</p>
+  {% else %}
+    <p>To keep your games coming, try this:</p>
+  {% endif %}
+{% else %}{% if attempt == 5 %}
+  <p>We can't seem to resolve billing problems with your {{ credit_card_type }}
+  ending in {{ credit_card_number }}. We don't want to cancel your account, so
+  we hope you'll take these three easy steps to help us fix this:</p>
+{% else %}
+  <p>We're sad to see you go! Unfortunately, we were unable to resolve issues
+  with your credit card and had to cancel your account.</p>
+  <p>Please return the following games below on your account by their specified
+  due dates. Failure to do so will result in a replacement fee in the amount of
+  $50.00 plus applicable taxes being charge to your account for each game that
+  is unreturned:</p>
+  <table class="grid">
+    <tr><th>Due Date</th><th>Game Title</th></tr>
+    {% for i in unreturned_orders %}
+    <tr><td>{{ due_date }}</td><td>{{ i.item.short_name }} ({{ i.item.category }})</td></tr>
+    {% endfor %}
+  </table>
+  <p>You can return at any time to reactivate your account by following the
+  below steps:</p>
+{% endif %}{% endif %}
+
+<table>
+<tr>
+  <th valign="top">Step&nbsp;1:</th>
+  <td>Go to: <a href="{{ SITE_URL }}{% url members:payment_method %}">{{ SITE_URL }}{% url members:payment_method %}</a></td></tr>
+<tr>
+  <th valign="top">Step&nbsp;2:</th>
+  <td>Enter your credit card information again or choose a different credit card</td></tr>
+<tr>
+  <th valign="top">Step&nbsp;3:</th>
+  <td>Click on the "Update" button</td></tr>
+</table>
+
+{% if attempt >= 1 and attempt <= 4 %}
+  <p>Your continued business is important to us. If you have any questions at
+  all, please give us a call at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+  <p>Thank you for your prompt attention to this matter.</p>
+{% else %}{% if attempt == 5 %}
+  <p>When you've finished, we'll try to verify your card again. If it still
+  doesn't work, you'll want to contact your credit card company, but we hope it
+  doesn't come to that.</p>
+  <p>Your continued business is important to us. If you have any questions at
+  all, please give us a call at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+{% else %}
+  <p>If we can be of assistance, please visit Customer Service at <a href="{{ help_url }}">{{ help_url }}</a>
+  or call us at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+  <p>We apologize for any inconvenience this may cause.</p>
+{% endif %}{% endif %}
+
+<p>Sincerely,<br/>
+Billing @ Gamemine</p>
+
+{% endblock content %}
+

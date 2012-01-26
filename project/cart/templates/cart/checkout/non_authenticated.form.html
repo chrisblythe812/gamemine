@@ -1,0 +1,7 @@
+{% if step0 == 0 %}
+    {% include "cart/checkout/non_authenticated/step0.html" %}
+{% else %}
+    {% if step0 == 1 %}
+        {% include "cart/checkout/non_authenticated/step1.html" %}
+    {% endif %}
+{% endif %}

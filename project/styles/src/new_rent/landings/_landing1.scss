@@ -1,0 +1,63 @@
+.rent.landings.landing1 {
+    #container {
+        width:982px;
+        min-height:400px;
+        position:relative;
+        z-index:20;
+        margin:0 auto;
+        background-color: #000;
+    }
+
+    .featured_row {
+        width:982px;
+        position:relative;
+        overflow:hidden;
+    }
+
+    .featured_pic_left {
+	width:447px;
+	height:450px;
+	float:left;
+	overflow:hidden;
+	background:url($images_url + "rent/landings/landing1_featured_pic_left.jpg") 0 0 no-repeat;
+
+        .top_rentals_title {
+	    width:400px;
+	    height:47px;
+	    overflow:hidden;
+	    margin:104px 0 30px 25px;
+	    padding:0;
+	    text-indent:-9999px;
+	    line-height:9999px;
+	    background:url($images_url + "rent/landings/text_top_tentals.png") 0 0 no-repeat;
+        }
+
+        #pick-plan1-rotate {
+            background: none;
+            margin-top: -100px;
+        }
+    }
+
+    .featured_pic_right {
+	width:535px;
+	height:450px;
+	float:right;
+	overflow:hidden;
+	text-indent:-9999px;
+	background:url($images_url + "rent/landings/landing1_featured_pic_right.jpg") 0 0 no-repeat;
+    }
+
+    .membership {
+        top:20px;
+	right:6px;
+	background:url($images_url + "rent/landings/pick_membership_bg2.png") 0 0 no-repeat;
+
+    }
+
+    #footer {
+        .free_shipping {
+            background: url($images_url + "rent/landings/free_shipping_dgray.png") 0 0 no-repeat;
+        }
+    }
+
+}

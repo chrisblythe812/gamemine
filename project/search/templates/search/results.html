@@ -1,0 +1,19 @@
+{% extends "search/base.html" %}
+
+{% block head %}{{ block.super }}
+ 	<link href="{{ STATIC_URL }}css/search/search.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+
+{% block content %}
+<ul class="heading">
+	<li class="selected">Search Results</li>
+</ul>
+
+<h1 class="search-results"><a href="{{ search_referer }}"><strong>{{ source }}</strong></a>&nbsp;<strong>&gt;</strong>&nbsp;"{{ title }}"</h1>
+
+<div id="search-results">
+	{% include "search/results-grid.html" %}
+</div>
+
+{% endblock content %}

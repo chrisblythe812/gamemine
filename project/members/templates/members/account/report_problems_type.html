@@ -1,0 +1,24 @@
+{% extends "members/account/account.html" %}
+
+{% block page-class %}{{ block.super }} account-report-problems{% endblock page-class %}
+
+{% block heading %}
+    <li><a href="{% url members:name_and_address %}">Name and Address</a></li>
+    <li><a href="{% url members:payment_method %}">Payment Method</a></li>
+    <li><a href="{% url members:login_and_password %}">Login/Password</a></li>
+    <li><a href="{% url members:billing_history %}">Billing History</a></li>
+    <li class="selected"><a href="{% url members:report_problems %}">Report Problem</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<div id="account-report-problems-content">
+    <h2>To Report Problem, Select Order Type:</h2>
+	<div class="actions" style="text-align: center; padding-top: 30px">
+		<a style="display: block; margin: 0 auto 15px;" href="{% url members:report_claim_type 'Buy' %}" class="buy-button">Buy</a>
+        <a style="display: block; margin: 0 auto 15px;" href="{% url members:report_claim_type 'Trade' %}" class="trade-button">Trade</a>
+        <a style="display: block; margin: 0 auto 15px;" href="{% url members:report_claim_type 'Rent' %}" class="rent-button">Rent</a>
+	</div>
+</div>
+
+{% endblock page-content %}

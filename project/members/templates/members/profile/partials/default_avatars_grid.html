@@ -1,0 +1,56 @@
+<div class="paginator">
+    <em>Page:</em> 
+	{% for p in default_images.paginator.page_range %}
+	   {% if p == default_images.number %}<span class="current">{{ p }}</span>{% else %}<a href="{% url members:profile_image_defaults %}?p={{ p }}">{{ p }}</a>{% endif %}
+	   {% if not forloop.last %} | {% endif %}
+	{% endfor %}
+</div>
+<ul>
+{% for img in default_images.object_list %}
+    <li>
+        <a href="?set={{ img|urlize }}"><img width="160" height="160" src="{{ img }}" /></a>
+    </li>
+{% endfor %}
+</ul>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#page-profile-image-default-images .paginator a').each(function (index, a) {
+      var a = $(a),
+          href = a.attr('href');
+      a.attr('href', '#');
+      a.click(function () {
+        $.get(href, function (data, status) {
+          $('#page-profile-image-default-images')
+            .empty()
+            .append(data);
+        });
+        return false;				
+      });
+    });
+
+    $('#page-profile-image-default-images ul a').each(function (index, a) {
+      var a = $(a),
+          img_src = a.find('img').attr('src');
+      a.attr('href', '#');
+
+      var partials = img_src.split('/'),
+          filename = partials[partials.length - 1];
+
+      a.click(function () {
+        var $form = $('.form2');
+        $form.find('input[name="set"]').val(filename);
+
+        $.post($form.attr('action'), $form.serialize(),
+          function(data) {
+            if (data.success)
+              $('#current-profile-image img').attr('src', img_src);
+            else
+              alert('Can\'t change image. Unknown error.');
+          },
+          'json');
+
+        return false;
+      });
+    });
+  });
+</script>

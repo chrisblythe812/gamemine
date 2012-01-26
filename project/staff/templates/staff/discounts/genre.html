@@ -1,0 +1,32 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<form method="post">{% csrf_token %}
+  {{ formset.management_form }}
+<div class="module">
+  <table>
+    <thead>
+      <tr>
+        <td>Genre</td>
+        <td>New, %</td>
+        <td>Used, %</td>
+        <td>Trade Complete, %</td>
+      </tr>  
+    </thead>
+    <tbody>
+    {% for form in formset.forms %}
+      <tr>
+        <td>{{ form.instance.genre.name }}{{ form.id }}</td>
+        <td>{{ form.ajdust_percent_new }}{{ form.ajdust_percent_new.errors }}</td>
+        <td>{{ form.ajdust_percent_used }}{{ form.ajdust_percent_used.errors }}</td>
+        <td>{{ form.adjust_trade_complete }}{{ form.adjust_trade_complete.errors }}</td>
+      </tr>  
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="actions"><input type="submit" value="Save values" /></div>
+</div>
+</form>
+
+{% endblock right %}

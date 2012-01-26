@@ -1,0 +1,129 @@
+<div class="module" style="width: 800px">
+  <h2>Entries</h2>
+
+<div style="margin: 10px;">
+  
+  <h3>{{ item.short_name }} ({{ item.category }})</h3>
+
+  <div>
+    <input type="checkbox" id="id_select_all_unassigned"/><label for="id_select_all_unassigned">Select all {% if dc_code == 'GMS' %}unassigned{% else %}not in stock{% endif %} games</label>
+  </div>
+
+  <form id="id_form_in_stock" action="{% url staff:entries dc_code item.id %}" method="post">
+    {% csrf_token %}
+  
+  <div>
+    <table style="width: 100%;">
+      <tr>
+        <th>&nbsp;</th>
+        <th>Barcode</th>
+        <th>Status</th>
+        <th>Source</th>
+        <th>New/Used</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tbody>
+    {% for inventory in inventories %}
+      <tr>
+        <td>{% if inventory.status == 0 %}<input type="checkbox" name="checked_inventory_{{ inventory.id }}" class="checked_inventory"/>{% else %}--{% endif %}</td>
+        <td>{{ inventory.barcode|default:"Not assigned" }}</td>
+        <td>{{ inventory.get_status_str }}</td>
+        <td>
+          {% if inventory.purchase_item %}
+            Purchased. Order: {{ inventory.purchase_item.order.order_no }}
+          {% endif %}
+          {% if inventory.trade_item.all %}
+            Trade Order: {{ inventory.trade_item.all.0.order.order_no }}
+          {% endif %}
+        </td>
+        <td>{{ inventory.is_new|yesno:"New,Used" }}</td>
+        <td>
+          {% if inventory.barcode %}
+            <input type="checkbox" class="tyvek_checkbox" value="{{ inventory.id }}" /> <a href="{% url inventory_tyvek inventory.id %}" target="_blank">Print Tyvek</a>
+          {% else %}
+            &nbsp;
+          {% endif %}
+        </td>
+        <td>
+          {% if can_unreconcile %}
+          <button class="unreconcile" barcode="{{ inventory.barcode }}" style="margin-left: 20px;">Unreconcile</button>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+      </tbody>
+    {% if inventories %}
+      <tr>
+        <td colspan="5">&nbsp;</td>
+        <td><a href="{% url staff:entries dc_code item.id %}?print" target="_blank" id="batch_print">Batch Print</a></td>
+        <td>&nbsp;</td>
+      </tr>
+    {% endif %}
+    </table>
+  </div>
+
+    <div>
+      {% if dc_code == 'GMS' %}
+      <label>Assign items to DC:</label> 
+      <select name="dc">
+        {% for dc in dcs %}
+        <option value="{{ dc.code }}">{{ dc.code }}</option>
+        {% endfor %}
+      </select>
+      {% endif %}
+      <input type="submit" value="{% if dc_code == 'GMS' %}Assign{% else %}In Stock{% endif %}"/>
+    </div>
+    
+    <div><button onclick="$.colorbox.close(); window.location.reload(); return false;">Close</button></div>
+  </form>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $('#id_select_all_unassigned').click(function(){
+    $('.checked_inventory').attr('checked', $(this).is(':checked'));
+  });
+  
+  $('#id_form_in_stock').ajaxForm(function(d){
+    $.colorbox.close();
+    location.reload();
+  });
+  
+  $('#batch_print').click(function () {
+    var ids = [];
+    $('.tyvek_checkbox').each(function () {
+      var c = $(this).attr('checked');
+      if (c)
+        ids.push($(this).val());
+    });
+    {% if inventories and dc_code %}
+    $(this).attr('href', '{% url staff:entries dc_code item.id %}?print=' + ids.join(','));
+    {% endif %}
+  });
+  
+  $('.unreconcile').click(function () {
+    if (!confirm('Are you sure you want to mark item as Unreconciled?'))
+      return false;
+
+    var href = "{% url staff:entries dc_code item.id %}?unreconcile=" + $(this).attr('barcode');
+    $.get(href, function (data, status) {
+      if (status != 'success') 
+        return;
+        
+      var w = $(data).attr('width');
+      if (w) {
+        $.fn.colorbox.resize({width: w});
+        $.fn.colorbox.setContent(data);
+      }
+      else {
+        $.fn.colorbox.setContent(data);
+        $.fn.colorbox.resize();
+      }
+    });
+    
+    return false;
+  });
+</script>

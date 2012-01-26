@@ -1,0 +1,301 @@
+@import "mixins";
+@import "constants";
+@import "compass/css3";
+
+
+#cart-heading {
+	.anchor-apply-credits {
+		color: #666;
+		font-weight: bold;
+		font-size: 11px;
+	}
+	
+	.total {
+		margin: 0 40px 0 20px;
+	}
+}
+
+.cart-index {
+	.total {
+		color: #e30e17;
+		font-size: 20px;
+		font-weight: bold;
+		margin: 0 15px 0 20px;
+	}
+}
+
+#cart-index-content {
+	//background: rgba(255, 255, 0, .3);
+	
+	width: 100%;
+	
+	#cart-table {
+		th {
+			font-size: 11px;
+			height: 30px;
+			font-weight: bold;
+			color: #e30e17;
+			width: 60px;
+			text-align: center;
+			padding: 0 10px;
+			
+			&.column-game-title {
+				padding-left: 5px;
+				border-left: none;
+			}
+			
+			&.column-order-summary {
+				font-size: 13px;
+			}
+		}
+
+        tr.cart-table-item-row {
+            height: 100px;
+            
+            td {
+                // border-bottom: 1px solid red !important;
+                height: 100px;
+            }
+        }
+        
+        tr.cart-table-item-spacer {
+            height: 100%;
+        }
+
+		td {
+			text-align: center;
+			background: #f3f3f3;
+			border-left: 2px solid #fff;
+			padding: 10px 5px;
+			font-size: 12px;
+			font-weight: bold;
+			color: #666;
+			// height: 47px;
+
+			&.column-game-title { 
+				background: #f7f7f7; 
+				border-left: none;
+			}
+
+			&.column-order-summary {
+				background: #dbdbdb right top url($images_url + 'cart/cart-summary-bg.gif') repeat-y;
+				font-weight: normal;
+				vertical-align: top;
+			}
+		}
+			
+		.column-game-title {
+			width: 205px;
+			text-align: left;
+			padding-left: 75px;
+			
+			.row-counter {
+                position: absolute;
+                margin: -15px 0 0 -65px;
+                line-height: 42px;
+			}
+			
+			img {
+				position: absolute;
+				margin: -15px 0 0 -45px;
+			}
+			
+			a {
+				@include heading-anchor;
+				color: #666;
+			}
+		}
+		
+		.column-condition {
+            a {
+                color: #666;
+            }
+		}
+		
+		.column-quantity {
+			input {
+				width: 40px;
+				text-align: center;
+			}
+			
+			a {
+                font-weight: normal;
+			}
+		}
+		
+		.column-price {
+            width: 80px;
+		}
+		
+		.column-order-summary {
+			width: 260px;
+			text-align: left;
+		}
+	}
+	
+	.bottom-actions {
+		text-align: right;
+		padding: 20px 15px 0 0;
+		
+		.update-cart-items {
+			// background: rgba(255, 255, 0, .3);
+			float: left;
+			line-height: 23px;
+			height: 23px;
+			font-size: 14px;
+			font-weight: bold;
+			color: #333;
+			
+			a {
+				margin-left: 5px;
+			}
+		}
+		
+		span {
+			display: block;
+			margin-bottom: 10px;
+		}
+		
+        .actions {
+            // background: rgba(255, 255, 0, .3);
+        }
+
+        .continue-shopping-button {
+            margin-right: 10px;
+        }
+	}
+	
+	#order-summary {
+		// background: rgba(255, 255, 0, .3);
+		margin: 0 5px 50px;
+		font-size: 12px;
+	
+		h3 {
+			// background: rgba(255, 255, 0, .3);
+			font-size: 12px;
+			font-weight: normal;
+			
+		}
+		
+		div.spacer {
+		  clear: both;
+		  margin-bottom: 20px;
+		  height: 0;
+		}
+		
+		dl {
+		  clear: both;
+			// padding-bottom: 20px;
+
+			dt {
+				// background: rgba(255, 255, 0, .3);
+				
+				width: 160px;
+        display: block;
+        float: left;
+        clear: both;
+			}
+			
+			dd {
+				// background: rgba(255, 255, 0, .3);
+				
+				width: 75px;
+				margin-left: 10px;
+        display: block;
+        float: right;
+				text-align: right;
+				color: #fff;
+				font-weight: bold;
+			}
+		}
+
+		dl.order-items {
+			dt {
+				height: 2.5em;				
+				font-weight: bold;
+			}
+			
+			dd {
+				height: 2.5em;				
+			}
+		}
+		
+		.payment-details {
+			.card-number {
+				height: 19px;
+				line-height: 19px;
+				padding-left: 32px;
+				background: left center no-repeat;
+				margin-bottom: 20px;
+			}
+			
+			.visa { background-image: url($images_url + 'cclogos/visa.gif'); }
+			.master-card { background-image: url($images_url + 'cclogos/mastercard.gif'); }
+			.american-express { background-image: url($images_url + 'cclogos/american_express.gif'); }
+			.discover { background-image: url($images_url + 'cclogos/discover.jpg'); }
+		}
+	}
+    
+    .coupon {
+        // background: rgba(255, 255, 0, .3);
+        
+        dt {
+            // background: rgba(255, 0, 0, .3);
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        dd {
+            // background: rgba(255, 0, 0, .3);
+            margin: 2px -5px 0 0 !important;
+            padding: 0 !important;
+            float: right;
+        }
+        
+        input[type=text] {
+            margin: 0 !important;
+            padding: 0 4px !important;
+            height: 20px;
+            line-height: 20px;
+            width: 152px;
+        }
+        
+        .hint {
+            // background: rgba(255, 255, 0, .3);
+            display: block;
+            font-size: 11px;
+            margin: 2px 0 0;
+            width: 160px;
+            text-align: center;
+            font-style: italic;
+        }
+    }
+
+    .coupon-apply {
+        display: block;
+        width: 75px;
+        height: 14px;
+        border: none;
+        background: url($images_url + 'cart/apply.gif') no-repeat;
+        @include hide-text;
+        cursor: pointer;
+    }
+}
+
+.coupon-input {
+    width: 160px;
+    height: 20px;
+    line-height: 20px;
+    color: white;
+    font-size: 9px;
+    padding: 0 3px;
+    border: none;
+    background: url($images_url + 'cart/coupon-input.gif') no-repeat;
+}
+
+.order-discounts {
+  .discounted {
+    padding-left: 19px;
+    background: left center url($images_url + 'intro/buy2/tag-s.png') no-repeat;
+  }
+}

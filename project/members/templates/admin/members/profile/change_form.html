@@ -1,0 +1,170 @@
+{% extends "admin/change_form.html" %}
+
+{% block after_related_objects %}
+<div class="module">
+<h2>Sales Statistics</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Website</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Lifetime Sales</th>
+    <th>Average Sale</th>
+  </tr>
+</thead>
+<tbody>
+  <tr class="row1">
+    <td>Buy</td>
+    <td>{{ stat.buy.last_date|date }}</td>
+    <td>{{ stat.buy.status }}</td>
+    <td>${{ stat.buy.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.buy.earned_avg|floatformat:2 }}</td>
+  </tr>
+  <tr class="row2">
+    <td>Trade</td>
+    <td>{{ stat.trade.last_date|date }}</td>
+    <td>{{ stat.trade.status }}</td>
+    <td>${{ stat.trade.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.trade.earned_avg|floatformat:2 }}</td>
+  </tr>
+  <tr class="row1">
+    <td>Rent</td>
+    <td>{{ stat.rent.last_date|date }}</td>
+    <td>{{ stat.rent.status }}</td>
+    <td>${{ stat.rent.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.rent.earned_avg|floatformat:2 }}</td>
+  </tr>
+</tbody>
+<tbody class="total">
+  <tr>
+    <td colspan="3">All Store Views</td>
+    <td>${{ stat.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.earned_avg|floatformat:2 }}</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<div class="module">
+<h2>Recent Orders</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Order #</th>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Grand Total</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  {% if last_order.buy %}
+  <tr>
+    <td>{{ last_order.buy.id|stringformat:"08d" }}</td>
+    <td>{{ last_order.buy.create_date|date:"m/d/y g:i:s A" }}</td>
+    <td>Buy</td>
+    <td>{{ last_order.buy.status }}</td>
+    <td>${{ last_order.buy.total|floatformat:2 }}</td>
+    <td><a href="#">View</a></td>
+  </tr>
+  {% endif %}
+  {% if last_order.trade %}
+  <tr>
+    <td>{{ last_order.trade.order_no }}</td>
+    <td>{{ last_order.trade.create_date|date:"m/d/y g:i:s A" }}</td>
+    <td>Trade</td>
+    <td>{{ last_order.trade.status }}</td>
+    <td>${{ last_order.trade.total|floatformat:2 }}</td>
+    <td><a href="#">View</a></td>
+  </tr>
+  {% endif %}
+  {% if last_order.rent %}
+  <tr>
+    <td>{{ last_order.rent.order_no }}</td>
+    <td>{{ last_order.rent.last_date|date:"m/d/y g:i:s A" }}</td>
+    <td>Rent</td>
+    <td>{{ last_order.rent.status }}</td>
+    <td>&mdash;</td>
+    <td><a href="#">View</a></td>
+  </tr>
+  {% endif %}
+</tbody>
+</table>
+</div>
+
+<div class="module">
+<h2>Shopping Cart</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Title</th>
+    <th>Platform</th>
+    <th>Quantity</th>
+    <th>Condition</th>
+    <th>Price</th>
+  </tr>
+</thead>
+<tbody>
+  {% for item in cart.items.all %}
+  <tr class="{% cycle 'row1' 'row2' %}">
+    <td>{{ item.item.id|stringformat:"08d" }}</td>
+    <td>{{ item.item.short_name }}</td>
+    <td>{{ item.item.category }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{% if item.is_new %}New Game{% else %}Used Game{% endif %}</td>
+    <td>${{ item.get_retail_price|floatformat:2 }}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+<tbody class="total">
+  <tr>
+    <td colspan="3">&nbsp;</td>
+    <td>{{ cart.size }}</td>
+    <td>&nbsp;</td>
+    <td>${{ cart_total }}</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<!-- Buy List -->
+
+<div class="module">
+<h2>Trade List</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Title</th>
+    <th>Platform</th>
+    <th>Condition</th>
+    <th>UPC</th>
+    <th>Value</th>
+  </tr>
+</thead>
+<tbody>
+{% for item in trade_list %}
+  <tr class="{% cycle 'row1' 'row2' %}">
+    <td>{{ item.item.id|stringformat:"08d" }}</td>
+    <td>{{ item.item.short_name }}</td>
+    <td>{{ item.item.category }}</td>
+    <td>{% if item.is_complete %}Complete Game{% else %}Incomplete Game{% endif %}</td>
+    <td>{{ item.item.upc }}</td>
+    <td>${{ item.get_price|floatformat:2 }}</td>
+  </tr>
+{% endfor %}
+</tbody>
+<tbody class="total">
+  <tr>
+    <td colspan="5">&nbsp;</td>
+    <td>${{ cart_total }}</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+{% endblock %}
+

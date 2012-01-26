@@ -1,0 +1,11 @@
+<div id="page-heading">
+    {% block messages %}
+      {% for message in messages %}
+        <span class="msg">{{ message }}</span>
+      {% endfor %}
+    {% endblock %}
+	<h1>My Account</h1>
+	<img id="page-heading-user-avatar" src="{{ user.get_profile.get_icon_url }}" width="60" height="60" />
+	<div id="page-heading-user">Hi, {{ user.get_profile }}</div>
+  {% block store-credits %}{% endblock store-credits %}
+</div>

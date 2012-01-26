@@ -1,0 +1,18 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Dear {{ user.first_name|default:user.username }},</p>
+
+<p>Due to infractions of our Terms of Use, your Gamemine profile and account
+has been suspended indefinitely. Any attempts to log in to your account on the
+Gamemine website will be denied.</p>
+
+<p>If you feel that you have received this in error, please visit Customer
+Service at http://www.gamemine.com/Contact-Us or call us at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+
+<p>- The Gamemine Team.</p>
+
+{% endblock content %}

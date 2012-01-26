@@ -1,0 +1,24 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ order.user.first_name|default:order.user.username }}, 
+
+<p>Your Order #{{ order.get_order_number }} which you recently submitted has been processed and 
+  shipped via USPS to:</p>
+  
+<p><strong>{{ order.first_name }} {{ order.last_name }}<strong></br>
+{{ order.shipping_address1 }}</br>
+{% if order.shipping_address2 %}{{ order.shipping_address2 }}</br>{% endif %}
+{{ order.shipping_city }} {{ order.shipping_state }}, {{ order.shipping_zip_code }}</p>
+
+<p>Please allow 5 to 7 business days for your order to arrive.</p>
+
+<p>If you have any questions about your order, please contact us at <a href="mailto:customerservice@gamemine.com">customerservice@gamemine.com</a> 
+    or call us at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+ 
+<p>- The Gamemine Team</p> 
+  
+{% endblock content %}

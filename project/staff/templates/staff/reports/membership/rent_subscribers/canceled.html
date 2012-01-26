@@ -1,0 +1,70 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module" style="border: none">
+
+  <a class="excel-link float-right" href="#">Download XLS</a>
+
+  <table style="width: 2500px">
+    <tr>
+      <th>Member ID</th> 
+      <th>Login ID</th>  
+      <th>Member Name</th> 
+      <th>Address</th> 
+      <th>City</th>  
+      <th>State</th> 
+      <th>Zip Code</th>  
+      <th>Home DC</th> 
+      <th>Phone Number</th>  
+      <th>Registration Date</th> 
+      <th>Cancellation Date</th> 
+      <th>Last Login Date</th> 
+      <th>Account Status</th>
+      <th>Games Out</th> 
+      <th>Games In</th> 
+      <th>Rental Queue</th> 
+      <th>Days Active</th> 
+      <th>Promo Code</th>  
+      <th>CID</th> 
+      <th>SID</th> 
+      <th>Ip Address</th>  
+      <th>Plan Type</th> 
+      <th>Reason</th>  
+      <th>Billing Cycles</th>
+    </tr>
+  {% for d in data %}
+    <tr>
+      <td>{{ d.user.id }}</td>
+      <td>{{ d.user.email|default:d.user.username }}</td>
+      <td><a href="{% url staff:customer_view d.user.id %}">{{ d.user.get_full_name }}</td>
+      <td>{{ d.user.profile.shipping_address1 }} {{ d.profile.shipping_address2 }}</td>
+      <td>{{ d.user.profile.shipping_city }}</td>
+      <td>{{ d.user.profile.shipping_state }}</td>
+      <td style="width: 80px">{{ d.user.profile.shipping_zip }}</td>
+      <td>{{ d.user.profile.dropship.code|default:"--" }}</td>
+      <td style="width: 100px">{{ d.user.profile.phone|default:"" }}</td>
+      <td style="width: 75px">{{ d.user.date_joined|date }}</td>
+      <td style="width: 75px">{{ d.finish_date|date }}</td>
+      <td style="width: 75px">{{ d.user.last_login|date }}</td>
+      <td>{{ d.get_status_display }}</td>
+      <td>{{ d.get_games_out_amount }}</td>
+      <td>{{ d.get_games_in_amount }}</td>
+      <td>{{ d.user.rentlist_set.all|length }}</td>
+      <td>{{ d.get_active_days.days }}</td>
+      <td></td>
+      <td style="width: 150px">{{ d.user.profile.get_campaign_cid_display }}</td>
+      <td></td>
+      <td></td>
+      <td>{{ d.get_plan_display }}</td>
+      <td>{{ d.get_cancel_reason }}</td>
+      <td>{{ d.get_billing_cycles }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+  
+  {% pagination %}
+</div>
+
+{% endblock right %}

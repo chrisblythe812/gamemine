@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}Trade Xbox, PS3, PS2, PSP, Wii, DS – Highest Values!{% endblock %}
+{% block meta-description %}Gamemine offers more than 7,000 game titles to Buy, Trade or Rent online by mail - New Video Game Releases, Preowned and Used Video Games right from the comfort of your home. All your video game needs in one place all the time. – The Game Station!{% endblock meta-description %}
+{% block meta-keywords %}trade video games, trade n games, video game trade values, play n trade video games, trade n play video games, where to buy video games, video game trade value, swap video games, trade in value video games, trade in video games value, buy and trade video games, trade in values video games, trade video games online, trade used video games, trade video games for cash, trade in video games for cash, play and trade video games, trade in used video games, trade in values for video games, trade in value for video games, trade in videogames, trade video games free, trade in old video games, trade in video games online, trade in value of video games, play & trade video games, where can i trade video games, what is my video game worth, what is my game worth, what is my games worth, what is my video games worth, whats my video game worth, whats my game worth, we buy video games, stores that trade video games{% endblock meta-keywords %}
+
+{% block head %}
+  <link href="{{ STATIC_URL }}css/editor.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="{{ STATIC_URL }}js/intro.js?rev={{ REV }}"></script>
+
+  <script type="text/javascript">
+  var catalogConfig = {
+    autoFilter: {{ auto_filter|yesno:"true,false" }},
+    mediaUrl: "{{ STATIC_URL }}"
+  };
+  </script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/catalog.js?rev={{ REV }}"></script>
+{% endblock %}
+
+{% block page-class %}banner-page intro-trade2-page intro2-page{% endblock %}
+
+{% block content-header %}
+  <div class="banner-featured-game">
+    <div class="banner-content">
+      <div class="banner-header"></div>
+
+      <a href="{% url catalog:index %}" id="item-catalog-index">
+        <div class="link-content"></div>
+      </a>
+    </div>
+
+    <div class="banner-carousel">
+      <div id="intro-best-sellers">
+        <ul id="intro-carousel" class="games-thumb-list">
+        {% for i in hot_trades %}
+          <li>
+            <div class="catalog-item-2">
+              <a class="image" href="{{ i.get_absolute_url }}"><img src="{{ i.get_thumb_image3 }}" width="120" height="160" /></a>
+
+              <div class="title"><a href="{{ i.get_absolute_url }}" title="{{ i }}">{{ i.get_cropped_name_15 }}</a></div>
+              <div class="price">{{ i.get_trade_value_display }}</div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="banner-categories">
+      <ul>
+        {% for c in CATALOG_CATEGORIES %}
+        <li id="banner-category-{{ c.0 }}"{% if forloop.last  %} class="last-item"{% endif %}><a href="{% url catalog:category c.0 %}"{% if category.slug == c.0 %} class="current"{% endif %}><span>{{ c.1 }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock content-header %}
+
+{% block content %}
+
+<div id="intro-trade2-page-content">
+
+  <div id="catalog-grid">
+    <div id="catalog-grid-title">
+      <div class="legend">
+        = Hot Trade
+      </div>
+
+      <div class="paginator">
+        {% if page_range.left_end %}
+          {% for p in page_range.left_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+          ...
+        {% endif %}
+        {% for p in page_range.range %}
+          {% ifequal p page.number %}
+          <span class="current">{{ p }}</span>
+          {% else %}
+          <a href="?p={{ p }}">{{ p }}</a>
+          {% endifequal %}
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+        {% if page_range.right_end %}
+          ...
+          {% for p in page_range.right_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div id="catalog-grid-content">
+      <ul class="catalog-items{% if not page.object_list %} empty{% endif %}">
+      {% for item in page.object_list %}
+        <li class="catalog-item" id="catalog-item-{{ item.id }}">
+          <div class="catalog-item-record">
+            <div class="catalog-item-cover{% if not item.get_catalog_grid_cover %} empty{% endif %}">
+              <a href="{{ item.get_absolute_url }}" title="{{ item }}">
+              {% if item.get_catalog_grid_cover %}
+                <img src="{{ item.get_cover }}" width="170" height="220" />
+              {% else %}
+                {{ item }}
+              {% endif %}
+              </a>
+            </div>
+            <div class="catalog-item-title">
+              <a href="{{ item.get_absolute_url }}" title="{{ item }}"><span>{{ item.get_cropped_name }}</span></a>
+              <div class="catalog-item-title-overlay"></div>
+            </div>
+            <div class="catalog-item-category">
+              {{ item.category }}
+            </div>
+            <div class="catalog-item-trade-value">
+              <span{% if item.is_hot_trade %} class="hot-trade"{% endif %}>{{ item.get_trade_value_display }}</span>
+            </div>
+            <div class="catalog-item-actions">
+              <a href="{% url cart:add item.id %}" class="link-dialog catalog-item-action-buy" title="Buy">Buy</a>
+              <a href="{% url trade:add item.id %}" class="link-dialog catalog-item-action-trade" title="Trade">Trade</a>
+              <a href="{% url rent:add item.id %}" class="link-dialog catalog-item-action-rent" title="Rent">Rent</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+
+    <div id="catalog-grid-footer">
+      <div class="paginator">
+        {% if page_range.left_end %}
+          {% for p in page_range.left_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+          ...
+        {% endif %}
+        {% for p in page_range.range %}
+          {% ifequal p page.number %}
+          <span class="current">{{ p }}</span>
+          {% else %}
+          <a href="?p={{ p }}">{{ p }}</a>
+          {% endifequal %}
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+        {% if page_range.right_end %}
+          ...
+          {% for p in page_range.right_end %}
+            <a href="?p={{ p }}">{{ p }}</a>
+            {% if not forloop.last %}|{% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div id="catalog-sidebar">
+    <div id="catalog-sidebar-filters">
+      <div class="sidebar-block checkbox-block-type-1">
+        <h4>Genres</h4>
+        <ul id="genres-filter">
+          <li class="checked"><input type="checkbox" class="first" id="genre-all" checked="true" /><label for="genre-all">View All <span>({{ all_games_count }})</span></label></li>
+        {% for g in genres %}
+          <li><input name="genre" class="other" type="checkbox" id="genre-{{ g.id }}" /><label for="genre-{{ g.id }}">{{ g.name }} <span>({{ g.item_count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-1">
+        <h4>Date Released</h4>
+        <ul id="years-filter">
+          <li class="checked"><input type="checkbox" class="first" id="years-all" checked="true" /><label for="years-all">View All <span>({{ all_games_count }})</span></label></li>
+        {% for y in years %}
+          <li><input name="year" class="other" type="checkbox" id="year-{{ y.year }}" /><label for="year-{{ y.year }}">{{ y.year }} <span>({{ y.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block checkbox-block-type-2">
+        <h4>User Rating</h4>
+        <ul id="rating-filter">
+        {% for r in ratings %}
+          <li><input name="rating" class="other" type="checkbox" id="rating-{{ r.rating }}" /><label for="rating-{{ r.rating }}">{{ r.rating }} stars <span>({{ r.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-2">
+        <h4>Trade Value</h4>
+        <ul id="trade-filter">
+        {% for r in trade %}
+          <li><input name="trade" class="other" type="checkbox" id="trade-{{ r.id }}" /><label for="trade-{{ r.id }}">{{ r.text }} <span>({{ r.count }})</span></label></li>
+        {% endfor %}
+          <li><input type="checkbox" id="goto-wimgw" /><label for="goto-wimgw">What is My Game Worth?</label></li>
+        </ul>
+      </div>
+      <div class="sidebar-block checkbox-block-type-2">
+        <h4>ESBR Ratings</h4>
+        <ul id="esrb-filter">
+        {% for r in esrb %}
+          <li><input name="esrb" class="other" type="checkbox" id="esrb-{{ r.id }}" /><img src="{{ r.image.url }}" height="30" /><label for="esrb-{{ r.id }}"> {{ r.title }} <span>({{ r.item_count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-3">
+        <h4>Coming soon</h4>
+        <ul id="coming-filter">
+        {% for g in coming %}
+          <li><input name="coming" type="checkbox" id="coming-{{ g.id }}" /><label for="coming-{{ g.id }}">{{ g.name }} <span>({{ g.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="clear">&nbsp;</div>
+ {%if offer_msg%}
+  <div class="bottom-message" style="color: #000;">
+    {%autoescape off%}
+    {{offer_msg}}
+    {%endautoescape%}
+  </div>
+  {%endif%}
+
+
+</div>
+
+{% endblock content %}

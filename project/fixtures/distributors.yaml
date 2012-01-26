@@ -1,0 +1,31 @@
+- model: inventory.distributor
+  pk: 1
+  fields:
+    name: Alpha
+    address: Alpha address
+    
+- model: inventory.distributor
+  pk: 2
+  fields:
+    name: Jack
+    address: Jack address
+    
+- model: inventory.distributor
+  pk: 3
+  fields:
+    name: Visco
+    address: Visco address
+    
+- model: inventory.distributor
+  pk: 4
+  fields:
+    name: Used Games Vendor
+    address: Used Games Vendor address
+    new_games_vendor: False
+    
+- model: inventory.distributor
+  pk: 5
+  fields:
+    name: Ingram
+    address: Ingram Addree
+    new_games_vendor: True

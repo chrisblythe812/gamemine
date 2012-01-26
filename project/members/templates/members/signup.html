@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ul class="heading">
+	<li><a href="{% url members:login %}">Sign In</a></li>
+	<li class="selected"><a href="{% url members:signup %}">Create an account</a></li>
+</ul>
+
+{% include "members/signup.form.html" %}
+
+{% endblock content %}

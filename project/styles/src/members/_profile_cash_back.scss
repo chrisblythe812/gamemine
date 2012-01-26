@@ -1,0 +1,187 @@
+@import "constants";
+@import "mixins";
+
+.profile-cash-back {
+
+    #id_cash_out_method {
+        margin: 0 auto;
+        width: 744px;
+        height: 44px;
+        background: url($images_url + 'profile/cash-out-bgs.png') no-repeat;
+        padding: 18px 0 0 0;
+
+        #id_cash_out_method_wrapper {
+            margin: 0 auto;
+            width: 390px;
+
+            label {
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                float: left;
+                line-height: 21px;
+            }
+
+            .select {
+                float: right;
+            }
+        }
+    }
+
+    #id_cash_out_amount {
+        margin: 10px auto 0;
+        width: 744px;
+        height: 44px;
+        background: 0 -62px url($images_url + 'profile/cash-out-bgs.png') no-repeat;
+        padding: 18px 0 0 0;
+
+        #id_cash_out_amount_wrapper {
+            margin: 0 auto;
+            width: 460px;
+            height: 23px;
+
+            label {
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                line-height: 23px;
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                line-height: 23px;
+            }
+
+            .input {
+                @include inline-block-ex;
+                width: 65px;
+                *position: relative;
+                *top: 4px;
+
+                input.right {
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    #id_cash_out_rate {
+        margin: 10px 0;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .cash_out_module {
+        margin: 10px auto 10px;
+        width: 744px;
+
+        .header {
+            height: 48px;
+            background: 0 -124px url($images_url + 'profile/cash-out-bgs.png') no-repeat;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            line-height: 33px;
+        }
+
+        .content {
+            border-left: 1px #333 solid;
+            border-right: 1px #333 solid;
+        }
+
+        .footer {
+            height: 12px;
+            background: 0 -168px url($images_url + 'profile/cash-out-bgs.png') no-repeat;
+        }
+    }
+
+    #id_cash_out_confirmation {
+        .money-amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        #id_cash_out_selected {
+            padding: 10px 0 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .left,
+        .right {
+            width: 351px;
+            float: left;
+            font-size: 14px;
+            color: #333;
+            padding: 0 10px 0;
+        }
+
+        .left {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        #id_cash_out_change_address {
+            float: right;
+            font-size: 12px;
+            height: 15px;
+            line-height: 15px;
+            position: relative;
+            top: -15px;
+        }
+
+        .inputs {
+            display: none;
+            padding: 2px 0;
+        }
+
+        label {
+            width: 90px;
+            float: left;
+        }
+        .input {
+            margin-left: 90px;
+            width: 200px;
+        }
+        .select {
+            margin-left: 90px;
+        }
+    }
+
+    #id_cash_out_submit {
+        text-align: center;
+    }
+
+    #id_cash_out_no_data_message {
+        text-align: center;
+        color: #0066cc;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    table {
+        .col1 { width: 140px; }
+        .col2 { width: 140px; font-weight: bold; }
+        .col3 { width: 140px; font-weight: bold; }
+        .col4 { width: 95px; }
+        .col5 { width: 100px; }
+
+        th {
+            border-bottom: 1px #808080 solid;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        th, td {
+            padding: 0 0 0 12px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 12px;
+        }
+    }
+}

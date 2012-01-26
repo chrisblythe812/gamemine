@@ -1,0 +1,123 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+{% if message %}
+<div style="margin-bottom: 20px; border: 1px solid black; padding: 10px; background: #FDFDD2;">
+    {{ message|safe }}
+</div>
+{% endif %}
+
+<form method="post" id="check-form">{% csrf_token %}
+
+{% if found_item %}
+<div style="margin-bottom: 20px; border: 1px solid black; padding: 10px; background: #FDFDD2;">
+    Found item:
+    
+    <hr />    
+    
+    <table cellpadding="5">
+      <tr>
+        <th align="left">Item</th>
+        <th>Platform</th>
+        <th>UPC</th>
+      </tr>
+      <tr>
+        <td><a href="{{ item.get_absolute_url }}" target="_blank">{{ found_item }}</a></td>
+        <td align="center">{{ found_item.category }}</td>
+        <td align="center">{{ found_item.upc }}</td>
+      </tr>
+    </table>
+</div>
+{% endif %}
+
+
+{% if item %}
+<div style="margin-bottom: 20px; border: 1px solid black; padding: 10px 10px 10px 70px; background: #FDFDD2 10px 10px url({{ STATIC_URL }}img/attention-y.gif) no-repeat;">
+    Please confirm the item:
+    
+    <hr />    
+    
+    <table cellpadding="5">
+      <tr>
+        <th>Inventory ID</th>
+        <th align="left">Item</th>
+        <th>Platform</th>
+        <th>Condition</th>
+        <th>UPC</th>
+        <th>DC</th>
+      </tr>
+      <tr>
+        <td align="center">{{ barcode }}</td>
+        <td><a href="{{ item.get_absolute_url }}" target="_blank">{{ item }}</a></td>
+        <td align="center">{{ item.category }}</td>
+        <td align="center">{{ is_new|yesno:"NG,UG" }}</td>
+        <td align="center">{{ item.upc }}</td>
+        <td align="center">{{ dc.code }}</td>
+      </tr>
+    </table>
+    {{ form }}
+    
+    <hr />    
+    
+    <div>
+      <input type="submit" name="action" value="Confirm this item" />
+      <a href='#' id="discard-this-check" style="margin-left: 10px;">Discard</a>
+    </div>
+</div>
+{% else %}
+<div class="module">
+  <table>
+    {% if barcode %}
+    <tr>
+      <th>Barcode</th>
+      <td>{{ barcode }}</td>    
+    </tr>
+    {% endif %}
+    {{ form.as_table }}
+    <tr>
+      <th>&nbsp;</th>
+      <td><input type="submit" value="Continue" /></td>    
+    </tr>
+  </table>
+</div>
+{% endif %}
+
+</form>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('#id_barcode').each(function () {
+    if ($(this).val() == '') {
+      $(this).focus();
+      return false;
+    }
+  });
+  
+  $('#discard-this-check').click(function () {
+    if (!confirm('Are you sure you want to discard last check?'))
+      return false;
+
+    $('#discard-this-check').attr('disabled', true);
+    $('#confirm-this-check').attr('disabled', true);
+
+    window.location = window.location; 
+    return false;
+  });
+
+	$('#id_upc').autocomplete('/Search/By-UPC/All/', {
+			maxItemsToShow: 15,
+			matchContains: 1,
+			width: 500,
+	    onItemSelect: function (li) {
+        if (li == null) 
+          return;
+        $('#id_upc').val(li.extra[1]);
+      }
+	});
+  
+  
+});
+</script>
+
+{% endblock right %}

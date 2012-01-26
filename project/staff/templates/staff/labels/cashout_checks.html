@@ -1,0 +1,42 @@
+<!doctype html> 
+<html>
+<head>
+  <style type="text/css">
+  @page {
+    size: a4;
+    margin: 1.5cm;
+  }
+  
+  .order-details {
+    font-size: 10pt;
+  }
+  
+  .order-details div {
+    line-height: 1.4em;
+    margin: 0;    
+    -pdf-page-break: avoid;
+  }
+  
+  .strong {
+    font-weight: bold;    
+  }
+  </style>
+</head>
+<body>
+{% for o in orders %}
+
+  <div class="order-details">
+    <div class="strong">{{ o.user.get_profile.get_name_display }}</div>
+    <div>{{ o.address1 }}</div>
+    {% if o.address2 %}
+    <div>{{ o.address2 }}</div>
+    {% endif %}
+    <div>{{ o.city }}, {{ o.state }} {{ o.zip_code }}</div>
+    <div>Cashout Amount: ${{ o.amount|default:'0.00' }}</div>
+  </div>
+  
+  <br />
+
+{% endfor %}
+</body>
+</html>

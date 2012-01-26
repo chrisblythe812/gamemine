@@ -1,0 +1,125 @@
+#rent-add-dialog {
+	width: 730px;
+	height: 417px;
+	color: #333;
+
+	#dialog-heading {
+        // background: rgba(255, 255, 0, .3);
+		padding: 5px 15px;
+		height: 47px;
+		
+		#dialog-heading-step {
+            margin-top: 5px;
+		}
+	}
+	
+	#rent-add-listed {
+		background: left center url($images_url + 'rent/rent-add-ok.png') no-repeat;
+		//background: rgba(255, 255, 0, .3);
+		font-size: 18px;
+		font-weight: bold;
+		color: #666;
+		line-height: 47px;
+		padding-left: 40px;		
+	}
+    
+    #rent-add-at-home {
+        background: left center url($images_url + 'rent/home-icon.png') no-repeat;
+        //background: rgba(255, 255, 0, .3);
+        font-size: 18px;
+        font-weight: bold;
+        color: #666;
+        line-height: 47px;
+        padding-left: 60px;     
+    }
+	
+	#rent-add-game-details {
+//		background: rgba(255, 255, 0, .3);
+		height: 47px;
+		width: 550px;
+		overflow: hidden;
+	} 
+
+	#dialog-title {
+		margin-top: -50px;
+	}
+	
+	#rent-add-item {
+		// background: rgba(255, 255, 0, .3);
+		height: 220px;
+		
+		img {
+			float: left;
+			margin-right: 20px;
+		}
+		
+		#rent-add-item-title {
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		
+		#rent-add-item-misc {
+			font-size: 11px;
+		}
+		
+		#rent-add-actions {
+			height: 23px;
+			margin: -35px 20px 0 0;
+			float: right;
+
+      input[type=submit] {
+        float: left;
+      }
+			
+			a {
+				margin-left: 10px;
+        float: left;
+			}
+		}
+	}
+	
+	#rent-add-other-games {
+		// background: rgba(255, 255, 0, .3);
+		background: url($images_url + 'rent/rent-add-bg-1.png') no-repeat;
+		width: 730px;
+		height: 170px;
+		overflow: hidden;
+		margin: -50px 0 0 -20px;
+		position: absolute;
+		
+		p {
+			// background: rgba(255, 255, 0, .3);
+			line-height: 100px;
+			height: 100px;
+			width: 210px;
+			margin-top: 70px;
+			padding-right: 20px;
+			font-size: 13px;
+			font-weight: bold;
+			text-align: right;
+		}
+		
+		ul {
+			background: #e0e0e0;
+			float: right;
+			margin: -170px 0 0;
+			width: 500px;
+			height: 170px;
+			
+			li {
+				// background: rgba(255, 255, 0, .3);
+				display: block;
+				float: left;
+				width: 80px;
+				height: 130px;
+				margin: 20px 7px 0;
+				
+				.actions {
+					padding-top: 10px;
+					text-align: center;
+				}
+			}
+		}
+	}
+}

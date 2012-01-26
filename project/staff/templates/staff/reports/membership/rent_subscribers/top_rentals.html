@@ -1,0 +1,33 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>UPC</th>
+        <th>Platform</th>
+        <th>Release Date</th>
+        <th>Availability</th>
+        <th>Rental Amount</th>
+      </tr>
+      {% for i in items %}
+      <tr>
+        <td><a href="{{ i.get_absolute_url }}" target="_blank">{{ i }}</a></td>
+        <td>{{ i.upc }}</td>
+        <td>{{ i.category }}</td>
+        <td>{{ i.release_date|date }}</td>
+        <td>{{ i.get_rent_status_display }}</td>
+        <td>{{ i.rent_amount }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+    {% pagination %}
+  </div>
+</div>
+
+{% endblock right %}

@@ -1,0 +1,32 @@
+<h1 id="header-logo"><a href="/">Gamemine</a></h1>
+<ul id="header-platforms">
+  {% for c in CATALOG_CATEGORIES %}
+  <li{% if forloop.last  %} class="last-item"{% endif %} style="padding:20px 2px;"><a href="{% url catalog:category c.0 %}"{% if category.slug == c.0 %} class="current"{% endif %}>{{ c.1 }}</a></li>
+  {% endfor %}
+</ul>
+<div id="header-user-block" class="{% if user.is_authenticated %}signed-in{% else %}signed-out{% endif %}">
+  {% if user.is_authenticated %}
+  <div>
+  <span>Hi,</span> <a href="{% url members:account %}" id="header-user-block-profile">{{ user.get_profile }} &#9662;</a> | <a href="{% url members:rent_list %}">List (<span class="lists-size">{{ lists_size }}</span>)</a> | <a href="{% url cart:index %}" class="cart-link">Cart ({{ cart.size }})</a></div>
+  {% else %}
+  {% if not hide_unauthenicated_popups %}
+  <a href="{% url members:login %}" class="link-popup" id="header-user-block-login">Login</a>
+  <span class="separator">|</span>
+  <a href="{% url members:create_account %}" class="link-popup" id="header-user-block-signup">Sign Up</a>
+  {% endif %}
+  {% if cart.size %}
+  <span class="separator">|</span> <a href="{% url cart:index %}" class="cart-link">Cart ({{ cart.size }})</a>
+  {% endif %}
+  {% comment %}
+  {% if lists_size %}
+  <span class="separator">|</span> <a href="{% url members:rent_list %}">List ({{ lists_size }})</a>
+  {% endif %}
+  {% endcomment %}
+  {% endif %}
+</div>
+
+<div id="header-search-box">
+  <form method="get" action="{% url search:search %}">
+    <input type="text" name="q" autocomplete="off" />
+  </form>
+</div>

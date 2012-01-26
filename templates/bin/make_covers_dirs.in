@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+import sys
+import os
+import shutil
+
+
+try:
+    CWD = sys.argv[1]
+except IndexError:
+    print "Usage:\n %s <path_to/covers_dir>" % sys.argv[0]
+    exit()
+ROOT = os.path.abspath(CWD)
+
+
+def get_files_list():
+    return filter(lambda f: f.endswith(".jpg"), os.listdir(CWD))
+
+
+def get_path_tuple(files_list):
+    """
+    ['100000090.jpg'] --> [("10", "00", "100000090.jpg"),]
+    """
+    return [(f[:2], f[2:4], f) for f in files_list]
+
+
+def move_files(path_tuples):
+    for dir1, dir2, file_name in path_tuples:
+        try:
+            os.makedirs(os.path.join(ROOT, dir1, dir2))
+        except OSError:
+            pass
+        shutil.move(os.path.join(ROOT, file_name), os.path.join(ROOT, dir1, dir2, file_name))
+        print("%s --> %s" % (os.path.join(ROOT, file_name), os.path.join(ROOT, dir1, dir2, file_name)))
+
+
+def main():
+    move_files(
+        get_path_tuple(
+            get_files_list()
+        )
+    )
+
+if __name__ == '__main__':
+    main()

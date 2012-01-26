@@ -1,0 +1,86 @@
+{% if form %}
+<div id="form-signup-1">
+<form action="{% url members:create_account %}" method="post">{% csrf_token %}
+    <div class="side-1">
+
+    <dl>
+      <dt>Email Address</dt>
+      <dd class="field">{{ form.email }}</dd>
+      <dd class="help">Used for login</dd>
+
+      <dt>User Name</dt>
+      <dd class="field">{{ form.username }}</dd>
+      <dd class="help">Gamer Profile</dd>
+
+      <dt>Create Password</dt>
+      <dd class="field">{{ form.password }}</dd>
+      <dd class="help">6-15 characters</dd>
+
+      <dt>Confirm Password</dt>
+      <dd class="field">{{ form.confirm_password }}</dd>
+
+      <dt>Phone Number</dt>
+      <dd class="field">{{ form.phone_number }}</dd>
+      <dd class="help">(XXX) XXX-XXXX</dd>
+    </dl>
+
+    <div class="extra">
+    {% if form.form_error %}
+      <div class="boxed error">
+          <div class="title">{{ form.form_error }}</div>
+          <div class="details">{{ form.form_error_message|default:"Please check the information and try again." }}</div>
+      </div>
+    {% else %}
+        <p class="message">Your email address is safe. Gamemine will not sell, rent or
+      disclose your email address to third parties. We will only use this email to
+      provide special offers and information regarding our services.</p>
+    {% endif %}
+    </div>
+    </div>
+
+  <div class="side-2">
+    <dl>
+        <dt>First Name</dt>
+        <dd class="field">{{ form.first_name }}</dd>
+
+        <dt>Last Name</dt>
+        <dd class="field">{{ form.last_name }}</dd>
+
+        <dt>How did you hear about us?</dt>
+        <dd class="field">{{ form.how_did_you_hear }}</dd>
+
+        <dt>&nbsp;</dt>
+        <dd class="field">{{ form.agree_of_terms }} <label for="id_0-agree_of_terms">{{ form.agree_of_terms.label }}</label></dd>
+    </dl>
+
+    <div class="clear"></div>
+  </div>
+
+    <div class="actions">
+      <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+      {{ previous_fields|safe }}
+      <input type="submit" class="continue-button" value="Continue" />
+    </div>
+
+  <script type="text/javascript">
+    $("#id_0-how_did_you_hear").setupSelect("w210px");
+    $('#form-signup-1 form').get(0).validate = function(){
+        var agree = $('#id_0-agree_of_terms').is(':checked');
+        if (agree) return true;
+        alert('You have to agree to the terms and conditions.');
+        return false;
+    };
+  </script>
+</form>
+</div>
+{% else %}
+<div id="form-signup-2">
+  <p>You've entered <a target="_blank" href="mailto:{{ email }}">{{ email }}</a> as the contact email address for your Gamemine
+    account, you will receive an e-mail from us with instructions to verify your email address. If you don't
+    receive this e-mail, please check your junk mail folder or visit our Help pages to contact Customer
+    Service for further assistance.</p>
+    <div class="actions">
+      <a href="#" class="dialog-close-button close-button">Close</a>
+    </div>
+</div>
+{% endif %}

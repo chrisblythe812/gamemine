@@ -1,0 +1,134 @@
+.footer_full {
+    width:100%;
+    position:relative;
+}
+
+#footer {
+    font-size: 11px;
+    line-height: normal;
+    width:982px;
+    margin:0 auto;
+    padding:30px 0;
+    position:relative;
+    z-index:1000;
+    color:#686868;
+
+    p {
+        margin: 0 0 1.5em 0;
+    }
+
+    a {
+        color: #999;
+        text-decoration:none;
+
+        &:hover { text-decoration:underline; }
+    }
+
+    .free_shipping {
+        width: 200px;
+        height: 85px;
+        overflow: hidden;
+        cursor: pointer;
+        text-indent: -9999px;
+        position: absolute;
+        top: 10px;
+        left: 33px;
+        z-index: 100;
+        background: url($images_url + "intro/intro-shipping-banner.png") 0 0 no-repeat;
+    }
+
+    .left_foot  {
+        width:450px;
+        padding:70px 0 0 35px;
+        float:left;
+    }
+
+    .righ_foot  {
+        width:460px;
+        padding-right:35px;
+        float:right;
+        text-align:right;
+    }
+
+    &.type2 {
+        .left_foot, .righ_foot {
+            padding-top:10px;
+            font-size:11px;
+            color:#999;
+        }
+
+        .righ_foot .foot_nav {
+            padding:0;
+            a { color:#0066cc !important; }
+        }
+    }
+
+    #footer-menu {
+        padding:0 0 10px;
+        float:right;
+
+        li {
+            margin:0 0 0 20px;
+            padding: 0 0 10px;
+            float:left;
+
+            &:first-child { margin:0; }
+            a { color:#0066cc; }
+        }
+    }
+
+    .foot_row {
+        height:50px;
+        overflow:hidden;
+        zoom:1;
+
+        .credit_cards   {
+            width:176px;
+            height:27px;
+            overflow:hidden;
+            float:right;
+            margin-top:10px;
+            margin-left:12px;
+            background:url($images_url + "logo_cards.png") 0 0 no-repeat;
+        }
+
+        .credit_cards2  {
+            width:106px;
+            height:23px;
+            overflow:hidden;
+            float:right;
+            margin-top:14px;
+            margin-left:12px;
+            background:url($images_url + "logo_cards2.png") 0 0 no-repeat;
+        }
+
+        .verisign {
+            width: 65px;
+            margin-top: 6px;
+            margin-left: 12px;
+            overflow: hidden;
+            float: right;
+            display: none;
+        }
+
+        .upfront {
+            img {
+                width: 79px;
+                height: 27px;
+                float: right;
+                overflow: hidden;
+                margin-top: 10px;
+                margin-left: 12px;
+            }
+        }
+
+        .authorize {
+            img {
+                    width: 62px;
+                    height: 50px;
+                    float: right;
+                    overflow: hidden;
+            }
+        }
+    }
+}

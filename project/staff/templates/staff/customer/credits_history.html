@@ -1,0 +1,141 @@
+{% extends 'staff/customer/base.html' %}
+{% load pagination %}
+
+{% block right %}
+
+<div class="module" style="height: 120px;">
+  <h2>Store Credits</h2>
+
+  <dl>
+    <dt>Total Store Credits:</dt><dd>${{ user.get_profile.store_credits }}</dd>
+    <dt>Locked Credits:</dt><dd>${{ user.get_profile.locked_store_credits }}</dd>
+    <dt>Unlocked Credits:</dt><dd>${{ user.get_profile.unlocked_store_credits}}</dd>
+    <dt>Cashable Credits:</dt>
+    <dd>${{ user.get_profile.get_cashable_credits }}</dd>
+  </dl>
+</div>
+
+<div class="module">
+  <h2>Credit Payments</h2>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th width="100">Amount</th>
+      <th width="120">Processed Date</th>
+      <th width="300">Notes</th>
+    </tr>
+    <tr>
+      <td colspan="4">--</td>
+    </tr>
+    <tbody class="total">
+      <tr>
+        <td>All Credit Payments</td>
+        <td class="r">$0.00</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Pending Credits</h2>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th width="100">Credits</th>
+      <th width="120">Order Date</th>
+      <th width="300">Expiration Date</th>
+    </tr>
+    {% for o in pending_credits %}
+    <tr>
+      <td>Trade Order <a href="{% url staff:trade_order_details o.order.id %}" target="_blank">#{{ o.order.order_no }}</a></td>
+      <td class="r">${{ o.get_price_with_bonus|floatformat:2 }}</td>
+      <td>{{ o.order.create_date|date }}</td>
+      <td>{{ o.order.get_expiration_date|date }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">--</td>
+    </tr>
+    {% endfor %}
+    <tbody class="total">
+      <tr>
+        <td>All Pending Credits</td>
+        <td class="r">${{ pending_credits_total|floatformat:2 }}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Processed Credits</h2>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th width="100">Credits</th>
+      <th width="120">Order Date</th>
+      <th width="300">Notes</th>
+    </tr>
+    {% for o in processed_credits %}
+    <tr>
+      <td>Trade Order <a href="{% url staff:trade_order_details o.order.id %}" target="_blank">#{{ o.order.order_no }}</a></td>
+      <td class="r">${{ o.get_price_with_bonus|floatformat:2 }}</td>
+      <td>{{ o.order.create_date|date }}</td>
+      <td>Applied to Credit Balance</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">--</td>
+    </tr>
+    {% endfor %}
+    <tbody class="total">
+      <tr>
+        <td>All Processed Credits</td>
+        <td class="r">${{ processed_credits_total|floatformat:2 }}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Expired / Declined Credits</h2>
+
+  <table>
+    <tr>
+      <th>Description</th>
+      <th width="100">Credits</th>
+      <th width="120">Order Date</th>
+      <th width="300">Notes</th>
+    </tr>
+    {% for o in expired_credits %}
+    <tr>
+      <td>Trade Order <a href="{% url staff:trade_order_details o.order.id %}" target="_blank">#{{ o.order.order_no }}</a></td>
+      <td class="r">${{ o.get_price_with_bonus|floatformat:2 }}</td>
+      <td>{{ o.order.create_date|date }}</td>
+      <td>{% if o.declined %}Trade Declined{% else %}Trade Expired - Order Never Received{% endif %}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">--</td>
+    </tr>
+    {% endfor %}
+    <tbody class="total">
+      <tr>
+        <td>All Expired Credits</td>
+        <td class="r">${{ expired_credits_total|floatformat:2 }}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock right %}

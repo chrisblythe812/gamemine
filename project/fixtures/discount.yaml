@@ -1,0 +1,17 @@
+- fields:
+    name: RETAIL_PRICE_NEW
+    value: -5
+  model: discount.commonvalues
+  pk: 1
+
+- fields:
+    name: RETAIL_PRICE_USED
+    value: -5
+  model: discount.commonvalues
+  pk: 2
+
+- fields:
+    name: TRADE_PRICE_COMPLETE
+    value: 30
+  model: discount.commonvalues
+  pk: 3

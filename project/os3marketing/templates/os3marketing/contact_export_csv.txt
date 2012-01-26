@@ -1,0 +1,2 @@
+{% for row in data %}"{{ row.email|addslashes }}";"{{ row.first_name|addslashes }}";"{{ row.last_name|addslashes }}"
+{% endfor %}

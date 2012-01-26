@@ -1,0 +1,9 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ nickname }},</p>
+
+<p>Order {{ order.tracking_number }} shipped</p>
+
+{% endblock content %}

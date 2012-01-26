@@ -1,0 +1,61 @@
+{% extends "staff/fulfillment.html" %}
+
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module transactions-grid">
+  <h2>Transacions</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Customer</td>
+        <td>Time</td>
+        <td>Method</td>
+        <td>Status</td>
+        <td>Description</td>
+        <td>Debit</td>
+        <td>Tax</td>
+        <td>Applied Credits</td>
+        <td>Total</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    {% for trans in payments %}
+    <tbody class="{% cycle odd,even %}">
+      <tr>
+        <td{% if trans.refund %} rowspan="2"{% endif %}>{{ trans.id }}</td>
+        <td><a href="{% if trans.user.id %}{% url staff:customer_view trans.user.id %}" target="_blank"{% else %}#"{% endif %}>{{ trans.get_name_display }}</a></td>
+        <td style="width: 130px">{{ trans.timestamp|date }} {{ trans.timestamp|time }}</td>
+        <td>{{ trans.payment_method_display2 }}</td>
+        <td>{{ trans.get_status_display }}</td>
+        <td>
+          {{ trans.description }}
+          {% if trans.buyorder %}
+            <br /> <a target="_blank" href="{% url staff:buy_order_details trans.buyorder.id %}">Order details</a>
+          {% endif %}
+          {% if trans.rentorder %}
+            <br /> <a target="_blank" href="{% url staff:rent_order_details trans.rentorder.id %}">#{{ trans.rentorder.order_no }}</a> ({{ trans.rentorder.get_status_display }}) 
+          {% endif %}
+        </td>
+        <td>${{ trans.get_net_debit|default:'0.00' }}</td>
+        <td>${{ trans.tax|default:'0.00' }}</td>
+        <td>${{ trans.applied_credits|default:'0.00' }}</td>
+        <td>${{ trans.get_debit_total|default:'0.00' }}</td>
+        <td{% if trans.refund %} rowspan="2"{% endif %}><a href="{% url staff:transaction_details trans.id %}">Details</a></td>
+      </tr>
+      {% if trans.refund %}
+      <tr>
+        <td colspan="8" class="refund">Refund at {{ trans.refund.timestamp|date }} {{ trans.refund.timestamp|time }}: {{ trans.refund.comment|default:"--" }}</td>
+        <td>${{ trans.refund.amount }}</td>
+      </tr>
+      {% endif %}
+    </tbody>
+    {% endfor %}      
+  </table>
+  
+  {% pagination %}
+</div>
+
+{% endblock right %}

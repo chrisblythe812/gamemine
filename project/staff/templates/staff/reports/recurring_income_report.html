@@ -1,0 +1,37 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <form method="get" action="">
+      {{ form.p }}
+      <input type="submit" value="Display" />
+    </form>
+  </div>
+  
+  <div>
+    <h3>Gross Sales</h3>
+    <p>{% if gross_sales %}${{ gross_sales }}{% else %}--{% endif %}</p>
+
+    <h3>Authorized Amount</h3>
+    <p>{% if authorized_amount %}${{ authorized_amount }}{% else %}--{% endif %}</p>
+
+    <table style="width: 400px">
+      <tr>
+        <th>Registration Date</th>
+        <th>Earned</th>
+        <th>Authorized</th>
+      </tr>
+      {% for r in breakdown %}
+      <tr>
+        <td align="left">{{ r.month|stringformat:"02d" }}/{{ r.year }}</td>
+        <td align="right">${{ r.earned }}</td>
+        <td align="right">{% if r.authorized %}${{ r.authorized }}{% else %}--{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock right %}

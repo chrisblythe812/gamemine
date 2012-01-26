@@ -1,0 +1,41 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>The following trade-in submission has expired since we did not receive it
+within 25 days of submission. If you would like to create a new trade-in
+submission, please visit <a href="{{ WIMGW_url }}">{{ WIMGW_url }}</a>.</p>
+
+<h2>Trade Summary</h2>
+
+<table>
+  <tr><th align="right">Total Value:</th><td align="left">${{ order.total }}</td></tr>
+  <tr><th align="right">Total Units:</th><td align="left">{{ order.size }}</td></tr>
+  <tr><th align="right">Order ID:</th><td align="left">{{ order.order_no }}</td></tr>
+  <tr><th align="right">Order Date:</th><td align="left">{{ order.create_date }}</td></tr>
+</table>
+
+<table class="grid">
+<tr><th>UPC</th><th>Game Title</th><th>Qty</th><th>Value</th></tr>
+{% for i in items %}
+<tr>
+  <td>{{ i.item.upc }}</td>
+  <td>{{ i.item.short_name }}</td>
+  <td>{{ i.qty }}</td>
+  <td>{{ i.val }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<p>If you need assistance with your trade-in and are unable to find what you're
+looking for, please visit our Help pages at <a href="{{ help_url }}">{{ help_url }}</a>
+or give us a call at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+
+<p>- The Gamemine Team</p> 
+
+{% endblock content %}
+

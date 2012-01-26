@@ -1,0 +1,18 @@
+<div id="banner-carousel-content" class="intro-most-rentals">
+  
+  <a class="switcher" id="switchto-hottest-tradins" href="#Hottest-Trade-Ins"><span>Hottest Trade-Ins</span></a>
+  <a class="switcher" id="switchto-best-sellers" href="#Best-Sellers"><span>Best Sellers</span></a>
+
+  <ul id="intro-carousel" class="games-thumb-list">
+  {% for i in most_rentals %}
+    <li>
+      <div class="catalog-item-2">
+        <a class="image" href="{{ i.get_absolute_url }}"><img src="{{ i.get_thumb_image3 }}" width="120" height="160" /></a>
+        
+        <div class="title"><a href="{{ i.get_absolute_url }}" title="{{ i }}">{{ i.get_cropped_name_15 }}</a></div>
+        <div class="price">{{ i.get_rent_status_display }}</div>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</div>

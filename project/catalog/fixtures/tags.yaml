@@ -1,0 +1,24 @@
+- fields:
+    name: Animated Series
+  model: catalog.tag
+  pk: 2889
+
+- fields:
+    name: Franchise Characters
+  model: catalog.tag
+  pk: 14
+
+- fields:
+    name: Mini-Games
+  model: catalog.tag
+  pk: 74
+
+- fields:
+    name: Movie-Based
+  model: catalog.tag
+  pk: 64
+
+- fields:
+    name: TV-Based
+  model: catalog.tag
+  pk: 260

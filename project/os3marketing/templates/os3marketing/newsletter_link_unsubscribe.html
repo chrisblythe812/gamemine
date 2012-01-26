@@ -1,0 +1,17 @@
+{% load i18n %}
+<hr>
+<center>
+  	<a name="unsubscription"></a>  
+	<table width="500">
+		<tr>
+			<td align="center">
+				<font size="1" color="#000000" face="Verdana">
+{% blocktrans %}
+To ensure receiving our informatives, please add the email <a href=\"mailto:%(header_sender)s\">%(header_sender)s</a>to your address list<br />. We respect your privacy and are against spam. We will also not sell or distribute your contact information to others, because this is part of our privacy policy to respect our customers. You chose to receive this e-mail via registration to our site <a href=\"%(website)s\">%(website)s</a>. If you would like to unsubscribe anyway, please visit 
+{% endblocktrans %} 
+<a href="{% if uidb36 and token %}http://{{ domain }}{{unsubscription_url}}{% else %}#{% endif %}">{%trans "here"%}.</a>  	 	
+				</font>
+			</td>
+		</tr>
+	</table>
+</center>

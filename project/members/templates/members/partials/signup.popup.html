@@ -1,0 +1,11 @@
+{% extends "partials/top_popup.html" %}
+
+{% block top-popup-id %}header-signup-popup{% endblock %}
+
+{% block top-popup-header %}
+<h2>Sign Up</h2>
+{% endblock top-popup-header %}
+
+{% block top-popup-conent %}
+	{% include "members/create_account.dialog.html" %}
+{% endblock top-popup-conent %}

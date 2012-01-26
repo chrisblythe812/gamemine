@@ -1,0 +1,59 @@
+[
+    {
+        "pk": 100000077, 
+        "model": "catalog.item", 
+        "fields": {
+            "rating": 130021, 
+            "number_of_players": null, 
+            "trade_price_incomplete": "0.00", 
+            "sold_amount": 1020465, 
+            "rent_flag": true, 
+            "trade_flag": true, 
+            "base_trade_price": "0.00", 
+            "retail_price_used": "0.00", 
+            "bre_id": null, 
+            "hot_trade": false, 
+            "category": 13, 
+            "votes": "{\"amount\": 0, \"total\": 0, \"ratio\": 0.0, \"details\": [0, 0, 0, 0, 0]}", 
+            "ratio": 0.0, 
+            "game_weight": "4.00", 
+            "number_of_online_players": null, 
+            "retail_price_new": "37.99", 
+            "tags": [
+                2889, 
+                14, 
+                74, 
+                64, 
+                260
+            ], 
+            "base_retail_price_used": "0.00", 
+            "rent_amount": 2, 
+            "top_rental": false, 
+            "type": 1, 
+            "trade_price": "0.00", 
+            "muze_cache": "{\"videos\": [], \"expanded_description\": \"In SpongeBob's most crazy, creative adventure yet, be prepared to laugh your SquigglePants off as you tilt, flick, tap and draw through more than 100 Nanogames set in seven zany worlds. SpongeBob SquigglePants puts you in the driver's seat for a dizzying series of lightning-speed Nanogames, giving you mere seconds to finish one before moving right on to the next. Within this rapid-fire succession of challenges, SpongeBob SquigglePants exposes players to never-before-seen SpongeBob art styles from the Nickelodeon vault. The entire game is hosted by SpongeBob's biggest fan, Patchy the Pirate, in a never-before-seen live action experience for an added level of under-the-sea silliness.\", \"front_image\": null, \"work_id\": \"GW0000086441\", \"screenshots\": [], \"msrp\": 39.99, \"videos2\": []}", 
+            "description": "SpongeBob SquarePants floats his way onto the uDraw GameTablet, allowing players to draw, paint, and color their very own scenes from Nickelodeon's hit animated series. The main game is designed in the spirit of Nintendo's WarioWare titles, testing a player's ability to adapt to fast-paced mini-games -- called nanogames -- designed to be completed in mere seconds. The GameTablet is used to tap, trace, sketch, shake, flip, tilt, and even flick onscreen objects or characters as players race to complete more than 100 activities. Live action character Patchy the Pirate serves as a guide to the underwater festivities and will periodically appear throughout the game to interact with players. As with other titles in the uDraw series, players are free to draw their own pictures in a standalone mode that features SpongeBob-related stamps and the ability to export artwork to an SD card.", 
+            "short_name": "SpongeBob SquigglePants 3D", 
+            "trade_amount": 0, 
+            "rent_status": 5, 
+            "genres": [
+                1
+            ], 
+            "details_page_views": 0, 
+            "game": 5092, 
+            "active": true, 
+            "slug": "SpongeBob-SquigglePants-Nintendo-3DS", 
+            "publisher": 55, 
+            "bsid": null, 
+            "name": "SpongeBob SquigglePants 3D", 
+            "release_date": "2011-05-17", 
+            "prebook_date": "2011-04-12", 
+            "upc": "785138330525", 
+            "pre_owned": false, 
+            "base_retail_price_new": "39.99", 
+            "genre_list": null, 
+            "tag_list": null, 
+            "ingram_code": "3DS THQ 33052"
+        }
+    }
+]

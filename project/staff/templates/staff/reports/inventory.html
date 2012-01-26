@@ -1,0 +1,76 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  
+  <a class="excel-link float-right" href="#">Download XLS</a>
+  
+  <form method="get">
+    <div>
+      {{ form.dc.label }} {{ form.dc }}
+      {{ form.status.label }} {{ form.status }}
+      {{ form.platform.label }} {{ form.platform }}
+      {{ form.cond.label }} {{ form.cond }}
+      {{ form.buy_only.label }} {{ form.buy_only }}
+    </div>
+    <div>
+    {{ form.q.label }} {{ form.q }} <input type="submit" value="Search" />
+    </div>
+  </form>
+
+  <div>
+    <table>
+      <tr>
+        <th>DC</th>
+        <th>Barcode ID</th>
+        <th>Status</th>
+        <th>Item</th>
+        <th>Condition</th>
+        <th>Platform</th>
+        <th>Release Date</th>
+        <th>UPC</th>
+        <th>Buy Only</th>
+        <th>&nbsp;</th>
+      </tr>
+      {% for i in inventories %}
+      <tr>
+        <td>{{ i.dropship.code }}</td>
+        <td>{{ i.barcode|default:"--" }}</td>
+        <td>{{ i.get_status_str }}</td>
+        <td><a href="{{ i.item.get_absolute_url }}" target="_blank">{{ i.item }}</a></td>
+        <td>{{ i.is_new|yesno:"NG,UG" }}</td>
+        <td>{{ i.item.category }}</td>
+        <td>{{ i.item.release_date|date }}</td>
+        <td>{{ i.item.upc }}</td>
+        <td>{{ i.buy_only|yesno:"Y," }}</td>
+        <td><a href="{% url staff:inventory_history i.id %}" class="history-link">History</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+    {% pagination %}
+    
+    <div id="details-block"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('a.history-link').click(function () {
+    var href = $(this).attr('href');
+    $('#details-block').load(href, function (data, status) {
+      if (status != 'success') {
+        alert('error');
+        return false;
+      }
+      $('html, body').animate({scrollTop: $(this).offset().top}, 500);
+    });
+    return false;
+  });
+});
+</script>
+
+{% endblock right %}

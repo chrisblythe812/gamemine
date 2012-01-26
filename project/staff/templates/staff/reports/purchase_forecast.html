@@ -1,0 +1,86 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <table id="purchase-forecast-report" style="width: 1300px;">
+    <thead>
+      <tr>
+        <td>ARD: {{ ard|floatformat:2 }}</td>
+        <td colspan="2" style="width: 100px;"><form method="post" id="enu-form">{% csrf_token %}
+          <input type="checkbox" name="show_cs" id="id_show_cs" value="True" {% if show_cs %}checked="checked"{% endif %} /><label for="id_show_cs">Coming Soon Items</label><br />
+          ENU: <input name="enu" value="{{ enu }}" id="enu-field" /> <input type="submit" value="OK" /> 
+        </form>
+        </td>
+        <td colspan="3">Inventory</td>
+        <td colspan="3" class="c">Priority</td>
+        <td rowspan="2" class="c">B</td>
+        <td colspan="4" class="c users">Users</td>
+        <td colspan="4" class="c percent_of_order">% of Order</td>
+        <td colspan="4" class="c no_of_order"># to Order</td>
+        <td colspan="3" class="c">Wholesale Price</td>
+        <td rowspan="2" class="c" style="width: 75px;">Release Date</td>
+      </tr>
+      <tr>
+        <td>UPC</td>
+        <td>Game Title</td>
+        <td>Platform</td>
+        <td class="r"><acronym title="Rented">R</acronym></td>
+        <td class="r"><acronym title="Available">A</acronym></td>
+        <td class="r">TOT</td>
+        <td class="r">P1</td>
+        <td class="r">P2</td>
+        <td class="r">P3</td>
+        <td class="r users">CUR</td>
+        <td class="r users">ENR</td>
+        <td class="r cub">CUB</td>
+        <td class="r users">TOT</td>
+        <td class="r percent_of_order">FL</td>
+        <td class="r percent_of_order">NJ</td>
+        <td class="r percent_of_order">NV</td>
+        <td class="r percent_of_order">TOT</td>
+        <td class="r no_of_order">FL</td>
+        <td class="r no_of_order">NJ</td>
+        <td class="r no_of_order">NV</td>
+        <td class="r no_of_order">TOT</td>
+        <td class="r">Alpha</td>
+        <td class="r">Jack</td>
+        <td class="r">Visco</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for r in report %}
+      <tr>
+        <td>{{ r.item.upc }}</td>
+        <td><a href="{{ r.item.get_absolute_url }}" target="_blank">{{ r.item }}</a></td>
+        <td>{{ r.item.category }}</td>
+        <td class="r">{{ r.rented }}</td>
+        <td class="r">{{ r.available }}</td>
+        <td class="r">{{ r.tot }}</td>
+        <td class="r">{{ r.p1 }}</td>
+        <td class="r">{{ r.p2 }}</td>
+        <td class="r">{{ r.p3 }}</td>
+        <td class="r">{{ r.pb }}</td>
+        <td class="r users">{{ r.cur }}</td>
+        <td class="r users">{{ r.enr }}</td>
+        <td class="r cub">{{ r.cub }}</td>
+        <td class="r users">{{ r.cutot }}</td>
+        <td class="r percent_of_order">{{ r.p_order_fl|default:0|floatformat:-2 }}</td>
+        <td class="r percent_of_order">{{ r.p_order_nj|default:0|floatformat:-2 }}</td>
+        <td class="r percent_of_order">{{ r.p_order_nv|default:0|floatformat:-2 }}</td>
+        <td class="r percent_of_order">{{ r.p_order|default:0|floatformat:-2 }}</td>
+        <td class="r no_of_order">{{ r.to_order_fl }}</td>
+        <td class="r no_of_order">{{ r.to_order_nj }}</td>
+        <td class="r no_of_order">{{ r.to_order_nv }}</td>
+        <td class="r no_of_order">{{ r.to_order }}</td>
+        <td class="r">${{ r.wholesale_price_alpha|default:0|floatformat:2 }}</td>
+        <td class="r">${{ r.wholesale_price_jack|default:0|floatformat:2 }}</td>
+        <td class="r">${{ r.wholesale_price_visco|default:0|floatformat:2 }}</td>
+        <td class="c">{{ r.item.release_date|date }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock right %}

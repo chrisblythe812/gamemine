@@ -1,0 +1,24 @@
+<div class="module">
+  <h2>{{ item.name }}</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Member Name</td>
+        <td>Order #</td>
+        <td>Date Ordered</td>
+        <td>Platform</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order_item in order_items %}
+      <tr>
+        <td><a href="{% url staff:customer_view order_item.order.user.id %}" target="_blank">{{ order_item.order.user.get_profile.get_name_display }}</a></td>
+        <td><a href="{% url staff:buy_order_details order_item.order.id %}" target="_blank">{{ order_item.order.order_no }}</a></td>
+        <td>{{ order_item.order.create_date|date }} {{ order_item.order.create_date|time }}</td>
+        <td>{{ order_item.item.category }}</td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+  </table>
+</div>

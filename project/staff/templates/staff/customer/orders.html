@@ -1,0 +1,108 @@
+{% extends "staff/customer/base.html" %}
+
+{% block right %}
+
+<div class="module">
+  <h2>Rent Orders</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Order #</th>
+        <th>UPC</th>
+        <th>Game</th>
+        <th>Status</th>
+        <th>Rent</th>
+        <th>Prepared</th>
+        <th>Shipped</th>
+        <th>Returned</th>
+        <th>DC</th>
+        <th>Inventory #</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in rent_orders %}
+      <tr>
+        <td>{{ order.order_no }}</td>
+        <td>{{ order.item.upc }}</td>
+        <td>{{ order.item.short_name }} ({{ order.item.category }})</td>
+        <td>{{ order.get_status_display }}</td>
+        <td width="70">{{ order.date_rent|date }}</td>
+        <td width="70">{{ order.date_prepared|date }}</td>
+        <td width="70">{{ order.date_shipped|date }}</td>
+        <td width="70">{{ order.get_date_returned_disaplay }}</td>
+        <td>{{ order.source_dc.code }}</td>
+        <td width="90">{{ order.inventory.barcode }}</td>
+        <td><a href="{% url staff:rent_order_details order.id %}" target="_blank">Details</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Buy Orders</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Order #</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th># of Items</th>
+        <th>Credit Card</th>
+        <th>Applied Credits</th>
+        <th>Tax</th>
+        <th>Total</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in buy_orders %}
+      <tr>
+        <td>{{ order.order_no }}</td>
+        <td>{{ order.get_status_display }}</td>
+        <td>{{ order.create_date|date }}</td>
+        <td>{{ order.size }}</td>
+        <td>{{ order.card_type }} {{ order.card_display_number }}</td>
+        <td>{{ order.applied_credits }}</td>
+        <td>{{ order.tax|default:"0.00" }}</td>
+        <td>{{ order.total|default:"0.00" }}</td>
+        <td><a href="{% url staff:buy_order_details order.id %}" target="_blank">Details</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Trade Orders</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Order #</th>
+        <th>Created</th>
+        <th>Received</th>
+        <th># of Items</th>
+        <th>Total</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in trade_orders %}
+      <tr>
+        <td>{{ order.order_no }}</td>
+        <td>{{ order.create_date|date }}</td>
+        <td>{{ order.received_date|date }}</td>
+        <td>{{ order.size }}</td>
+        <td>{{ order.total|default:"0.00" }}</td>
+        <td><a href="{% url staff:trade_order_details order.id %}" target="_blank">Details</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock right %}

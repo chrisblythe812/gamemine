@@ -1,0 +1,106 @@
+#dialog-content {
+  .image {
+    width: 306px;
+    height: 256px;
+    float: left;
+    margin-bottom: 16px;
+  }
+
+  #trade-check-upc-box {
+    margin-top: 14px;
+    float: right;
+    color: #333;
+    width: 374px;
+
+    .boxed-red-wrapper {
+      width: 330px;
+      height: 180px;
+      padding: 15px;
+    }
+    
+    h2 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    
+    p {
+      font-size: 12px;
+    }
+
+    #id_check_upc_form {
+      margin: 27px 0 0 0;
+      padding: 0 0 1px;
+      
+      label {
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        font-weight: bold;
+      }
+
+      .input
+      {
+        margin-left: 10px;
+        float: left;
+        width: 195px;
+      }
+      
+      .verify-upc-button {
+        margin-left: 10px;
+        float: left;
+      }
+    }
+  }
+}
+
+#trade-upc-error {
+  display: block;
+  
+  clear: both;
+  margin: 16px 0 0 20px;
+  background: url($images_url + 'attention-w.png') no-repeat;
+  padding: 0 0 0 60px;
+  height: 55px;
+
+  .message {
+    padding-top: 8px;
+    color: #0068c6;
+    font-size: 12px;
+    
+    ul,
+    li {
+      display: inline;
+    }
+  }
+}
+
+#trade-upc-no-error {
+  clear: both;
+  margin: 40px 20px 0 80px;
+  padding: 0;
+  height: 55px;
+}
+
+#skip-upc-check {
+  margin-top: 6px;
+  color: #4d67b2;
+  font-size: 12px;
+
+  input {
+    background: #fff;
+    cursor:pointer;
+    text-decoration: underline;
+    color: #4d67b2;
+    font-size: 12px;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+div.clear {
+  clear: both;
+  height: 0;
+}
+

@@ -1,0 +1,208 @@
+@import "constants";
+@import "mixins";
+
+@mixin debug {
+//    background-color: rgba(255, 255, 0, .2);
+}
+
+.claim-page {
+    #claim-page-order-no {
+        @include debug;
+        
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    #claim-page-content {
+        @include debug;
+        
+        padding-top: 10px;
+    }
+
+    #claim-page-item-details {
+        float: left;
+        
+        .order-info {
+            font-size: 11px;
+            margin-top: 10px;
+        }
+        
+        .game-title {
+            margin-top: 5px;
+            text-align: center;
+            
+            a {
+                color: #026ACD;
+                @include heading-anchor;
+                font-size: 13px;
+                font-weight: bold;
+            }
+        }
+        
+        .game-platform {
+            margin-top: 5px;
+            text-align: center;
+            color: #CC0200;
+            font-size: 13px;
+        }
+        
+        .game-shipped-date {
+            margin-top: 5px;
+            text-align: center;
+            font-size: 13px;
+        }
+    }
+    
+    #claim-page-claims {
+        @include debug;
+        
+        margin: 0 190px 0 190px;
+        font-size: 12px;
+        
+        .claims-list {
+            dt {
+                display: block;
+                color: #0068CB;
+                font-weight: bold;
+                padding: 0 0 0 20px;
+                height: 28px;
+                line-height: 28px;
+                background: #D2D2D2 0 -56px url($images_url + 'claims/claim-header.png') repeat-x;
+                cursor: pointer;
+                font-size: 13px;
+
+                .minimize-action {
+                    display: block;
+                    width: 84px;
+                    height: 28px;
+                    @include hide-text;
+                    float: right;
+                    background: 0 0 url($images_url + 'claims/claim-header.png') no-repeat;
+                }
+                
+                strong {
+                    color: #D10000;
+                }
+            }
+        
+            dt.collapsed {
+                margin-bottom: 5px;
+
+                .minimize-action {
+                    background: 0 -28px url($images_url + 'claims/claim-header.png') no-repeat;
+                }
+            }
+        
+            dd {
+                margin-bottom: 20px;
+                padding: 10px 10px 10px 20px;
+                background: #f0f0f0;
+                color: #333;
+                
+                h3 {
+                    font-size: 12px;
+                    font-weight: bold;
+                    font-style: italic;
+                    margin: 0 !important;
+                } 
+
+                .attention {
+                    color: #C50500;
+                }
+                
+                p {
+                    padding-right: 10px;
+                }
+                
+                p.strong {
+                    font-weight: bold;
+                    font-style: italic;
+                }
+                
+                .actions {
+                    margin-top: 10px;
+                    text-align: left;
+                    
+                    input {
+                        // margin-left: 5px;
+                    }
+                    
+                    .red-cancel-button {
+                        margin-left: 25px;
+                    }
+                }
+                
+                .shipping-address-name,
+                .shipping-address-addr1,
+                .shipping-address-addr2,
+                .shipping-address-addr3 {
+                    text-transform: uppercase;
+                    line-height: 1.3em;
+                }
+                .shipping-address-action {
+                    margin-bottom: 10px;
+                }
+                
+                dl.shipping-address-form {
+                    height: 190px;
+                    
+                    dt {
+                        @include debug;
+                        @include inline-block;
+                        width: 70px;
+                        text-align: right;
+                        font-size: 12px;
+                        font-weight: normal;
+                        background: none;
+                        color: #333;
+                        height: 23px;
+                        line-height: 23px;
+                        cursor: default;
+                        padding: 0;
+                    }
+                    
+                    dd {
+                        @include inline-block;
+                        width: 380px;
+                        padding: 0;
+                        margin: 0 0 5px 10px;
+                    }
+                }
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    }
+}
+
+.rent-claim-page {
+    #mailer-is-empty-form {
+        .input-field {
+            float: left;
+        } 
+    }
+    
+    #gamemine-not-receive-game-form {
+        .input-field {
+            margin-top: 5px;
+            padding-top: 10px;
+            height: 23px;
+            background: 180px 0 url($images_url + 'calendar.png') no-repeat;
+            
+            .input {
+                width: 170px;
+            }
+        }
+    }
+}
+
+.trade-claim-page {
+    #gamemine-not-receive-trade-game-form,
+    #wrong-trade-value-credit-form {
+        .input-field {
+            margin: 10px 0 20px;
+        }
+    }
+}

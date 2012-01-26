@@ -1,0 +1,74 @@
+{% load percents %}
+
+<div id="rent-add-dialog"{% if added_at %} class="refresh-after-dialog-close"{% endif %}>
+	<div id="dialog-heading">
+		<div id="rent-add-game-details">
+		{% if at_home %}
+            <div id="rent-add-at-home">At Home</div>
+		{% else %}
+			{% if added_at %}
+				<div id="rent-add-listed">Listed</div>
+			{% else %}
+		        <div id="dialog-heading-step">Availability</div>
+		        <h1>{{ item_rent_status }}</h1>
+			{% endif %}
+        {% endif %}
+		</div>
+		
+		<div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>Rent Games</div>
+	</div>
+
+	<div id="dialog-content">
+		<div id="rent-add-item">
+			<form action="{% url rent:add item.id %}" method="post">{% csrf_token %}
+				{% if item.get_cover %}
+				<img src="{{ item.get_cover }}" width="170" height="220" />
+				{% endif %}
+				
+				<div id="rent-add-item-details">
+					<div id="rent-add-item-title">
+						{{ item.short_name }} {% if item.release_date %}({{ item.release_date|date }}){% endif %}
+					</div>  
+					<div class="catalog-item-stars">
+						<div class="catalog-item-rating"><div class="catalog-item-rating-content" style="width: {{ item.ratio|percents:5 }}%">Ratio: {{ item.ratio|percents:5 }} of 100</div></div>
+					</div>
+					
+					<div id="rent-add-item-misc">
+					{% if not at_home %}
+					   {% if added_at %}Has been added to your Rent List at #{{ added_at }}{% else %}&nbsp;{% endif %}
+					{% else %}
+					   &nbsp;
+				    {% endif %}
+					</div>
+				</div>
+				
+				<div id="rent-add-actions">
+                                  {% if added_at %}
+                                    {# include "rent/partials/pixels.html" #}
+					
+			       <input type="hidden" name="move_to_1" value="yes" />
+             <input type="submit" class="rent-move-to-no1-button-block" value="Move to position #1" />
+					{% else %}
+					   {% if not at_home and item.is_rentable %}
+					   <input type="submit" class="rent-add-button-block" value="Add to Rent List" />
+					   {% endif %}
+					{% endif %}
+					<a class="keep-browsing-button dialog-close-button" href="#">Keep Browsing</a>
+				</div>
+			</form>
+		</div>
+		<div id="rent-add-other-games">
+			<p>Other games you might like...</p>
+			<ul>
+				{% for i in other_games %}
+				<li>
+					<img src="{{ i.get_thumb_image2 }}" width="80" height="100" />
+					<div class="actions">
+						<a href="{% url rent:add i.id %}?quietly" class="add-button-block link-dialog">Add</a>
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>

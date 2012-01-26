@@ -1,0 +1,88 @@
+{% load percents %}
+
+<table id="trade-orders-table">
+  <thead>
+	<tr>
+		<th class="column-item">Trade Orders</th>
+		<th class="column-condition">Condition</th>
+		<th class="column-platform">Platform</th>
+		<th class="column-submitted">Submitted</th>
+		<th class="column-received">Received</th>
+		<th class="column-value">Value</th>
+	</tr>
+	</thead>
+	{% for r in trade_orders %}
+	<tbody>
+	<tr>
+		<td class="column-item">
+			<div class="order-number"><strong>ORDER NUMBER: {{ r.order_no }}</strong></div> 
+		</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	{% for order_item in r.items.all %}
+	<tr>
+    <td class="column-item" style="width: 250px;"><div class="item"><strong>{{ forloop.counter }}.</strong> <a href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.short_name }}</a> {% if order_item.hot_trade %}<img src="{{ STATIC_URL }}img/intro/trade2/flame-s.png" />{% endif %}</div></td>
+		<td class="column-condition">{% if order_item.is_complete %}CG{% else %}IG{% endif %}</td>
+		<td class="column-platform">{{ order_item.item.category.description }}</td>
+		<td class="column-submitted" style="width: 70px;">{{ r.create_date|date }}</td>
+		<td class="column-received" style="width: 70px;">
+		  {% if order_item.processed_date %}
+		    {% if order_item.declined %}
+		      DECLINED
+		    {% else %}
+		      {{ order_item.processed_date|date }}
+		    {% endif %}
+		  {% endif %}
+		</td>
+		<td class="column-value" style="width: 100px;">${{ order_item.price }} (+${{ order_item.get_shipping_reimbursements }})</td>
+	</tr>
+	{% if order_item.declined %}
+	<tr class="declined">
+	  <td colspan="6">Trade-In <strong>Declined</strong> due to {{ order_item.get_decline_reason }}</td>
+	</tr>
+	{% endif %}
+	{% endfor %}
+  {% if r.bonus %}
+  <tr>
+    <td class="column-first">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2" class="right-align"><strong>PENDING 25% CREDIT BONUS</strong></td>
+    <td><strong>${{ r.bonus|floatformat:2 }}</strong></td>
+  </tr>
+  {% endif %}
+  <tr>
+    <td class="column-first">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2" class="right-align"><strong>PENDING SHIPPING-CREDIT</strong></td>
+    <td><strong>${{ r.get_shipping_reimbursements }}</strong></td>
+  </tr>
+  <tr>
+    <td class="column-first"><strong class="packaging-slip">Packaging slip: <a href="/Trade/Shipping-Slip/{{ r.id }}/" target="_blank"><img src="{{ STATIC_URL }}img/printer.gif" alt="Print"/></a></strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2" class="right-align"><strong>PENDING CREDITS</strong></td>
+    <td><strong>${{ r.total }}</strong></td>
+  </tr>
+	<tr class="subtotal">
+		<td class="column-first">&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td colspan="2"><strong>TOTAL</strong></td>
+		<td><strong>${{ r.get_order_total }}</strong></td>
+	</tr>
+  </tbody>
+  {% empty %}
+    <tr>
+        <td class="column-item" colspan="6" style="padding: 20px !important; color: #0467CD; text-align: center; font-size: 13px; font-weight: bold;">
+            You currently have no recent orders in your Trade List. 
+        </td>
+    </tr>
+  {% endfor %}
+</table>
+

@@ -1,0 +1,53 @@
+@mixin debug {
+//    background-color: rgba(255, 255, 0, .3);
+}
+
+
+#my-systems {
+    @include debug;
+
+    width: 700px;
+    margin: 34px 0 0 100px;
+
+    .title {
+        color: #c80000;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 0 16px 0px;
+        text-align: center;
+    }
+    
+    ul {
+        padding: 110px 0 0 0 !important;
+        background: center top url($images_url + 'consoles/consoles-small.jpg') no-repeat;
+        height: 70px;
+        @include debug;
+        
+        li {
+            @include debug;
+            float: left;
+            width: 87px;
+            overflow: hidden;
+            color: #333;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            
+            label {
+                display: block;
+                text-align: center;
+                margin-bottom: 10px;
+                height: 2em;
+            }
+        }
+    }
+  
+    .buttons {
+        clear: both;
+        text-align: center;
+    
+        a, input {
+            margin: 0 3px;
+        }
+    }
+}

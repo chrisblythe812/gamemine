@@ -1,0 +1,62 @@
+{% load percents %}
+{% load star_rating %}
+
+
+<table id="rent-list-table">
+	<tr class="nodrop nodrag">
+		<th class="column-item">Rent List ({{ rent_list|length }})</th>
+		<th class="column-platform">Platform</th>
+		<th class="column-rate">Rate Game</th>
+		<th class="column-availability">Availability</th>
+		<th class="column-esrb">ESRB</th>
+		<th class="column-actions">Remove</th>
+	</tr>
+	{% for r in rent_list %}
+	{% with r.item as item %}
+	<tr id="rent-item-{{ r.id }}">
+		<td class="column-item">
+			<div class="item-position">
+                <span class="counter">{{ forloop.counter }}</span>
+                {% if not forloop.first %}
+				<a class="rent-list-action move-top-button" href="{% url rent:move_to r.id 0 %}" title="Top">Top</a>
+                {% endif %}
+			</div>
+
+			<div class="item-details">
+				<a href="{{ item.get_absolute_url }}"><img src="{{ item.get_thumb_image }}" width="55" height="70" /></a>
+				<div class="item-details-info">
+					<a href="{{ item.get_absolute_url }}"><strong>{{ item.short_name }}</strong></a>
+				</div>
+				<div class="item-notes">
+					<a href="{% url rent:add_note r.id %}">{{ r.notes|default:"add note" }}</a>
+				</div>
+				{% comment %}
+				<div class="item-details-actions">
+					{% if not forloop.first %}
+					<a class="move-up-action rent-list-action" href="{% url rent:move_up r.id %}">Move Up</a>
+					{% endif %}
+					{% if not forloop.last %}
+						{% if not forloop.first %}|{% endif %}
+					<a class="move-up-action rent-list-action" href="{% url rent:move_down r.id %}">Move Down</a>
+					{% endif %}
+				</div>
+                {% endcomment %}
+			</div>
+		</td>
+		<td class="column-platform">{{ item.category.description }}</td>
+		<td class="column-rate">
+			{{ item|star_rating:user }}
+		</td>
+		<td class="column-availability">{{ item.get_rent_status }}</td>
+		<td class="column-esrb">
+			{{ item.rating|default:"&nbsp;" }}
+		</td>
+		<td class="column-actions"><a href="{% url rent:remove r.id %}" class="delete-cart-item-button rent-list-action" title="Remove">Remove</a></td>
+	</tr>
+	{% endwith %}
+	{% empty %}
+	<tr class="nodrop nodrag">
+		<td colspan="6" class="empty">&nbsp;</td>
+	</tr>
+	{% endfor %}
+</table>

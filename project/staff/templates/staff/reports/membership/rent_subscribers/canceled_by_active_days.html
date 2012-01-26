@@ -1,0 +1,34 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module" style="border: none">
+  <table style="width: 200px">
+    <tr>
+      <th>Days Active</th>
+      <th>Cancels</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>{{ data.0 }}</td>
+    </tr>
+    <tr>
+      <td>2 - 3</td>
+      <td>{{ data.1 }}</td>
+    </tr>
+    <tr>
+      <td>4 - 10</td>
+      <td>{{ data.2 }}</td>
+    </tr>
+    <tr>
+      <td>11 - 30</td>
+      <td>{{ data.3 }}</td>
+    </tr>
+    <tr>
+      <td>31+</td>
+      <td>{{ data.4 }}</td>
+    </tr>
+  </table>
+</div>
+
+{% endblock right %}

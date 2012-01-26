@@ -1,0 +1,44 @@
+- fields:
+    name: Gamemine Direct (0)
+  model: members.campaign
+  pk: 0
+
+- fields:
+    name: Google Search (1)
+  model: members.campaign
+  pk: 1
+
+- fields:
+    name: Google Search (2)
+  model: members.campaign
+  pk: 2
+
+- fields:
+    name: Yahoo Search (3)
+  model: members.campaign
+  pk: 3
+
+- fields:
+    name: Yahoo Search (4)
+  model: members.campaign
+  pk: 4
+
+- fields:
+    name: Bing Search (5)
+  model: members.campaign
+  pk: 5
+
+- fields:
+    name: Bing Search (6)
+  model: members.campaign
+  pk: 6
+
+- fields:
+    name: CBS GameSpot (7)
+  model: members.campaign
+  pk: 7
+
+- fields:
+    name: Advertising.com (8)
+  model: members.campaign
+  pk: 8

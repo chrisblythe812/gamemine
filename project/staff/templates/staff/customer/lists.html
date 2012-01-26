@@ -1,0 +1,13 @@
+{% extends "staff/customer/base.html" %}
+
+{% block right %}
+
+<div class="module">
+  <h2>Rent List</h2>
+
+{% include "staff/customer/partials/rent_list_table.html" %}
+
+  <div><a href="{% url staff:customer_rent_list user.id %}">View All</a></div>
+</div>
+
+{% endblock right %}

@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>GameMine</title>
+<style>
+body {
+	background-image: url('{{ STATIC_URL }}img/emails/mail_bg.gif');
+	background-repeat: repeat-x;
+	background-position:top left;
+	margin: 0;
+	padding: 0;
+}
+a {
+	color:#003399;
+	text-decoration:underline;
+}
+#topBg {
+	background-image:url('{{ STATIC_URL }}img/emails/top_bg.jpg');
+	background-repeat:no-repeat;
+	background-position:top left;
+}
+#bodyBg {
+	background-image:url('{{ STATIC_URL }}img/emails/body_bg.jpg');
+	background-repeat:no-repeat;
+	background-position:top left;
+}
+#bottomBg {
+	background-image:url('{{ STATIC_URL }}img/emails/bottom_bg.gif');
+	background-repeat:repeat-x;
+	background-position:top left;
+}
+.black {
+	color:#1c1c1c;
+}
+.white {
+	color:#ffffff;
+}
+.blue {
+	color:#afdff9;
+	text-decoration:none;
+}
+.noneu {
+	text-decoration:none;
+}
+</style>
+</head>
+<body>
+<center>
+<table width="650" border="0" cellspacing="0" cellpadding="0" style="font-family:Arial, Helvetica, sans-serif; color: #1c1c1c; font-size: 12px;">
+  <tr>
+    <td width="25" valign="top"><img src="{{ STATIC_URL }}img/emails/top_left_side.png" width="25" height="175" alt=""></td>
+    <td width="601" valign="top" bgcolor="#e7e7e7">
+		<table width="601" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+			<td height="175" bgcolor="#e8d5b2" id="topBg" valign="top">
+				<table width="601" border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td height="37">&nbsp;</td>
+				  </tr>
+				  <tr>
+					<td height="39" valign="top">
+						<table width="601" border="0" cellspacing="0" cellpadding="0">
+						  <tr>
+							<td width="11">&nbsp;</td>
+							<td width="402" valign="top"><font face="Arial, Helvetica, sans-serif" color="#1c1c1c">This email was sent to you from <strong><a href="#" class="black">GameMine</a></strong>.<br>
+							To ensure that you get all your email, please add us to your address book</font></td>
+							<td width="188">&nbsp;</td>
+						  </tr>
+						</table>
+					</td>
+				  </tr>
+				  <tr>
+					<td height="60">
+						<table width="601" border="0" cellspacing="0" cellpadding="0">
+						  <tr>
+							<td width="345"><a href="#"><img src="{{ STATIC_URL }}img/emails/logo.png" alt="" width="345" height="60" border="0"></a></td>
+							<td width="256">
+								<table width="256" border="0" cellspacing="0" cellpadding="0">
+								  <tr>
+									<td width="98" height="32">&nbsp;</td>
+									<td>&nbsp;</td>
+								  </tr>
+								  <tr>
+									<td height="28">&nbsp;</td>
+									<td valign="top"><font face="Arial, Helvetica, sans-serif" color="#1c1c1c"><a href="{{ help_url }}" class="black noneu">Help/FAQ</a>&nbsp; | &nbsp;<a href="{{ SITE_URL }}/Account/Name-and-Address/" class="black noneu"><strong>My Account</strong></a></font></td>
+								  </tr>
+								</table>
+							</td>
+						  </tr>
+						</table>
+					</td>
+				  </tr>
+				  <tr>
+					<td height="39">&nbsp;</td>
+				  </tr>
+				</table>
+			</td>
+		  </tr>
+		  <tr>
+			<td height="345" bgcolor="#6fa8e3" id="bodyBg" valign="top">
+				<font color="#ffffff"><table width="601" border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td width="30">&nbsp;</td>
+					<td width="335" valign="top">
+						<font face="Arial, Helvetica, sans-serif">Hi {{ plan.user.first_name|default:plan.user.username }},<br>
+						<h3>Thank you for joining Gamemine,<br>The Game Station!</h3>
+						<p>Our goal is to make every aspect of your experience with us as convenient and enjoyable as possible. We pride ourselves in the relentless effort and dedication to building the best destination for video games on the internet!</p>
+						<p>Your sign up is
+                                          complete, and you're all set
+                                          to<br><a href="{{ SITE_URL }}{% url members:rent_list %}">start adding games</a> to your Rent List. Be sure to add at least seven (7) games so we know what games to send you.</p>
+						<p><em>PLEASE NOTE: For details about the terms of the Gamemine service you accepted at sign up, you can review our Terms of Use at any time.</em></p>
+						<p>- The Gamemine
+                                          Team<br><em><a href="{{ SITE_URL }}">www.gamemine.com</a></em></p></font>
+					</td>
+					<td width="41">&nbsp;</td>
+					<td width="170" valign="top">
+						<font face="Arial, Helvetica, sans-serif" color="#1c1c1c"><a href="#" class="blue"><strong>View</strong></a><br>
+						<img src="{{ STATIC_URL }}img/emails/most_popular_text.png" width="167" height="22"><br>
+						<p class="blue"><strong>By Console</strong></p>
+						<p>
+                                          {% for c in CATALOG_CATEGORIES %}
+                                          <a href="{{ SITE_URL }}{% url catalog:category c.0 %}" class="white">{{ c.1 }}</a><br>
+                                          {% endfor %}
+                                          </p></font>
+					</td>
+					<td width="25">&nbsp;</td>
+				  </tr>
+				</table>
+				</font>
+			</td>
+		  </tr>
+		  <tr>
+			<td height="5" bgcolor="#6fa8e3">
+			<table width="601" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="5" height="5"><img src="{{ STATIC_URL }}img/emails/bottom_left_corner.gif" width="5" height="5" alt=""></td>
+				<td><img src="{{ STATIC_URL }}img/emails/spacer.gif" width="591" height="1"></td>
+				<td width="5" height="5"><img src="{{ STATIC_URL }}img/emails/bottom_right_corner.gif" width="5" height="5" alt=""></td>
+			  </tr>
+			</table>
+			</td>
+		  </tr>
+		  <tr>
+			<td height="90" id="bottomBg" align="center" valign="middle">
+				<font face="Arial, Helvetica, sans-serif" color="#1c1c1c">AUTOMATED MESSAGE:If you would like to contact us,<br>
+				please send an email to &nbsp;<a href="mailto:customerservice@gamemine.com" class="black noneu">customerservice@gamemine.com</a>.<br>
+				<br>GAMEMINE | PO Box 810940 | Boca Raton, FL 33481-0940</font>
+			</td>
+		  </tr>
+		</table>
+	</td>
+    <td width="24" valign="top"><img src="{{ STATIC_URL }}img/emails/top_right_side.png" width="24" height="175" alt=""></td>
+  </tr>
+</table>
+</center>
+</body>
+</html>

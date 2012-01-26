@@ -1,0 +1,62 @@
+<div id="intro-wimgw-page-grid">
+
+  {% include "partials/wimgw_search_area.html" %}
+
+  <div class="search-results-title">{{ q }} ({{ items_found }} item{{ items_found|pluralize }} found)</div>
+
+  <table id="search-results-table">
+  {% for item in items %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+      <td class="image"><img src="{{ item.get_thumb_image3 }}" /></td>
+      <td class="name"><a href="{{ item.get_absolute_url }}">{{ item.short_name }}</a></td>
+      <td class="description">{{ item.description|truncatewords:50 }}</td>
+      <td class="category"><div class="category-{{ item.category.slug }}"><span>{{ item.category }}</span></div></td>
+      <td class="value">
+        <div class="trade-value">{{ item.get_trade_prices_display2 }}</div>
+        <div class="actions">
+          <a href="{% url trade:add item.id %}" class="action link-dialog sr-trade-in-button">Trade-In</a>
+        </div>
+      </td>
+    </tr>
+  {% endfor %}
+  </table>
+
+  <div class="search-results-title-bottom">{{ q }} ({{ items_found }} item{{ items_found|pluralize }} found)</div>
+
+  <div id="catalog-grid-footer">
+    <div class="paginator">
+      {% if page_range.left_end %}
+        {% for p in page_range.left_end %}
+          <a href="?p={{ p }}">{{ p }}</a>
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+        ...
+      {% endif %}
+      {% for p in page_range.range %}
+        {% ifequal p page_number %}
+        <span class="current">{{ p }}</span>
+        {% else %}
+        <a href="?p={{ p }}">{{ p }}</a>
+        {% endifequal %}
+        {% if not forloop.last %}|{% endif %}
+      {% endfor %}
+      {% if page_range.right_end %}
+        ...
+        {% for p in page_range.right_end %}
+          <a href="?p={{ p }}">{{ p }}</a>
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if show_all_link %}
+        | <a href="?p=show%20all">Show All</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  (function () {
+    $.fn.prepareLinks();
+    BuyIntro2.updatePaginatorLinks();
+  })();
+</script>

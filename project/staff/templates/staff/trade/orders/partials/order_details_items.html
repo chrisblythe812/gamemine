@@ -1,0 +1,47 @@
+<div class="module">
+  <h2>Order Items</h2>
+  <table id="trade-order-details">
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>UPC</td>
+        <td>Platform</td>
+        <td>Value</td>
+        <td>Comments</td>
+        <td>Status</td>
+        <td>Inventory</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in order.items.all %}
+      <tr {% if item == i %}class="current"{% endif %}>
+        <td><a href="{{ i.get_absolute_url }}" target="_blank">{{ i.item }}</a> {% if i.hot_trade %}** HOT Trade **{% endif %}</td>
+        <td>{{ i.item.upc }}</td>
+        <td>{{ i.item.category }}</td>
+        <td>${{ i.price }}</td>
+        <td>
+           {{ i.get_comments }}{% if i.claims %} (Claims){% endif %}
+           {% if i.declined %}
+           | <a href="{% url staff:trade_labels %}?ids={{ i.id }}" target="_blank">Returning Label</a>
+           {% endif %}
+        </td>
+        <td>
+          {% if i.processed %}
+            Processed
+          {% else %}
+            {% if item != i %}
+              <a href="{% url staff:trade_order_details_item order.id, i.id %}">Process Game</a>
+            {% endif %}
+          {% endif %}
+        </td>
+        <td>
+          {% if i.inventory %}
+            <a href="{% url staff:page 'Reports/Inventory' %}?q={{ i.inventory.id }}" target="_blank">{{ i.inventory.barcode|default:"Barcode Not Assigned" }}</a>
+          {% else %}
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+  </table>
+</div>

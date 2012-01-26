@@ -1,0 +1,86 @@
+{% extends "staff/fulfillment.html" %}
+
+{% load pagination %}
+
+{% block head %}{{ block.super }}
+
+<style type="text/css">
+#assign-for-form li{
+  display: block !important;
+}
+</style>
+{% endblock head %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <form method="get">
+       {{ form.status }} {{ form.q }} <input type="submit" value="Search" />
+    </form>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <td width="150">Order</td>
+        <td>Customer</td>
+        <td>Title</td>
+        <td>UPC</td>
+        <td>Platform</td>
+        <td>Comments</td>
+        <td width="150">Inventory</td>
+        <td align="center" width="75">Date Processed</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    {% for item in items %}
+      <tr>
+        <td><a href="{% url staff:trade_order_details item.order.id %}" target="_blank">{{ item.order.barcode }}</a></td>
+        <td><a href="{% url staff:customer_view item.order.user.id %}" target="_blank">{{ item.order.user.get_profile.get_name_display }}</a></td>
+        <td><a href="{{ item.item.get_absolute_url }}" target="_blank">{{ item.item }}</a></td>
+        <td>{{ item.item.upc }}</td>
+        <td>{{ item.item.category }}</td>
+        <td>{{ item.get_comments }}</td>
+        <td>
+          {% if item.inventory %}
+            <a href="{% url staff:page 'Reports/Inventory' %}?q={{ item.inventory.barcode|default:item.inventory.id }}" target="_blank">{{ item.inventory.barcode|default:"Barcode Not Assigned" }}</a>
+          {% else %}
+            <span style="color: #999">Unknown</span>
+          {% endif %}
+        </td>
+        <td align="center">{% if item.processed_date %}{{ item.processed_date|date }}{% else %}<span style="color: #999">Unknown</span>{% endif %}</td>
+        <td>
+        {% if item.inventory and not item.inventory.dropship %}
+          <a href="{% url staff:trade_order_assign_item item.order.id item.id %}" class="assign-inventory">Allocate</a>
+        {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% pagination %}
+
+<div id="assign-details">
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.assign-inventory').click(function () {
+    $.get($(this).attr('href'), function(data, status) {
+      if (status != 'success') {
+        alert('error');
+        return;
+      }      
+      var target = $('#assign-details');
+      target.empty().append(data);
+      $('html, body').animate({scrollTop: target.offset().top}, 500);
+    });
+    return false;
+  });
+});
+</script>
+
+{% endblock right %}
+

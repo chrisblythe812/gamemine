@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+	<title>{% block title %}Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS – New & Used{% endblock %}</title>
+
+	<meta name="Description" content="{% block meta-description %}GameMine offers more than 7,000 game titles to Buy, Trade or Rent online by mail - New Video Game Releases, Preowned and Used Video Games right from the comfort of your home. All your video game needs in one place all the time. – The Game Station!{% endblock meta-description %}" />
+	<meta name="Keywords" content="{% block meta-keywords %}video games, used video games, preowned games, video game rentals, buy video games, used games, buy videogames, trade videogames, rent video games, trade video games, preorder video games, game rentals, trade in video games, video game rental, buy new videogames, cheap video games, buy sell video games, rent games online, trade preowned games, preorder games, trade in games, video game rentals, buy preowned video games, game rental, discount video games, rent videogames, Xbox, PlayStation 3, PS3, PlayStation 2, PS2, Sony PSP, PSP, Nintendo Wii, Wii, Nintendo DS, DS, Nintendo GameCube, GameCube, game rental online{% endblock meta-keywords %}" />
+	<meta name="ROBOTS" content="NOODP" />
+
+	<link rel="shortcut icon" href="{{ STATIC_URL }}favicon.png" />
+
+	<link href="{{ STATIC_URL }}css/screen.css?rev={{ REV }}" media="screen, projection" rel="stylesheet" type="text/css" />
+ 	<link href="{{ STATIC_URL }}css/print.css?rev={{ REV }}" media="print" rel="stylesheet" type="text/css" />
+ 	<!--[if IE]>
+		<link href="{{ STATIC_URL }}css/ie.css?rev={{ REV }}" media="screen, projection" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<link href="{{ STATIC_URL }}css/main.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+ 	<link href="{{ STATIC_URL }}css/jquery/colorbox.css?rev={{ REV }}" media="screen" rel="stylesheet" type="text/css" />
+ 	<link href="{{ STATIC_URL }}css/jquery/nivo-slider.css?rev={{ REV }}" media="screen" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}css/members/members.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}css/members/forms.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+ 	<link href="{{ STATIC_URL }}css/catalog/catalog.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+  <link href="{{ STATIC_URL }}css/trade/trade.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">var siteConfig = { mediaUrl: '{{ STATIC_URL }}' };</script>
+
+	{% block head-config %}{% endblock head-config %}
+
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js?rev={{ REV }}"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js?rev={{ REV }}"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/core.js?rev={{ REV }}"></script>
+
+	{% block head %}{% endblock %}
+
+	{% if debug %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/debug.js?rev={{ REV }}"></script>
+ 	<link href="{{ STATIC_URL }}css/debug/hashgrid.css?rev={{ REV }}" media="screen" rel="stylesheet" type="text/css" />
+	{% endif %}
+
+	{% include "partials/google_analytics.html" %}
+</head>
+<body class="{% block page-class %}simple-page{% endblock %}">
+
+<div id="root-wrapper">
+  <div id="root">
+    <div id="header_wrapper">
+      <div id="header">
+        {% block header %}
+          {% include "header.html" %}
+        {% endblock header %}
+      </div>
+    </div>
+    {% block messages %}
+    <ul class="messages" style="{% if messages.all_hidden %}display:none{% endif %}">
+      {% for message in messages %}
+        {% if "link-dialog" in message.tags %}
+          <a href="{{ message }}" class="{{ message.tags }}">#</a>
+        {% else %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    {% endblock %}
+
+    {%block aftertop%}
+    <div id="content-header">
+			{% block content-header %}
+			{% endblock content-header %}
+		</div>
+		<div id="content-wrapper">
+			<div id="content">
+				{% block content %}
+				{% endblock content %}
+			</div>
+
+			{% if user.is_authenticated %}
+				{% include "members/partials/authenticated_top_popups.html" %}
+			{% else %}
+				{% if not hide_unauthenicated_popups %}
+				{% include "members/partials/non_authenticated_top_popups.html" %}
+				{% endif %}
+			{% endif %}
+		</div>
+		{%endblock%}
+		{% block root-additional-content %}{% endblock root-additional-content %}
+	</div>
+  {% block footer %}
+    {% include "footer_type2.html" %}
+	{% endblock footer %}
+</div>
+
+<script type="text/javascript">
+  document.write('<scr' + 'ipt src="' + document.location.protocol + '//fby.s3.amazonaws.com/fby.js"></scr' + 'ipt>');
+</script>
+<script type="text/javascript">
+  FBY.showTab({id: '334', position: 'right', color: '#100689'});
+  $(document).ready(function () {
+    $('a.contact-us').click(function () {
+      FBY.showForm('334');
+      return false;
+    });
+  });
+</script>
+
+{% block body_end %}{% endblock %}
+
+<script type="text/javascript">
+var _sf_async_config={uid:10265,domain:"gamemine.com"};
+(function(){
+  function loadChartbeat() {
+    window._sf_endpt=(new Date()).getTime();
+    var e = document.createElement('script');
+    e.setAttribute('language', 'javascript');
+    e.setAttribute('type', 'text/javascript');
+    e.setAttribute('src',
+       (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
+       "static.chartbeat.com/js/chartbeat.js");
+    document.body.appendChild(e);
+  }
+  var oldonload = window.onload;
+  window.onload = (typeof window.onload != 'function') ?
+     loadChartbeat : function() { oldonload(); loadChartbeat(); };
+})();
+document.write("<img src=http://tracking.searchmarketing.com/welcome.asp?SMCID=40000530&x="+escape(document.referrer)+" width=1 height=1>");
+</script>
+
+<a class="tf_upfront_badge" href="http://www.thefind.com/store/about-gamemine" title="TheFind Upfront"><img border="0" src="//upfront.thefind.com/images/badges/templates/r_badge.png" alt="Gamemine is upfront"/></a>
+<script type="text/javascript">
+(function() {
+    var upfront = document.createElement('SCRIPT'); upfront.type = "text/javascript"; upfront.async = true;
+    upfront.src = document.location.protocol + "//upfront.thefind.com/scripts/main/utils-init-ajaxlib/upfront-badgeinit.js";
+    upfront.text = "thefind.upfront.init('tf_upfront_badge', '41b14ec5204b7e29654c497ca2d44fbe')";
+    document.getElementsByTagName('HEAD')[0].appendChild(upfront);
+  })();
+</script>
+
+<script src="https://seal.buysafe.com/private/rollover/rollover.js"></script>
+<span id="BuySafeSealSpan"></span>
+<script type="text/javascript">
+buySAFE.Hash = 'VC%2fwtPH%2fSOLI4hwoPugMZ%2fvCiSXkl85awowm8NmGfFTOKbg62M8dVoXxxt2WV8HdkLMX6n%2faBAZ03CrcO7pHDg%3d%3d';
+WriteBuySafeSeal('BuySafeSealSpan', 'GuaranteedSeal');
+</script>
+
+<!-- {{ campaign_cid }} {{ campaign_sid }} -->
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block head %}{{ block.super }}
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/calendar.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/sorttable.js"></script>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/calendar.css" />
+<style type="text/css">
+  #filter-form {
+    width: 300px;
+  }
+  
+  #filter-form th {
+    width: 100px;
+  }
+</style>
+
+{% endblock head %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+  <form method="get" id="filter-form">
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <th>&nbsp;</th>
+        <td><input type="submit"></td>
+      </tr>
+    </table>
+  </form>
+  <script type="text/javascript">
+    calendar.set("id_start_date");
+    calendar.set("id_end_date");
+  </script>
+  </div>
+</div>
+
+<div class="module">
+  <table class="sortable">
+    <thead>
+      <tr>
+        <th>CID</th>
+        <th>Publisher</th>
+        <th>SID</th>
+        <th>Provider Age</th>
+        <th>TOTAL</th>
+        <th>RENT (total)</th>
+        <th>RENT (pixel)</th>
+        <th>RENT (active)</th>
+        <!--<th>TRADE</th>
+        <th>BUY</th>-->
+        <th>Rentlist #</th>
+        <th>Rentlist %</th>
+        <th>Rebilled #</th>
+        <th>Rebilled %</th>
+        <th>Average Rebill Count</th>
+        <th>Claims %</th>
+        <!--<th>Trades received %</th>-->
+        <th>$ Authorized</th>
+        <th>$ Approved</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in stats %}
+        <tr>
+          <td>{{ c.cid }}</td>
+          <td>{{ c.campaign }}</td>
+          <td>{{ c.sid }}</td>
+          <td align="right">{{ c.age }}</td>
+          <td align="right">{{ c.total_users }}</td>
+          <td align="right">{{ c.rent_users }}</td>
+          <td align="right">{{ c.rent_pixel_users }}</td>
+          <td align="right">{{ c.rentplan_active_users }}</td>
+          <!--<td align="right">{{ c.trade_users }}</td>
+          <td align="right">{{ c.buy_users }} </td>-->
+          <td align="right">{{ c.count_with_rentlist }}</td>
+          <td align="right">{{ c.percent_with_rentlist }}</td>
+          <td align="right">{{ c.count_rebilled }}</td>
+          <td align="right">{{ c.percent_rebilled }}</td>
+          <td align="right">{{ c.average_rebill_count }}</td>
+          <td align="right">{{ c.percent_with_claims }}</td>
+          <!--<td align="right">{{ c.percent_trades_received }}</td>-->
+          <td align="right">{{ c.amount_authorized }}</td>
+          <td align="right">{{ c.amount_approved }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div>
+<pre>
+{{ datespec }}
+{{ debug }}
+</pre>
+</div>
+{% endblock right %}

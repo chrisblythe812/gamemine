@@ -1,0 +1,41 @@
+{% extends "staff/fulfillment.html" %}
+
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <form method="get">
+    <div>
+      {{ form.platform.label }} {{ form.platform }}
+      {{ form.q.label }} {{ form.q }} <input type="submit" value="Search" />
+    </div>
+  </form>
+
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>UPC</th>
+      <th>Platform</th>
+      <th>Release Date</th>
+      <th>Gamemine Price</th>
+      <th>Ingram Retail Price</th>
+      <th>Quantity</th>
+    </tr>
+    {% for i in items %}
+    <tr>
+      <td><a href="{{ i.item.get_absolute_url }}" target="_blank">{{ i.item }}</a></td>
+      <td>{{ i.item.upc }}</td>
+      <td>{{ i.item.category }}</td>
+      <td>{{ i.item.release_date|date }}</td>
+      <td>${{ i.item.retail_price_new }}</td>
+      <td>${{ i.retail_price }}</td>
+      <td>{{ i.quantity }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  {% pagination %}
+</div>
+
+{% endblock right %}

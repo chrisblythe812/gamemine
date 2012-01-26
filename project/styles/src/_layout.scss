@@ -1,0 +1,415 @@
+$blueprint-grid-columns : 24;
+$blueprint-grid-width   : 30px;
+$blueprint-grid-margin  : 10px;
+
+@import "compass/reset";
+@import "compass/utilities";
+
+@import "mixins";
+
+@import "constants";
+@import "forms";
+@import "dialogs";
+@import "paginator";
+@import "ololo";
+@import "tooltip";
+@import "subscription/subscription";
+
+@import "partials/details_hint";
+
+@import "partials/stars";
+
+body {
+    background: #d0d0d0;
+    font-family: Arial;
+    font-size: 14px;
+}
+
+@mixin debug {
+    //    background-color: rgba(255, 255, 0, .3);
+}
+
+.tf_upfront_badge {
+    display: none;
+}
+
+/*********************
+    HEADER
+*********************/
+
+$header_height: 70px;
+$header_blue: #2f66ca;
+
+@mixin header-item($width, $debug_color) {
+    @include debug;
+    float: left;
+    height: $header_height;
+    width: $width;
+    overflow: hidden;
+    // background: $debug_color;
+}
+
+a {
+    color: #3366cc;
+}
+
+#header_wrapper {
+    background: url($images_url + '/header-bg.png') repeat-x;
+    height: 104px;
+    #header {
+    	// background: rgba(255, 255, 0, .3);
+
+	width: 980px;
+	margin: 0 auto;
+	height: $header_height;
+	overflow: hidden;
+	color: #999;
+
+	a {
+	    font-family: Arial;
+	    font-size: 12px;
+	    text-decoration: none;
+	    color: #666;
+
+	    &:hover {
+		color: #b42024;
+	    }
+	}
+
+	#header-logo {
+	    @include header-item(120px, red);
+
+	    a {
+		display: block;
+		width: 143px;
+		height: 70px;
+		// margin: 16px 0;
+		text-indent: -9999px;
+		background: url($images_url + "logo.jpg") no-repeat;
+	    }
+
+	    @include debug;
+	}
+
+	#header-platforms {
+	    @include header-item(470px, blue);
+
+	    li {
+		list-style: none;
+		float: left;
+		padding: 20px 3px;
+		margin: 0;
+		background: right center url($images_url + "header-menu-separator.gif") no-repeat;
+		font-weight: bold;
+
+		&.last-item {
+		    background: none;
+		}
+
+		a {
+		    display: block;
+		    padding: 9px;
+		    // text-transform: uppercase;
+
+		    &.current {
+			color: #b42024;
+		    }
+		}
+	    }
+	}
+
+	#header-user-block {
+	    @include header-item(260px, green);
+	    font-size: 13px;
+	    text-align: right;
+	    line-height: 70px;
+
+	    &.signed-in {
+                //				span,
+		#header-user-block-profile {
+		    font-size: 13px;
+		    color: $header_blue;
+		    font-weight: bold;
+		}
+	    }
+
+	    &.signed-out {
+		color: $header_blue;
+		font-size: 13px;
+
+		a {
+		    font-size: 13px;
+		    color: $header_blue;
+		    font-weight: bold;
+		}
+
+		.separator {
+		    padding: 0 2px;
+		}
+	    }
+
+	    a:hover {
+		text-decoration: underline;
+	    }
+
+	}
+
+	#header-search-box {
+	    @include header-item(120px, red);
+
+	    margin-left: 10px;
+
+	    .input {
+		@include input-box-icon($images_url + "icons/header-search-icon.gif");
+
+		width: 120px;
+		margin-top: 26px;
+	    }
+	}
+    }
+}
+
+
+#content-wrapper {
+    width: 1006px;
+    margin: 0 auto;
+    background: bottom center url($images_url + "simple-page-bg.png") repeat-y;
+
+    #content {
+	margin: 0 12px;
+	padding: 0 10px;
+	min-height: 250px;
+    }
+}
+
+#footer-buttons {
+    iframe {
+        border: none;
+        background: transparent;
+    }
+}
+
+@import "partials/top_popup";
+@import "partials/top_popup_user";
+@import "partials/top_popup_login";
+@import "partials/top_popup_signup";
+
+@import "content_typography";
+
+@import "layouts/simple_page";
+@import "layouts/banner_page";
+@import "layouts/intro_page";
+@import "layouts/cart_page";
+@import "layouts/rent_confirmation_page";
+@import "layouts/esrb_page";
+@import "layouts/free_shipping";
+@import "layouts/deck_the_halls";
+
+@import "buttons";
+
+@import "claims/claims";
+
+#root-wrapper {
+    #root {
+        position: relative;
+        background: url($images_url + "gray_bg.jpg") bottom center repeat-x;
+    }
+}
+
+.catalog-item {
+    #footer-wrapper {
+        #footer {
+            background: url($images_url + "footer-bg.png") no-repeat;
+        }
+    }
+}
+
+.intro-page {
+    #footer-3-copy {
+        padding-top: 60px !important;
+    }
+}
+
+#footer-wrapper {
+    overflow: hidden;
+    background: url($images_url + "footer-wrapper-bg.png") repeat-x;
+    height: 130px;
+
+    #footer {
+	width: 1006px;
+	height: 130px;
+	margin: 0 auto;
+	font-size: 11px;
+	color: #666;
+	background: url($images_url + "footer-bg-1.png") no-repeat;
+
+	a {
+	    text-decoration: none;
+	    color: #666;
+
+	    &:hover {
+		text-decoration: underline;
+	    }
+	}
+
+	#footer-content {
+	    padding: 15px 30px;
+
+	    #footer-menu {
+		list-style: none;
+
+		li {
+		    float: left;
+		    margin-right: 20px;
+		}
+	    }
+
+	    #footer-copy {
+		text-align: right;
+		position: relative;
+		width: 950px;
+
+		p {
+		    display: inline;
+		    margin-right: 20px;
+		}
+
+		span.separator {
+		    padding: 0 10px;
+		}
+
+		a {
+		}
+	    }
+
+	    #footer-3-copy {
+                width: 430px;
+                clear: both;
+                float: left;
+                padding-top: 30px;
+                line-height: 1.2em;
+                height: 50px;
+	    }
+	}
+    }
+}
+
+.simple-page,
+.banner-page,
+.cart-page {
+    #footer-copy {
+        position: static !important;
+    }
+}
+
+
+//.boxed {
+//	margin-bottom: 40px;
+//	color: #e30e17;
+//
+//	.boxed-wrapper {
+//		padding: 13px;
+//		min-height: 50px;
+//	}
+//}
+
+@mixin boxed-div($prefix, $image_corners, $image_horizontal, $image_vertical)
+{
+    .#{$prefix}-wrapper {
+	padding: 3px;
+	background: #fff;
+    }
+
+    .#{$prefix}-top {
+	margin: 0 7px;
+	height: 7px;
+	background: url($images_url + $image_horizontal) repeat-x;
+
+	.#{$prefix}-top-left {
+	    width: 7px;
+	    height: 7px;
+	    background: 0 0 url($images_url + $image_corners) no-repeat;
+	    margin-left: -7px;
+	}
+
+	.#{$prefix}-top-right {
+	    width: 7px;
+	    height: 7px;
+	    background: -7px 0 url($images_url + $image_corners) no-repeat;
+	    float: right;
+	    margin: -7px -7px 0 0;
+	}
+    }
+
+    .#{$prefix}-wrapper-outer {
+	padding-left: 7px;
+	background: 0 0 url($images_url + $image_vertical) repeat-y;
+    }
+
+    .#{$prefix}-wrapper-outer-1 {
+	padding-right: 7px;
+	background: right 0 url($images_url + $image_vertical) repeat-y;
+    }
+
+    .#{$prefix}-bottom {
+	margin: 0 7px;
+	height: 7px;
+	background: 0 -7px url($images_url + $image_horizontal) repeat-x;
+
+	.#{$prefix}-bottom-left {
+	    width: 7px;
+	    height: 7px;
+	    background: 0 -7px url($images_url + $image_corners) no-repeat;
+	    margin-left: -7px;
+	}
+
+	.#{$prefix}-bottom-right {
+	    width: 7px;
+	    height: 7px;
+	    background: -7px -7px url($images_url + $image_corners) no-repeat;
+	    float: right;
+	    margin: -7px -7px 0 0;
+	}
+    }
+}
+
+.boxed {
+    @include boxed-div('boxed', 'error-1.png', 'error-2.gif', 'error-3.gif');
+    // background: rgba(255, 255, 0, .3);
+
+    .boxed-details {
+	ul {
+	    //background: rgba(255, 255, 0, .3);
+	    color: #333 !important;
+	    font-size: 12px !important;
+	    font-weight: normal !important;
+	    list-style: circle;
+	    padding-left: 10px !important;
+	    margin: 0 !important;
+
+	    li {
+		line-height: 1.2em;
+	    }
+	}
+    }
+}
+
+.boxed-red {
+    @include boxed-div('boxed-red', 'boxed-red-corners.gif', 'boxed-red-horizontal.gif', 'boxed-red-vertical.gif');
+}
+
+#root::after, #root .after {
+    content: "";
+    position: absolute;
+    bottom: -135px;
+    left: 50%;
+    margin-left: -504px;
+    width: 1008px;
+    height: 135px;
+    background: url($images_url + "shadow_footer.png") center bottom no-repeat;
+}
+
+@import "buy/buy_confirmation_page";
+@import "layouts/new_catalog";
+@import "banners/balalayka";
+@import "layouts/footer";

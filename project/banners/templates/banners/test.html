@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js?rev={{ REV }}"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js?rev={{ REV }}"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/core.js?rev={{ REV }}"></script>
+
+  <link href="{{ STATIC_URL }}css/main.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+  
+  <script type="text/javascript">
+    $(function () {
+      $('.banner').balalaykaBanner({url: '?banners'});
+    });
+  </script>
+
+  <style type="text/css">
+    .banner {
+      width: 982px;
+      height: 345px;
+      margin: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner"></div>
+</body>
+</html>

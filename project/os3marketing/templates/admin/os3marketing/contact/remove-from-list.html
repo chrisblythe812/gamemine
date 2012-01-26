@@ -1,0 +1,27 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block bodyclass %}change-list historic{% endblock %}
+{% block breadcrumbs %}
+	{% if not is_popup %}
+		<div class="breadcrumbs">
+		     <a href="{% url admin:index %}">{% trans "Admin." %}</a> &rsaquo;
+		     <a href="{% url admin:app_list "os3marketing" %}">Os3Marketing</a> &rsaquo;
+		     Remove from MailingList
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">     
+	<form method="post" action="{{ path }}">
+		{% csrf_token %}
+        {{ form.as_p }}
+        <p>
+	    	<input type="hidden" name="action" value="remove_from_mailinglist" />
+	        <input type="submit" name="update" value="Remove" />
+	        <input type="submit" name="cancel" value="Cancel" />
+		</p>        
+	</form>
+</div>
+{% endblock %}

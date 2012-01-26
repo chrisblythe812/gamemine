@@ -1,0 +1,78 @@
+{% extends "simple_pages/base.html" %}
+
+{% block title %}{{ block.super }} – What is My Game Worth?{% endblock %}
+
+{% block head %}
+  <script type="text/javascript">
+  var catalogConfig = {
+    autoFilter: {{ auto_filter|yesno:"true,false" }},
+    mediaUrl: "{{ STATIC_URL }}"
+  };
+  </script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/catalog.js?rev={{ REV }}"></script>
+{% endblock %}
+
+{% block page-class %}banner-page what-is-my-game-worth-page{% endblock %}
+
+{% block content-header %}
+	<div class="banner-featured-game">
+		<div class="banner-content">
+			<div class="banner-header"></div>
+			<div class="search-area">
+				<form action="{% url search:search %}" method="get">
+					<div class="field">
+						<input type="text" name="q" />
+					</div>
+					<div class="field">
+						<select name="platform">
+                            <option value="">All Platforms</option>
+						{% for c in categories %}
+							<option value="{{ c.name }}">{{ c.description }}</option>
+						{% endfor %}
+						</select>
+					</div>
+					<script type="text/javascript">
+						$(document).ready(function () {
+							$('select[name=platform]').setupSelect('w145px');
+						});
+					</script>
+				</form>
+			</div>
+		</div>	
+	</div>
+{% endblock content-header %}
+
+
+{% block content %}
+
+<div id="what-is-my-game-worth-page-content">
+	<h1>Hot Trade Values</h1>
+	
+	<ul class="consoles">
+	{% for category in categories %}
+		<li class="console {{ category.slug|lower }}">
+			<h2>{{ category.description }}</h2>
+			<ul>
+			{% for item in category.list_top_trades %}
+				<li>
+					<a href="{{ item.get_absolute_url }}" class="item-title"><span>{{ item.get_cropped_name }}</span></a>
+					<span class="price">{% if item.trade_price %}${{ item.trade_price }}{% else %}--{% endif %}</span>
+				</li>
+			{% endfor %}
+			</ul>
+      <div class="view-all"><a href="{% url search:search %}?order_by=4&amp;platform={{ category.name }}">View All</a></div>
+		</li>
+	{% endfor %}
+	</ul>
+	
+	<div class="clear">&nbsp;</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  Catalog.initDetailsHint();
+});
+</script>
+
+{% endblock content %}

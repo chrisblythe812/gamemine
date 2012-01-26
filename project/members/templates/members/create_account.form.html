@@ -1,0 +1,51 @@
+<form method="post" action="{% url members:create_account %}" class="simple">
+	{% csrf_token %}
+
+	{% include "partials/form_errors.html" %}
+
+	<div class="input-field">
+		<label for="id_email">{{ form.email.label }}</label> {{ form.email }}
+		{{ form.email.errors }}
+	</div>
+
+    <div class="input-field">
+        <label for="id_username">{{ form.username.label }}</label> {{ form.username }}
+        {{ form.username.errors }}
+    </div>
+
+	<div class="input-field">
+		<label for="id_password1">{{ form.password.label }}</label> {{ form.password }}
+		{{ form.password.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_password2">{{ form.confirm_password.label }}</label> {{ form.confirm_password }}
+		{{ form.confirm_password.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_first_name">{{ form.first_name.label }}</label> {{ form.first_name }}
+		{{ form.first_name.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_last_name">{{ form.last_name.label }}</label> {{ form.last_name }}
+		{{ form.last_name.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_phone_number">{{ form.phone_number.label }}</label> {{ form.phone_number }}
+		{{ form.phone_number.errors }}
+	</div>
+
+
+	<div class="checkbox-field">
+		{{ form.agree_of_terms }} <label for="id_remember">{{ form.agree_of_terms.label }}</label>
+		{{ form.agree_of_terms.errors }}
+	</div>
+
+	<p class="form-actions">
+		<a class="cancel-button" href="{% url index %}">Cancel</a>
+		<input type="submit" value="Create account" class="create-account-button" />
+	</p>
+</form>

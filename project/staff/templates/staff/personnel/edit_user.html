@@ -1,0 +1,14 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<form method="post" action=".">{% csrf_token %}
+<div class="module">
+  <table>
+  {{ form.as_table }}
+  </table>
+  <div class="actions"><input type="submit" value="Save"> <input type="reset" value="Reset"/></div>
+</div>
+</form>
+
+{% endblock right %}

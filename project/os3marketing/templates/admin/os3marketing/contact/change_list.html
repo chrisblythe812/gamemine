@@ -1,0 +1,185 @@
+{% extends "admin/change_list.html" %}
+{% load adminmedia admin_list i18n %}
+
+{% block extrastyle %}
+  {{ block.super }}
+    <script type="text/javascript">
+    	function filter_combo(){
+    		document.getElementById('form-filter').submit();
+    	}
+    </script>
+  <style type="text/css">
+  	.filter_select{width:200px;}
+  	.table_filter{ border-collapse: collapse; }
+  	.table_filter tr td{ border:none; height:25px; line-height:25px;}
+  </style>
+{% endblock %}
+
+{% block coltype %}flex{% endblock %}
+{% block content_title %}{%endblock%}
+{% block content %}
+  <div id="content-main">
+    {% block object-tools %}
+		<ul class="object-tools" style="margin-top:0;">
+		  {% if has_add_permission %}
+		  <li>
+		    <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+		      {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+		    </a>
+		  </li>
+		  <li>
+		    <a href="{%url admin:os3marketing_contact_import_vcard%}{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+		      {%trans "Import(VCARD)" %}
+		    </a>
+		  </li>
+		  <li>
+		    <a href="{%url admin:os3marketing_contact_import_csv%}{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+		      {%trans "Import(CSV)" %}
+		    </a>
+		  </li>
+		  {% endif %}
+		  {% if user.is_superuser %}
+		  <li>
+		    <a href="{%url admin:os3marketing_contact_export_vcard%}{% if is_popup %}?_popup=1{% endif %}" class="viewsitelink">
+		      {%trans "Export(VCARD)"%}
+		    </a>
+		  </li>
+		  <li>
+		    <a href="{%url admin:os3marketing_contact_export_csv%}{% if is_popup %}?_popup=1{% endif %}" class="viewsitelink">
+		      {%trans "Export(CSV)"%}
+		    </a>
+		  </li>  
+		  {% endif %}
+		</ul>
+    {% endblock %}
+    {% if cl.formset.errors %}
+        <p class="errornote">
+        {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+        </p>
+        {{ cl.formset.non_form_errors }}
+    {% endif %}
+    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist" style="margin-top:20px;">
+      {% block search %}      		
+      		<div style="background-color:black; height:20px; line-height:20px; color:white; font-weight:bold; padding-left:3px;">Filter</div>
+			<form id="form-filter" method="post" action="">	      		
+	      		<div style="border-bottom:solid 1px #ccc;">		      			
+	      				{% csrf_token %}
+		      			<table class="table_filter">
+		      				<tr>
+		      					<td style="border:none;">Entry Point:</td>
+		      					<td style="border:none;">
+						      		<select name="entry_point" onchange="filter_combo(this);" class="filter_select">
+						      			{%for c in entry_point_list%}
+						      				<option value="{{c.0}}" {%if c.0 == current_entry_point %}selected="selected"{%endif%}>{{c.1}}</option>
+						      			{%endfor%}
+						      		</select>      					
+		      					</td>    
+	      						<td style="border:none;">Rental Status:</td>
+		      					<td style="border:none;">
+						      		<select name="rent_status" onchange="filter_combo(this);" class="filter_select">
+						      			{%for c in rent_status_list%}
+						      				<option value="{{c.0}}" {%if c.0 == current_rent_status %}selected="selected"{%endif%}>{{c.1}}</option>
+						      			{%endfor%}
+						      		</select>      					
+		      					</td>  
+	      						<td style="border:none;">Member only:</td>
+		      					<td style="border:none;">
+						      		<select name="member_only" onchange="filter_combo(this);" class="filter_select">
+						      			{%for c in member_only_list%}
+						      				<option value="{{c.0}}" {%if c.0 == current_member_only %}selected="selected"{%endif%}>{{c.1}}</option>
+						      			{%endfor%}
+						      		</select>      					
+		      					</td>  	      					
+		      				</tr>
+		      				<tr>
+	      						<td style="border:none;">Account Status:</td>
+		      					<td style="border:none;">
+						      		<select name="profile_status" onchange="filter_combo(this);" class="filter_select">
+						      			{%for c in profile_status_list%}
+						      				<option value="{{c.0}}" {%if c.0 == current_profile_status %}selected="selected"{%endif%}>{{c.1}}</option>
+						      			{%endfor%}
+						      		</select>      					
+		      					</td>  	
+	      						<td style="border:none;">Contact Status:</td>
+		      					<td style="border:none;">
+						      		<select name="contact_status" onchange="filter_combo(this);" class="filter_select">
+						      			{%for c in contact_status_list%}
+						      				<option value="{{c.0}}" {%if c.0 == current_contact_status %}selected="selected"{%endif%}>{{c.1}}</option>
+						      			{%endfor%}
+						      		</select>      					
+		      					</td> 
+	      						<td style="border:none;">Test Contact:</td>
+		      					<td style="border:none;">
+						      		<select name="test_contact" onchange="filter_combo(this);" class="filter_select">
+						      			{%for c in test_contact_list%}
+						      				<option value="{{c.0}}" {%if c.0 == current_test_contact %}selected="selected"{%endif%}>{{c.1}}</option>
+						      			{%endfor%}
+						      		</select>      					
+		      					</td>  	      					 		   
+		      				</tr>
+		      				<tr>
+	      						<td style="border:none;">Mailing List:</td>
+		      					<td style="border:none;">
+						      		<select name="mail_list" onchange="filter_combo(this);" class="filter_select">
+						      			{%for c in mailinglist_list %}
+						      				<option value="{{c.0}}" {%if c.0 == current_mail %}selected="selected"{%endif%}>{{c.1}}</option>
+						      			{%endfor%}
+						      		</select>      					
+		      					</td> 
+		      					<td style="border:none;"></td>		      				
+		      					<td style="border:none;"></td>		      				
+		      					<td style="border:none;"></td>		      				
+		      					<td style="border:none;"></td>		      				
+		      					<td style="border:none;"></td>		      				
+		      					<td style="border:none;"></td>		      				
+		      				</tr>
+		      			</table>
+	      		</div>
+				<div id="toolbar">
+					<div><!-- DIV needed for valid HTML -->
+						<label for="searchbar"><img src="{% admin_media_prefix %}img/admin/icon_searchbox.png" alt="Search" /></label>
+						<input type="text" size="40" name="q" value="{{ q }}" id="searchbar" />
+						<input type="submit" value="Search" />
+	    				<span class="small quiet">{% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %} (<a href="?{% if cl.is_popup %}pop=1{% endif %}">show all</a>)</span>
+					</div>
+				</div>
+			<script type="text/javascript">document.getElementById("searchbar").focus();</script>
+
+			<div style="background-color:black; height:20px; line-height:20px; color:white; font-weight:bold; padding-left:3px;">Add/Remove contacts to a mailing list based on results</div>
+			<div style="padding:3px; border-bottom:solid 1px #ccc;">
+				{%if mailing_form.errors %}
+					{{mailing_form.mailingList.errors}}
+				{%endif%}
+		        {{ mailing_form.mailingList.label}} {{ mailing_form.mailingList}} {{ mailing_form.newList.label}} {{ mailing_form.newList}}
+		        <input type="submit" name="update" value="Add" />   
+		        <input type="submit" name="remove" value="Remove" />     
+			</div>
+			</form>
+
+      {% endblock %}
+      {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+
+      {% block filters %}
+        {% if cl.has_filters %}
+          <div id="changelist-filter">
+            <h2>{% trans 'Filter' %}</h2>
+            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+          </div>
+        {% endif %}
+      {% endblock %}
+      
+      <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+      {% if cl.formset %}
+        {{ cl.formset.management_form }}
+      {% endif %}
+
+      {% block result_list %}
+          {% if action_form and actions_on_top and cl.full_result_count %}{% admin_actions %}{% endif %}
+          {% result_list cl %}
+          {% if action_form and actions_on_bottom and cl.full_result_count %}{% admin_actions %}{% endif %}
+      {% endblock %}
+      {% block pagination %}{% pagination cl %}{% endblock %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

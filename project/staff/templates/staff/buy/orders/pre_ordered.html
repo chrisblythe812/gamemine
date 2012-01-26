@@ -1,0 +1,93 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %} 
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Pre-Ordered</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Item</td>
+        <td>UPC</td>
+        <td>Platform</td>
+        <td>Condition</td>
+        <td>Customer</td>
+        <td>Order No</td>
+        <td style="width: 75px;">Ordered Date</td>
+        <td>Availability (In Stock FL / Distributor)</td>
+        <td>&nbsp;</td>
+      </tr>
+    </thead>
+  {% for o in orders %}
+     <tr>
+        <td><a href="{{ o.item.get_absolute_url }}" target="_blank">{{ o.item }}</a></td>
+        <td>{{ o.item.upc }}</td>
+        <td>{{ o.item.category }}</td>
+        <td>{{ o.is_new|yesno:"NG,UG" }}</td>
+        <td><a target="_blank" href="{% url staff:customer_view o.order.user.id %}">{{ o.order.user.get_profile.get_name_display }}</a></td>
+        <td><a target="_blank" href="{% url staff:buy_order_details o.order.id %}">#{{ o.order.order_no }}</a></td>
+        <td>{{ o.order.create_date|date }}</td>
+        <td>{{ o.get_amount_instock_to_buy }} / {{ o.get_amount_from_distributor_to_buy }}</td>
+        <td>
+        {% if user.is_superuser %}
+          <a href="{% url staff:page 'Reports/Inventory' %}?dc=1&status=3&platform={{ o.item.category.id }}&cond={{ o.is_new|yesno:'NG,UG' }}&buy_only=True&q={{ o.item.upc }}" target="_blank">Lookup</a>
+        {% endif %}
+        </td>
+      </tr>
+  {% endfor %}
+  </table>
+</div>
+
+
+{% comment %}
+<div class="module">
+  <h2>Not in Stock</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Item</td>
+        <td>UPC</td>
+        <td>Platform</td>
+        <td>Condition</td>
+        <td>Release Date</td>
+        <td>Quantity</td>
+      </tr>
+    </thead>
+  {% for o in orders %}
+     <tr>
+        <td><a href="{{ o.item.get_item.get_absolute_url }}" target="_blank">{{ o.item.get_item }}</a></td>
+        <td>{{ o.item.get_item.upc }}</td>
+        <td>{{ o.item.get_item.category }}</td>
+        <td>{{ o.is_new|yesno:"NG,UG" }}</td>
+        <td>{{ o.item.get_item.release_date|date }}</td>
+        <td><a href="{% url staff:buy_orders_details_po o.item.id %}" class="order_details">{{ o.count }}</a></td>
+      </tr>
+  {% endfor %}
+  </table>
+</div>
+
+<div id="order_details"></div>
+
+{% pagination %}                                                                                       
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('a.order_details').click(function () {
+    $.get($(this).attr('href'), function(data, status) {
+      if (status != 'success') {
+        alert('error');
+        return;
+      }      
+      var target = $('#order_details');
+      target.empty().append(data);
+      $('html, body').animate({scrollTop: target.offset().top}, 500);
+    });
+    return false;
+  });
+});
+</script>
+
+{% endcomment %}
+
+{% endblock right %}

@@ -1,0 +1,35 @@
+.free-shipping-page {
+  #free-shipping-title {
+    width: 1006px;
+    height: 242px;
+    overflow: hidden;
+    background: url($images_url + 'free-shipping-header.png') no-repeat;
+    margin: 0 auto;
+  }
+
+  #free-shipping-page {
+    padding: 40px;
+    
+    h1 {
+      font-size: 18px !important;
+      color: #c00;
+    }
+    
+    h2 {
+      color: #36c;
+      font-size: 14px !important;
+      margin-bottom: 5px !important;
+    }
+    
+    .terms {
+      margin-top: 40px;
+    }
+    
+    em {
+      color: #c00;
+      font-weight: bold;
+      font-style: normal !important;
+      text-decoration: underline;
+    }
+  }
+}

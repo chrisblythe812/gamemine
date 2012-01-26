@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block extrahead %}{{ block.super }}{% endblock %}
+
+{% block extrastyle %}{{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="/area51/">{% trans "Home" %}</a> &rsaquo;
+     {{ title }}
+</div>
+{% endif %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+	{% if pending_list %}
+	<table>
+		<tr>
+			<th>#</th>
+			<th>User</th>
+			<th>Game</th>
+			<th>UPC</th>
+			<th>Platform</th>
+			<th>&nbsp;</th>
+		</tr>
+		{% for r in pending_list %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{ r.user.get_profile.get_name_display }}</td>
+			<td><a href="{{ r.item.get_absolute_url }}">{{ r.item }}</a></td>
+			<td>{{ r.item.upc }}</td>
+			<td>{{ r.item.category }}</td>
+			<td><a href="{% url project.rent.admin.create_order r.id %}">Create Order</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% endif %}
+</div>
+{% endblock %}

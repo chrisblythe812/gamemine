@@ -1,0 +1,40 @@
+{% extends 'staff/customer/base.html' %}
+{% load pagination %}
+
+{% block right %}
+
+<div class="module">
+  <h2>Shipping Problems</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Kind</th>
+        <th>Object of Claim</th>
+        <th>Date</th>
+        <th>Claim Type</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for claim in claims %}
+      <tr class="case-status-{{ claim.status }}">
+        <td>{{ claim.get_sphere_of_claim_display }}</td>
+        <td>
+          {% if claim.sphere_of_claim == 2 %}
+            <a href="{% url staff:rent_order_details claim.claim_object.id %}" target="_blank">{{ claim.claim_object }}</a>
+          {% else %}
+            {{ claim.claim_object }}
+          {% endif %}
+        </td>
+        <td>{{ claim.date|date }}</td>
+        <td>{{ claim.get_type_display }}</td>
+        <td><a href="{% url staff:claim_details claim.id %}">Details</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% pagination %}
+</div>
+
+{% endblock right %}

@@ -1,0 +1,30 @@
+{% extends "staff/fulfillment.html" %}
+{% block head %}
+<script type="text/javascript" src="{{STATIC_URL}}tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="/tinymce/filebrowser/"></script>
+<style>
+.editor_mc{ border-collapse:collapse; border:solid 1px black; width:100%;} 
+.editor_mc tr th {
+    background-color: #C0C0C0;
+    color: #003366;
+    font-weight: bold;
+    border:solid 1px black;
+}
+.editor_mc tr td {border:solid 1px black;}
+</style>
+{% endblock head %}
+{% block right %}{{ block.super }}
+
+
+  <form method="post">
+{% csrf_token %}      
+<table class="editor_mc">
+{{ form.as_table }}
+</table>
+<div style = "background-color: #CCCCCC; padding: 10px; border:solid 1px black;">
+  <input type="submit" value="Save"/>
+</div>
+  </form>
+
+{% endblock right %}
+

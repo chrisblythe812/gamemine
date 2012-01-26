@@ -1,0 +1,91 @@
+<div id="personalize-your-games-dialog" class="dialog">
+  <div class="dialog-heading">
+    <h2>Personalize Your Gaming</h2>
+    <a class="dialog-close-button" href="#" title="Close"></a>
+  </div>
+  
+  <div id="dialog-content">
+    <form method="post" action="{% url members:personalize_your_games %}">{% csrf_token %}
+     <div class="block consoles-block">
+        <h2>What consoles do you have?</h2>
+        
+        <ul class="consoles">
+          {% for system in systems %}
+          <li>
+            <label for="id-system-{{ system.id }}">{{ system.name }}</label>
+            <input type="checkbox" id="id-system-{{ system.id }}" name="system-{{ system.id }}" {% if system.owned %}checked="checked"{% endif %} />
+          </li>
+          {% endfor %}
+</li>
+</div>
+
+<div class="block genres-block">
+  <h2>What types of games do you play?</h2>
+  <ul class="genres">
+    {% for genre in genres %}
+    <li>
+      <input type="checkbox" id="id-genre-{{ genre.id }}" name="genre-{{ genre.id }}" {% if genre.favorite %}checked="checked"{% endif %} />
+      <label for="id-genre-{{ genre.id }}">{{ genre.name }}</label>
+    </li>
+    {% endfor %}
+</li>
+</div>
+
+<div class="block consoles-block">
+  <h2>What parental controls would you like set?</h2>
+  
+  <ul class="parental-control">
+    <li id="choice-0">
+      <div class="input"><input type="radio" name="parental_control" value="0"{% if parental_control == 0 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Access to All Games</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-1">
+      <div class="input"><input type="radio" name="parental_control" value="1"{% if parental_control == 1 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow E, EC Only</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-2">
+      <div class="input"><input type="radio" name="parental_control" value="2"{% if parental_control == 2 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow E10+, E, EC Only</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-3">
+      <div class="input"><input type="radio" name="parental_control" value="3"{% if parental_control == 3 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow T, E10+, E, EC Only</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-4">
+      <div class="input"><input type="radio" name="parental_control" value="4"{% if parental_control == 4 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow EC Only</div>
+      <div class="image"></div>
+    </li>
+    <li>
+      <div class="links">
+        <a href="http://www.esrb.org/ratings/ratings_guide.jsp" target="_blank">View ESRB Game Ratings</a>
+      </div>
+    </li>
+  </ul>
+  
+  <h2>User reviews</h2>
+  <ul class="parental-control-reviews">
+    <li>
+      <div class="input"><input type="radio" name="parental_control_reviews" value="0"{% if parental_control_reviews == 0 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Reading/Writing All User Reviews</div>
+    </li>
+    <li>
+      <div class="input"><input type="radio" name="parental_control_reviews" value="1"{% if parental_control_reviews == 1 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Reading User Reviews Only</div>
+    </li>
+    <li>
+      <div class="input"><input type="radio" name="parental_control_reviews" value="2"{% if parental_control_reviews == 2 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Reading/Writing User Reviews Bases on My Game and Movie Settings</div>
+    </li>
+  </ul>
+  
+</div>
+
+<div class="actions"><input type="submit" value="Next" class="next-button" /></div>
+</form>
+</div>
+</div>

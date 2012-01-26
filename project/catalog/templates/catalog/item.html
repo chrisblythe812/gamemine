@@ -1,0 +1,193 @@
+{% extends "catalog/base.html" %}
+
+{% load percents %}
+{% load comments %}
+{% load star_rating %}
+{% load sidebar_advertisement %}
+
+{% block title %}{{ block.super }} – {{ item }}{% endblock title %}
+{% block meta-description %}{{ item.category.meta_description }}{% endblock meta-description %}
+{% block meta-keywords %}{{ item.category.meta_keywords }}{% endblock meta-keywords %}
+
+{% block page-class %}simple-page catalog-item{% endblock %}
+
+{% block head %}
+{{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="catalog-item-details">
+
+	<h1 class="catalog-item-title">{{ item }}</h1>
+
+	<div class="catalog-item-image">
+	{% if item.get_cover %}
+		<img src="{{ item.get_cover }}" width="170" height="220" />
+	{% endif %}
+	</div>
+
+	<div class="catalog-item-main-params">
+		<div class="catalog-item-stars">
+            <div class="catalog-item-rating"><div class="catalog-item-rating-content" style="width: {{ item.ratio|percents:5 }}%">{{ item.ratio|percents:5 }}&nbsp;of&nbsp;100</div></div>
+			&nbsp;(<span class="voters-amount">{{ item.votes.amount }}</span>)
+		</div>
+
+		<ul class="catalog-item-params">
+			<li class="catalog-item-params-publisher"><strong>Publisher:</strong> <span>{% if item.publisher %}<a href="{{ item.publisher.get_absolute_url }}">{{ item.publisher }}</a>{% else %}--{% endif %}</span></li>
+			<li class="catalog-item-params-platform"><strong>Platform:</strong> <span><a href="{{ item.category.get_absolute_url }}">{{ item.category.description }}</a></span></li>
+			<li class="catalog-item-params-release"><strong>Release:</strong> <span>{{ item.release_date|date|default:"--" }}</span></li>
+            <li class="catalog-item-params-esrb"><strong>ESRB:</strong> <span>{{ item.rating|default:"--" }}</span></li>
+            <li class="catalog-item-params-players"><strong># of Players:</strong> <span>{{ item.number_of_players|default:"--" }}</span></li>
+            <li class="catalog-item-params-online-players"><strong>Online Players:</strong> <span>{{ item.number_of_online_players|default:"--" }}</span></li>
+			<li class="catalog-item-params-genres"><strong>Genre{{ item.genres.all.count|pluralize }}:</strong>
+			<span>
+			{% for g in item.genres.all %}
+				<a href="{% url catalog:category item.category.slug %}?genre={{ g.id }}">{{ g }}</a>{% if not forloop.last %}, {% endif %}
+			{% empty %}
+				--
+			{% endfor %}
+			</span>
+			</li>
+			<li class="catalog-item-params-tags"><strong>Tags:</strong> <span>
+			{% for tag in item.tags.all %}
+				<a href="{{ tag.get_absolute_url }}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+			{% endfor %}
+			</span></li>
+		</ul>
+
+		<ul class="catalog-item-actions">
+			{% if 1 or item.available_for_selling %}
+			<li class="catalog-item-action-buy">
+				<a href="{% url cart:add item.id %}" class="action link-dialog" title="Buy">Buy</a>
+				<p><strong>PRICE</strong> <span class="price">{{ item.get_retail_prices_display }}</span></p>
+			</li>
+			{% endif %}
+			{% if 1 or item.trade_flag %}
+			<li class="catalog-item-action-trade">
+				<a href="{% url trade:add item.id %}" class="action link-dialog" title="Trade">Trade</a>
+				<p><strong>VALUE</strong> <span class="price">{{ item.get_trade_prices_display }}</span></p>
+			</li>
+			{% endif %}
+			{% if 1 or item.rent_flag %}
+			<li class="catalog-item-action-rent">
+				<a href="{% url rent:add item.id %}" class="action link-dialog" title="Rent">Rent</a>
+				<p class="message">
+		        {% if user.is_authenticated %}
+		            <em>AVAILABILITY</em></br> {{ item_rent_status }}
+		        {% else %}
+		            Only <a href="{% url new_rent:change_plan %}" class="link-dialog">${{ minimal_rent_charge }}</a> a month
+			    {% endif %}
+				</p>
+			</li>
+			{% endif %}
+		</ul>
+
+		{% load social_bookmarks_tags %}
+		{% show_social_bookmarks item item.get_absolute_url %}
+
+		{% if item.also_on %}
+		<div class="catalog-item-also-on">
+			<strong>Also on:</strong>
+			{% for i in item.also_on %}
+				<a href="{{ i.get_absolute_url }}">{{ i.category.description }}</a>{% if not forloop.last %}, {% endif %}
+			{% endfor %}
+		</div>
+		{% endif %}
+	</div>
+
+	<div class="clear"></div>
+
+	<div class="catalog-item-description">
+	{{ item.description|linebreaksbr }} <a class="get-more" href="{{ item.get_absolute_url }}muze-description/">Read Full Description</a>
+	</div>
+
+	<div class="catalog-item-muze-description"></div>
+
+    {% if user.is_authenticated %}
+	<div class="catalog-rate-game"><span>Rate Game:</span> {{ item|rate_game:user }}</div>
+    {% endif %}
+
+	<div class="member-reviews" id="reviews">
+		{% get_comment_count for item as comment_count %}
+
+		{% get_comment_list for item as reviews %}
+		{% get_comment_form for item as review_form %}
+		{% include "catalog/partials/item_reviews.html" %}
+	</div>
+
+</div>
+
+<div id="catalog-item-sidebar">
+	{# template catalog/sidebar-advertisement.html #}
+	{% sidebar_advertisement %}
+
+	<div class="screenshots"{% if not item.get_screenshots|length %} style="display:none"{% endif %}>
+	{% if item.get_screenshots %}
+		<div id="id_screenshots_inner">
+			<img class="main-image" src="{{ MEDIA_URL }}thumbs/muze/330x200/{{ item.get_screenshots.0.file_name }}" title="{{ item.get_screenshots.0.caption }}" width="330" height="200" />
+			<a href="{% url catalog:item_action item.slug item.id 'media-details' %}" class="link-dialog media-details v2">View clip</a>
+			<ul>
+			{% for i in item.get_screenshots %}
+				<li><a href="#{{ i.file_name }}"><img
+	src="{{ MEDIA_URL }}thumbs/muze/40x25/{{ i.file_name }}" title="{{ i.caption }}" width="40" height="25" /></a></li>
+			{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+	</div>
+
+	<div class="overall-rating">
+		<h3>Overall Rating</h3>
+
+		<div class="overall-rating-content">
+			<div class="overall-rating-value">{% if item.ratio %}{{ item.ratio|floatformat:1 }}{% else %}N/A{% endif %}</div>
+			<div class="overall-rating-count">{% if item.ratio %}Based on {{ item.votes.amount }} review{{ item.votes.amount|pluralize }}{% else %}No review found{% endif %}</div>
+			<dl class="overall-rating-details">
+				<dt>5 star:</dt><dd class="overall-rating-details-5"><div class="ratio-bar"><div class="ratio-bar-content" style="width: {{ item.votes.details.4|percents:item.votes.amount }}%"></div></div> (<span>{{ item.votes.details.4 }}</span>)</dd>
+				<dt>4 star:</dt><dd class="overall-rating-details-4"><div class="ratio-bar"><div class="ratio-bar-content" style="width: {{ item.votes.details.3|percents:item.votes.amount }}%"></div></div> (<span>{{ item.votes.details.3 }}</span>)</dd>
+				<dt>3 star:</dt><dd class="overall-rating-details-3"><div class="ratio-bar"><div class="ratio-bar-content" style="width: {{ item.votes.details.2|percents:item.votes.amount }}%"></div></div> (<span>{{ item.votes.details.2 }}</span>)</dd>
+				<dt>2 star:</dt><dd class="overall-rating-details-2"><div class="ratio-bar"><div class="ratio-bar-content" style="width: {{ item.votes.details.1|percents:item.votes.amount }}%"></div></div> (<span>{{ item.votes.details.1 }}</span>)</dd>
+				<dt>1 star:</dt><dd class="overall-rating-details-1"><div class="ratio-bar"><div class="ratio-bar-content" style="width: {{ item.votes.details.0|percents:item.votes.amount }}%"></div></div> (<span>{{ item.votes.details.0 }}</span>)</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="games-like-this">
+		<h3>Games Like this...</h3>
+
+		<ul class="games-thumb-list">
+		{% for g in item.list_similar_games %}
+			<li><div class="catalog-item{% if not g.get_thumb_image %} empty{% endif %}"><a href="{{ g.get_absolute_url }}">{% if g.get_thumb_image %}<img src="{{ g.get_thumb_image }}" width="55" height="70" />{% else %}{{ g }}{% endif %}</a></div></li>
+		{% empty %}
+			<li class="empty">No record found.</li>
+		{% endfor %}
+		</ul>
+		<div class="clear"></div>
+	</div>
+
+	<div class="popular-games">
+		<h3>Popular Games by...</h3>
+		<div class="popular-games-by">
+			{% if item.publisher %}
+			<a href="{% url catalog:popular-by-publisher item.publisher.id %}">{{ item.publisher }}</a> |
+			{% endif %}
+			<a href="{% url catalog:popular-by-category item.category.slug %}">{{ item.category }}</a>
+		</div>
+		<ul class="games-thumb-list">
+		{% for g in item.list_popular_games %}
+			<li><div class="catalog-item{% if not g.get_thumb_image %} empty{% endif %}"><a href="{{ g.get_absolute_url }}">{% if g.get_thumb_image %}<img src="{{ g.get_thumb_image }}" width="55" height="70" />{% else %}{{ g }}{% endif %}</a></div></li>
+		{% empty %}
+			<li class="empty">No record found.</li>
+		{% endfor %}
+		</ul>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+{% endblock content %}
+
+{% block seals-params%}?t=1{% endblock %}

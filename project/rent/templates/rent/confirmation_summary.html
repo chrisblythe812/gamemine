@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load banners %}
+
+{% block page-class %}rent-confirmation-page{% endblock page-class %}
+
+{% block content-header %}
+  <div id="rent-confirmation-page-title">
+    <a href="{% url rent_intro2 %}">Browse Games</a>
+  </div>
+{% endblock content-header %}
+
+{% block content %}
+{% random_banner as banner %}
+<div id="rent-confirmation-page">
+  <a href="{{ banner.get_absolute_url }}">
+    <div class="acc_summary_pic" style="background-image: url('{{ banner.image.url }}')"></div>
+  </a>
+  <h1>Account Summary</h1>
+
+  <div class="side-1">
+    <div class="name"><strong>Name:</strong> {{ user.get_profile.get_full_name }}</div>
+
+    <dl>
+      <dt>Order Total:</dt>
+      <dd>
+        <table>
+          <tr class="row-1">
+            <td class="title">{{ plan.period_in_months }} Month(s) Membership:</td>
+            <td class="price">${{ plan.first_payment_amount }}</td>
+          </tr>
+          <tr>
+            <td class="title total">Total:</td>
+            <td class="price total">${{ plan.first_payment_amount }}</td>
+          </tr>
+        </table>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>Membership Plan:</dt>
+      <dd class="membership-plan">
+        <div class="row-1 plan-name">{{ plan.description }}</div>
+        <div>{{ plan.terms }}</div>
+        <div class="row-1">
+          {% if plan.slug == "free_trial" %}
+            <strong>${{ plan.first_payment_amount }}</strong>/month
+          {% else %}
+          <strong>$ {{ plan.thereafter_payments_amount }}</strong>/month
+         {% endif %}
+        </div>
+      </dd>
+    </dl>
+  </div>
+
+  <div class="side-2">
+    <dl>
+      <dt>Shipping Address: <a href="{% url members:name_and_address %}">Edit</a></dt>
+      <dd>
+        {{ user.profile.shipping_address1 }}</br>
+        {% if user.profile.shipping_address2 %}
+        {{ user.profile.shipping_address2 }}</br>
+        {% endif %}
+        {{ user.profile.shipping_city }}, {{ user.profile.shipping_state }} {{ user.profile.shipping_zip }}
+      </dd>
+
+      <dt>Billing Address: <a href="{% url members:payment_method %}">Edit</a></dt>
+      <dd>
+        {{ user.profile.get_payment_card.address1 }}</br>
+        {% if user.profile.get_payment_card.address2 %}
+        {{ user.profile.get_payment_card.address2 }}</br>
+        {% endif %}
+        {{ user.profile.get_payment_card.city }}, {{ user.profile.get_payment_card.state }} {{ user.profile.get_payment_card.zip }}
+      </dd>
+
+      <dt>Credit Card Info: <a href="{% url members:payment_method %}">Edit</a></dt>
+      <dd>
+        {{ user.profile.get_payment_card.get_type_display }}<br />
+        {{ user.profile.get_payment_card.display_number }}
+      </dd>
+
+      <dt>Parental Control: <a href="{% url members:settings_parental_controls %}">Edit</a></dt>
+      <dd>
+        {{ user.profile.get_parental_control_display }}
+      </dd>
+    </dl>
+  </div>
+
+  <div class="clear"></div>
+  <div class="acc_summary">
+    <div class="acc_summ_bottom_text">Please add up to <span class="red">7 GAMEs</span> now to ensure your games are delivered uninterrupted.</div>
+    <a href="{% url catalog:index %}" title="Add Games" class="btn_add_games">Add Games</a>
+  </div>
+</div>
+
+{% include "rent/partials/pixels.html" %}
+
+{% endblock content %}
+
+
+{% block body_end %}{{ block.super }}
+
+<!-- Google Code for Rent 1 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 994558147;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "RaVdCJ269QEQw4Gf2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/994558147/?label=RaVdCJ269QEQw4Gf2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Google Code for Rent 2 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 996118130;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "6ySTCMaSgwIQ8pz-2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/996118130/?label=6ySTCMaSgwIQ8pz-2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+
+<!-- Google Code for RENTAL Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1037374983;
+var google_conversion_language = "en_US";
+var google_conversion_format = "1";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "a-x2CNHCcBCHrNTuAw";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1037374983/?label=a-x2CNHCcBCHrNTuAw&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+{% endblock %}

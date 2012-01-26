@@ -1,0 +1,94 @@
+<div id="form-signup-non-member-2" class="legacy">
+<form action="{% url trade:login %}" method="post">{% csrf_token %}
+    <div class="side-1">
+        <h3>Billing Information</h3>
+
+        <dl>
+            <dt>First Name</dt>
+            <dd class="field">{{ form.first_name }}</dd>
+
+            <dt>Last Name</dt>
+            <dd class="field">{{ form.last_name }}</dd>
+
+            <dt>Address 1</dt>
+            <dd class="field">{{ form.address1 }}</dd>
+
+            <dt>Address 2</dt>
+            <dd class="field">{{ form.address2 }}</dd>
+
+            <dt>City</dt>
+            <dd class="field">{{ form.city }}</dd>
+
+            <dt>State</dt>
+            <dd class="field">{{ form.state }}</dd>
+
+            <dt>Zip Code</dt>
+            <dd class="field">{{ form.zip_code }}</dd>
+        </dl>
+    </div>
+
+    <div class="side-2">
+        <h3>Credit Card</h3>
+
+        <dl>
+            <dt>Card Type</dt>
+            <dd class="field">{{ form.type }}</dd>
+
+            <dt>Card Number</dt>
+            <dd class="field">{{ form.number }}</dd>
+
+            <dt>Expiration Date</dt>
+            <dd class="field cc_exp">
+              <div>
+                <div style="float:left;">{{ form.exp_month }}</div>
+                <div style="float:left;margin-left: 3px;">{{ form.exp_year }}</div>
+              </div>
+            </dd>
+
+            <dt>Code</dt>
+            <dd class="field cc_code">{{ form.code }} <a href="#">Whats this?</a></dd>
+        </dl>
+
+        <div class="extra">
+        {% if form.form_error %}
+            <div class="boxed error">
+                <div class="title">{{ form.form_error }}</div>
+                <div class="details">{{ form.form_error_message|default:"Please check the information and try again." }}</div>
+            </div>
+        {% else %}
+            <img src="{{ STATIC_URL }}img/cclogos/cclogos.png" />
+        {% endif %}
+        </div>
+
+        <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+        {{ previous_fields|safe }}
+    </div>
+
+    <div class="actions">
+        <button class="wizard-back-button back-button">Back</button>
+        <div class="terms"><input type="checkbox" id="id_agree" /> I have read and agree to Gamemine <a href="{% url simple-page 'Terms' %}" target="_blank">Terms of Use</a></div>
+        <input type="submit" class="confirm-button" value="Confirm" />
+    </div>
+
+    <script text='text/javascript'>
+      $(document).ready(function(){
+        $('#id_1-state').setupSelect('w190px');
+        $('#id_1-type').setupSelect('w190px');
+        $('#id_1-exp_month').setupSelect('w94px');
+        $('#id_1-exp_year').setupSelect('w94px');
+
+        $('#form-signup-non-member-2 form').get(0).validate = function(){
+            var agree = $('#id_agree').is(':checked');
+            if (agree) return true;
+            alert('You have to agree to the terms and conditions.');
+            return false;
+        };
+        $('.confirm-button').click(function(){
+            $('.confirm-button').val($(this).val());
+            return true;
+        });
+      });
+    </script>
+</form>
+</div>
+

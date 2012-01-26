@@ -1,0 +1,54 @@
+{% extends "new_rent/dialogs/rent_signup/base.html" %}
+
+{% block dialog_title %}Select Plan{% endblock %}
+
+{% block dialog_content %}
+  <ul class="signup-paymentplan{% if free_trial %} free-trial{% endif %}">
+    {% for plan in all_plans %}
+    {% if plan.slug != "free_trial" %}
+    <li id="signup-paymentplan-{{ plan.slug }}">
+     {% if plan.slug == "unlimited2" %}
+        <span class="best_val_label"></span>
+      {% endif %}
+      {# Limited Monthly 1 Game Plan #}
+      <h2>{{ plan.name }}</h2>
+      <div class="{% if plan.games_allowed == 1 %}one{% else %}two{% endif %}_cd_sm"></div>
+      <p>
+        <span class="red">
+       {% if plan.slug == "unlimited1" %}1 GAME OUT AT A TIME{% endif %}
+       {% if plan.slug == "unlimited2" %}SAVE OVER 40%{% endif %}
+      </span><br/>
+        ${{ plan.first_payment_amount }} FIRST MONTH
+      </p>
+   
+      <form action="{% url new_rent:sign_up %}" method="post">{% csrf_token %}
+        {{ wizard.management_form }}
+        <input type="hidden" name="{{ wizard.form.rental_plan.html_name }}" value="{{ plan.plan }}" />
+        <input class="btn_start_now" type="submit" value="Start Now" />
+      </form>
+   
+     <p class="price">${{ plan.thereafter_payments_amount }}/month</p>
+    </li>
+    {% endif %}
+    {% endfor %}
+   
+    {% if free_trial %}
+      {% for plan in all_plans %}
+        {% if plan.slug == "free_trial" %}
+        <li id="signup-paymentplan-free_trial">
+          <h2>Unlimited Monthly 2 Game Plan</h2>
+          <p>10 DAY FREE TRIAL</p>
+   
+          <form action="{% url new_rent:sign_up %}" method="post">{% csrf_token %}
+            {{ wizard.management_form }}
+            <input type="hidden" name="{{ wizard.form.rental_plan.html_name }}" value="{{ plan.plan }}" />
+            <input class="btn_start_now" type="submit" value="Start Now" />
+          </form>
+   
+         <p class="price">$20.95/month</p>
+        </li>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+{% endblock %}

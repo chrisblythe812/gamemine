@@ -1,0 +1,124 @@
+<!doctype HTML>
+<html>
+<head>
+  <link href="{{ STATIC_URL }}css/staff/purchase-order.css" rel="stylesheet" type="text/css" />
+  <title>Purchase Order #{{ purchase.id|stringformat:"05d" }}</title>
+</head>
+<body>
+
+
+<div style="width:800px;">
+  <div id="header">
+    <h1>PURCHASE ORDER</h1>
+    <table id="attributes">
+      <tr><th>Date:</th><td class="date">{{ purchase.created|date }}</td></tr>
+      <tr><th>P.O. #</th><td class="no">{{ purchase.id|stringformat:"05d" }}</td></tr>
+    </table>
+
+    <span id="gm-name">GAMEMINE&#0153;</span><br/>
+    The Game Station<br/>
+    <a href="http://www.gamemine.com">http://www.gamemine.com</a>
+  </div>
+
+  <table id="post_address"><tr><td>
+    <div>{{ post_address.address1 }}</div>
+    <div>{{ post_address.address2 }}</div>
+    <div>{{ post_address.city }}, {{ post_address.state }} {{ post_address.zip_code }}</div>
+  </td></tr></table>
+
+  <br/>
+  
+  <table id="vendor_address">
+  <tr><th>VENDOR</th></tr>
+  <tr><td>
+    {{ purchase.distributor.address }}
+  </td></tr></table>
+
+  <table id="shipping_address">
+  <tr><th>SHIP TO</th></tr>
+  <tr><td>
+    <div>{{ shipping_address.address1 }}</div>
+    <div>{{ shipping_address.address2 }}</div>
+    <div>{{ shipping_address.city }}, {{ shipping_address.state }} {{ shipping_address.zip_code }}</div>
+  </td></tr></table>
+
+  <br style="clear: both;"/>
+
+  <table class="grid">
+    <tr>
+      <th>REQUISITIONER</th><th>SHIP VIA</th><th>F.O.B.</th><th>SHIPPING TERMS</th>    
+    </tr>
+    <tr>
+      <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+    </tr>
+  </table>
+
+  <br/>
+
+  <table class="grid">
+    <tr>
+      <th>{% if purchase.is_new %}UPC #{% else %}SKU #{% endif %}</th>
+      <th>DESCRIPTION</th>
+      <th>QTY</th>
+      <th>UNIT PRICE</th>
+      <th>TOTAL</th>
+    </tr>
+    {% for item in purchase.purchaseitem_set.all %}
+    <tr>
+      <td>{{ item.item.upc }}</td>
+      <td>{{ item.item }}</td>
+      <td class="center">{{ item.quantity }}</td>
+      <td class="right">{{ item.price|default:"Not Available" }}</td>
+      <td class="right">{{ item.total|default:"Not Available" }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="3" rowspan="6" id="note">
+        <table><tr><th>Other Comments or Special Instructions</th></tr>
+        <tr><td>
+          {% if purchase.is_new %}
+          <ol>
+            <li>Call if any games are "Out of Stock" or no longer available.</li>
+            <li>Please ship order overnight where applicable.</li>
+          </ol>
+          {% else %}
+          Please call if any items are "Out of Stock" or no longer available.
+          {% endif %}
+        </td></tr></table>
+      </td>
+      <td>SUBTOTAL</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>TAX RATE</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>TAX</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>S &amp; H</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>OTHER</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="total">TOTAL</td>
+      <td class="total">&nbsp;</td>
+    </tr>
+  </table>
+
+  <div id="sign">
+    <span>Date</span>
+    Authorized By
+  </div>
+
+  <div class="centered">If you have any questions about this purchase order, please contact<br/>
+    Gamemine Direct LLC, E: carol@gamemine.com, P: 954-325-9511, F: 954-337-2891
+  </div>
+</div>
+</body>
+</html>

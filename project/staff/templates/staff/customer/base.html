@@ -1,0 +1,81 @@
+{% extends "staff/index.html" %}
+
+{% block menu %}
+<h3>Customer Information</h3>
+<ul class="level1">
+  {% if current_view == 'customer_view' %}
+  <li class="current">Customer View</li>
+  {% else %}
+  <li><a href="{% url staff:customer_view user.id %}">Customer View</a></li>
+  {% endif %}
+
+  <!--li><a href="#">Account Information</a></li-->
+
+  {% if current_view == 'customer_addresses' %}
+  <li class="current">Addresses</li>
+  {% else %}
+  <li><a href="{% url staff:customer_addresses user.id %}">Addresses</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_orders' %}
+  <li class="current">Orders</li>
+  {% else %}
+  <li><a href="{% url staff:customer_orders user.id %}">Orders</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_lists' %}
+  <li class="current">Lists</li>
+  {% else %}
+  <li><a href="{% url staff:customer_lists user.id %}">Lists</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_shopping_cart' %}
+  <li class="current">Shopping Cart</li>
+  {% else %}
+  <li><a href="{% url staff:customer_shopping_cart user.id %}">Shopping Cart</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_product_reviews' %}
+  <li class="current">Product Reviews</li>
+  {% else %}
+  <li><a href="{% url staff:customer_product_reviews user.id %}">Product Reviews</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_product_ratings' %}
+  <li class="current">Product Rating</li>
+  {% else %}
+  <li><a href="{% url staff:customer_product_ratings user.id %}">Product Rating</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_shipping_problems' %}
+  <li class="current">Shipping Problems</li>
+  {% else %}
+  <li><a href="{% url staff:customer_shipping_problems user.id %}">Shipping Problems</a></li>
+  {% endif %}
+  
+  {% if current_view == 'customer_billing_history' %}
+  <li class="current">Billings History</li>
+  {% else %}
+  <li><a href="{% url staff:customer_billing_history user.id %}">Billings History</a></li>
+  {% endif %}
+  
+  {% if current_view == 'customer_credits_history' %}
+  <li class="current">Credits History</li>
+  {% else %}
+  <li><a href="{% url staff:customer_credits_history user.id %}">Credits History</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_feedbacks' %}
+  <li class="current">Feedbacks</li>
+  {% else %}
+  <li><a href="{% url staff:customer_feedbacks user.id %}">Feedbacks</a></li>
+  {% endif %}
+
+  {% if current_view == 'customer_emails' %}
+  <li class="current">E-mails</li>
+  {% else %}
+  <li><a href="{% url staff:customer_emails user.id %}">E-mails</a></li>
+  {% endif %}
+</ul>
+{% endblock %}
+

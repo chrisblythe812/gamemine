@@ -1,0 +1,121 @@
+[
+    {
+        "pk": "0",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Gamemine Direct (0)"
+        }
+    },
+    {
+        "pk": "1",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Google Search (1)"
+        }
+    },
+    {
+        "pk": "10",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Azoogle - Free Trial (10)"
+        }
+    },
+    {
+        "pk": "11",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Azoogle - Non Trial (11)"
+        }
+    },
+    {
+        "pk": "12",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Comparison Shopping (12)"
+        }
+    },
+    {
+        "pk": "13",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Neverblue (13)"
+        }
+    },
+    {
+        "pk": "14",
+        "model": "members.campaign",
+        "fields": {
+            "name": "LinkShare - Free Trial (14)"
+        }
+    },
+    {
+        "pk": "15",
+        "model": "members.campaign",
+        "fields": {
+            "name": "CJ - Free Trial (15)"
+        }
+    },
+    {
+        "pk": "16",
+        "model": "members.campaign",
+        "fields": {
+            "name": "LinkShare - Non Trial (16)"
+        }
+    },
+    {
+        "pk": "17",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Free Trial Email (17)"
+        }
+    },
+    {
+        "pk": "2",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Yahoo Search (2)"
+        }
+    },
+    {
+        "pk": "3",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Bing Search (3)"
+        }
+    },
+    {
+        "pk": "4",
+        "model": "members.campaign",
+        "fields": {
+            "name": "CBS GameSpot (4)"
+        }
+    },
+    {
+        "pk": "5",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Advertising.com (5)"
+        }
+    },
+    {
+        "pk": "6",
+        "model": "members.campaign",
+        "fields": {
+            "name": "CJ - Non Trial (6)"
+        }
+    },
+    {
+        "pk": "7",
+        "model": "members.campaign",
+        "fields": {
+            "name": "Facebook (7)"
+        }
+    },
+    {
+        "pk": "8",
+        "model": "members.campaign",
+        "fields": {
+            "name": "LocalAdZoom (8)"
+        }
+    }
+]

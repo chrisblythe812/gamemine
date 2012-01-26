@@ -1,0 +1,48 @@
+{% extends "members/history/base.html" %}
+
+{% block heading %}
+    <li><a href="{% url members:buy_history %}">Buy History</a></li>
+    <li><a href="{% url members:trade_history %}">Trade History</a></li>
+    <li class="selected"><a href="{% url members:rent_history %}">Rent History</a></li>
+{% endblock heading %}
+
+{% block history-page-content %}
+
+<table class="history-table">
+    <thead>
+		<tr>
+	        <th class="title-column">Title</th>
+          <th class="condition-column">Condition</th>
+	        <th class="platform-column">Platform</th>
+	        <th class="date-column" style="width: 100px;">Date Shipped</th>
+	        <th class="date-column" style="width: 100px;">Date Returned</th>
+	        <th class="result-column">Result</th>
+		</tr>
+    </thead>
+	{% for i in history %}
+	<tbody class="{% cycle 'row1' 'row2' %}">
+		<tr>
+	        <td class="title-column"><a href="{{ i.item.get_absolute_url }}">{{ i.item.short_name }}</a></td>
+          <td class="condition-column">{{ i.inventory.is_new|yesno:"NG,UG,--" }}</td>
+	        <td class="platform-column">{{ i.item.category }}</td>
+	        <td class="date-column">{{ i.date_shipped|date|default:"--" }}</td>
+	        <td class="date-column">{{ i.date_returned|date|default:"--" }}</td>
+	        <td class="result-column">{% if i.claims %}Claim Reported{% else %}&nbsp;{% endif %}</td>
+		</tr>
+		{% for claim in i.claims %}
+        <tr class="claim">
+            <td class="title-column" colspan="3">Details: Reported {{ claim.get_normalized_display }} on {{ claim.date|date }}</td>
+            <td class="date-column">--</td>
+            <td class="date-column">--</td>
+            <td class="result-column">&nbsp;</td>
+        </tr>
+		{% endfor %}
+	</tbody>
+    {% empty %}
+    <tr>
+        <td class="title-column" colspan="6">&mdash;</td>
+    </tr>
+	{% endfor %}
+</table>
+
+{% endblock history-page-content %}

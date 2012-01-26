@@ -1,0 +1,103 @@
+<form method="post" action="{% url members:payment_method %}" class="simple" id="payment-method-form">
+	{% csrf_token %}
+
+	<div class="section-1">
+		<h3>Billing Information</h3>
+
+		<div class="input-field">
+			<label for="id_first_name">{{ form.first_name.label }}</label> {{ form.first_name }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_last_name">{{ form.last_name.label }}</label> {{ form.last_name }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_phone_number">{{ form.phone_number.label }}</label> {{ form.phone_number }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_address1_name">{{ form.address1.label }}</label> {{ form.address1 }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_address2_name">{{ form.address2.label }}</label> {{ form.address2 }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_city_name">{{ form.city.label }}</label> {{ form.city }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_state_name">{{ form.state.label }}</label> {{ form.state }}
+		</div>
+
+		<div class="input-field zip-code-field">
+			<label for="id_zip_code_name">{{ form.zip_code.label }}</label> {{ form.zip_code }}
+		</div>
+	</div>
+
+	<div class="section-2">
+		<h3>Credit Card</h3>
+
+		<div class="input-field">
+			<label for="id_type">{{ form.type.label }}</label> {{ form.type }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_number">{{ form.number.label }}</label> {{ form.number }}
+		</div>
+
+		<div class="input-field">
+			<label for="id_number">Expiration Date</label>
+		  <div class="group">
+  		  <div style="float: left;">{{ form.exp_month }}</div><div style="float: left;">{{ form.exp_year }}</div>
+  		  <div class="clear"></div>
+		  </div>
+		</div>
+
+		<div class="input-field narrow">
+			<label for="id_code">{{ form.code.label }}</label> {{ form.code }}
+
+        <a class="hint-link" href="#" id="id_what_is_ccv">what's this?</a>
+        <div id="id_what_is_ccv_hint" class="tooltip">
+          <div class="picture"></div>
+          <div class="description"></div>
+        </div>
+		</div>
+
+    <div class="extra">
+      {% if form.correction_warning %}
+        <div class="boxed information">
+            <div class="title">The address has been formatted according to US Postal standards.</div>
+        </div>
+      {% else %}
+        {% if form.form_error %}
+            <div class="boxed error">
+                <div class="title">{{ form.form_error }}</div>
+                <div class="details">{{ form.form_error_message|default:"Please check the information and try again." }}</div>
+            </div>
+        {% else %}
+            <img src="{{ STATIC_URL }}img/cclogos/cclogos.png" />
+        {% endif %}
+      {% endif %}
+    </div>
+	</div>
+
+	<div class="form-actions">
+		<a class="cancel-button dialog-close-button" href="{% url index %}">Cancel</a>
+		<input type="submit" value="Save" class="save-button" />
+	</div>
+
+	<script type="text/javascript">
+	  $(document).ready(function(){
+      $('#id_state').setupSelect('w179px');
+      $('#id_type').setupSelect('w150px');
+      $('#id_exp_month').setupSelect('w94px');
+      $('#id_exp_year').setupSelect('w75px');
+
+      setupCCVTooltip($('#id_what_is_ccv'), $('#id_what_is_ccv_hint'), $('#id_type'));
+	  });
+	</script>
+</form>
+

@@ -1,0 +1,91 @@
+.deck-the-halls-page {
+  #content-header {
+    height: 402px;
+  }
+
+  #deck-the-halls-page {
+    h1 {
+      color: #333 !important;
+      font-size: 14px !important;
+      font-style: normal !important;
+      font-weight: normal !important;
+    }
+    
+    p {
+      color: #333 !important;
+      font-size: 13px;
+    }
+  }
+  
+  #deck-the-halls-title {
+    width: 982px;
+    height: 402px;
+    overflow: hidden;
+    background: url($images_url + 'deck-the-hall/deck-the-hall.jpg') no-repeat;
+    margin: 0 auto;
+  }
+
+  #deck-the-halls-page {
+    padding: 20px 0 0;
+  }
+  
+  .deck-the-hall-content {
+    padding: 0 40px 20px;
+  }
+  
+  #deck-the-halls-form {
+    height: 205px;
+    margin-bottom: 20px;
+    background: left top url($images_url + 'deck-the-hall/deck-the-hall-1.jpg') no-repeat;
+    
+    .fields {
+      // background: rgba(255, 255, 0, .3);
+      margin-left: 365px;
+      padding-top: 5px;
+      height: 150px;
+      
+      label {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #999;
+      }
+      
+      label.black {
+        color: #333;
+      }
+        
+      label.fckng {
+        width: 333px;
+      }
+      
+      td {
+        padding: 0 0 7px 0;
+        overflow: hidden;
+      }
+      
+      .input {
+        width: 140px;
+        margin-right: 5px;
+      }
+    }
+    
+    .actions {
+      text-align: right;
+      padding: 10px 55px 0 0;
+    }
+    
+    .errors-message {
+      width: 358px;
+      margin-bottom: 0px;
+    
+      .errors-message-wrapper {
+        padding: 5px 5px 5px 60px !important;
+        background-position: -35px 0px;
+        min-height: 36px;
+        line-height: 1.3em;
+      }
+    }
+  }
+}

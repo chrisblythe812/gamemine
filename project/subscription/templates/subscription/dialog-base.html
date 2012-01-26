@@ -1,0 +1,21 @@
+<div id="id_subscription_thankyou_dialog"{% if refresh_after_dialog_close %} class="refresh-after-dialog-close"{% endif %} width="740">
+    <div id="dialog-heading">
+        <div id="dialog-left-title">
+          <div class="title-1">{% block title1 %}{% endblock title1 %}</div>
+          <div class="title-2">{% block title2 %}{% endblock title2 %}</div>
+        </div>
+      
+        <div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>Newsletter Signup</div>
+    </div>
+
+    <div class="dialog-content">
+      <div class="dialog-content-text">
+        {% block content %}{% endblock content %}
+      </div>
+    </div>
+    
+    <div id="wizard-subs-decor-1"></div>
+    <div id="wizard-subs-decor-2"></div>
+    <div id="wizard-subs-decor-3"></div>
+    <div id="wizard-subs-decor-4"></div>
+</div>

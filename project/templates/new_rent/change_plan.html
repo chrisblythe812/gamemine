@@ -1,0 +1,158 @@
+{% extends "members/account/account.html" %}
+{% block page-class %}simple-page change_plan{% endblock %}
+
+{% comment %}
+We have messages block defined in members/partials/account_banner.html,
+but for some reason it doesn't override messages block from base.html, so
+applying this hack.
+{% endcomment %}
+{% block messages %}{% endblock %}
+
+{% block heading %}
+  <li class="selected"><a href="{% url new_rent:change_plan %}">{% if current_rental_plan %}Change Plan{% else %}Rental Signup{% endif %}</a></li>
+{% if current_rental_plan %}
+  <li><a href="{% url members:cancel_membership %}">Cancel Membership</a></li>
+{% endif %}
+{% if current_rental_plan and current_rental_plan.is_holdable %}
+  <li><a href="{% url members:put_on_hold %}">Put on Hold</a></li>
+{% endif %}
+{% if current_rental_plan %}
+  <li><a href="{% url members:terms_and_details %}">Terms &amp; Details</a></li>
+{% endif %}
+{% endblock heading %}
+
+{% block page-content %}
+<form id="id_form_change_plan" class="link-dialog" action="." method="post">{% csrf_token %}
+  {{ wizard.management_form }}
+
+  <div id="rent_plans">
+    <div class="plan_table_row selected">
+    <div class="col1">
+      <span class="current_plan">Current Plan</span>
+    </div>
+    <div class="col2">
+     <span class="num">{{ current_rental_plan.games_allowed }}</span> GAMEs out-at-a-time
+     <span class="blue">
+       {% if current_rental_plan.is_unlimited %}
+         Unlimited Games
+       {% else %}
+         Limit {{current_rental_plan.out_per_month }} Games a Month
+       {% endif %}
+     </span>
+     {% if current_rental_plan.is_prepaid %}
+      <span class="prepaid">
+        Prepaid {{ current_rental_plan.months_prepaid }} Months
+        (ends {{ current_member_rental_plan.expiration_date }})
+      </span>
+     {% endif %}
+     {% if current_rental_plan.slug == "free_trial" %}
+      <span class="prepaid">
+        Free Trial
+        (ends {{ current_member_rental_plan.next_payment_date }})
+      </span>
+     {% endif %}
+    </div>
+    <div class="col3">
+      <span class="cd_pic{{ current_rental_plan.games_allowed }}"></span>
+    </div>
+    <div class="col4">
+      <br />
+      <br />
+      <span class="plan_price"><strong>
+        {% if current_rental_plan.slug == "free_trial" %}
+          ${{ current_rental_plan.first_payment_amount }}</strong>/month</span>
+        {% endif %}
+        {% if current_rental_plan.is_prepaid %}
+          ${{ current_rental_plan.first_payment_amount }}
+        {% endif %}
+        {% if current_rental_plan.slug != "free_trial" and not current_rental_plan.is_prepaid %}
+          ${{ current_rental_plan.thereafter_payments_amount }}</strong>/month</span>
+        {% endif %}
+    </div>
+    </div>
+
+  {% if limited_plans or unlimited_plans %}
+    {# Limited Plans #}
+    {% if limited_plans %}
+    <div class="plan_table_row">
+      <h2>Limited Plans</h2>
+      <ul class="plan_details">
+        <li>Lowest rental price guaranteed!</li>
+      </ul>
+    </div>
+
+   {% for plan in limited_plans %}
+    <div class="plan_table_row gray">
+      <div class="col1">&nbsp;</div>
+      <div class="col2">
+        <span class="num">{{ plan.games_allowed }}</span> GAME out-at-a-time <span class="blue">Limit {{ plan.out_per_month }} Games a Month</span>
+    </div>
+    <div class="col3">
+      <span class="cd_pic{{ plan.games_allowed }}"></span>
+    </div>
+    <div class="col4">
+      <span class="plan_price"><strong>${{ plan.thereafter_payments_amount }}</strong>/month</span>
+      <input type="radio" name="{{ wizard.form.plan.html_name }}" id="id_plan_{{ plan.pk }}" value="{{ plan.pk }}" />
+      <label for="plan2">Select</label>
+    </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+    {# End of Limited Plans #}
+
+    {# Unlimited Plans #}
+    {% if unlimited_plans %}
+    <div class="plan_table_row">
+      <h2>Unlimited Plans</h2>
+      <ul class="plan_details">
+        <li>Exchange games as often as you want</li>
+        <li>All plans include shipping and handling</li>
+      </ul>
+    </div>
+
+    {% for plan in unlimited_plans %}
+    <div class="plan_table_row gray_w">
+      <div class="col1">&nbsp;</div>
+      <div class="col2">
+        <span class="num">{{ plan.games_allowed }}</span> GAMEs out-at-a-time <span class="blue">Unlimited Games</span>
+      </div>
+      <div class="col3">
+        <span class="cd_pic{{ plan.games_allowed }}"></span>
+    </div>
+      <div class="col4">
+        <span class="plan_price"><strong>${{ plan.thereafter_payments_amount }}</strong>/month</span>
+        <input type="radio" name="{{ wizard.form.rental_plan.html_name }}" id="id_plan_{{ plan.pk }}" value="{{ plan.pk }}" />
+        <label for="plan3">Select</label>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {# End of Unlimited Plans #}
+
+    <div class="plan_table_row">
+    <div class="col4">
+     <input type="submit" class="btn_cng_plan" value="Change Plan"/>
+    </div>
+    </div>
+
+    <div class="asterisk">*Credits can only be used in store and are not good for cash back.</div>
+  {% endif %}
+
+   </div>
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#id_form_change_plan').get(0).validate = function(){
+        var val = $('#id_form_change_plan input:radio:checked').val();
+      if (typeof(val) !== 'undefined')
+        return true;
+        alert('Please select a plan you want to switch to.');
+        return false;
+      };
+    });
+  </script>
+
+</form>
+
+{% endblock page-content %}

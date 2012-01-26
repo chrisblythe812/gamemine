@@ -1,0 +1,108 @@
+@import "mixins";
+@import "constants";
+@import "compass/css3";
+
+#trade-carrier {
+  .text {
+    padding: 39px 16px 0px;
+    color: #333;
+
+    h2 {
+      color: #c60000;
+    }
+
+    em {
+      color: #0764c4;
+      font-style: normal;
+    }
+  }
+
+  #warning {
+    @include box('y');
+    background-color: #fffdd4;
+
+    .content {
+      height: 50px;
+      padding: 16px 7px 0 100px;
+      background: url($images_url + 'attention-y.gif') 25px 5px no-repeat;
+      color: #606060;
+      font-size: 14px;
+      font-weight: bold;
+
+      .hint {
+        padding-top: 5px;
+        font-size: 12px;
+        font-weight: normal;
+      }
+    }
+  }
+
+  #carriers {
+    @include box('w');
+    ul {
+      padding: 0;
+      margin: 0;
+
+      li {
+        clear: both;
+        margin: 0;
+        // height: 40px;
+        display: block;
+
+        &.odd {
+          background-color: white;
+        }   
+        &.even {
+          background-color: #ededed;
+        }
+        
+        .left {
+          float: left;
+          height: 64px;
+          padding: 10px 10px 10px 25px;
+          
+          img {
+            vertical-align: middle;
+          }
+        }
+
+        .text {
+          color: #606060;
+          font-size: 14px;
+          font-weight: bold;
+          padding: 12px 0 0 70px;
+
+          .hint {
+            padding-top: 5px;
+            font-size: 12px;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+  
+  .clear {
+    clear: both;
+    height: 0;
+  }
+  
+  .buttons {
+    margin-top: 16px;
+    text-align: right;
+  }
+  
+  .footer {
+    margin-top: 25px;
+    padding-top: 16px;
+    text-align: right;
+    border-top: 1px solid #e9e9e9;
+    font-size: 12px;
+    font-weight: normal;
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+

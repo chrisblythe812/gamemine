@@ -1,0 +1,177 @@
+@import "constants";
+@import "mixins";
+
+
+#details-hint-top {
+    height: 100px;
+}
+
+#details-hint-bottom {
+    height: 196px;
+}
+
+#details-hint {
+    width: 328px;
+    height: 410px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    z-index: 10000;
+//    background: rgba(255, 255, 0, .3);
+}
+
+#details-hint-top {
+    background: 56px 0 url($images_url + 'catalog/hint-2.png') no-repeat;
+}
+
+#details-hint-middle {
+    height: 114px;
+    background: url($images_url + 'catalog/hint-2.png') no-repeat;
+}
+
+#details-hint-middle {
+    background-position: -362px 0;
+}
+
+.alternate-arrow #details-hint-middle {
+    background-position: -362px -114px;
+}
+
+#details-hint-bottom {
+    background: 56px bottom url($images_url + 'catalog/hint-2.png') no-repeat;
+}
+
+#details-hint-content-wrapper {
+    position: absolute;
+    margin: -401px 0 0 69px;
+    width: 246px;
+    height: 395px;
+    background: right top url($images_url + 'catalog/hint-2.png') no-repeat;
+}
+
+#details-hint-content {
+    margin: 14px 0 0 10px;
+    width: 226px;
+    height: 364px;
+    overflow: hidden;
+    
+    &.empty {
+        background: center center url($images_url + "catalog/loading.gif") no-repeat;
+    }
+}
+
+.alternate {
+    #details-hint-top {         
+        background-position: 0 0;
+    }
+
+    #details-hint-bottom {
+        background-position: 0 bottom;
+    }
+
+    #details-hint-middle {
+        background-position: -758px 0;
+    }
+    
+    &.alternate-arrow #details-hint-middle {
+        background-position: -758px -114px;
+    }
+    
+    #details-hint-content-wrapper {
+        margin-left: 13px;
+    }
+}
+
+#details-hint-content {
+    // background: rgba(255, 255, 0, .3);
+
+    .item-hint{
+        font-size: 12px;
+        color: #333;
+    
+        .item-hint-cover {
+//          background: 0 center url($images_url + 'paymentplan-images.png') no-repeat;
+            width: 200px;
+            height: 220px;
+            text-align: center;
+            margin: 0 auto 20px;
+            
+            img {
+            }
+        }
+        
+        .item-hint-data {
+            // background: rgba(255, 255, 0, .3);
+            width: 120px;
+            height: 150px;
+            float: left;
+            
+            dt {
+                float: left;
+                clear: left;
+                font-weight: bold;
+                margin-right: 2px;
+                line-height: 1.4em;
+            }
+            
+            dd {
+                line-height: 1.4em;
+            }
+        }
+        
+        .item-hint-rating {
+            // background: rgba(255, 255, 0, .3);
+            width: 75px;
+            float: right;
+            margin-right: 3px;
+
+            .item-hint-ratio {
+                width: 74px;
+                height: 46px;
+                background: 0 -69px url($images_url + "buttons.png") no-repeat;
+                color: #fff;
+                font-size: 30px;
+                line-height: 46px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .item-hint-rating {
+                // background: rgba(255, 0, 0, .3);
+                height: 15px;
+                width: 75px;
+                overflow: hidden;
+                margin: 10px 0 .5em;
+                background: 0 -131px url($images_url + "buttons.png") no-repeat;
+                
+                .item-hint-rating-content {
+                    height: 16px;
+                    text-indent: -9999px;
+                    background: 0 -115px url($images_url + "buttons.png") no-repeat;
+                }
+            }
+        }
+        
+        .item-hint-prices {
+            // background: rgba(255, 255, 0, .3);
+            width: 80px;
+            float: right;
+            font-size: 11px;
+            line-height: 1.3em;
+            font-weight: bold;
+            
+            .item-hint-price-buy span {
+                color: #b42024;
+            }
+            
+            .item-hint-price-trade span {
+                color: #2f66ca;
+            }
+            
+            .item-hint-price-rent span {
+                font-weight: normal;
+                font-style: italic;
+            }
+        }
+    }
+}

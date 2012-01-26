@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block page-class %}esrb-page{% endblock page-class %}
+
+{% block content-header %}
+  <div id="esrb-page-title"></div>
+{% endblock content-header %}
+
+{% block content %}
+<div id="esrb-page">
+
+<img id="esrb-page-ratings" src="{{ STATIC_URL }}img/catalog/esrb-ratings.png"/>
+
+<h1>ESRB: Understanding Video Game Ratings</h1>
+
+<ul id="esrb-page-index">
+  <li><a href="#Introduction">Introduction</a> |</li>
+  <li><a href="#ESRB-Ratings">ESRB Ratings</a> |</li>
+  <li><a href="#ESRB-Content-Descriptors">ESRB Content Descriptors</a> |</li>
+  <li><a href="#Online-Rating-Notice">Online Rating Notice</a> |</li>
+  <li><a href="#Old-Descriptors">Old Descriptors</a></li>
+</ul>
+
+<a name="Introduction"></a>
+<h2>Introduction</h2>
+
+<p>Amazon.com aims to give you the information necessary to make intelligent
+  video game buying decisions. We are proud to participate in the game
+  industry's standardized rating system, developed by the Entertainment Software
+  Rating Board (ESRB). The ESRB ratings are designed to give consumers information
+  about the content of an interactive video or computer entertainment title and
+  the ages for which the title is appropriate. The ratings are not meant to tell
+  you what to buy or to serve as the only basis for choosing a product.</p>
+
+<p>For more information, please see the <a href="http://www.esrb.org/ratings/ratings_guide.jsp">ESRB Web site.</a></p>
+
+<a name="ESRB-Ratings"></a>
+<h2>ESRB Ratings</h2>
+
+<p>The ESRB ratings are designed to provide information about the content in
+  computer and video games so consumers, especially parents, can make an informed
+  purchase decision. ESRB ratings have two equal parts: rating symbols suggest
+  age appropriateness for the game and content descriptors indicate elements in
+  a game that may have triggered a particular rating and/or may be of interest
+  or concern.</p>
+
+<dl>
+  <dt>EARLY CHILDHOOD</dt>
+  <dd>Titles rated EC (Early Childhood) have content that may be suitable for ages 3 and older. Contains no material that parents would find inappropriate.</dd>
+
+  <dt>EVERYONE</dt>
+  <dd>Titles rated E (Everyone) have content that may be suitable for ages 6 and older. Titles in this category may contain minimal cartoon, fantasy or mild violence and/or infrequent use of mild language.</dd>
+
+  <dt>EVERYONE 10+</dt>
+  <dd>Titles rated E10+ (Everyone 10 and older) have content that may be suitable for ages 10 and older. Titles in this category may contain more cartoon, fantasy or mild violence, mild language and/or minimal suggestive themes.</dd>
+
+  <dt>TEEN</dt>
+  <dd>Titles rated T (Teen) have content that may be suitable for ages 13 and older. Titles in this category may contain violence, suggestive themes, crude humor, minimal blood, simulated gambling, and/or infrequent use of strong language.</dd>
+
+  <dt>MATURE</dt>
+  <dd>Titles rated M (Mature) have content that may be suitable for persons ages 17 and older. Titles in this category may contain intense violence, blood and gore, sexual content and/or strong language.</dd>
+
+  <dt>ADULTS ONLY</dt>
+  <dd>Titles rated AO (Adults Only) have content that should only be played by persons 18 years and older. Titles in this category may include prolonged scenes of intense violence and/or graphic sexual content and nudity.</dd>
+
+  <dt>RATING PENDING</dt>
+  <dd>Titles listed as RP (Rating Pending) have been submitted to the ESRB and are awaiting final rating. (This symbol appears only in advertising prior to a game's release.)</dd>
+</dl>
+
+<a name="ESRB-Content-Descriptors"></a>
+<h2>ESRB Content Descriptors</h2>
+
+<p>In addition to the ESRB Ratings, content descriptors give more details about
+  the product in terms of violence, sexual themes, language, and other areas
+  that may be of interest to some consumers. This information can be found in
+  the black-and-white box on the back of the game package. Here is a list of
+  content descriptors used by the ESRB:</p>
+
+<dl>
+  <dt>Alcohol Reference</dt>
+  <dd>Reference to and/or images of alcoholic beverages</dd>
+
+  <dt>Animated Blood</dt>
+  <dd>Discolored and/or unrealistic depictions of blood</dd>
+
+  <dt>Blood</dt>
+  <dd>Depictions of blood</dd>
+
+  <dt>Blood and Gore</dt>
+  <dd>Depictions of blood or the mutilation of body parts</dd>
+
+  <dt>Cartoon Violence</dt>
+  <dd>Violent actions involving cartoon-like situations and characters. May include violence where a character is unharmed after the action has been inflicted</dd>
+
+  <dt>Comic Mischief</dt>
+  <dd>Depictions or dialogue involving slapstick or suggestive humor</dd>
+
+  <dt>Crude Humor</dt>
+  <dd>Depictions or dialogue involving vulgar antics, including “bathroom” humor</dd>
+
+  <dt>Drug Reference</dt>
+  <dd>Reference to and/or images of illegal drugs</dd>
+
+  <dt>Fantasy Violence</dt>
+  <dd>Violent actions of a fantasy nature, involving human or non-human characters in situations easily distinguishable from real life</dd>
+
+  <dt>Intense Violence</dt>
+  <dd>Graphic and realistic-looking depictions of physical conflict. May involve extreme and/or realistic blood, gore, weapons and depictions of human injury and death</dd>
+
+  <dt>Language</dt>
+  <dd>Mild to moderate use of profanity</dd>
+
+  <dt>Lyrics</dt>
+  <dd>Mild references to profanity, sexuality, violence, alcohol or drug use in music</dd>
+
+  <dt>Mature Humor</dt>
+  <dd>Depictions or dialogue involving "adult" humor, including sexual references</dd>
+
+  <dt>Nudity</dt>
+  <dd>Graphic or prolonged depictions of nudity</dd>
+
+  <dt>Partial Nudity</dt>
+  <dd>Brief and/or mild depictions of nudity</dd>
+
+  <dt>Real Gambling</dt>
+  <dd>Player can gamble, including betting or wagering real cash or currency</dd>
+
+  <dt>Sexual Content</dt>
+  <dd>Non-explicit depictions of sexual behavior, possibly including partial nudity</dd>
+
+  <dt>Sexual Themes</dt>
+  <dd>References to sex or sexuality</dd>
+
+  <dt>Sexual Violence</dt>
+  <dd>Depictions of rape or other violent sexual acts</dd>
+
+  <dt>Simulated Gambling</dt>
+  <dd>Player can gamble without betting or wagering real cash or currency</dd>
+
+  <dt>Strong Language</dt>
+  <dd>Explicit and/or frequent use of profanity</dd>
+
+  <dt>Strong Lyrics</dt>
+  <dd>Explicit and/or frequent references to profanity, sex, violence, alcohol or drug use in music</dd>
+
+  <dt>Strong Sexual Content</dt>
+  <dd>Explicit and/or frequent depictions of sexual behavior, possibly including nudity</dd>
+
+  <dt>Suggestive Themes</dt>
+  <dd>Mild provocative references or materials</dd>
+
+  <dt>Tobacco Reference</dt>
+  <dd>Reference to and/or images of tobacco products</dd>
+
+  <dt>Use of Drugs</dt>
+  <dd>The consumption or use of illegal drugs</dd>
+
+  <dt>Use of Alcohol</dt>
+  <dd>The consumption of alcoholic beverages</dd>
+
+  <dt>Use of Tobacco</dt>
+  <dd>The consumption of tobacco products</dd>
+
+  <dt>Violence</dt>
+  <dd>Scenes involving aggressive conflict. May contain bloodless dismemberment</dd>
+
+  <dt>Violent References</dt>
+  <dd>References to violent acts</dd>
+</dl>
+
+<p><strong>NOTE:</strong><br/>
+  When a content descriptor is preceded by the term "Mild," it is intended to
+  convey low frequency, intensity, or severity of the content it modifies.</p>
+
+<a name="Online-Rating-Notice"></a>
+<h2>Online Rating Notice</h2>
+
+<p>Online-enabled games carry the notice "Online Interactions Not Rated by the ESRB." This notice warns those who intend to play the game online about possible exposure to chat (text, audio, video) or other types of user-generated content (e.g., maps, skins) that have not been considered in the ESRB rating assignment.</p>
+
+<a name="Old-Descriptors"></a>
+<h2 class="red">Old Descriptors</h2>
+
+<p>These descriptors, while no longer used, may appear on older products on Amazon.com.</p>
+
+<dl>
+  <dt>Animated Blood</dt>
+  <dd>Contains animated/pixelated or cartoonlike depictions of blood.</dd>
+
+  <dt>Animated Blood and Gore</dt>
+  <dd>Contains animated/pixelated or cartoonlike depictions of mutilation or dismemberment of body parts.</dd>
+
+  <dt>Animated Violence</dt>
+  <dd>Contains depictions of aggressive conflict involving cartoon/animated/pixelated characters.</dd>
+
+  <dt>Edutainment</dt>
+  <dd>Provides user with specific skills development or reinforcement learning within an entertainment setting. Skill development is an integral part of the product.</dd>
+
+  <dt>Gaming</dt>
+  <dd>Depicts betting behavior.</dd>
+
+  <dt>Mild Animated Violence</dt>
+  <dd>Contains scenes depicting cartoon/animated/pixelated characters in unsafe or hazardous acts or violent situations.</dd>
+
+  <dt>Mild Realistic Violence</dt>
+  <dd>Contains scenes depicting characters in unsafe or hazardous acts or violent situations in photographic detail.</dd>
+
+  <dt>Reading Skills, Fine Motor Skills, Higher-Level Thinking Skills</dt>
+  <dd>These phrases, found only on products rated Early Childhood, indicate whether children's reading, computer, or other skills are used in these titles.</dd>
+
+  <dt>Realistic Violence</dt>
+  <dd>Contains realistic or photographic-like depictions of aggressive conflict.</dd>
+
+  <dt>Realistic Blood</dt>
+  <dd>Contains representations of blood in realistic or photographic-like detail.</dd>
+
+  <dt>Realistic Blood and Gore</dt>
+  <dd>Contains depictions of mutilation or dismemberment of body parts in realistic or photographic-like detail.</dd>
+
+  <dt>Some adult assistance may be needed</dt>
+  <dd>Early Childhood descriptor only.</dd>
+
+  <dt>Use of Tobacco and Alcohol</dt>
+  <dd>Contains images of the use of tobacco and/or alcohol in a manner that condones or glorifies their use.</dd>
+</dl>
+
+</div>
+{% endblock content %}

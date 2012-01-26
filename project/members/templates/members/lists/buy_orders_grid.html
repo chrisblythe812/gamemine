@@ -1,0 +1,70 @@
+{% load percents %}
+
+<table id="buy-orders-table">
+  <thead>
+    <tr>
+        <th class="column-item">Buy Orders</th>
+        <th class="column-condition">Condition</th>
+        <th class="column-platform">Platform</th>
+        <th class="column-ordered">Ordered</th>
+        <th class="column-shipped">Shipped</th>
+        <th class="column-price">Price</th>
+    </tr>
+    </thead>
+    {% for r in buy_orders %}
+    <tbody>
+    <tr>
+        <td class="column-item">
+            <div class="order-number"><strong>ORDER NUMBER: {{ r.get_order_number }}</strong></div> 
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    {% for order_item in r.items.all %}
+    <tr>
+        <td class="column-item"><div class="item"><strong>{{ forloop.counter }}.</strong> <a href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.short_name }}</a></div></td>
+        <td class="column-condition">{% if order_item.is_new %}NG{% else %}UG{% endif %}</td>
+        <td class="column-platform">{{ order_item.item.category.description }}</td>
+        <td class="column-ordered">{{ r.create_date|date }}</td>
+        <td class="column-shipped">{{ order_item.date_shipped|date|default:"--" }}</td>
+        <td class="column-price">${{ order_item.price }}</td>
+    </tr>
+    {% endfor %}
+{% comment %}
+	{% if r.tax %}
+    <tr>
+        <td class="column-item">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td class="column-price">+{{ r.tax|floatformat }}%</td>
+    </tr>
+	{% endif %}
+{% endcomment %}
+    <tr>
+        <td class="column-item">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr class="subtotal">
+       <td class="column-first totals" colspan="3">&nbsp;</td>
+       <td class="column-first totals" colspan="2"><strong>TOTAL</strong> (includes applicable tax)</td>
+       <td class="column-first totals column-price"><strong>${{ r.get_order_total }}</strong></td>
+    </tr>
+  </tbody>
+    {% empty %}
+    <tr class="subtotal">
+       <td class="column-first" colspan="6" style="padding: 20px !important; color: #0467CD; text-align: center; font-size: 13px; font-weight: bold;">
+       	    You currently have no recent orders in your Buy List.
+       </td>
+    </tr>
+    {% endfor %}
+</table>
+

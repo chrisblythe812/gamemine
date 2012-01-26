@@ -1,0 +1,122 @@
+@mixin debug {
+//  background: rgba(255, 255, 0, .2);
+}
+
+#buy-confirmation-page-content {
+  
+  h1 {
+    font-size: 18px !important;
+    color: #3566be;
+    margin: 0 !important;
+  }
+  
+  .order-number {
+    font-size: 12px;
+    color: #c00;
+    margin-top: 5px;
+  }
+  
+  .order-details {
+    @include debug;
+    margin: 30px auto 0;
+    width: 683px;
+    color: #333;
+    font-size: 12px;
+    
+    h2 {
+      font-size: 14px !important;
+    }
+    
+    h3 {
+      margin-top: 40px !important;
+      color: #3566be;
+      font-size: 15px !important;
+    }
+    
+    .order-items {
+      padding: 0 !important;
+    
+      li.order-item {
+        @include debug;
+        @include inline-block;
+        width: 335px;
+        height: 100px;
+        
+        img {
+          float: left;
+        }
+        
+        .details {
+          margin: 30px 0 0 90px;
+          
+          .title {
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.2em;
+            
+            a {
+              @include heading-anchor;
+              color: #333;
+            }
+          }
+          
+          .price {
+            font-weight: bold;
+            color: #c00;
+            margin-top: 5px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    
+    .general-info {
+      @include debug;
+    
+      float: left;
+      width: 335px;
+      line-height: 1.2em;
+      font-size: 13px;
+      
+      .address {
+        margin-bottom: 30px;
+      }
+    }
+    
+    .detailed-info {
+      @include debug;
+      margin-left: 335px;
+      text-align: right;
+      line-height: 1.5em;
+      font-size: 13px;
+
+      .store-credits {      
+        color: #3566be;
+        font-weight: bold;
+        font-size: 13px;
+      } 
+        
+      .total {
+        font-weight: bold;
+        font-size: 13px;
+      }
+    }
+    
+    .clear {
+      clear: both;
+    }
+    
+    .banner {
+        background: center top url($images_url + 'buy/buy_confirm_banner.png') no-repeat;
+        margin-top: 30px;
+        padding: 130px 130px 0;
+        text-align: center;
+        font-size: 12px;
+        
+        h3 {
+          color: #c00;
+          margin-bottom: 5px !important;
+        }
+    }
+  }
+}

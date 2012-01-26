@@ -1,0 +1,92 @@
+@mixin debug {
+//  background: rgba(255, 255, 0, .3);
+}
+
+
+.settings-parental-control {
+    #settings-parental-control {
+        margin: 30px 80px;
+        font-size: 13px;
+        line-height: 1.3em;
+        color: #333;
+        
+        .intro {
+            color: #06c;
+        }
+        
+        h3 {
+            margin: 30px 60px 0;
+            clear: left;
+        }
+        
+        ul.choices {
+            @include debug;
+            margin: 20px 60px 0;
+            padding: 0 !important;
+            font-size: 12px;
+            
+            li {
+              @include debug;
+              padding: 0;
+              margin: 0;
+              //@include inline-block;
+              width: 200px;
+              height: 55px;
+              float: left;
+              
+              .input {
+                float: left;
+                width: 30px;
+                height: 60px;
+                line-height: 60px;
+                text-align: left;
+              }
+              
+              .label {
+                margin: 0 20px 5px 30px;
+              }
+              
+              .image {
+                width: 145px;
+                height: 35px;
+                background: left top url($images_url + 'profile/mteececeecteecc.png') no-repeat;
+                margin-left: 30px;
+              }
+            }            
+              
+            #choice-0 .image { background-position: 0 0; }
+            #choice-1 .image { background-position: 0 -35px; }
+            #choice-2 .image { background-position: 0 -70px; }
+            #choice-3 .image { background-position: 0 -105px; }
+            #choice-4 .image { background-position: 0 -140px; }
+            
+          }
+
+          ul.choices-2 {
+            .input {
+              @include debug;
+              line-height: 20px !important;
+              height: 20px !important;
+          } 
+        }
+        
+        .links {
+          padding: 110px 0 0 470px;
+          width: 200px;
+        
+          a {
+              color: #c00;
+              text-decoration: underline;
+          }
+        }
+        
+        .actions {
+            margin-top: 20px;
+            text-align: center;
+            
+            input {
+                margin: 0 5px;
+            }
+        }
+    }
+}

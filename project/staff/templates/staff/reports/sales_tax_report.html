@@ -1,0 +1,31 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <form method="get">
+      {{ form.p }}
+      <input type="submit" value="Display" />
+    </form>
+  </div>
+  
+  <div>
+    <h3>Gross Sales</h3>
+    <p>{{ gross_sales }}</p>
+
+    <h3>Tax Collected</h3>
+    <p>{{ tax_collected }}</p>
+    
+    <table style="width: 400px">
+    {% for k, v in tax_by_states.items %}
+      <tr>
+        <td>{{ k }} Sales</td>
+        <td align="left"><strong>${{ v.amount }}</strong> and <strong>${{ v.tax }}</strong> was taxable at <strong>{{ v.percent }}%</strong></td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock right %}

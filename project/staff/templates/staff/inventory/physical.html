@@ -1,0 +1,86 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Physical Inventory.
+  {% if dc_code == 'GMS' %}
+    Central Office.
+  {% else %}
+    DC: {{ dc_code }}.
+  {% endif %}
+  </h2>
+
+  {% if dcs %}
+  <div id="id_inventory_filter">
+      <a href="{% url staff:page 'Inventory/Physical' %}">Central Office</a><br/>
+  
+      <strong>DC:</strong>
+      <ul>
+      {% for dc in dcs %}
+        <li><a href="{% url staff:physical_inventory dc.code %}">{{ dc.code }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  
+  <div id="search-form">
+    <form method="get">
+    {{ search_form }}
+    <input type="submit" value="Search" />
+    </form>
+  </div>
+ 
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>UPC</th>
+        <th>Title</th>
+        <th>Platform</th>
+        <th>Publisher</th>
+        <th>Release Date</th>
+        {% if dc_code == 'GMS' %}
+        <th>Count</th>
+        {% else %}
+        <th>Total Count</th>
+        <th>In Stock Count</th>
+        {% endif %}
+        <th>Entries</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in items %}
+      <tr>
+        <td>{{ i.item.id }}</td>
+        <td>{{ i.item.upc }}</td>
+        <td><a href="{{ i.item.get_absolute_url }}" target="_blank">{{ i.item.short_name }}</a></td>
+        <td>{{ i.item.category }}</td>
+        <td>{{ i.item.publisher }}</td>
+        <td>{{ i.item.release_date }}</td>
+        {% if dc_code == 'GMS' %}
+        <td>{{ i.total_count|default:"0" }}</td>
+        {% else %}
+        <td>{{ i.total_count|default:"0" }}</td>
+        <td>{{ i.instock_count|default:"0" }}</td>
+        {% endif %}
+        <td>
+          <a class="entries" href="{% url staff:entries dc_code i.item.id %}">Entries</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% pagination %}
+
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $('a.entries').colorbox();
+	});
+</script>
+
+{% endblock right %}

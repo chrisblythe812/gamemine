@@ -1,0 +1,26 @@
+@import "constants";
+
+.tooltip {
+  display: none;
+  background: url($images_url + 'forms/tooltip/black_arrow_big.png');
+  height: 123px;
+  padding: 40px 30px 10px 30px;
+  width: 270px;
+  font-size: 11px;
+  color: #fff;
+  z-index: 5000;
+
+  .picture {
+    width: 121px;
+    height: 69px;
+    overflow: hidden;
+    float: left;
+  }
+
+  .description {
+    margin: 0 5px 0 135px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.3em;
+  }
+}

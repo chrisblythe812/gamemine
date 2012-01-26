@@ -1,0 +1,28 @@
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Game</th>
+        <th>Platform</th>
+        <th>UPC</th>
+        <th>Rent Status</th>
+        <th>Rent Flag</th>
+        <th>Avail. Now</th>
+        <th>Added</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for list_item in rent_list %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{{ list_item.item.item.get_absolute_url }}">{{ list_item.item.item }}</a></td>
+        <td>{{ list_item.item.item.category }}</td>
+        <td>{{ list_item.item.item.upc }}</td>
+        <td>{{ list_item.item.item.get_rent_status }}</td>
+        <td>{{ list_item.item.item.rent_flag|yesno:"Y," }}</td>
+        <td>{{ list_item.in_stock }} / {{ list_item.vendor }}</td>
+        <td>{{ list_item.item.added|date }}&nbsp;{{ list_item.item.added|time }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

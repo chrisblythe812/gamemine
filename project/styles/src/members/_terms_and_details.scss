@@ -1,0 +1,54 @@
+@import "constants";
+@import "mixins";
+
+#id_your_account_header {
+  h1 {
+    color: #3566be;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 !important;
+  }
+  
+  span {
+    color: #333;
+    font-size: 12px;
+  }
+}
+
+ul.your_account_list {
+  list-style: none;
+  margin: 0 0 0 6px !important;
+  padding: 0 !important;
+
+  li {
+    background: url($images_url + 'profile/bullet.gif') no-repeat;
+    height: 10px;
+    line-height: 10px;
+    padding: 0 0 0 16px;
+    font-size: 12px;
+    color: #333;
+  }
+}
+
+#id_current_terms {
+  margin: 32px 0;
+  
+  a {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
+#id_general_plan_information {
+  margin: 32px 0;
+  
+  h2 {
+    color: #3566be;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+}

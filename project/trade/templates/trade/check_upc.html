@@ -1,0 +1,61 @@
+<div id="trade-add-dialog">
+  <div id="dialog-heading">
+    <div id="trade-add-game-details">
+      {% if item.get_nano_thumb %}
+      <img width="37" height="47" src="{{ item.get_nano_thumb }}" />
+      {% endif %}
+      <h1>{{ item }} ({{ item.category.description }})</h1>
+    </div>
+
+    <div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>Trade Games</div>
+  </div>
+
+  <div id="dialog-content">
+    <img src="{{ STATIC_URL }}img/trade/upc-check.jpg" alt="UPC is written on back cover of box, under bar code." class="image" />
+    <div id="trade-check-upc-box" class="boxed-red">
+      <h2>Verify your Game</h2>
+      <p>To ensure accuracy with your trade-in we use the UPC on the original
+	case and verify you have the original case, manual and artwork.
+	Enter the UPC from your case below and click <strong>&quot;Verify&nbsp;UPC&quot;</strong>
+	button to continue your trade-in.</p>
+
+      <form method="post" action="{% url trade:check_upc item.id %}" id="id_check_upc_form">
+        {% csrf_token %}
+        <input type="hidden" name="dest" value="{{ dest }}"/>
+        <label for="id_upc">UPC</label>{{ form.upc }}
+        <input type="submit" value="Verify UPC" class="verify-upc-button"/>
+      </form>
+      <div class="clear">&nbsp;</div>
+
+      <div id="id_form_skip">
+        {% if form.upc.errors %}
+        <div id="trade-upc-error">
+          <div class="message">{{ form.upc.errors }}, please try again or click</div>
+           <div id="skip-upc-check">
+            <a href="{{ dest }}"{% if dest_wizard %} class="wizard-navigate-button"{% endif %}>&quot;I don't know my UPC&quot;</a>
+          </div>
+        </div>
+        {% else %}
+        <!--div id="trade-upc-no-error">
+          <div id="skip-upc-check"><a href="{{ dest }}">&quot;I don't know my UPC&quot;</a></div>
+        </div-->
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  Helpers.boxed($('#trade-check-upc-box'), 'boxed-red');
+  $('#id_check_upc_form').get(0).validate = function(){
+    var field = $('#id_upc');
+    if (!field.val()) {
+      alert('Please, enter UPC.');
+      field.focus();
+      return false;
+    }
+    return true;
+  };
+});
+</script>
+

@@ -1,0 +1,91 @@
+- fields:
+    description: null
+    name: Action
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 1
+- fields:
+    description: null
+    name: Adventure
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 3
+- fields:
+    description: null
+    name: Fighting
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 4
+- fields:
+    description: null
+    name: Kids & Family
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 12
+- fields:
+    description: null
+    name: LucasArts
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 14
+- fields:
+    description: null
+    name: Music
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 10
+- fields:
+    description: null
+    name: Puzzle
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 9
+- fields:
+    description: null
+    name: Racing
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 5
+- fields:
+    description: null
+    name: Role-Playing
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 6
+- fields:
+    description: null
+    name: Shooter
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 2
+- fields:
+    description: null
+    name: Simulation
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 11
+- fields:
+    description: null
+    name: Sports
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 8
+- fields:
+    description: null
+    name: Strategy
+    ordering: null
+    type: 1
+  model: catalog.genre
+  pk: 7

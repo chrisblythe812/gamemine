@@ -1,0 +1,28 @@
+<!-- OID: {{ user.id }}, AMOUNT: {{ current_rental_plan.first_payment.debit }}, CID: {{ user.profile.campaign_cid }} -->
+
+{% if user.profile.check_rent_pixels %}
+  {% if user.profile.campaign_cid == '13' %}
+    <!-- Start of Neverblue conversion Code -->
+    <!--Neverblue Ads Tracking-->
+    <script src="http://qdmil.com/javascript/9509.js?action=14558"></script>
+    <noscript><img src="http://qdmil.com/pixel/?o=9509&action=14558" width="1" height="1"></noscript>
+    <!-- End of Neverblue conversion Code -->
+  {% endif %}
+
+  {% if user.profile.campaign_cid == '6' %}
+    <!-- Start of Commission Junction Non Trial conversion Code -->
+    <img src="http://www.emjcd.com/u?AMOUNT={{ current_rental_plan.first_payment.debit }}&CID=1515539&OID={{ user.id }}&TYPE=332771&CURRENCY=USD&METHOD=IMG" height="1" width="20">
+    <!-- End of Commission Junction conversion Code -->
+  {% endif %}
+
+  {% if user.profile.campaign_cid == '15' %}
+    <!-- Start of Commission Junction Free Trial conversion Code -->
+    <img src="http://www.emjcd.com/u?AMOUNT={{ current_rental_plan.first_payment.debit }}&CID=1515539&OID={{ user.id }}&TYPE=349002&CURRENCY=USD&METHOD=IMG" height="1" width="20">
+    <!-- End of Commission Junction conversion Code -->
+  {% endif %}
+
+  {% if user.profile.campaign_cid in '1416' %}
+    {# LinkShare #}
+    <img src="http://track.linksynergy.com/ep?mid=36958&ord={{ user.id }}&skulist={{ current_rental_plan.slug }}&qlist=1&amtlist={{ current_member_rental_plan.first_payment.debit_no_dot }}&cur=USD&namelist=Rental+Monthly+Subscription">
+  {% endif %}
+{% endif %}

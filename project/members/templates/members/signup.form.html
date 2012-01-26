@@ -1,0 +1,67 @@
+{% if step0 == 0 %}
+<ul id="signup-paymentplan">
+	<li id="signup-paymentplan-0">
+		<p class="signup-paymentplan-description">Unlimited <strong>Monthly</strong> 1 Game Plan</p>
+		<div class="signup-paymentplan-extra">
+			<p class="red">Unlimited Rentals</p>
+		</div>
+		<form action="{% url members:signup %}" method="post" id="form-signup">{% csrf_token %}
+			<input type="hidden" name="0-plan" value="0" />
+			<input type="submit" value="Start Now" />
+		</form>
+		<p class="signup-paymentplan-price"><strong>$11.99</strong>/month</p>
+	</li>
+	<li id="signup-paymentplan-1">
+		<p class="signup-paymentplan-description">Unlimited <strong>Monthly</strong> 2 Game Plan</p>
+		<div class="signup-paymentplan-extra">
+			<p class="red">30% Discount</p>
+			<p>1st Month Only</p>
+			<p class="strong">$13.99 Total</p>
+		</div>
+		<form action="{% url members:signup %}" method="post" id="form-signup">{% csrf_token %}
+			<input type="hidden" name="0-plan" value="1" />
+			<input type="submit" value="Start Now" />
+		</form>
+		<p class="signup-paymentplan-price"><strong>$19.99</strong>/month</p>
+	</li>
+	<li id="signup-paymentplan-2">
+		<p class="signup-paymentplan-description">Unlimited <strong>3 Months</strong> 2 Game Plan</p>
+		<div class="signup-paymentplan-extra">
+			<p class="red">1 Extra Month Free!</p>
+			<p>$10.00 Score Credit</p>
+			<p class="strong">4 Months Total</p>
+		</div>
+		<form action="{% url members:signup %}" method="post" id="form-signup">{% csrf_token %}
+			<input type="hidden" name="0-plan" value="2" />
+			<input type="submit" value="Start Now" />
+		</form>
+		<p class="signup-paymentplan-price"><strong>$59.99</strong></p>
+	</li>
+	<li id="signup-paymentplan-3">
+		<p class="signup-paymentplan-description">Unlimited <strong>6 Months</strong> 2 Game Plan</p>
+		<div class="signup-paymentplan-extra">
+			<p class="red">1 Extra Month Free!</p>
+			<p>$15.00 Score Credit</p>
+			<p class="strong">7 Months Total</p>
+		</div>
+		<form action="{% url members:signup %}" method="post" id="form-signup">{% csrf_token %}
+			<input type="hidden" name="0-plan" value="3" />
+			<input type="submit" value="Start Now" />
+		</form>
+		<p class="signup-paymentplan-price"><strong>$119.99</strong></p>
+	</li>
+</ul>
+<p class="signup-paymentplan-notes">*Credits can only be used after one billing cycle and are not eligible for cash-out.</p>
+
+{% else %}
+<form action="{% url members:signup %}" method="post" id="form-signup">{% csrf_token %}
+	{{ form.as_p }}
+
+	<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+	{{ previous_fields|safe }}
+	{% if step0 > 0 %}
+	<button class="wizard-back-button">Back</button> 
+	{% endif %}
+	<input type="submit" /> 
+</form>
+{% endif %}

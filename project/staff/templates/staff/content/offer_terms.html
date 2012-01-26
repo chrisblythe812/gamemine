@@ -1,0 +1,35 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Offer Terms</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Actions</th>
+    </tr>
+    {% for i in offer_terms %}
+    <tr>
+      <td><a href="">{{ i.id }}</a></td>
+      <td>
+          {% ifequal i.type 1 %}
+            Buy
+          {% else %}
+            Trade
+          {% endifequal %}
+      </td>
+      <td width="10%">
+         <a href="{% url staff:edit_offer_term i.id %}">Edit</a>
+         <a href="{% url staff:del_offer_term i.id %}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <div class="actions">
+    <a href="{% url staff:add_offer_term %}">Add Offer Term</a>
+  </div>
+</div>
+{% endblock right %}

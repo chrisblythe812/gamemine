@@ -1,0 +1,45 @@
+<div id="transaction-refund-form">
+  <h1>{{ title }}</h1>
+  
+  <form action="{% url staff:refund_transaction trans.id %}" method="post">{% csrf_token %}
+    {% if error_message %}
+    <div class="error">{{ error_message }}</div>
+    {% endif %}
+    
+    <dl>
+      <dt>{{ form.amount.label }}</dt>
+      <dd>{{ form.amount }} {{ form.amount.errors }}</dd>
+
+      <dt>{{ form.comment.label }}</dt>
+      <dd>{{ form.comment }} {{ form.comment.errors }}</dd>
+    </dl>
+    
+    <div class="actions">
+      <input type="submit" value="Refund" />
+      <input type="button" value="Close" />
+    </div>
+  </form>
+  
+  <script type="text/javascript">
+  $('#transaction-refund-form form').ajaxForm({
+    success: function (response, status) {
+      if (status != 'success')
+        return;    
+
+      if (response.redirect_to) {
+        window.location = response.redirect_to;
+      }
+      else if (response.goto_url) {
+        $.fn.openWizardByUrl(response.goto_url);    
+      }
+      else if (response.close) {
+          $.fn.colorbox.close();  
+      }
+      else {
+        $.fn.colorbox.setContent(response.form);
+        $.fn.colorbox.resize();
+      }
+    }
+  });
+  </script>
+</div>

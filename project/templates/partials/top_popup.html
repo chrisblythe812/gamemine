@@ -1,0 +1,19 @@
+<div id="{% block top-popup-id %}{% endblock %}" class="top-popup">
+	<div class="top-popup-content-wrapper">
+		<div class="top-popup-content">
+	
+			<div class="top-popup-header">
+				<div class="top-popup-header-content">
+					{% block top-popup-header %}
+					{% endblock top-popup-header %}
+				</div>
+				
+				<a class="close-action" title="Close" href="#">Close</a>
+			</div>
+
+			{% block top-popup-conent %}
+			{% endblock top-popup-conent %}
+		</div>
+	</div>
+	<div class="top-popup-footer"></div>
+</div>

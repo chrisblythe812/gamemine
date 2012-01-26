@@ -1,0 +1,537 @@
+@import "constants";
+@import "compass/css3"; 
+@import "mixins";
+
+#page-heading {
+	background: #e5e5e5 -495px 0 url($images_url + "buttons.png") no-repeat;
+	height: 83px;
+	overflow: hidden;
+	color: #333;
+	margin-bottom: 15px;
+	
+	#page-heading-decor {
+		background: #e5e5e5 -490px 0 url($images_url + "buttons.png") no-repeat;
+		float: right;
+		width: 5px;
+		height: 83px;
+	}
+	
+	h1 {
+		// background: rgba(255, 255, 0, .3);
+		font-size: 23px !important;
+		line-height: 23px !important;
+		font-weight: bold;
+		
+		margin: 20px 0 0 91px !important;
+		width: 200px;
+	}
+	
+	#page-heading-user-avatar {
+		// background: rgba(255, 255, 0, .3);
+		float: left;
+		margin: -32px 0 0 17px;
+	}
+	
+	#page-heading-user {
+		// background: rgba(255, 255, 0, .3);
+		font-size: 13px;
+		line-height: 13px;
+		margin: 5px 0 0 91px !important;
+		width: 200px;
+	}
+	
+	#page-heading-extra-info {
+		// background: rgba(255, 255, 0, .3);
+		float: right;
+		font-size: 13px;
+		line-height: 13px;
+		margin: -13px 20px 0 0;
+		
+		span {
+			color: #b42024;
+		}
+	}
+	
+	strong.pending-credits {
+    margin-left: 30px;
+	}
+	
+	span.pending-credits {
+    color: #36C !important;
+	}
+}
+
+.members-cancel-rent-plan {
+	form {
+		color: #333 !important;	
+		font-size: 12px !important;
+			
+		.notes {
+			background: #e5e5e5;
+		}
+		
+		.notes,
+		.notes-1 {
+			padding: 10px 15px !important;
+			clear: both;
+			ul {
+				list-style: disc;
+				padding: 0 !important;
+				
+				li {
+					margin: 0 !important;
+				}
+			}
+			
+			p {
+				margin: 0 !important;
+			}
+		}
+		
+		.reasons-1,
+		.reasons-2 {
+			// background: rgba(255, 255, 0, .3);
+			list-style: none !important;
+			float: left;
+			width: 250px;
+		}
+		
+		textarea {
+			width: 510px;
+			height: 70px;
+			margin: 10px 0 !important;
+		}
+		
+		.errorlist {
+			list-style: none !important;
+			margin: 5px 0 0 20px !important;
+		}
+	}
+}
+
+
+.rent-list-page {
+	.ul-heading {
+		margin-bottom: 0 !important;
+	}
+}
+
+#list-banner {
+	background: #ebebeb;
+	padding: 15px 20px;
+	
+	a {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }	
+}
+
+.list-page {
+	.ul-heading {
+		margin-bottom: 0 !important;
+	}
+
+	#rent-orders-table { 
+        .column-rate {
+            ul {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    #rent-list-table {
+        .column-rate {
+            ul {
+                margin: 7px auto;
+            }
+        }
+	}
+}
+
+.rent-list-page,
+.trade-list-page {
+    #rent-orders-table,
+    #rent-list-table {
+        th {
+            font-weight: bold !important;
+        }
+    }
+}
+
+#trade-list-banner {
+	background: #ebebeb;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.buy-list-page {
+  th {
+    font-weight: bold;
+  }
+
+	#rent-list-table {
+		.column-condition,
+		.column-platform {
+			width: 100px;
+		}
+	
+		.column-buy {
+			width: 70px;
+		}
+	
+		.column-price,
+		.column-actions {
+			width: 90px;
+		}
+	}
+}
+
+#rent-orders-table {
+	width: 100%;
+	color: #333;
+	
+	th {
+		background-color: #c2c2c2;
+		height: 35px;
+		border-left: 2px solid #cbcbcb;
+		font-size: 11px;
+		text-align: center;
+		padding: 0 20px !important;
+	}
+	
+	th.column-item {
+		font-size: 12px;
+		font-weight: bold;
+	}
+	
+	td {
+		background-color: #eaeaea;
+		border-left: 2px solid #fff;
+		font-size: 11px;
+		text-align: center;
+		vertical-align: top;		
+		padding: 31px 10px 10px;
+	}
+
+	td.column-item {
+		padding: 10px !important;
+	}
+	
+	.column-item {
+		border: none !important;
+		text-align: left;
+		
+		.order-number {
+			margin: 0 0 10px 10px;
+		}
+		
+		.item {
+		  margin: 0 5px  0 2em;
+		  strong {
+		      margin-right: 5px;
+		  }
+		}
+
+		a {
+			@include heading-anchor;
+			color: #333;
+		}
+	}
+
+	.column-first {
+		border: none !important;
+		text-align: left;
+	}
+	
+	.column-info {
+		border: none;
+		text-align: left;
+		padding: 20px 10px !important;
+		
+		a {
+			font-weight: bold;
+			margin-left: 10px;
+		}
+	}
+	
+	.column-platform { width: 100px; }
+	.column-rate { width: 100px; }
+	.column-shipped { width: 70px; }
+	.column-xxx { width: 90px; }
+	.column-xxx-1 { width: 50px; }
+
+	.column-condition { width: 90px; }
+	.column-submitted { width: 90px; }
+	.column-received { width: 90px; }
+	.column-value { width: 50px; }
+	.column-actions { width: 50px; }
+	
+	.empty {
+		padding: 20px;
+		text-align: left;
+		border: none;
+	}
+	
+	.no-plan-message,
+	.no-plan-message-2 {
+		// background: rgba(255, 255, 0, .3);
+		text-align: center;
+		color: #0467CD;
+		font-weight: bold;
+		font-size: 13px;
+		height: 50px;
+		
+		.no-plan-message-text {
+			// background: rgba(255, 255, 0, .3);
+			@include inline-block;
+			line-height: 23px;
+			margin-bottom: 27px;
+		}
+		
+		.start-now {
+			// background: rgba(255, 255, 0, .3);
+			@include inline-block;
+			margin-left: 20px;
+			height: 50px;
+			
+			.start-now-text {
+				color: #333;
+				padding: 10px 0;
+				font-size: 11px;
+				
+				strong {
+					color: #0467CD;
+				}
+			}
+		}
+	}
+	
+	.no-plan-message-2 {
+		height: 1em !important;
+	}
+	
+	.problem-message {
+		.boxed-wrapper {
+			background: white 15px 0 url($images_url + 'attention-w.png') no-repeat;
+			padding: 5px 10px 15px 80px;
+		}
+		
+		.actions {
+			float: right;
+			color: #36C;
+			font-size: 12px;
+			font-weight: bold;
+			
+			a {
+				margin: 0 5px;
+			}
+		}
+		
+		.title {
+			font-size: 13px;
+			font-weight: bold;
+			color: #DD0B26;
+			margin-bottom: 5px;
+		}
+		
+		.details {
+			color: #333;
+			font-size: 11px;
+		}
+	}
+	
+	.subtotal td {
+	  background-color: #999;
+	  border: none;
+	  color: white;
+	}
+	
+	tr.declined {
+	  height: 19px;
+	  background: url($images_url + 'trade/declined-bg.png') no-repeat top left;
+
+	  td {
+	    margin: 0;
+	    padding: 0 40px 0 50px !important;
+	    background: none;
+  		border: none !important;
+  		height: 19px;
+  		line-height: 19px;
+  		text-align: left;
+	  }
+	}
+}
+
+#trade-list-footer {
+  margin: 20px 0;
+  padding: 0 25px 0 40px;
+  font-size: 12px;
+  
+  input {
+    float: right;
+  }
+}
+
+.trade-list-page {
+  .column-item {
+    padding-left: 2em !important;
+  }
+
+	#trade-list-grid {
+		.catalog-item-stars {
+//			background: red;
+			margin: 0 0 6px 0 !important;
+			display: block;
+		}
+
+    a {
+      color: #333;
+      font-weight: bold;
+    }
+	}
+
+  #rent-orders-table {
+	  td {
+		  padding: 10px !important;
+	  }
+  }
+
+	.order-number {
+		// color: #36C;
+		color: #C80000;
+	}
+}
+
+.buy-list-page {
+  .column-item .item {
+    padding-left: 2em !important;
+  }
+
+	#buy-list-grid {
+		.catalog-item-stars {
+//			background: red;
+			margin: 0 0 6px 0 !important;
+			display: block;
+		}	
+	}
+
+	.order-number {
+		// color: #36C;
+		color: #C80000;
+	}
+}
+
+.list-page {
+	#add-by-upc-widget {
+		padding: 15px 0 0 40px;
+		background: 15px 32px url($images_url + 'add-to-list-arrow.gif') no-repeat;
+	
+		label {
+			font-size: 11px;
+			font-weight: bold;
+			margin: 0 0 5px 3px;
+			display: block;
+		}
+		
+		input {
+			font-weight: bold;
+			color: #00359B;
+			font-size: 11px;
+		}
+	}
+	
+	.list-page-footer {
+		margin-top: 20px;	
+		border-top: 1px solid #c1c1c1;
+		
+		input {
+		  width: 184px;
+		  height: 22px;
+		  background: url($images_url + 'list-search-input.gif') no-repeat left top;
+		  padding: 0 4px;
+		  margin: 0;
+		  border: none;
+		}
+	}
+}
+
+.candy-table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+  font-size: 13px;
+  
+  tr {
+    height: 31px;
+    *height: 23px;
+    &.even {
+      background-color: #eee;
+    }
+  }
+  
+  td {
+    padding: 0 7px;
+    border: 1px #3a66bd solid;
+
+    &.left {
+      border-top: 1px #3a66bd solid;
+      border-right: 1px #3a66bd solid;
+      border-bottom: 1px #3a66bd solid;
+      color: #5ab1e7;
+      font-weight: bold;
+    }
+    &.inner {
+    }
+    &.right {
+      border-top: 1px #3a66bd solid;
+      border-left: 1px #3a66bd solid;
+      border-bottom: 1px #3a66bd solid;
+    }
+  }
+  
+  thead {
+    background: url($images_url + 'profile/candy-table-header-bg.gif') repeat-x;
+
+    td {
+      border-top: none !important;
+      font-weight: bold;
+      color: white;
+    }
+  }
+  
+  td.left {
+    color: #57b6ec;
+  }
+}
+
+@import "members/lists/buy_orders_table";
+@import "members/lists/trade_orders_table";
+@import "members/lists/rent_orders_table";
+
+@import "members/wizards";
+@import "members/_profile_page_with_grid";
+@import "members/_edit-review-page";
+@import "members/_history";
+@import "members/_billing_history";
+@import "members/_account_report_problems";
+@import "members/_settings_parental_control";
+@import "members/_billing_history";
+@import "members/_account_login_password";
+@import "members/_page_profile_image";
+@import "members/_store_credits";
+@import "members/_profile_cash_back";
+@import "members/_settings_my_systems";
+@import "members/_create_account_complete";
+@import "members/_confirm_registration";
+@import "members/_terms_and_details";
+@import "members/_rent_plan";
+
+#payment-method-form {
+  .boxed.information {
+    text-align: left;
+    margin: 20px 0 0 20px;
+  }
+}

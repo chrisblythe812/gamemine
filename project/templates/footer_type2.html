@@ -1,0 +1,22 @@
+<div class="footer_full">
+<div id="footer" class="type2">
+<div class="left_foot">
+  {% block footer_left %}
+    <p>Portions of content provided by Rovi Data Solutions, Inc. and IGN Entertainment, Inc.
+    Joint copyright © 2010 Rovi Data Solutions, Inc. and IGN Entertainment, Inc.
+    Images are copyright by their respectful owners and are intended only for display use.</p>
+  {% endblock footer_left %}
+</div>
+<div class="righ_foot">
+  {% block footer-menu %}
+    {% include "partials/footer_menu.html" %}
+  {% endblock footer-menu %}
+<div class="clear"></div>
+<p>&copy; Gamemine Direct, LLC 2011, All Rights Reserved. <a href="{% url simple-page 'Terms' %}">Terms of Use</a> <span class="divider">|</span> <a href="{% url simple-page 'Privacy' %}">Privacy Policy</a></p>
+<div class="foot_row">
+  {% include "partials/footer_icons.html" %}
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>

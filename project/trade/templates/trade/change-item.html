@@ -1,0 +1,73 @@
+<div id="trade-add-dialog">
+	<div id="dialog-heading">
+		<div id="trade-add-game-details">
+			{% if item.get_nano_thumb %}
+			<img width="37" height="47" src="{{ item.get_nano_thumb }}" />
+			{% endif %}
+			<h1>{{ item }} ({{ item.category.description }})</h1>
+		</div>
+		
+		<div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>Trade Games</div>
+	</div>
+
+	<div id="dialog-content">
+		<h1>What condition is your Game?</h1>
+
+    <form action="{% url trade:change_item list_item.id %}" method="post" id="trade-add-form">
+      <div class="boxed" id="trade-add-form-hint">
+	      <h2>Games WILL NOT be accepted if:</h2> 			
+	      <ul>
+		      <li>Any Scratches, Cracks or Chips on the Disc or Cartridge.</li>
+		      <li>Labels or Stickers on Disc or Cartridge.</li>
+		      <li>Dirty or Stained Disc or Cartridge.</li>
+		      <li>Damaged, Missing or Altered Labels.</li>
+		      <li>Repackaged or Relabeled Disc or Cartridge (e.g. rental games).</li>
+	      </ul>
+          <p>If your Trade-In is NOT accepted, it may be returned within 14-days.</p>
+      </div>
+
+      <ul id="trade-add-choices">
+	      <li id="trade-add-complete" class="item">
+		      <div class="choice">
+			      <input type="radio" name="completeness" value="cg" id="id_cg"{% if list_item.is_complete %} checked="checked"{% endif %}/>
+			      <label for="id_cg">Complete Game</label>
+			      <ul>
+			        <li>- Original Case</li>
+			        <li>- Manual</li>
+			        <li>- Artwork</li>
+			      </ul>
+		      </div>
+		      <div class="price">
+			      Value <span>{% if item.trade_price %}${{ item.trade_price|floatformat:2 }}{% else %}&mdash;{% endif %}</span>
+		      </div>
+	      </li>
+	      <li id="trade-add-incomplete" class="item">
+		      <div class="choice">
+			      <input type="radio" name="completeness" value="ig" id="id_ig"{% if not list_item.is_complete %} checked="checked"{% endif %}{% if not rent_can_send_incomplete_game %} disabled="disabled"{% endif %} />
+			      <label for="id_ig">Incomplete Game</label>
+			      <ul>
+	                {% if not rent_can_send_incomplete_game %}
+	                  <li>(<a href="{% url simple-page 'Help-FAQs' %}" target="_blank">GamePerks Rewards</a>)</li>
+	                {% endif %}
+			        <li>- Game only</li>
+			        <li>- Game + Manual</li>
+			        <li>- Game + Artwork</li>
+			      </ul>
+		      </div>
+		      <div class="price">
+			      Value <span>{% if item.trade_price_incomplete %}${{ item.trade_price_incomplete|floatformat:2 }}{% else %}&mdash;{% endif %}</span>
+		      </div>
+	      </li>
+      </ul>
+
+      <div class="actions">
+	      <div class="right">
+		      <input type="submit" value="Update" class="update-button" />
+	      </div>
+    		<a href="#" class="dialog-close-button back-button">Back</a>
+      </div>
+
+    </form>
+	</div>
+</div>
+

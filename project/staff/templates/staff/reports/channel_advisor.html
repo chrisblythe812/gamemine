@@ -1,0 +1,75 @@
+{% extends "staff/fulfillment.html" %}
+
+{% load pagination %}
+
+{% block head %}{{ block.super }}
+
+<style type="text/css">
+  #report-grid {
+    
+  }
+  
+  #report-grid td {
+    background: white;
+    vertical-align: top;
+  }
+</style>
+
+{% endblock head %}
+
+
+{% block right %}{{ block.super }}
+
+<div class="module" style="border: None; padding: 0">
+
+  <div style="text-align: right">
+    <a class="excel-link" href="#">Download XLS</a>
+  </div>
+
+  <div style="margin: 0; padding: 0; position: absolute">
+    <table id="report-grid" style="width: 2000px">
+      <tr>
+        <th>Auction Title</th>
+        <th>Inventory Number</th>
+        <th>Quantity Update Type</th>
+        <th>Quantity</th>
+        <th>Weight</th>
+        <th>UPC</th>
+        <th>Description</th>
+        <th>Manufacturer</th>
+        <th>Brand</th>
+        <th>Condition</th>
+        <th>Seller Cost</th>
+        <th>Product Margin</th>
+        <th>Retail Price</th>
+        <th>Picture URLs</th>
+        <th>Video Game</th>
+        <th>Genres</th>
+      </tr>
+      {% for i in items %}
+      <tr>
+        <td>{{ i.item.get_cropped_name_80 }}</td>
+        <td>{{ i.item.id }}</td>
+        <td>IN STOCK</td>
+        <td>{{ i.quantity }}</td>
+        <td>{{ i.item.get_game_weight }}</td>
+        <td>{{ i.item.upc }}</td>
+        <td style="width: 300px">{{ i.item.description }}</td>
+        <td>{{ i.item.publisher }}</td>
+        <td>{{ i.item.category }}</td>
+        <td>New</td>
+        <td>{{ i.retail_price }}</td>
+        <td>{{ i.item.margin }}</td>
+        <td>{{ i.item.retail_price_new }}</td>
+        <td>{{ i.item.get_large_cover }}</td>
+        <td><a href="{{ i.item.get_absolute_url }}?cid=12">{{ SITE_URL }}{{ i.item.get_absolute_url }}?cid=12</a></td>
+        <td>{{ i.item.genres.all|join:", " }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% pagination %}
+  </div>
+</div>
+
+{% endblock right %}

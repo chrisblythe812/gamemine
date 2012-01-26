@@ -1,0 +1,39 @@
+{% extends "members/settings/settings.html" %}
+
+{% block heading %}
+	<li class="selected"><a href="{% url members:settings_my_systems %}">Consoles Owned</a></li>
+	<li><a href="{% url members:settings_parental_controls %}">Parental Controls</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+
+{% include "members/partials/account_banner.html" %}
+
+<div id="my-systems">
+  <div class="title">What consoles do you have?</div>
+
+  {% for o in owned_systems %}
+  {{ o.name }}
+  {% endfor %}
+
+  <form method="post">
+  {% csrf_token %}
+
+  <ul class="consoles">
+    {% for system in systems %}
+    <li>
+        <label for="id-system-{{ system.id }}">{{ system.name }}</label>
+        <input type="checkbox" id="id-system-{{ system.id }}" name="system-{{ system.id }}" {% if system.owned %}checked="checked"{% endif %} />
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="buttons">
+    <a href="/" class="cancel-button">Cancel</a>
+    <input type="submit" class="save-button" value="Save" />
+  </div>
+  </form>
+</div>
+
+{% endblock page-content %}
+

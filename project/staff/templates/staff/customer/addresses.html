@@ -1,0 +1,31 @@
+{% extends "staff/customer/base.html" %}
+
+{% block right %}
+
+<div class="module">
+  <h2>Shipping Address</h2>
+
+  <table>
+    <col class="vtable_col1" />
+    <tr><th>Address Line 1</th><td>{{ shipping_address.address1 }}</td></tr>
+    <tr><th>Address Line 2</th><td>{{ shipping_address.address2 }}</td></tr>
+    <tr><th>City</th><td>{{ shipping_address.city }}</td></tr>
+    <tr><th>State</th><td>{{ shipping_address.state }}</td></tr>
+    <tr><th>Zip Code</th><td>{{ shipping_address.zip_code }}</td></tr>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Billing Address</h2>
+
+  <table>
+    <col class="vtable_col1" />
+    <tr><th>Address Line 1</th><td>{{ billing_address.address1 }}</td></tr>
+    <tr><th>Address Line 2</th><td>{{ billing_address.address2 }}</td></tr>
+    <tr><th>City</th><td>{{ billing_address.city }}</td></tr>
+    <tr><th>State</th><td>{{ billing_address.state }}</td></tr>
+    <tr><th>Zip Code</th><td>{{ billing_address.zip_code }}</td></tr>
+  </table>
+</div>
+
+{% endblock right %}

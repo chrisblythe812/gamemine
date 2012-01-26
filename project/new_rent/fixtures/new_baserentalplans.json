@@ -1,0 +1,56 @@
+[
+    {
+        "pk": 5,
+        "model": "rent.baserentalplan",
+        "fields": {
+            "next_plan": null,
+            "description": "Monthly 1 Game Plan",
+            "games_allowed": 1,
+            "months": 1,
+            "first_payment_type": "AUTH_CAPTURE",
+            "thereafter_months": "13.95",
+            "out_per_month": null,
+            "first_month": "6.95",
+            "store_credits": "0.00",
+            "expire_in": null,
+            "slug": "unlimited1",
+            "features": "[\"1 GAME out at-a-time (Unlimited)\", \"2 Out Per Month\"]"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "rent.baserentalplan",
+        "fields": {
+            "next_plan": null,
+            "description": "Monthly 2 Game Plan",
+            "games_allowed": 2,
+            "months": 1,
+            "first_payment_type": "AUTH_CAPTURE",
+            "thereafter_months": "20.95",
+            "out_per_month": null,
+            "first_month": "10.95",
+            "store_credits": "0.00",
+            "expire_in": null,
+            "slug": "unlimited2",
+            "features": "[\"2 GAMES out at-a-time (Unlimited)\", \"60% Discount\"]"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "rent.baserentalplan",
+        "fields": {
+            "next_plan": 6,
+            "description": "Monthly 2 Game Plan",
+            "games_allowed": 2,
+            "months": 1,
+            "first_payment_type": "AUTH_ONLY",
+            "thereafter_months": null,
+            "out_per_month": null,
+            "first_month": "20.95",
+            "store_credits": "0.00",
+            "expire_in": null,
+            "slug": "free_trial",
+            "features": "[\"2 GAMES out at-a-time (Unlimited)\"]"
+        }
+    }
+]

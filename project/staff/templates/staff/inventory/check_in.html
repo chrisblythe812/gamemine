@@ -1,0 +1,108 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Inventory Maintenance</h2>
+
+  <form id="id_form_check_upc">
+    <label for="id_search_upc">Enter UPC:</label>
+    <input type="text" id="id_search_upc" autocomplete="off" />
+    <input type="submit" value="Search" />
+    <div id="id_upc_message"></div>
+  </form>
+</div>
+
+<div class="module" id="id_add_games">
+  <h2>Add Games</h2>
+
+  <div>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.upc }}
+    <table>
+    <thead>
+      <tr>
+        <th>UPC</th>
+        <th>Title</th>
+        <th>Platform</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="id_upc_value">{% if form.upc.data %}{{ form.upc.data }}{% else %}&nbsp;{% endif %}</td>
+        <td id="id_title_value">{% if item %}{{ item.name }}{% else %}&nbsp;{% endif %}</td>
+        <td id="id_platform_value">{% if item %}{{ item.category }}{% else %}&nbsp;{% endif %}</td>
+      </tr>
+    </tbody>
+    </table>
+
+    <br />
+
+    <table>
+    <tbody>
+      <tr id="id_add_games_input_row">
+        <td><label class="v" for="id_quantity"># OF GAMES</label>{{ form.quantity.errors }}{{ form.quantity }}</td>
+        <td><label class="v" for="id_purchase">PURCHASE ORDER #</label>{{ form.purchase.errors }}{{ form.purchase }}</td>
+        <td><label class="v">SALE ONLY</label>{{ form.buy_only }}</td>
+        <td><label class="v">COND</label>{{ form.condition }}</td>
+        <td><label class="v">ASSIGN TO DC</label>{{ form.dc.errors }}{{ form.dc }}</td>
+      </tr>
+    </tbody>
+    </table>
+
+    <div>
+    <input type="submit" value="Load" />
+    </div>
+  </form>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#id_search_upc').searchbox('Enter "Manually" or "Scan with barcode scanner"');
+    {% if form.errors %}
+    $('#id_add_games').show();
+    {% endif %}
+
+    $('#id_form_check_upc').submit(function(){
+      var upc = $.trim($('#id_search_upc').val());
+      if (!upc) {
+        $('#id_upc_message').html('<strong>MESSAGE:</strong> Please enter UPC code and press "Search" button.');
+        return false;
+      }
+      $.getJSON('/Staff/Check-UPC/' + upc + '/', function(d){
+        if (d.success) {
+          $('#id_upc_message').html('<strong>MESSAGE:</strong> UPC "<em>' + upc + '</em>" was found successfully and appears below.');
+
+          $('#id_upc').val(upc);
+          $('#id_upc_value').text(upc);
+          $('#id_title_value').text(d.title);
+          $('#id_platform_value').text(d.platform);
+
+          $('#id_add_games').show();
+        } else {
+          $('#id_upc_message').html('<strong>MESSAGE:</strong> UPC you\'ve entered was not found. Please recheck and try again.');
+          $('#id_add_games').hide();
+        }
+      });
+      return false;
+    });
+
+    $('#id_search_upc').autocomplete('/Search/By-UPC/All/', {
+        maxItemsToShow: 15,
+        matchContains: 1,
+        width: 500,
+        onItemSelect: function (li) {
+          if (li == null) 
+            return;
+          $('#id_search_upc').val(li.extra[1]);
+        }
+    });
+
+  });
+</script>
+
+{% endblock right %}

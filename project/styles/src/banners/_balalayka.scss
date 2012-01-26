@@ -1,0 +1,79 @@
+.balalayka {
+  background: #fff center center url($images_url + 'catalog/loading.gif') no-repeat !important;
+}
+
+.balalayka-content {
+  width: 982px;
+  height: 345px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.balalayka-banner {
+  width: 737px;
+  height: 345px;
+}
+
+.balalayka-banner-background {
+  width: 737px;
+  height: 345px;
+}
+
+.balalayka-banner-foreground {
+  width: 737px;
+  height: 345px;
+}
+
+.balalayka-sidebar {
+  float: right;
+  margin-top: -345px;
+}
+
+.balalayka-sidebar-items {
+  padding: 0;
+  margin: 0;
+  width: 245px;
+  list-style: none;
+}
+
+.balalayka-sidebar-item {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 245px;
+  height: 115px;
+}
+
+.balalayka-sidebar-next-link {
+  position: absolute;
+  display: block;
+  width: 45px;
+  height: 45px;
+  background: url($images_url + 'banners/balalayka/arrow.png');
+  margin-top: -55px;
+  margin-left: 847px;
+}
+
+.balalayka-banner-link {
+  display: block;
+  width: 737px;
+  height: 345px;
+}
+
+.banner-wimgw.balalayka-banner-link {
+  position: absolute !important;
+  width: 170px !important;
+  height: 300px !important;
+  margin-top: 30px !important;
+}
+
+.banner-wimgw.balalayka-banner-link-0 {
+  margin-left: 205px;
+}
+
+.banner-wimgw.balalayka-banner-link-1 {
+  margin-left: 380px;
+}
+
+.banner-wimgw.balalayka-banner-link-2 {
+  margin-left: 560px;
+}

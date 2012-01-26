@@ -1,0 +1,23 @@
+{% extends "simple_pages/base.html" %}
+
+{% block title %}{{ block.super }} – How It Works{% endblock %}
+
+{% block head-config %}{{ block.super }}
+<style type="text/css">
+  #how-it-works-text .action { padding-top: 20px; }
+</style>
+
+{% endblock head-config %}
+
+{% block content %}
+
+<!--ul class="heading">
+  <li class="selected">How It Works</li>
+</ul-->
+
+<ul id="how-it-works-text">
+  <li class="r1"><h1>BUY</h1><div>New or Used Games</div><div>Weekly Promotions and Specials</div><div>Savings Up To 30% off</div><div>Free Shipping</div><div class="action"><a href="{% url catalog:index %}#best-sellers" class="start-now-red-button">Start Now</a></div></li>
+  <li class="r2"><h1>TRADE</h1><div>Credit or Cash Back</div><div>Highest Trade-In Values</div><div>Buy or Rent Games with Credits</div><div>Free Shipping</div><div class="action"><a href="{% url wimgw %}" class="start-now-red-button">Start Now</a></div></li>
+  <li class="r3"><h1>RENT</h1><div>6000+ Titles</div><div>No Due Dates or Late Fees</div><div>Monthly or Prepaid Plans</div><div>Free Shipping</div><div class="action"><a href="{% url new_rent:change_plan %}" class="link-dialog start-now-red-button">Start Now</a></div></li>
+</ul>
+{% endblock content %}

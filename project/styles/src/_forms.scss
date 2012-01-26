@@ -1,0 +1,166 @@
+/*
+	.form-XXXX-wrapper
+		.input-wrapper
+			.icon
+			input
+		.right-box
+*/
+
+@import "compass/css3";
+@import "_constants";
+
+@mixin input-box-icon($icon_url) {
+	.input-wrapper {
+		padding-left: 20px !important;
+		font-family: "Arial";
+		
+		.icon {
+			width: 16px;
+			height: 16px;
+			background: transparent center center url($icon_url) no-repeat;
+			position: absolute;
+			margin-left: -16px;
+			margin-top: 2px;
+		}
+	}
+}
+
+.form-textbox-wrapper {
+	width: 250px;
+	height: 20px;
+	overflow: hidden;
+	
+	.input-wrapper {
+		height: 20px;
+		background: -10px 0 url($images_url + "forms/text-box.png") no-repeat;
+		padding: 0 0 0 8px;
+		margin-right: 10px;
+	
+		input[type=text],
+		input[type=password],
+		span {
+			width: 100%;
+			border: none;
+			height: 15px;
+			line-height: 15px;
+			margin: 2px 0 2px 0;
+  		    font-family: "Arial";
+			font-size: 12px;
+			background: transparent;
+			@include inline-block;
+						
+			&.empty {
+				color: #666;
+			}
+		}
+	}
+	
+	.right-box {
+		width: 10px;
+		height: 20px;
+		float: right;
+		margin-top: -20px;
+		background: url($images_url + "forms/text-box.png") no-repeat;
+	}
+}
+
+@mixin select-wrapper($width) {
+  width: $width;
+  height: 21px;
+
+  div.select-inner {
+    position: relative;
+    width: $width;
+    height: 21px;
+
+    div.text {
+      margin: 0;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: $width - 38px;
+      height: 21px;
+      z-index: 1;
+      background: url($images_url + "forms/select-" + $width + ".png");
+      padding: 0 28px 0 10px;
+		  
+		  div.text-wrapper {
+        width: $width - 38px;
+        height: 21px;
+  		  overflow: hidden;
+  		  
+  		  span {
+  		    color: #1A1A1A;
+      		font-family: "Arial";
+		      font-size: 12px;
+		      line-height: 21px;
+  		  }
+		  }
+    }
+
+    select {
+      width: $width;
+      height: 21px;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+	    -moz-opacity: 0;
+	    filter: alpha(opacity=0);
+	    opacity: 0;
+	    z-index: 2;
+    }
+  }
+}
+
+div.select.w75px {
+  @include select-wrapper(75px);
+}
+
+div.select.w94px {
+  @include select-wrapper(94px);
+}
+
+div.select.w150px {
+  @include select-wrapper(150px);
+}
+
+div.select.w179px {
+  @include select-wrapper(179px);
+}
+
+div.select.w190px {
+  @include select-wrapper(190px);
+}
+
+div.select.w210px {
+  @include select-wrapper(210px);
+}
+
+div.select.w145px {
+  @include select-wrapper(145px);
+}
+
+div.select.w140px {
+  @include select-wrapper(140px);
+}
+
+div.select.w135px {
+  @include select-wrapper(135px);
+}
+
+@import "jquery/_date_input";
+
+.boxed.information {
+  .title {
+    padding-left: 40px;
+    background: url($images_url + 'info.png') no-repeat;
+    font-size: 13px;
+    color: #017BD7;
+    line-height: 16px;
+    height: 32px;
+    font-weight: bold;
+  }
+}
+

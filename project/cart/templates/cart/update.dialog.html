@@ -1,0 +1,21 @@
+<div id="cart-add-dialog">
+    <div id="dialog-heading">
+        <div id="cart-add-game-details">
+            {% if item.get_nano_thumb %}
+            <img width="37" height="47" src="{{ item.get_nano_thumb }}" />
+            {% endif %}
+            <h1>{{ item }} ({{ item.category.description }})</h1>
+            <div class="game-details">
+                <strong>UPC</strong> {{ item.upc }}
+            </div>
+        </div>
+        
+        <div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>Buy Games</div>
+    </div>
+
+    <div id="dialog-content">
+        <h1>Update condition</h1>
+
+        {% include "cart/update.form.html" %}
+    </div>
+</div>

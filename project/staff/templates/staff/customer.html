@@ -1,0 +1,66 @@
+{% extends "staff/index.html" %}
+{% load pagination %}
+
+{% block head %}{{ block.super }}
+
+<style type="text/css">
+  #user-search-form select,
+  #user-search-form input[type=text] {
+    width: 140px;
+  }
+
+  #user-search-form th {
+    text-align: right;
+  }
+</style>
+
+{% endblock head %}
+
+{% block menu %}
+<h3>Customer Information</h3>
+<form id="user-search-form">
+<div style="padding:5px; background-color:#CCCCFF; border-bottom:1px dashed #888888;">
+<table>
+{{ form.as_table }}
+<tr><td></td><td><input type="submit" value="Search" /></td></tr>
+</table>
+</div>
+</form>
+{% endblock %}
+
+{% block right %}
+<div class="module">
+<h2>Customers</h2>
+<table>
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>Full Name</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Campaign</th>
+    <th>SID</th>
+    <th>Affiliate</th>
+    <th>Date Registered</th>
+  </tr>
+</thead>
+<tbody>
+  {% for profile in profiles %}
+  <tr>
+    <td><a href="{% url staff:customer_view profile.user.id|default:0 %}">{{ profile.user.id }}</a></td>
+    <td>{{ profile.get_full_name }}</td>
+    <td>{{ profile.user.email }}</td>
+    <td>{{ profile.get_rental_status }}</td>
+    <td>{{ profile.get_campaign_cid_display }}</td>
+    <td>{{ profile.sid|default:"--" }}</td>
+    <td>{{ profile.affiliate|default:"--" }}</td>
+    <td>{{ profile.user.date_joined|date }} {{ profile.user.date_joined|time }}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+{% pagination %}
+
+</div>
+{% endblock %}
+

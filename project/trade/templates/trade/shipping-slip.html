@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <title>Shipping Slip</title>
+    <style>
+      @media screen, print {
+
+      * { font-family: sans-serif; font-weight: bold; }
+      body { margin: 0; padding: 0; background-color: white; border: 2px solid black; }
+      #header { height: 150px; }
+      #header div { margin: 0 0 0 630px; padding-top: 77px; }
+      #header div span { display: block; font-size: 14px; }
+      .info { float: left; margin: 30px 0 0 100px; width: 260px; font-size: 16px; }
+      .info h2 { font-size: 16px; color: #999; }
+      table { margin: 50px 0 0 70px; border-collapse: collapse; }
+      thead { font-size: 16px; color: #999; }
+      tr.odd { background-color: #ebebeb !important; }
+      tr.even { background-color: white; }
+      td { padding: 8px; }
+
+      #attn { width: 810px; font-size: 24px; text-align: center; color: #999; margin: 45px 0 0 70px; }
+      #attn em { font-style: normal; color: #bd2427; }
+
+      #notice { width: 810px; text-align: center; color: black; margin: 40px 0 0 70px; font-size: 80%; }
+      }
+    </style>
+  </head>
+  <body onload="window.print();">
+    <div id="header">
+      <img src="{{ STATIC_URL }}img/shipping-slip/header.png" style="float:left;" />
+      <div>
+        <span>PACKING SLIP</span>
+        <span style="color: #bd2427;">Date: {{ order_date }}</span>
+        <span style="color: #3358a8;">Order # {{ order_number }}</span>
+      </div>
+    </div>
+
+    <div class="info">
+      <h2>CUSTOMER INFO:</h2>
+      <div>{{ order.first_name }} {{ order.last_name }}</div>
+      <div>{{ order.shipping_address1 }}</div>
+      <div>{{ order.shipping_address2 }}</div>
+      <div>{{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}</div>
+      <div>Games Quantity: {{ order.size }}</div>
+    </div>
+
+    <div class="info">
+      <h2>SHIP TO:</h2>
+      <div>ATTN: Trade-In Orders</div>
+      <div>GAMEMINE</div>
+      <div>P.O. Box 810579</div>
+      <div>Boca Raton, FL 33481-0579</div>
+{% comment %}
+      <div>{{ gm_address.company }}</div>
+      <div>{{ gm_address.address1 }}</div>
+      <div>{{ gm_address.address2 }}</div>
+      <div>{{ gm_address.city }}, {{ gm_address.state }} {{ gm_address.zip_code }}</div>
+      <div>{{ gm_address.phone }}</div>
+{% endcomment %}
+    </div>
+
+    <div style="clear: both"></div>
+
+    <table>
+      <thead><tr>
+          <td width="170">ITEM #</td>
+          <td width="270">DESCRIPTION</td>
+          <td width="40">QTY</td>
+          <td width="125">TRADE VALUE</td>
+          <td width="125">TOTAL VALUE</td>
+      </tr></thead>
+      <tbody>
+        {% for item in items %}
+        <tr class="{% cycle 'odd' 'even' as rowclass %}">
+          <td>{{ item.item.upc }}</td>
+          <td style="color: #3358a8;">{{ item.item.short_name }} ({{ item.item.category }}) {% if item.hot_trade %}**HOT Trade**{% endif %}</td>
+          <td>{{ 1 }}</td>
+          <td style="text-align: right;">{{ item.price }}</td>
+          <td style="color: #bd2427; text-align: right;">{{ item.get_total }}</td>
+        </tr>
+        {% endfor %}
+        {% if order.bonus %}
+        <tr class="{% cycle rowclass %}">
+          <td>25% CREDIT BONUS</td>
+          <td style="color: #3358a8;">25% Extra Credit - 3 HOT TRADES</td>
+          <td>1</td>
+          <td style="text-align: right;">{{ order.bonus }}</td>
+          <td style="color: #bd2427; text-align: right;">{{ order.bonus }}</td>
+        </tr>
+        {% endif %}
+        <tr class="{% cycle rowclass %}">
+          <td>SHIPPING-CREDIT</td>
+          <td style="color: #3358a8;">Medial Mail Rate + Packaging</td>
+          <td>1</td>
+          <td style="text-align: right;">{{ order.get_shipping_cost }}</td>
+          <td style="color: #bd2427; text-align: right;">{{ order.get_shipping_cost }}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr class="{% cycle rowclass %}">
+          <td colspan="3"></td>
+          <td style="color: #3358a8; text-align: right;">TOTAL</td>
+          <td style="color: #bd2427; text-align: right;">{{ order.get_order_total }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="attn">
+        The itemized games on this list must be postmarked no later than <em>{{ mailing_date }}</em>
+    </div>
+
+    <div id="notice">
+      <div style="text-align: center;">{{ order_number }}<br/>
+        <img style="margin: 1em;" src="{% url trade:order_barcode order.id %}"/></div>
+
+		*25% Extra Credit and Shipping reinbursement credits only applies to accepted/approved trades.
+    </div>
+
+  </body>
+</html>
+

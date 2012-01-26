@@ -1,0 +1,123 @@
+@import "compass/css3";
+
+
+#payment-method-dialog {
+	width: 780px;
+	
+	.section-1 {
+		// background: rgba(255, 255, 0, 0.3);
+		
+		width: 350px;
+		float: left;
+	}
+	
+	.section-2 {
+		// background: rgba(255, 255, 0, 0.3);
+		
+		width: 350px;
+		float: left;
+		
+		h3 {
+			margin-left: 110px;
+		}
+
+    .extra {
+        // background: rgba(255, 255, 0, .4);
+        
+        img {
+            color: #666;
+            margin-left: 20px;
+        }
+        
+        .error {
+            margin-left: 20px;
+            text-align: left;
+        
+            .boxed-wrapper {
+                padding: 10px 10px 10px 70px;
+                background: 5px center #fff url($images_url + 'attention-w.png') no-repeat;
+            }
+        
+            .title {
+                color: #E61824;
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 2px;
+            }
+            
+            .details {
+              font-size: 11px;
+            }
+        }
+    }
+	}
+	
+	.errors-message {
+		margin-bottom: 20px;
+	}
+	
+	h3 {
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	
+	.input-field {
+		// background: rgba(255, 255, 0, 0.3);
+	
+		label {
+			//@include inline-block;
+			float: left;
+			font-size: 12px;
+			width: 100px;
+			text-align: right;
+			line-height: 21px;
+			margin-right: 10px;
+		}
+		
+		.input {
+			width: 230px;
+		}
+		
+		.select {
+		  margin-left: 110px;
+		}
+		
+		.group {
+            .select {
+                margin-left: 0px;
+                margin-right: 10px;
+            }
+		}
+		
+		clear: both;
+		height: 33px;
+		
+		&.narrow {
+		  .input {
+		    float: left;
+		    width: 70px;
+		    margin-right: 8px;
+		  }
+		}
+	}
+	
+	.form-actions {
+		// background: rgba(255, 255, 0, 0.3);
+		clear: both;
+		padding: 20px 50px 0 !important;
+		
+		input {
+			float: right;
+		}
+	}
+	
+	.errorlist {
+		font-size: 11px;
+		color: #e30e17;
+		font-weight: bold;
+	}
+
+  .extra {
+    text-align: center;
+  }
+}

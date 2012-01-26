@@ -1,0 +1,63 @@
+.rent.landings.landing4 {
+    .left_side {
+        background: url($images_url + "rent/landings/landing_non_trial_left_side.png") top right no-repeat;
+    }
+
+    .right_side {
+        background: url($images_url + "rent/landings/landing_non_trial_right_side.png") top left no-repeat;
+    }
+
+    .featured_pic {
+        width: 368px;
+        height: 372px;
+        float: left;
+        overflow: hidden;
+        text-indent: -9999px;
+        background: url($images_url + "rent/landings/landing_non_trial_main_slide_left.jpg") 0 0 no-repeat;
+    }
+
+    .featured_banner {
+        height: 372px;
+        overflow: hidden;
+        display: block;
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 265px;
+        float: left;
+        background: url($images_url + "rent/landings/landing_non_trial_start_now.jpg") 0 0 no-repeat;
+    }
+
+    .featured_pic_right {
+        width: 349px;
+        height: 372px;
+        float: right;
+        overflow: hidden;
+        text-indent: -9999px;
+        background: url($images_url + "rent/landings/landing_non_trial_main_slide_right.jpg") 0 0 no-repeat;
+    }
+
+    .carousel_row {
+        background: url($images_url + "rent/landings/landing_non_trial_main_slide_part2.jpg") 0 0 no-repeat;
+        
+        .btn_popular {
+            width: 111px;
+            height: 40px;
+            overflow: hidden;
+            cursor: pointer;
+            text-indent: -9999px;
+            position: absolute;
+            top: 25px;
+            left: 330px;
+            background: url($images_url + "intro/btn_most_popular.png") 0 0 no-repeat;
+            z-index: 10;
+        }
+    }
+    
+    #footer {
+        background: url($images_url + "footer_px.gif") top repeat-x;
+
+        .free_shipping {
+            background: url($images_url + "rent/landings/free_shipping_blue.png") 0 0 no-repeat;
+        }
+    }
+}

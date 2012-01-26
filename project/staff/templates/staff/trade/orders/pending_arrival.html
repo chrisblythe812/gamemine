@@ -1,0 +1,15 @@
+{% extends "staff/fulfillment.html" %}
+
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+{% include "staff/trade/orders/partials/order_list.html" %}
+</div>
+
+{% pagination %}
+
+<div id="detais"></div>
+
+{% endblock right %}

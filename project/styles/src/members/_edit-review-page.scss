@@ -1,0 +1,113 @@
+.edit-review-page {
+    #review-content {
+        width: 550px;
+        margin: 30px auto 0;
+        font-size: 13px;
+        
+        h3 {
+            font-size: 18px !important;
+            font-weight: bold;
+        
+            a {
+                @include heading-anchor;
+                color: #D00004;
+            }
+        }
+        
+        .side-1 {
+            // background: rgba(255, 255, 0, .3);
+            width: 230px;
+            float: left;
+        }
+        
+        .side-2 {
+            // background: rgba(255, 255, 0, .3);
+            width: 320px;
+            margin-left: 250px;
+
+            .average-rating {
+                height: 15px;
+                line-height: 15px;
+                margin: 0 0 20px 70px;
+                // background: red;
+                
+                strong {
+                    float: left;
+                    color: #0A64D4;
+                }
+            
+                .catalog-item-rating {
+                    float: left;
+                    height: 15px;
+                    width: 75px;
+                    text-indent: -99999px;
+                    overflow: hidden;
+                    margin: 0 0 0 5px;
+                    background: url($images_url + 'star-matrix-big.gif') no-repeat;
+                    
+                    .catalog-item-rating-content {
+                        width: 75px;
+                        height: 15px;
+                        background: 0 -75px url($images_url + 'star-matrix-big.gif') no-repeat;
+                    }
+                }
+            }
+            
+            dl {
+                dt {
+                    float: left;
+                    width: 60px;
+                    // background: rgba(255, 255, 0, .3);
+                    font-weight: bold;
+                    text-align: right;
+                    color: #999999;
+                    margin-bottom: 20px;
+                }
+                
+                dd {
+                    float: left;
+                    margin: 0 0 20px 10px;
+                    width: 250px;
+                    overflow: hidden;
+                    // background: rgba(255, 255, 0, .3);
+                    
+                    .rating {
+                        margin: 0 !important;
+                    }
+                    
+                    .input {
+                        width: 247px;
+                    }
+                    
+                    &.date {
+                        font-weight: bold;
+                    }
+                    
+                    &.review {
+                        height: 219px;
+                        background: url($images_url + 'profile/edit-review-textarea.png') no-repeat;
+                        
+                        textarea {
+                            border: none;
+                            margin: 5px;
+                            width: 234px;
+                            height: 205px;
+                        }
+                    }
+                }
+            }
+            
+            .actions {
+               float: right;
+               
+               input {
+                    margin-left: 10px;
+               }
+            }
+        }
+    }
+    
+    .clear {
+        clear: both;
+    }
+}

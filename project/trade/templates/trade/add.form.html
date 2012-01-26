@@ -1,0 +1,79 @@
+<form action="{% url trade:add item.id %}" method="post" id="trade-add-form">
+{% csrf_token %}
+<div class="boxed" id="trade-add-form-hint">
+		<h2>Games WILL NOT be accepted if:</h2> 			
+		<ul>
+			<li>Any Scratches, Cracks or Chips on the Disc or Cartridge.</li>
+			<li>Labels or Stickers on Disc or Cartridge.</li>
+			<li>Dirty or Stained Disc or Cartridge.</li>
+			<li>Damaged, Missing or Altered Labels.</li>
+			<li>Repackaged or Relabeled Disc or Cartridge (e.g. rental games).</li>
+		</ul>
+		<p>If your Trade-In is NOT accepted, it may be returned within 14-days.</p>
+
+		<input type="checkbox" id="id_agree" name="agree"/>
+	  <label id="id_agree_label" for="id_agree">I agree to the </label>
+	  <a target="_blank" href="{% url simple-page 'Terms' %}">Terms of Use.</a>
+	</div>
+
+	<ul id="trade-add-choices">
+		<li id="trade-add-complete" class="item">
+			<div class="choice">
+				<input type="radio" name="completeness" value="cg" id="id_cg" checked="checked" />
+				<label for="id_cg">Complete Game</label>
+				<ul>
+				  <li>- Original Case</li>
+				  <li>- Manual</li>
+				  <li>- Artwork</li>
+				</ul>
+			</div>
+			<div class="price">
+				Value <span>{% if item.trade_price %}${{ item.trade_price|floatformat:2 }}{% else %}&mdash;{% endif %}</span>
+			</div>
+		</li>
+		<li id="trade-add-incomplete" class="item">
+			<div class="choice">
+				<input type="radio" name="completeness" value="ig" id="id_ig"{% if not rent_can_send_incomplete_game %}disabled="disabled"{% endif %} />
+				<label for="id_ig">Incomplete Game</label>
+				<ul>
+				{% if not rent_can_send_incomplete_game %}
+				  <li>(<a href="{% url simple-page 'Help-FAQs' %}" target="_blank">GamePerks Rewards</a>)</li>
+			    {% endif %}
+				  <li>- Game Only</li>
+				  <li>- Game + Manual</li>
+				  <li>- Game + Artwork</li>
+				</ul>
+			</div>
+			<div class="price">
+				Value <span>{% if item.trade_price_incomplete %}${{ item.trade_price_incomplete|floatformat:2 }}{% else %}&mdash;{% endif %}</span>
+			</div>
+		</li>
+	</ul>
+	
+	<div class="actions">
+		<div class="right">
+			<input type="hidden" name="submit" value=""/>
+			<input type="submit" value="list" class="save-to-list-button" />
+			{% if item.trade_flag and item.trade_price %}
+			<input type="submit" value="cart" class="add-to-cart-button" />
+			{% endif %}
+		</div>
+		<a href="#" class="dialog-close-button back-button-block">Back</a>
+	</div>
+	
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	    $('#trade-add-form').get(0).validate = function(){
+        var agree = $('#id_agree').is(':checked');
+        if (agree) return true;
+        alert('You have to agree to the terms and conditions.');
+        return false;
+	    };
+	    $('input[type=submit]').click(function(){
+	      $('input[name=submit]').val($(this).val());
+	      return true;
+	    });
+	  });
+	</script>
+</form>
+

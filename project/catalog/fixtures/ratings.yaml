@@ -1,0 +1,118 @@
+- model: catalog.rating
+  pk: 130019
+  fields:
+    title: Early Childhood
+    description: 
+    type: 1
+    esrb_symbol: EC
+
+- model: catalog.rating
+  pk: 130020
+  fields:
+    title: Kids to Adults
+    description: 
+    type: 1
+
+- model: catalog.rating
+  pk: 130021
+  fields:
+    title: Everyone
+    description: 
+    type: 1
+    esrb_symbol: E
+
+- model: catalog.rating
+  pk: 131089
+  fields:
+    title: Not Rated
+    description: 
+    type: 1
+
+- model: catalog.rating
+  pk: 131102
+  fields:
+    title: PG
+    description: PG (MPAA)
+    type: 2
+
+- model: catalog.rating
+  pk: 131103
+  fields:
+    title: R 
+    description: R (MPAA)
+    type: 2
+
+- model: catalog.rating
+  pk: 131105
+  fields:
+    title: PG-13
+    description: PG13 (MPAA)
+    type: 2
+
+- model: catalog.rating
+  pk: 131107
+  fields:
+    title: G
+    description: G (MPAA)
+    type: 2
+
+- model: catalog.rating
+  pk: 131110
+  fields:
+    title: NC-17 
+    description: NC17 (MPAA)
+    type: 2
+
+- model: catalog.rating
+  pk: 131113
+  fields:
+    title: NR
+    description: NR (Not Rated)
+    type: 2
+
+- model: catalog.rating
+  pk: 131114
+  fields:
+    title: Everyone 10+
+    description: 
+    type: 1
+    esrb_symbol: E10+
+
+- model: catalog.rating
+  pk: 131120
+  fields:
+    title: Teen
+    description: "ESRB: Teen"
+    type: 1
+    esrb_symbol: T
+
+- model: catalog.rating
+  pk: 131122
+  fields:
+    title: Mature
+    description: Mature 17+
+    type: 1
+    esrb_symbol: M
+
+- model: catalog.rating
+  pk: 131126
+  fields:
+    title: Adults Only +18
+    description: Adults Only +18
+    type: 1
+    esrb_symbol: AO
+
+- model: catalog.rating
+  pk: 131127
+  fields:
+    title: Rating Pending
+    description: RP
+    type: 1
+    esrb_symbol: RP
+
+- model: catalog.rating
+  pk: 131128
+  fields:
+    title: UR
+    description: UR (MPAA)
+    type: 2

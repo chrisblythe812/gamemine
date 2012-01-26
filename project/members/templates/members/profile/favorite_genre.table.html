@@ -1,0 +1,15 @@
+{% load star_rating %}
+
+<table>
+    {% for i in favorite_genres %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        <td class="column-name">{{ i.0.name }}</td>
+        <td class="column-rating">
+            <div class="item-rating">
+                {{ i|genre_rating }}
+            </div>
+        </td>
+        <td class="column-actions-2"><a class="grid-action clear-button" href="{% url members:clear_genre_rating i.0.id %}">Clear</a></td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,13 @@
+<form action="{% url new_rent:sign_up %}" method="post" id="the-form" class="link-dialog">{% csrf_token %}			
+{% for plan in all_plans %}
+<div class="limite">
+	<h1 class="limite-title">{% if plan.plan == 0 %}Limited{%else%}<span class="red">Unlimited</span>{%endif%}<br/><span class="limite-title-big">Monthly</span><br/>{{ plan.allowed }} Game Plan</h1>
+	<p class="limite-term" ><span class="more_red limite-term">{{ plan.features2.0|default:"&nbsp;" }}</span></p>
+	<p class="limite-proposal">{{ plan.features2.1|default:"&nbsp;" }}<br/><span class="bold">{{ plan.features2.2|default:"&nbsp;" }}</span></p>					
+	<input type="submit" class="limite-button" value="" style="border:none;" onclick="submitForm({{plan.plan}});"/>
+	<p class="limite-price">{{ plan.price_display }}</p>
+</div>
+{%endfor%}
+<input type="hidden" name="0-plan" />
+<input type="hidden" name="secret_option" value="naturlich" />				
+</form>		

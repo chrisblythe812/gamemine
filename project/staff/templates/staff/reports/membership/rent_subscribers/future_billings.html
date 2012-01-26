@@ -1,0 +1,33 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <table>
+      <tr>
+        <th>Customer</th>
+        <th>Email</th>
+        <th>Rental Plan</th>
+        <th>Next Payment Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+      {% for p in plans %}
+      <tr>
+        <td><a href="{% url staff:customer_view p.user.id %}" target="_blank">{{ p.user.get_profile.get_name_display }}</a></td>
+        <td>{{ p.user.email }}</td>
+        <td>{{ p.get_plan_display }}</td>
+        <td>{{ p.next_payment_date|date }}</td>
+        <td>${{ p.next_payment_amount }}</td>
+        <td>{{ p.get_status_display }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+    {% pagination %}
+  </div>
+</div>
+
+{% endblock right %}

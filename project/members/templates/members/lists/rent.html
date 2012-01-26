@@ -1,0 +1,40 @@
+{% extends "members/lists/base.html" %}
+
+{% block heading %}
+	<li><a href="{% url members:buy_list %}">Buy ({{ buy_list|length }})</a></li>
+	<li><a href="{% url trade:list %}">Trade ({{ trade_list|length|default:0 }})</a></li>
+	<li class="selected"><a href="{% url members:rent_list %}">Rent (<span class="rent-list-size">{{ rent_list|length }}</span>)</a></li>
+{% endblock heading %}
+
+{% block page-class %}{{ block.super }} list-page rent-list-page{% endblock %}
+
+{% block page-content %}
+
+{% if not rent_orders %}
+<div id="list-banner">
+    <div id="list-banner-rotator" style="width:860px; height:135px;">
+        <a href="{% url new_rent:change_plan %}" class="link-dialog"><img src="{{ STATIC_URL }}rent-adv.jpg" width="860" height="135" /></a>
+        <a href="{% url wimgw %}"><img src="{{ STATIC_URL }}trade-adv.png" alt="Trade your Old Games for New Games" width="860" height="135" /></a>
+        {% for b in banners %}
+        <a href="{{ b.get_absolute_url }}"><img src="{{ b.image.url }}" width="860" height="135" /></a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div id="rent-orders-grid">
+	{% include "members/lists/rent_orders_grid.html" %}
+</div>
+
+<div id="rent-list-grid">
+	{% include "members/lists/rent_list_grid.html" %}
+</div>
+
+<div class="list-page-footer">
+    <div id="add-by-upc-widget">
+        <label>Want to add a game to your Rent List?</label>
+        <input type="text" class="do_not_wrap" />
+    </div>
+</div>
+
+{% endblock page-content %}

@@ -1,0 +1,70 @@
+{# Confirm Change Plan Dialog #}
+ <div id="change-plan-dialog" class="dialog">
+    <div class="dialog-heading">
+      <h2>{% if is_upgrade %}Upgrade{% else %}Downgrade{% endif %} Plan</h2>
+      <a class="dialog-close-button" href="#" title="Close"></a>
+   </div>
+    <div class="chng_plan_left">
+      <div class="row">
+	<div class="row_title"><h3>Current Plan</h3></div>
+	<div class="row_det">
+	  <h3>{{ current_rental_plan.description2 }}</h3>
+          {% if not current_rental_plan.out_per_month %}
+            <p class="blue"><strong>Unlimited Games</strong></p>
+          {% else %}
+            <p class="blue"><strong>Limit {{ current_rental_plan.out_per_month }} Games a Month</strong></p>
+          {% endif %}
+          <p><strong class="red price">${{ current_rental_plan.thereafter_payments_amount }}/month</strong></p>
+	</div>
+      </div>
+      <div class="row">
+	<div class="row_title"><h3>New Plan</h3></div>
+	<div class="row_det">
+	  <h3>{{ new_rental_plan.description2 }}</h3>
+          {% if not new_rental_plan.out_per_month %}
+            <p class="blue"><strong>Unlimited Games</strong></p>
+          {% else %}
+            <p class="blue"><strong>Limit {{ new_rental_plan.out_per_month }} Games a Month</strong></p>
+          {% endif %}
+          <p><strong class="red price">${{ new_rental_plan.thereafter_payments_amount }}/month</strong></p>
+	</div>
+      </div>
+      <div class="row">
+	<div class="row_title"><h3>Charge for the rest of Current Month</h3></div>
+	<div class="row_det">
+	  <p><strong class="red price">${{ charge_for_the_rest_of_month }}</strong> (+ applicable taxes)</p>
+	</div>
+      </div>
+      <div class="row">
+	<div class="row_title"><h3>Charge for next month</h3></div>
+	<div class="row_det">
+	  <p><strong class="red price">${{ new_rental_plan.thereafter_payments_amount }}/month</strong> (+ applicable taxes)</p>
+	</div>
+      </div>
+    </div>
+    <div class="chng_plan_right">
+      <form action="{% url new_rent:change_plan %}" method="post">{% csrf_token %}
+        {{ wizard.management_form }}
+        {% if plan_starts == "now" %}
+          <h3>Plan Starts Now</h3>
+        {% else %}
+          <h3>Plan Starts on {{ plan_starts }}</h3>
+        {% endif %}
+        <p><strong>Credit Card</strong></p>
+        <p><strong><span class="red">${{ will_be_billed }}</span> will be billed to:</strong></p>
+        <p>{{ payment_card }}</p>
+        <p><strong><a href="{% url members:payment_method %}">Use different card</a></strong></p>
+        {% if wizard.form.error %}
+          <div class="boxed error">
+              <div class="title">{{ wizard.form.error }}</div>
+              <div class="details">{{ wizard.form.error_message|default:"Please check the information and try again." }}</div>
+          </div>
+        {% else %}
+        <p><img src="{{ STATIC_URL }}img/members/rent/dialogs/cards2.png" width="170" height="35" alt=""></p>
+        {% endif %}
+        <a href="#" title="Cancel" class="btn_cancel">Cancel</a>
+        <input type="submit" title="Confirm Change" class="btn_confirm_chng"></input>
+      </form>
+    </div>
+    <div class="clear"></div>
+  </div>

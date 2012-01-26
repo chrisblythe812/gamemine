@@ -1,0 +1,10 @@
+1 - Dependencia de aplicacoes django:
+  - tinymce
+  
+2 - Copiar o os3marketing para o media 
+3 - Caso a desincrição tenha uma view propria, informa a url
+   no settings do projeto: chave OS3MARKETING_UNSUBSCRIPTION_URL
+   Para exemplo de uso veja o settings do os3marketing
+4 - adicionar o context processor no settings
+5 - Configurar o smtp do aplicativo
+6 - configurar o perfil da empresa

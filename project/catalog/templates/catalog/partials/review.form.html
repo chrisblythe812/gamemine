@@ -1,0 +1,57 @@
+{% load comments %}
+
+<form action="{% url project.reviews.views.post_comment %}" method="post" class="simple" id="write-review">
+	{% csrf_token %}
+	{% include "partials/form_errors.html" %}
+	
+	<div class="rating-field">
+		<label>Rate Game:</label>
+		<div class="rating-inputs">
+            <input type="hidden" name="rating" value="{{ item.ratio5 }}" />
+            <ul class="rating-widget stars{{ item.ratio5 }}">
+                <li class="star1"><a href="#1" title="1 Star">1</a></li>
+                <li class="star2"><a href="#2" title="2 Stars">2</a></li>
+		        <li class="star3"><a href="#3" title="3 Stars">3</a></li>
+		        <li class="star4"><a href="#4" title="4 Stars">4</a></li>
+		        <li class="star5"><a href="#5" title="5 Stars">5</a></li>
+		    </ul>
+		</div>
+	</div>
+	
+	<div class="review-fields">
+		<div class="subject-field">
+            <input name="title" class="do_not_wrap" />
+		</div>
+		
+		<div class="content-field">
+			<label>Type your review here</label>
+			<textarea name="comment" maxlength="200" id-for-rest="id_review_letters_rest"></textarea>
+		</div>
+	</div>
+	
+	<div class="form-actions">
+	    {{ form.content_type }}
+	    {{ form.object_pk }}
+	    {{ form.timestamp }}
+	    {{ form.security_hash }}
+	
+	    <input type="hidden" name="next" value="{{ item.get_absolute_url }}" />
+		
+		<input type="submit" class="post-review-button" value="Post Review" />
+		<div id="id_review_letters_rest_wrapper"><span id="id_review_letters_rest">200</span> characters left</div>
+  	</div>
+</form>
+<script type="text/javascript">
+	$(document).ready(function () {
+        $('#write-review .subject-field input').searchbox('Subject...');
+		
+		$('#write-review .rating-inputs a').click(function () {
+			var v = $(this).attr('href').substring(1);
+			$('#write-review .rating-inputs input').val(v);
+			$('#write-review .rating-inputs .rating-widget')
+			 .removeClass('stars1 stars2 stars3 stars4 stars5')
+			 .addClass('stars' + v);
+            return false;			
+		});
+	});
+</script>

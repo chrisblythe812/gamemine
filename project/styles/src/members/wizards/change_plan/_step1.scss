@@ -1,0 +1,186 @@
+#form-signup-change-plan-1 {
+    font-size: 11px;
+    
+    .side-1 {
+        // background: rgba(255, 255, 0, .2);
+        float: left;
+        width: 310px;
+        height: 210px;
+        padding: 40px 40px 0 40px;
+        color: #333;
+
+        h2 {
+            font-size: 16px;
+            padding: 10px 0 5px 0;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            font-size: 13px;
+        }
+        
+        .features {
+            border-top: 1px solid #7E7E7E;
+            margin-top: 10px;
+            padding-top: 10px;
+            
+            h3 {
+                font-size: 12px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            
+            li {
+                color: #CE1012;
+                line-height: 1.5em;
+            }
+        }
+    }
+    
+    .side-2 {
+        // background: rgba(0, 255, 255, .2);
+        width: 340px;
+        margin-left: 380px;
+        height: 240px;
+        padding-top: 10px;
+        overflow: hidden;
+        
+        .hidden {
+            display: none;
+        }
+        
+        .credit_card_summary {
+            padding: 40px;
+        
+            h3 {
+                padding: 5px 10px 10px 0;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            
+            p {
+                line-height: 1.5em;
+                font-weight: bold;
+                
+                .price {
+                    color: #CE0200;
+                } 
+            }
+            
+            .card-details {
+                padding: 5px 0;
+            }
+            
+            .card-actions {
+                padding: 5px 0;
+                font-weight: bold;            
+            }
+            
+            .extra {
+                 //background: rgba(255, 255, 0, .3);
+                padding-top: 20px;
+            }
+        }
+        
+        .credit_card_form {
+
+            h3 {
+                padding: 5px 10px 10px 108px;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            
+            dl {
+                height: 120px;
+            }
+            
+            dt {
+                float: left;
+                padding-top: 4px;
+                text-align: right;
+                width: 100px;  
+            }
+            
+            dd.field {
+                float: left;
+                margin-left: 8px;
+                width: 210px;
+                margin-bottom: 7px;
+                
+                .input {
+                    width: 190px;
+                }
+                
+                &.cc_exp {
+                    .select {
+                      @include inline-block;
+                    }
+                }
+                
+                &.cc_code {
+                    .input {
+                        width: 55px !important;
+                        @include inline-block;
+                    }
+                    
+                    a {
+                        line-height: 23px;
+                        //margin: -20px 0 0 96px;
+                        @include inline-block;
+                    }
+                }
+            }
+            .extra {
+                // background: rgba(255, 255, 0, .4);
+                
+                img {
+                    color: #666;
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        .extra {
+            // background: rgba(255, 255, 0, .4);
+            
+            .error {
+                .boxed-wrapper {
+                    padding: 10px 10px 10px 70px;
+                    background: 5px center #fff url($images_url + 'attention-w.png') no-repeat;
+                }
+            
+                .title {
+                    color: #E61824;
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-bottom: 2px;
+                }
+            }
+        }
+    }
+    
+    .clear { clear: left; }
+    
+    .actions {
+        // background: rgba(255, 0, 0, 0.2);
+        text-align: center;
+        height: 23px;
+        clear: both;
+        padding: 0 70px;
+        
+        .back-button {
+            float: left;
+        }
+        
+        .info {
+            @include inline-block;
+            height: 23px;
+            line-height: 23px;
+            color: #22489B;
+        }
+        
+        .confirm-change-button {
+            float: right;
+        }
+    }
+}

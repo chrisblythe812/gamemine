@@ -1,0 +1,113 @@
+#trade-orders-table {
+    width: 100%;
+    color: #333;
+    font-size: 11px;
+
+    th {
+        background-color: #c2c2c2;
+        height: 35px;
+        border-left: 2px solid #cbcbcb;
+        font-size: 11px;
+        text-align: center;
+        padding: 0 20px !important;
+        font-weight: bold;
+    }
+
+    td {
+        background-color: #eaeaea;
+        border-left: 2px solid #fff;
+        font-size: 11px;
+        text-align: center;
+        vertical-align: top;        
+        padding: 5px 20px 5px;
+    }
+
+    th.column-item {
+        font-size: 12px;
+    }
+
+    .column-item {
+        border: none !important;
+        text-align: left;
+        
+        .order-number {
+            margin: 5px 0 0 0;
+        }
+        
+        ol {
+            list-style: decimal outside none !important;
+            padding: 0 !important;
+            margin-bottom: 20px;
+            
+            li {
+                margin-left: 0 !important;
+                padding-left: 23px !important;
+                margin-left: 17px !important;
+            }
+        }
+        
+        a {
+            @include heading-anchor;
+            color: #333;
+        }
+    }
+
+    .column-first {
+        border: none !important;
+        text-align: left;
+    }
+    
+    .totals {
+        text-align: center;
+        background: #999999;
+        color: #fff;
+        padding: 10px 0;
+    }
+
+    .column-condition { width: 100px; }
+    .column-platform { width: 100px; }
+    .column-rate { width: 100px; }
+    .column-ordered { width: 70px; }
+    .column-shipped { width: 90px; }
+    .column-price { width: 90px; }
+    
+    .subtotal { 
+        td {
+            background-color: #999 !important;
+            color: #fff;
+            padding: 7px;
+            
+            border-color: #999; 
+        }
+    }
+    
+    .packaging-slip {
+        padding-left: 3px;
+    }
+    
+    .right-align {
+        text-align: right;
+    }
+}
+
+#trade-list-form {
+    .column-item {
+        width: 320px;
+    }
+    
+    .column-condition {
+        width: 115px !important;
+    }
+
+    .column-platform {
+        width: 120px !important;;
+    }
+
+    .column-tradein {
+        width: 85px !important;;
+    }
+    
+    .column-value {
+        width: 80px !important;
+    }
+}

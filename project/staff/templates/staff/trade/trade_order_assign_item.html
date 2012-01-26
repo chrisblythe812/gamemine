@@ -1,0 +1,62 @@
+<div class="module" style="height: 300px">
+  <dl>
+    <dt>Order #</dt>
+    <dd><a href="{% url staff:trade_order_details item.order.id %}" target="_blank">{{ item.order.order_no }}</a></dd>
+
+    <dt>Customer</dt>
+    <dd><a href="{% url staff:customer_view item.order.user.id %}" target="_blank">{{ item.order.user.get_profile.get_name_display }}</a></dd>
+
+    <dt>Title</dt>
+    <dd><a href="{{ item.item.get_absolute_url }}" target="_blank">{{ item.item }}</a></dd>
+
+    <dt>UPC</dt>
+    <dd>{{ item.item.upc }}</dd>
+
+    <dt>Platform</dt>
+    <dd>{{ item.item.category }}</dd>
+
+    <dt>Comments</dt>
+    <dd>{{ item.get_comments }}</dd>
+
+    <dt>Inventory</dt>
+    <dd>
+      {% if item.inventory %}
+        <a href="{% url staff:page 'Reports/Inventory' %}?q={{ item.inventory.id }}" target="_blank">{{ item.inventory.barcode|default:"Barcode Not Assigned" }}</a>
+      {% else %}
+        <span style="color: #999">Unknown</span>
+      {% endif %}
+    </dd>
+    
+    <dt>Date Processed</dt>
+    <dd>
+      {% if item.processed_date %}{{ item.processed_date|date }}{% else %}<span style="color: #999">Unknown</span>{% endif %}
+    </dd>
+    
+    {% if form %}
+    <dt>Allocate for</dt>
+    <dd>
+        <form id="assign-for-form" method="post" action="{% url staff:trade_order_assign_item item.order.id item.id %}" >
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td style="border: none">{{ form.used_for }}</td>    
+          </tr>
+          <tr>
+            <td style="border: none">{{ form.dc }}</td>    
+          </tr>
+        </table>
+        <input type="submit" value="Assign" />
+        </form>
+    </dd>
+    {% endif %}
+  </dl>
+</div>
+
+<script type="text/javascript">
+$('#id_used_for_0').click(function () {
+  $('#id_dc').show();
+});
+$('#id_used_for_1').click(function () {
+  $('#id_dc').hide();
+});
+</script>

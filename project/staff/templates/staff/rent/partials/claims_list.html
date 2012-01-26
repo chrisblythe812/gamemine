@@ -1,0 +1,30 @@
+<table>
+  <thead>
+    <tr>
+      <td>Customer Name</td>
+      <td>Order #</td>
+      <td>Date Reported</td>
+      <td>Title</td>
+      <td>UPC</td>
+      <td>Platform</td>
+      <td>Issue</td>
+      <td>Status</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  {% for item in claims %}
+    <tr class="case-status-{{ item.status }}">
+      <td><a href="{% url staff:customer_view item.user.id %}" target="_blank">{{ item.user.get_profile.get_name_display }}</a></td>
+      <td><a href="{% url staff:rent_order_details item.claim_object.id %}">{{ item.claim_object.order_no }}</a></td>
+      <td>{{ item.date|date }}</td>
+      <td><a href="{{ item.claim_object.item.get_absolute_url }}">{{ item.claim_object.item }}</a></td>
+      <td>{{ item.claim_object.item.upc }}</td>
+      <td>{{ item.claim_object.item.category }}</td>
+      <td>{{ item.get_normalized_display }}</td>
+      <td>{{ item.get_status_display }}</td>
+      <td><a href="{% url staff:claim_details item.id %}">Details</a></td>
+    </tr>
+  {% endfor %}
+  <tbody>
+  </tbody>
+</table>

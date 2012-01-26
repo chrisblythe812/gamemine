@@ -1,0 +1,247 @@
+[
+    {
+        "pk": "account_type_special_promo_code", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "account_type_no_special_promo_code", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 1
+        }
+    }, 
+    {
+        "pk": "buy_threshold_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "buy_threshold_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 4
+        }
+    }, 
+    {
+        "pk": "buy_threshold_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 6
+        }
+    }, 
+    {
+        "pk": "buy_threshold_d", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 8
+        }
+    }, 
+    {
+        "pk": "trade_threshold_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 1
+        }
+    }, 
+    {
+        "pk": "trade_threshold_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "trade_threshold_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 3
+        }
+    }, 
+    {
+        "pk": "trade_threshold_d", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 4
+        }
+    }, 
+    {
+        "pk": "rental_threshold_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": -1
+        }
+    }, 
+    {
+        "pk": "rental_threshold_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 0
+        }
+    }, 
+    {
+        "pk": "rental_threshold_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 1
+        }
+    }, 
+    {
+        "pk": "rental_threshold_d", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 3
+        }
+    }, 
+    {
+        "pk": "declined_rental_billing_status_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": -2
+        }
+    }, 
+    {
+        "pk": "declined_rental_billing_status_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": -3
+        }
+    }, 
+    {
+        "pk": "last_game_shipped_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 0
+        }
+    }, 
+    {
+        "pk": "last_game_shipped_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "last_game_shipped_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 3
+        }
+    }, 
+    {
+        "pk": "claim_threshold_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "claim_threshold_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": -1
+        }
+    }, 
+    {
+        "pk": "claim_threshold_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": -3
+        }
+    }, 
+    {
+        "pk": "dc_transfer_threshold_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 0
+        }
+    }, 
+    {
+        "pk": "dc_transfer_threshold_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "dc_transfer_threshold_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 3
+        }
+    }, 
+    {
+        "pk": "last_priority_shipped_threshold_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 0
+        }
+    }, 
+    {
+        "pk": "last_priority_shipped_threshold_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "last_priority_shipped_threshold_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 3
+        }
+    }, 
+    {
+        "pk": "queue_priority_rank_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 4
+        }
+    }, 
+    {
+        "pk": "queue_priority_rank_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "queue_priority_rank_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 0
+        }
+    }, 
+    {
+        "pk": "membership_tenure_a", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 0
+        }
+    }, 
+    {
+        "pk": "membership_tenure_b", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 1
+        }
+    }, 
+    {
+        "pk": "membership_tenure_c", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 2
+        }
+    }, 
+    {
+        "pk": "membership_tenure_d", 
+        "model": "rent.allocationfactor", 
+        "fields": {
+            "value": 3
+        }
+    }
+]

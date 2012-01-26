@@ -1,0 +1,60 @@
+.rent.landings.landing5 {
+    background: black;
+
+    .left_side {
+        background: url($images_url + "rent/landings/affiliate_non_trial5_side_left.jpg") top right no-repeat;
+    }
+
+    .right_side {
+        background: url($images_url + "rent/landings/affiliate_non_trial5_side_right.jpg") top left no-repeat;
+    }
+
+    .featured_pic {
+        width: 982px;
+        height: 450px;
+        float: left;
+        overflow: hidden;
+        text-indent: -9999px;
+        background: url($images_url + "rent/landings/affiliate_non_trial5_main_banner.jpg") 0 0 no-repeat;
+    }
+
+    .featured_banner {
+        width: 190px;
+        height: 235px;
+        margin-top: 20px;
+        margin-right: 90px;
+        float: right;
+        overflow: hidden;
+        display: block;
+        cursor: pointer;
+        text-indent: -9999px;
+        background: none;
+    }
+
+    .game_link {
+        width: 702px;
+        height: 450px;
+        overflow: hidden;
+        display: block;
+        cursor: pointer;
+        text-indent: -9999px;
+        background: none;
+        float: left;
+    }
+
+    .carousel_row {
+        background: url($images_url + "rent/landings/affiliate_non_trial5_main_banner_part2.jpg") 0 0 no-repeat;
+    }
+
+    #footer {
+        top: -100px;
+
+        .free_shipping {
+            background: url($images_url + "rent/landings/free_shipping.png") 0 0 no-repeat;
+        }
+
+        #footer-menu li a {
+            color: white;
+        }
+    }
+}

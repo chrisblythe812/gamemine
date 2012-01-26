@@ -1,0 +1,71 @@
+{% extends "members/account/account.html" %}
+
+{% block heading %}
+  <li><a href="{% url new_rent:change_plan %}">{% if current_rental_plan %}Change Plan{% else %}Rental Signup{% endif %}</a></li>
+{% if current_rental_plan %}
+  <li><a href="{% url members:cancel_membership %}">Cancel Membership</a></li>
+{% endif %}
+{% if current_rental_plan and current_rental_plan.is_holdable %}
+  <li><a href="{% url members:put_on_hold %}">Put on Hold</a></li>
+{% endif %}
+{% if current_rental_plan %}
+  <li class="selected"><a href="{% url members:terms_and_details %}">Terms &amp; Details</a></li>
+{% endif %}
+{% endblock heading %}
+
+{% block page-content %}
+
+<div id="id_current_terms">
+  <ul class="your_account_list">
+    <li>You are currently in {{ current_rental_plan.description3 }} plan.</li>
+    <li>
+      You may rent
+      {% if allowed_games == 'unlimited' %}
+        {{ allowed_games }}
+      {% else %}
+        up to {{ allowed_games }}
+      {% endif %} game{{ allowed_games|pluralize }} per month.</li>
+
+    {% if plan.rentals_remaining == -1 %}
+      <li>You have unlimited rentals remaining for this period.</li>
+    {% else %}
+      <li>You have {{ plan.rentals_remaining }} rental{{ plan.rentals_remaining|pluralize }} remaining for this period.</li>
+    {% endif %}
+
+    {% if not plan_regular %}
+    <li>Your current period price is ${{ price_first_month }} plus any applicable tax.</li>
+    {% endif %}
+    {% if plan.next_payment_date %}
+    <li>Your next period begins on {{ plan.next_payment_date|date:"N j, Y" }}</li>
+    {% endif %}
+    <!--li>You will be able to rent up to {} movies per month.</li-->
+    <li>Membership fees are billed at the beginning of each period.</li>
+    {% if price_thereafter_months %}
+    <li>The regular price of the {{ current_rental_plan.description3 }} plan is ${{ price_thereafter_months }} (plus any applicable tax).</li>
+    {% endif %}
+  </ul>
+</div>
+
+<div id="id_general_plan_information">
+  <h2>General Plan Information</h2>
+
+  <ul class="your_account_list">
+    <li>Use of the GameMine servie constitutes acceptance of our Terms of Use.
+      See <a href="{% url simple-page 'Terms' %}">Terms of Use</a> for complete membership
+      details.</li>
+    <li>There are no due dates or late fees.</li>
+    <li>There are no per-game rental fees.</li>
+    <li>Membership fees cover shipping and handling on all your rentals.</li>
+    <li>For more information regarding billing details, visit
+      <a href="{% url members:billing_history %}">Billing History</a>.</li>
+    <li>You may cancel anytime by visiting
+      <a href="{% url members:cancel_membership %}">Cancel Membership</a>.</li>
+    <li>No refunds or credit will be given for partial periods or unused rentals.</li>
+    <li>Gift subscription recipients: After you have used all your gift subscriptions
+      months, you will be automatically enrolled as a paying GameMine Service member.
+      To avoid any chargers, simply cancel your account in the last month of your gift
+      subscription.</li>
+  </ul>
+</div>
+
+{% endblock page-content %}

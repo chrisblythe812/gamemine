@@ -1,0 +1,63 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %} 
+
+{% block right %}{{ block.super }}
+
+<div class="module simple-filter-form">
+  <form method="post">{% csrf_token %}
+    <label for="id_barcode">Enter Barcode or PLANET ID:</label>
+    {{ form.barcode }}
+    {{ form.dc }}
+    <input type="submit" value="Return Game" />
+    {% if form.barcode.errors or form.dc.errors %}
+      {{ form.barcode.errors }}
+      {{ form.dc.errors }} 
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function () {
+        $('#id_barcode').searchbox('Enter "Manually" or "Scan with barcode scanner"');
+      });      
+    </script>
+  
+  </form>
+</div>
+
+<div class="module">
+  <h2>Returned Games</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Customer</td>
+        <td>Order No</td>
+        <td>Title</td>
+        <td>Inventory ID</td>
+        <td>Platform</td>
+        <td>Type</td>
+        <td width="80">Shipped</td>
+        <td>Shipped from</td>
+        <td width="80">Returned</td>
+        <td>Reprint Tyvek</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+      <tr>
+        <td><a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a></td>
+        <td><a href="{% url staff:rent_order_details order.id %}" target="_blank">#{{ order.order_no }}</a></td>
+        <td><a href="{{ order.item.get_absolute_url }}" target="_blank">{{ order.item.name }}</a></td>
+        <td><a href="{% url staff:page 'Reports/Inventory' %}?q={{ order.inventory.barcode }}" target="_blank">{{ order.inventory.barcode }}</a></td>
+        <td>{{ order.item.category }}</td>
+        <td>Rent</td>
+        <td>{{ order.date_shipped|date }}</td>
+        <td>{{ order.source_dc.code }}</td>
+        <td>{{ order.date_returned|date }}</td>
+        <td>{% if order.inventory %}<a href="{% url inventory_tyvek order.inventory.id %}" target="_blank">Repring&nbsp;Tyvek</a>{% endif %}</td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+  </table>
+</div>
+{% pagination %}                                                                                       
+
+{% endblock right %}
+

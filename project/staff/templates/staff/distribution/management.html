@@ -1,0 +1,85 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module" id="id_management_search">
+  <h2>Search</h2>
+
+  <form method="get">
+    <div>
+      {{ form.dc.label_tag }}{{ form.dc }}
+    </div>
+
+    <div>
+      {{ form.date_from.label_tag }}{{ form.date_from }}
+      {{ form.date_to.label_tag }}{{ form.date_to }}
+    </div>
+    
+    <div>
+      <input type="submit" value="Search" />
+    </div>
+  </form>
+</div>
+
+<div class="module">
+  <h2>Volume Statistics</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Platform</th>
+        {% for s in stat %}
+        <th>{{ s.name }}</th>
+        {% endfor %}
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Shipped</td>
+        {% for s in stat %}
+        <td>{{ s.shipped }}</td>
+        {% endfor %}
+        <td>{{ shipped_total }}</td>
+      </tr>
+      <tr>
+        <td>Received</td>
+        {% for s in stat %}
+        <td>{{ s.received }}</td>
+        {% endfor %}
+        <td>{{ received_total }}</td>
+      </tr>
+    </tbody>
+    <tbody class="total">
+      <tr>
+        <td>TOTAL</td>
+        {% for s in stat %}
+        <td>{{ s.total }}</td>
+        {% endfor %}
+        <td>{{ total }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#id_date_from,#id_date_to').date_input({
+      stringToDate: function(string) {
+        var matches = string.match(/^(\d{2,2})-(\d{2,2})-(\d{4,4})$/);
+        if (matches)
+          return new Date(matches[3], matches[1] - 1, matches[2]);
+          return null;
+      },
+      dateToString: function(date) {
+        var month = (date.getMonth() + 1).toString();
+        var dom = date.getDate().toString();
+        if (month.length == 1) month = "0" + month;
+        if (dom.length == 1) dom = "0" + dom;
+        return month + "-" + dom + "-" + date.getFullYear();
+      }
+    });
+  });
+</script>
+
+{% endblock right %}

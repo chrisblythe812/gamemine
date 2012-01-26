@@ -1,0 +1,248 @@
+@import "constants";
+
+#rent_plans {
+    width: 100%;
+    font-size: 11px;
+    line-height: normal !important;
+
+    h2 {
+        font: bold 22px Arial, Helvetica, sans-serif !important;
+        color: #3566be;
+        margin-bottom: 0 !important;
+    }
+    
+    .plan_table_row {
+        width:872px;
+        padding:10px 15px;
+        overflow:hidden;
+        zoom:1;
+    }
+    
+    .col1           {
+        width:240px;
+        float:left;
+    }
+    
+    .col2           {
+        width:205px;
+        margin-left:5px;
+        float:left;
+        font-size:16px;
+        font-weight:bold;
+        text-align:right;
+    }
+    
+    .col2 .blue     {color:#3366cc; display:block;}
+    .col2 .num      {font-size:30px;}
+    
+    .col3           {
+        width:170px;
+        margin-left:75px;
+        float:left;
+    }
+    
+    .col4           {
+        width:170px;
+        padding:10px 0;
+        float:right;
+        text-align:center;
+    }
+    
+    .cd_pic1,
+    .cd_pic2,
+    .cd_pic3        {
+        width:170px;
+        height:83px;
+        overflow:hidden;
+        display:block;
+    }
+    
+    .cd_pic1        {background:url($images_url + "rent/1disk.png") 0 0 no-repeat;}
+    .cd_pic2        {background:url($images_url + "rent/2disks.png") 0 0 no-repeat;}
+    .cd_pic3        {background:url($images_url + "rent/3disks.png") 0 0 no-repeat;}
+    
+    .plan_price     {
+        display:block;
+    }
+    
+    .col4 label     {
+        display:block;
+        text-align:center;
+    }
+    
+    .plan_price strong  {
+        font-size:18px;
+        font-weight:bold;
+    }
+    
+    .plan_table_title   {
+        width:898px;
+        height:42px;
+        margin-bottom:2px;
+        padding:3px 7px 0;
+        overflow:hidden;
+        zoom:1;
+        background:url(../images/plan_table_title.png) 0 0 no-repeat;
+    }
+    
+    .plan_table_title ul.tabs   {
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+    
+    .plan_table_title ul.tabs li    {
+        margin:0;
+        padding:0;
+        float:left;
+        border-radius:5px 5px 0 0;
+        -moz-border-radius:5px 5px 0 0;
+        -khtml-border-topleft-radius:5px;
+        -khtml-border-topright-radius:5px;
+        -webkit-border-radius:5px 5px 0 0;
+    }
+    
+    .plan_table_title ul.tabs li a  {
+        padding:12px 20px;
+        display:block;
+        float:left;
+        font-size:16px;
+        color:#fff;
+        text-decoration:none;
+    }
+    
+    .plan_table_title ul.tabs li a:hover    {
+        color:#fff;
+        text-decoration:underline;
+    }
+    
+    .plan_table_title ul.tabs li.active {background:url(../images/tabs_px.gif) top repeat-x;}
+    
+    .plan_table_subtitle {
+        width:884px;
+        padding:10px 14px 14px;
+        overflow:hidden;
+        zoom:1;
+        position:relative;
+        background:#dcdcdc;
+        border-bottom:2px solid #fff;
+    }
+    
+    .plan_table_subtitle:after,
+    .plan_table_subtitle.after {
+        position:absolute;
+        content:"";
+        after:"";
+        width:100%;
+        left:0;
+        bottom:0;
+        height:2px;
+        overflow:hidden;
+        background:#fff;
+        border-bottom:1px solid #cccccc;
+    }
+    
+    .selected       {background:#ffffab;}
+    .gray           {background:#f4f4f4; border-bottom:1px solid #cccccc;}
+    .gray_w         {background:#f4f4f4; border-bottom:1px solid #fff;}
+    
+    .current_plan   {
+        width:87px;
+        height:81px;
+        display:block;
+        overflow:hidden;
+        text-indent:-9999px;
+        line-height:9999px;
+        background:url($images_url + "rent/current-plan.png") 0 0 no-repeat;
+    }
+    
+    .plan_details   {
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none;
+    }
+    
+    .plan_details li    {
+        margin: 0 !important;
+        padding:3px 0 3px 22px;
+        background:url($images_url + "rent/check_sm.gif") 5px 5px no-repeat;
+    }
+    
+    .btn_cng_plan   {
+        border: 0;
+        width:83px;
+        height:23px;
+        margin:0 auto;
+        display:block;
+        overflow:hidden;
+        cursor:pointer;
+        text-indent:-9999px;
+        line-height:9999px;
+        background:url($images_url + "rent/btn_cng_plan.png") 0 0 no-repeat;
+    }
+
+    .asterisk {
+        text-align:right;
+        font-style:italic;
+        font-size:10px;
+        color:#666;
+    }
+    
+    
+    /* td { */
+    /*     text-align: center; */
+    
+    /*     &.col1 { */
+    /*         width: 240px; */
+    /*     } */
+    
+    /*     &.col2 { */
+    /*         h2 { */
+    /*             font-size: 16px !important; */
+    /*             font-weight: bold; */
+    /*             color: #333; */
+    /*             margin-bottom: 5px !important; */
+    /*         } */
+    /*         span { */
+    /*             font-size: 12px; */
+    /*             font-weight: bold; */
+    /*             color: #3566be; */
+    /*         } */
+    /*     } */
+    
+    /*     &.col3 { */
+    /*     } */
+    
+    /*     &.col4 { */
+    /*         width: 100px; */
+    /*     } */
+        
+    /*     &.col5 { */
+    /*         label { */
+    /*             font-weight: bold; */
+    /*         } */
+    /*     } */
+    /* } */
+    
+    /* tr { */
+    /*     height: 138px; */
+    /*     background: url($images_url + 'rent/rent-plan-row-bg.png') repeat-x; */
+    /* } */
+
+    .signup-paymentplan-extra {
+        font-size: 12px;
+
+        .red {
+            font-weight: bold;
+            color: #f00;
+        }
+        
+        .strong {
+            font-weight: bold;
+        }
+    }
+
+    p {
+        margin-bottom: 4px !important;
+    }
+}

@@ -1,0 +1,10 @@
+<div id="signup-wizard">
+    <div id="dialog-heading">
+        <div id="dialog-heading-step">Step {{ step|add:1 }} of {{ step_count|add:1 }}</div>
+        {% if form.title %}<h1>{{ form.title }}</h1>{% endif %}
+        
+        <div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>{{ wizard.title }}</div>
+    </div>
+    
+    {% include "cart/list/non_authenticated.form.html" %}
+</div>

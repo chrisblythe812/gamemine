@@ -1,0 +1,106 @@
+@import "mixins";
+@import "constants";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+#header {
+  margin: 10px 0 0 0;
+  padding: 0 10px;
+  width: auto;
+  height: 80px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+
+  table {
+    border-collapse: collapse;
+
+    th {
+      width: 90px;
+      text-align: left;
+    }
+    td {
+      text-align: center;
+      padding: 2px 15px;
+    }
+  }
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    float: right;
+    font-size: 40px;
+  }
+
+  #attributes {
+    float: right;
+    clear: right;
+  }
+
+  #gm-name {
+    font-size: 32px;
+  }
+}
+
+#vendor_address {
+  float: left;
+}
+
+#shipping_address {
+  margin-left: 350px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table.grid {
+  width: 100%;
+  
+  th {
+    border: 1px solid black;
+    padding: 2px 10px;
+    font-weight: bold;
+  }
+  td {
+    border: 1px solid black;
+    padding: 2px 10px;
+    &.center {
+      text-align: center;
+    }
+    &.right {
+      text-align: right;
+    }
+    &.total {
+      border-top: 4px double black;
+    }
+  }
+}
+
+#note {
+  border: none;
+}
+
+#sign {
+  margin: 3em 0;
+  width: 60%;
+  border-top: 3px solid black;
+  float: right;
+  font-weight: bold;
+
+  span {
+    display: block;
+    float: right;
+    width: 10em;
+  }
+}
+
+.centered {
+  clear: both;
+  text-align: center;
+}

@@ -1,0 +1,230 @@
+@import "mixins";
+
+
+.cancel-button {
+	@include sprite-button(250px, 23px, 83px, 23px);
+}
+
+.continue-button {
+	@include sprite-button(333px, 23px, 83px, 23px);
+}
+
+.login-button {
+	@include sprite-button(333px, 0, 83px, 23px);
+}
+
+.create-account-button {
+	@include sprite-button(0px, 46px, 113px, 23px);
+}
+
+.post-review-button {
+	@include sprite-button(113px, 46px, 104px, 23px);
+}
+
+.save-button {
+	@include sprite-button(217px, 46px, 83px, 23px);
+}
+
+.complete-order-button {
+	@include sprite-button(300px, 46px, 147px, 23px);
+}
+
+.back-button {
+	@include sprite-button(75px, 69px, 84px, 23px);
+}
+
+.back-button-block {
+  @include sprite-button-block(75px, 69px, 84px, 23px);
+}
+
+.checkout-button {
+	@include sprite-button(159px, 69px, 83px, 23px);
+}
+
+.delete-cart-item-button {
+	@include sprite-button(416px, 0, 8px, 10px);
+}
+
+.complete-cancellation-button {
+	@include sprite-button(242px, 69px, 146px, 23px);
+}
+
+.back-to-account-button {
+	@include sprite-button(75px, 92px, 139px, 23px);
+}
+
+.add-button-block {
+	@include sprite-button-block(416px, 23px, 55px, 23px);
+}
+
+.rent-add-button-block {
+	@include sprite-button-block(75px, 115px, 119px, 23px);
+}
+
+.keep-browsing-button {
+	@include sprite-button(214px, 92px, 113px, 23px);
+}
+
+.rent-move-to-no1-button-block {
+	@include sprite-button-block(327px, 92px, 134px, 23px);
+}
+
+.start-now-red-button {
+	@include sprite-button(194px, 115px, 83px, 23px);
+}
+
+.save-to-list-button {
+	@include sprite-button(277px, 115px, 94px, 23px);
+}
+
+.add-to-cart-button {
+	@include sprite-button(371px, 115px, 90px, 23px);
+}
+
+.update-button {
+	@include sprite-button(388px, 69px, 83px, 23px);
+}
+
+.save-this-address-button {
+	@include sprite-button(75px, 138px, 128px, 23px);
+}
+
+.submit-button {
+	@include sprite-button(203px, 138px, 83px, 23px);
+}
+
+.continue-red-button {
+	@include sprite-button(286px, 138px, 83px, 23px);
+}
+
+.close-button {
+	@include sprite-button(369px, 138px, 84px, 23px);
+}
+
+.ship-from-this-address-button {
+	@include sprite-button(75px, 161px, 149px, 23px);
+}
+
+.add-another-item-button-block {
+	@include sprite-button-block(224px, 161px, 123px, 23px);
+}
+
+.confirm-change-button {
+    @include sprite-button(347px, 161px, 125px, 23px);
+}
+
+.verify-upc-button {
+	@include sprite-button(75px, 184px, 83px, 23px);
+}
+
+.signup-button {
+    @include sprite-button(158px, 184px, 83px, 23px);
+}
+
+.confirm-button {
+    @include sprite-button(241px, 184px, 83px, 23px);
+}
+
+.small-yes-button {
+    @include sprite-button(40px, 146px, 33px, 15px);
+}
+
+.small-no-button {
+    @include sprite-button(40px, 161px, 33px, 15px);
+}
+
+.move-top-button {
+    @include sprite-button(424px, 0, 15px, 14px);
+}
+
+.buy-alert-button {
+    @include sprite-button(324px, 184px, 90px, 23px);
+}
+
+.clear-button {
+    @include sprite-button(414px, 184px, 72px, 20px);
+}
+
+.select-button {
+    @include sprite-button(75px, 207px, 83px, 23px);
+}
+
+.red-cancel-button {
+    @include sprite-button(158px, 207px, 83px, 23px);
+}
+
+.report-problem-button {
+    @include sprite-button(241px, 207px, 104px, 23px);
+}
+
+.red-close-button {
+    @include sprite-button(345px, 207px, 83px, 23px);
+}
+
+.continue-shopping-button {
+    @include sprite-button(75px, 230px, 134px, 23px);
+}
+
+.buy-button {
+    @include sprite-button(0px, 23px, 82px, 23px);
+}
+
+.rent-button {
+    @include sprite-button(84px, 23px, 82px, 23px);
+}
+
+.trade-button {
+    @include sprite-button(168px, 23px, 82px, 23px);
+}
+
+.next-button {
+    @include sprite-button(250px, 0px, 83px, 23px);
+}
+
+.close-blue-button {
+    @include sprite-button(209px, 230px, 83px, 23px);
+}
+
+.calculate-blue-button {
+    @include sprite-button(292px, 230px, 83px, 23px);
+}
+
+.submit-order-red-button {
+    @include sprite-button(375px, 230px, 103px, 23px);
+}
+
+.delete-gray-button {
+    @include sprite-button(75px, 253px, 83px, 23px);
+}
+
+.submit-blue-button {
+    @include sprite-button(159px, 253px, 83px, 23px);
+}
+
+.sr-trade-in-button {
+    @include sprite-button(242px, 253px, 96px, 23px);
+}
+
+.start-account-hold-now-blue-button {
+    @include sprite-button(0px, 276px, 167px, 23px);
+}
+
+.reactivate-account-blue-button {
+    @include sprite-button(167px, 276px, 145px, 23px);
+}
+
+.reactivate-account-now-blue-button {
+    @include sprite-button(312px, 276px, 167px, 23px);
+}
+
+.change-reactivation-date-blue-button {
+    @include sprite-button(0px, 299px, 167px, 23px);
+}
+
+.cancel-membership-blue-button {
+    @include sprite-button(167px, 299px, 147px, 23px);
+}
+
+.return-to-rent-list-blue-button {
+    @include sprite-button(314px, 299px, 147px, 23px);
+}

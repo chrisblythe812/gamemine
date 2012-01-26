@@ -1,0 +1,57 @@
+<div id="process-cashout-order">
+<form method="post" action="{% url staff:process_cashout o.id %}">
+  {% csrf_token %}
+  <table>
+     <tr>
+       <th></th>
+       <td>
+          <div class="order-details" style="font-size: 1.1em; line-height: 1.3em; margin-bottom: 1em">
+            <div class="strong">{{ o.user.get_profile.get_name_display }}</div>
+            <div>{{ o.address1 }}</div>
+            {% if o.address2 %}
+            <div>{{ o.address2 }}</div>
+            {% endif %}
+            <div>{{ o.city }}, {{ o.state }} {{ o.zip_code }}</div>
+            <div>Cashout Amount: ${{ o.amount|default:'0.00' }}</div>
+            {{ form.non_field_errors }}          
+          </div>
+       </td>
+     </tr>
+     <tr>
+       <th style="vertical-align: baseline; line-height: 25px">{{ form.check_no.label_tag }}</th>
+       <td>{{ form.check_no }} {{ form.check_no.errors }}</td>
+     </tr>
+     <tr>
+       <th></th>
+       <td style="padding-top: 1em; text-align: right;">
+         <input type="submit" value="Process" />
+         <button>Close</button>
+       </td>
+     </tr>
+  </table>
+
+</form>
+
+<script type="text/javascript">
+$('#process-cashout-order form').ajaxForm({
+  success: function (response, status) {
+    if (status != 'success')
+      return;    
+
+    if (response.redirect_to) {
+      window.location = response.redirect_to;
+    }
+    else if (response.goto_url) {
+      $.fn.openWizardByUrl(response.goto_url);    
+    }
+    else if (response.close) {
+        $.fn.colorbox.close();  
+    }
+    else {
+      $.fn.colorbox.setContent(response.form);
+      $.fn.colorbox.resize();
+    }
+  }
+});
+</script>
+</div>

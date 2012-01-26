@@ -1,0 +1,38 @@
+- model: inventory.dropship
+  pk: 1
+  fields:
+    name: Florida Distribution Center
+    code: FL
+    address: PO Box 6487
+    city: Delray Beach
+    state: FL
+    postal_code: 33482-9901
+    bid: 001
+    lat: 26.4640
+    lon: -80.1226
+
+- model: inventory.dropship
+  pk: 2
+  fields:
+    name: New Jersey Distribution Center
+    code: NJ
+    address: PO Box 11500
+    city: New Brunswick
+    state: NJ
+    postal_code: 08906-1500
+    bid: 002
+    lat: 40.5206
+    lon: -74.4154
+
+- model: inventory.dropship
+  pk: 3
+  fields:
+    name: Nevada Distribution Center
+    code: NV
+    address: PO Box 98199
+    city: Las Vegas
+    state: NV
+    postal_code: 89193-8199
+    bid: 003
+    lat: 36.0998
+    lon: -115.1459

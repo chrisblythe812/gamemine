@@ -1,0 +1,20 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+{% if message %}
+<p>{{ message }}</p>
+{% else %}
+<form enctype="multipart/form-data" method="post" action=".">{% csrf_token %}
+<div class="module">
+  <table>
+    {{ form.as_table }}
+    <tr>
+      <td colspan="2"><input type="submit" /></td>
+    </tr>
+  </table>
+</div>
+</form>
+{% endif %}
+
+{% endblock right %}

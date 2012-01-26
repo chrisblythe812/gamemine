@@ -1,0 +1,169 @@
+<h3>{{ item }} ({{ item.category }}) <a href="#item-id-{{ item.id }}" style="float:right">Top &uarr;</a></h3>
+
+<form id="entries-form" action="{% url staff:inventory_admin_entries item.id %}" method="post">{% csrf_token %}
+
+{% if unassigned_exists %}
+<p>
+  <button id="select-all-unassigned-games-button" style="margin-right: 30px;">Select all "Unassigned" Games</button> 
+  Assign Items To DC: {{ form.dc }} <input type="submit" value="Assign" />
+</p>
+{% endif %}
+
+<p style="display:none">
+  <button id="allocate-button">Allocate</button>
+</p>
+
+<table id="entries-list">
+  <tr>
+    <th></th>
+    <th>ID</th>
+    <th>Barcode</th>
+    <th>DC</th>
+    <th>
+      Status
+      <div>
+        <a href="#" id="check-all-rent">Check All Rent</a> | <a href="#" id="check-all-buy">Check All Buy</a>  | <a href="#" id="check-none">Check None</a>
+      </div>
+    </th>
+    <th>Buy Only</th>
+    <th></th>
+  </tr>
+  {% for i in inventories %}
+  <tr>
+    <td>{% if i.get_status_str == 'Unassigned' %}<input type="checkbox" />{% endif %}</td>
+    <td>{{ i.id }}</td>
+    <td>{{ i.barcode|default:'--' }}</td>
+    <td>{{ i.dropship.code|default:'--' }}</td>
+    <td>{{ i.get_status_str }} {% if i.status == 3 %}<input type="checkbox" id="checkbox-allocate-inventory-{{ i.id }}" class="checkbox-{% if i.buy_only %}buy{% else %}rent{% endif %}" />{% endif %}</td>
+    <td>{{ i.buy_only|yesno:"Yes, " }}</td>
+    <td>{% if i.barcode %}<a href="{% url inventory_tyvek i.id %}" target="_blank">Print tyvek</a>{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</form>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('#select-all-unassigned-games-button').click(function () {
+    $('#entries-list input[type=checkbox]').attr('checked', true);
+    return false;
+  });
+
+  $('#entries-form').submit(function () {
+    var dc = $('#id_dc').val();
+    if (!dc) {
+      alert('Please select DC to assign to.');
+      return false;
+    }
+    if ($('#entries-list input[type=checkbox]:checked').size() == 0) {
+      alert('Please select at least one item.');
+      return false;
+    }
+    $('#entries-form input[type=submit]').attr('disabled', true);
+    return false;
+  });
+
+  (function () {
+    function allocateSelectedTo(action) {
+      $('#allocate-button').attr('disabled', true);
+
+      function getId(v) {
+        v = v.split('-');
+        v = v[v.length - 1];
+        return v;
+      }
+
+      var ids = [];
+      if (action == 'rent')
+        $('.checkbox-buy:checked').each(function () { ids.push(getId($(this).attr('id'))); });
+      else
+        $('.checkbox-rent:checked').each(function () { ids.push(getId($(this).attr('id'))); });
+      ids = ids.join(',');
+
+      var href = '{% url staff:inventory_admin_entries item.id %}';
+      href += '?action=allocate_to_' + action + '&amp;ids=' + ids;
+ 
+      $('#entries-details').load(href, function (data, status) {
+        if (status != 'success')
+          return;
+        var target = $('#entries-details');
+//        $('html, body').animate({scrollTop: target.offset().top}, 500);
+      });
+    }
+    
+    function allocateSelectedToRent() {
+      if (!confirm('Would you like to allocate selected item(s) to RENT?'))
+        return false;
+      
+      allocateSelectedTo('rent');
+      return false;
+    }
+    
+    function allocateSelectedToBuy() {
+      if (!confirm('Would you like to allocate selected item(s) to BUY?'))
+        return false;
+      allocateSelectedTo('buy');
+      return false;
+    }
+    
+    function updateAllocateButton() {
+      var btn = $('#allocate-button'),
+          block = btn.parent();
+      btn.unbind('click');
+      var c = $('.checkbox-buy:checked').size();
+      if (c > 0) {
+        block.show();
+        btn.text('Allocate ' + c + ' Selected Item(s) to RENT').click(allocateSelectedToRent);
+        return;
+      } 
+      c = $('.checkbox-rent:checked').size();
+      if (c > 0) {
+        block.show();
+        btn.text('Allocate ' + c + ' Selected Item(s) to BUY').click(allocateSelectedToBuy);
+        return;
+      } 
+      block.hide();
+    }
+    
+    $('.checkbox-buy').click(function () {
+      var c = $('.checkbox-buy:checked').size() > 0;
+      $('.checkbox-rent').attr('checked', false).attr('disabled', c);
+      updateAllocateButton();
+    });
+    
+    $('.checkbox-rent').click(function () {
+      var c = $('.checkbox-rent:checked').size() > 0;
+      $('.checkbox-buy').attr('checked', false).attr('disabled', c);
+      updateAllocateButton();
+    });
+    
+    $('#check-all-rent').click(function () {
+      $('.checkbox-buy').attr('checked', false).attr('disabled', true);
+      $('.checkbox-rent').attr('checked', true).attr('disabled', false);
+      updateAllocateButton();
+      return false;
+    });
+    
+    $('#check-all-buy').click(function () {
+      $('.checkbox-buy').attr('checked', true).attr('disabled', false);
+      if ($('.checkbox-buy:checked').size() > 0)
+        $('.checkbox-rent').attr('checked', false).attr('disabled', true);
+      else
+        $('.checkbox-rent').attr('checked', false).attr('disabled', false);
+      updateAllocateButton();
+      return false;
+    });
+    
+    $('#check-none').click(function () {
+      $('.checkbox-rent').attr('checked', false).attr('disabled', false);
+      if ($('.checkbox-rent:checked').size() > 0)
+        $('.checkbox-buy').attr('checked', false).attr('disabled', false);
+      else
+        $('.checkbox-buy').attr('checked', false).attr('disabled', false);
+      updateAllocateButton();
+      return false;
+    });
+  })(); 
+});
+</script>

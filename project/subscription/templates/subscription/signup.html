@@ -1,0 +1,25 @@
+{% extends "subscription/dialog-base.html" %}
+
+{% block title1 %}Step 1 of 2{% endblock title1 %}
+{% block title2 %}Enter Email Address{% endblock title2 %}
+
+{% block content %}
+<form action="{% url subscription:signup %}" method="post">{% csrf_token %}
+  <div style="height: 170px; width: 340px; margin: 0 auto; overflow: hidden;">
+    <div class="field"><label>{{ form.email.label }}</label> {{ form.email }}</div> 
+    {{ form.email.errors }}
+    
+    <div class="field"><label>{{ form.email2.label }}</label> {{ form.email2 }}</div> 
+    {{ form.email2.errors }}
+    
+    <p class="info">Your email address is safe. Gamemine will not sell, rent or disclose
+    your email address to third parties. We will only use this email to
+    provide special offers and information regarding our services.</p>
+  </div>
+  
+  <div class="actions">
+      <input type="submit" value="Continue" class="continue-button" />
+  </div>
+</form>
+{% endblock content %}
+

@@ -1,0 +1,926 @@
+[
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Alachua"
+      ], 
+      "value": "6.25"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 1
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Baker"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 2
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Bay"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 3
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Bradford"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 4
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Brevard"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 5
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Broward"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 6
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Calhoun"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 7
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Charlotte"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 8
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Citrus"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 9
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Clay"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 10
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Collier"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 11
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Columbia"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 12
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "DeSoto"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 13
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Dixie"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 14
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Duval"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 15
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Escambia"
+      ], 
+      "value": "7.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 16
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Flagler"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 17
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Franklin"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 18
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Gadsden"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 19
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Gilchrist"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 20
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Glades"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 21
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Gulf"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 22
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Hamilton"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 23
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Hardee"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 24
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Hendry"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 25
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Hernando"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 26
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Highlands"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 27
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Hillsborough"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 28
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Holmes"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 29
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Indian River"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 30
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Jackson"
+      ], 
+      "value": "7.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 31
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Jefferson"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 32
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Lafayette"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 33
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Lake"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 34
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Lee"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 35
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Leon"
+      ], 
+      "value": "7.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 36
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Levy"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 37
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Liberty"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 38
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Madison"
+      ], 
+      "value": "7.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 39
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Manatee"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 40
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Marion"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 41
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Martin"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 42
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Miami-Dade"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 43
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Monroe"
+      ], 
+      "value": "7.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 44
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Nassau"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 45
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Okaloosa"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 46
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Okeechobee"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 47
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Orange"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 48
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Osceola"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 49
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Palm Beach"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 50
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Pasco"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 51
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Pinellas"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 52
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Polk"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 53
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Putnam"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 54
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "St. Johns"
+      ], 
+      "value": "6.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 55
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "St. Lucie"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 56
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Santa Rosa"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 57
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Sarasota"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 58
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Seminole"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 59
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Sumter"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 60
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Suwannee"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 61
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Taylor"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 62
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Union"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 63
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Volusia"
+      ], 
+      "value": "6.50"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 64
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Wakulla"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 65
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Walton"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 66
+  }, 
+  {
+    "fields": {
+      "county": [
+        "FL", 
+        "Washington"
+      ], 
+      "value": "7.00"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 67
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Carson City"
+      ], 
+      "value": "7.475"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 68
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Churchill"
+      ], 
+      "value": "7.60"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 69
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Clark"
+      ], 
+      "value": "8.10"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 70
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Douglas"
+      ], 
+      "value": "7.10"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 71
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Elko"
+      ], 
+      "value": "6.85"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 72
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Esmeralda"
+      ], 
+      "value": "6.85"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 73
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Eureka"
+      ], 
+      "value": "6.85"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 74
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Humboldt"
+      ], 
+      "value": "6.85"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 75
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Lander"
+      ], 
+      "value": "7.10"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 76
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Lincoln"
+      ], 
+      "value": "7.10"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 77
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Lyon"
+      ], 
+      "value": "7.725"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 78
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Mineral"
+      ], 
+      "value": "6.85"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 79
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Nye"
+      ], 
+      "value": "7.10"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 80
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Pershing"
+      ], 
+      "value": "7.10"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 81
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Storey"
+      ], 
+      "value": "7.60"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 82
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "Washoe"
+      ], 
+      "value": "7.725"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 83
+  }, 
+  {
+    "fields": {
+      "county": [
+        "NV", 
+        "White Pine"
+      ], 
+      "value": "7.475"
+    }, 
+    "model": "taxes.bycountytax", 
+    "pk": 84
+  }
+]

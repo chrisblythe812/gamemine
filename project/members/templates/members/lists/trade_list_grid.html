@@ -1,0 +1,91 @@
+{% load percents %}
+{% load star_rating %}
+
+<form method="post" id="trade-list-form">
+{% csrf_token %}
+
+<table id="rent-list-table">
+	<tr>
+		<th class="column-item">Trade List ({{ trade_list|length }})</th>
+		<th class="column-condition">Condition</th>
+		<th class="column-platform">Platform</th>
+		<th class="column-tradein">Trade-In</th>
+		<th class="column-value">Value</th>
+		<th class="column-actions">Remove</th>
+	</tr>
+	{% for r in trade_list %}
+	{% with r.item as item %}
+	<tr>
+		<td class="column-item">
+			<div class="item-details" style="margin-left:0;">
+				<a href="{{ item.get_absolute_url }}"><img src="{{ item.get_thumb_image }}" width="55" height="70" /></a>
+				<div class="item-details-info">
+					<a href="{{ item.get_absolute_url }}">{{ item.short_name }}</a>
+				    {{ item|star_rating:user }}
+					{{ item.release_date|date }}
+				</div>
+			</div>
+		</td>
+		<td class="column-condition">
+		  <a href="{% url trade:change_item r.id %}" class="link-dialog" title="Change">{% if r.is_complete %}CG{% else %}IG{% endif %}</a>
+		</td>
+		<td class="column-platform">{{ item.category.description }}</td>
+		<td class="column-tradein"><input type="checkbox" id="id-item-{{ r.id }}" name="item-{{ r.id }}" class="trade-list-item" {% if not item.trade_flag or not item.trade_price %}disabled="disbled" {% endif %}/></td>
+		<td class="column-value">{% if item.trade_flag and item.trade_price %}$<span id="id-item-{{ r.id }}-price">{{ r.get_price }}{% else %}--{% endif %}</span></td>
+		<td class="column-actions"><a href="{% url trade:remove r.id %}" class="delete-cart-item-button trade-list-action remove-item" title="Remove">Remove</a></td>
+	</tr>
+	{% endwith %}
+	{% endfor %}
+	<tr>
+	  <td class="column-item"><strong>Total Value<br/>${{ trade_list_total }}</strong></td>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+	  <td><span id="trade-list-quantity">0</span></td>
+	  <td>$<span id="trade-list-total">0.00</span></td>
+	  <td class="column-actions"><a href="{% url trade:remove_all %}" class="delete-cart-item-button trade-list-action remove-all" title="Remove All">Remove All</a></td>
+	</tr>
+</table>
+
+<div id="trade-list-footer">
+<input type="submit" class="add-to-cart-button" value="Add to Cart"/>
+<p>Trade List is your library of games that you can trade by selecting the
+"Trade-In" checkbox and clicking the "Add to Cart" button</p>
+</div>
+
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.trade-list-item').click(function(){
+    var q = 0;
+    var total = 0;
+    $('.trade-list-item').each(function(){
+      if ($(this).is(':checked')) {
+        var priceSel = '#' + $(this).attr('id') + '-price';
+        var price = parseFloat($(priceSel).text());
+        q++;
+        total += price;
+      }
+    });
+	  $('#trade-list-quantity').text(q);
+    $('#trade-list-total').text(total.toFixed(2));
+  });
+
+/*  
+  $('.remove-item').click(function(){
+    return confirm('Do you really want to remove this game from your trade list?');
+  });
+  $('.remove-all').click(function(){
+    return confirm('Do you really want to purge your trade list?');
+  });
+*/
+  $('#trade-list-form').submit(function(){
+    if (!$('.trade-list-item:checked').length) {
+      alert('Please select some games to trade.');
+      return false;
+    }
+    return true;
+  });
+});
+</script>
+

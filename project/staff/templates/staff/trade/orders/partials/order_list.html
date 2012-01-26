@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <th>Barcode</th>
+    <th>Customer</th>
+    <th>Order Date</th>
+    <th>Games Qty.</th>
+  </tr>
+  {% for o in orders %}
+  <tr>
+    <td><a href="{% url staff:trade_order_details o.id %}">{{ o.barcode }}</a></td>
+    <td><a href="{% url staff:customer_view o.user.id %}" target="_blank">{{ o.user.get_profile.get_name_display }}</a></td>
+    <td>{{ o.create_date|date }}</td>
+    <td><a href="{% url staff:trade_order_details o.id %}" class="show-order-details" id="trade-order-{{ o.id }}">{{ o.size }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.show-order-details').click(function () {
+    $.get($(this).attr('href'), function(data, status) {
+      if (status != 'success') {
+        alert('error');
+        return;
+      }      
+      var target = $('#detais');
+      target.empty().append(data);
+      $('html, body').animate({scrollTop: target.offset().top}, 500);
+    });
+    return false;
+  });
+});
+</script>

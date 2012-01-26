@@ -1,0 +1,32 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>We're sorry to hear that <strong>{{ claim.claim_object.item }}</strong> was received damaged and/or 
+  playable. Unfortunately, games do get damaged during shipment from time to time.</p> 
+   
+<p>Please return the following game(s) below on your account by their specified due dates to avoid a 
+  replacement fee in the amount of $50.00 plus applicable taxes being charge to your account for each 
+  game that is unreturned:</p>
+
+<table>
+  <tr>
+    <th>Date Reported</th>
+    <th>Due Date</th>
+    <th>Game Title</th>
+  </tr>
+  <tr>
+    <td>{{ claim.date|date }}</td>
+    <td>{{ claim.next_penalty_payment_date|date }}</td>
+    <td>{{ claim.claim_object.item }}</td>
+  </tr>
+</table>
+
+<p>Once received, the next game on your Rent List will be shipped as soon as possible. We apologize for 
+  the inconvenience.</p>
+
+<p>- The Gamemine Team</p> 
+
+{% endblock content %}

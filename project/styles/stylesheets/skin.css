@@ -1,0 +1,12 @@
+.jcarousel-skin-tango .jcarousel-container-horizontal {width: 365px;padding: 20px 40px;margin:70px 0 0 2px}
+.jcarousel-skin-tango .jcarousel-clip {overflow: hidden;}
+.jcarousel-skin-tango .jcarousel-clip-horizontal {width:  365px;height: 175px;}
+
+.jcarousel-skin-tango .jcarousel-item {width: 120px;height:175px;}
+.jcarousel-skin-tango .jcarousel-item-horizontal {margin-left: 0; margin-right: 5px;}
+.jcarousel-skin-tango .jcarousel-direction-rtl .jcarousel-item-horizontal {margin-left: 5px;margin-right: 0;}
+/***Horizontal Buttons*/
+.jcarousel-skin-tango .jcarousel-next-horizontal {position: absolute;top: 70px;right: 10px;width: 26px;height: 35px;cursor: pointer;background: transparent url(/m/img/inner/games/button-next.png) no-repeat 0 0;}
+.jcarousel-skin-tango .jcarousel-prev-horizontal {position: absolute;top: 70px;left: 10px;width: 26px;height: 34px;cursor: pointer;background: transparent url(/m/img/inner/games/button-prev.png) no-repeat 0 0;}
+/**/
+.jcarousel-skin-tango li p{text-align:center;color:#003366;font:bold 12px/16px arial,sans-serif;margin-top:7px;}

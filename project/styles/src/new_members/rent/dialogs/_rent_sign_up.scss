@@ -1,0 +1,44 @@
+#signup-wizard {
+   width: 728px;
+}
+
+#form-signup-non-member-2, #form-signup-member-2 {
+    #id_what_is_ccv {
+        color: #36C;
+    }
+    .actions {
+        margin-top: 50px;
+        font-size: 10px;
+        height: 67px !important;
+    }
+    .terms {
+        line-height: 77px !important;
+    }
+    .terms0 {
+        position: absolute;
+        top: -40px;
+        left: 112px;
+        font-size: 10px;
+        width: 468px;
+        color: #666;
+        line-height: normal;
+    }
+    .boxed.information .boxed-wrapper {
+        padding: 0;
+    }
+}
+
+#personalize-your-games-dialog {
+    .next-button {
+        right: 20px;
+    }
+}
+
+#form-signup-non-member-1, #form-signup-member-1 {
+    .actions {
+        height: 47px !important;
+    }
+    .actions [class$="button"] {
+        bottom: 10px;
+    }
+}

@@ -1,0 +1,45 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <table>
+    <thead>
+     <tr>
+       <td>Name</td>
+       <td>Email</td>
+       <td>DC</td>
+       <td>Role</td>
+       <td>Active</td>
+       <td>&nbsp;</td>
+     </tr>
+    </thead>
+    <tbody>
+    {% for u in users %}
+      <tr>
+       <td>{{ u.get_full_name|default:u.username }}</td>
+       <td>{{ u.email }}</td>
+       <td>{{ u.get_profile.dc|default:"--" }}</td>
+       <td>{% if u.is_superuser %}Adminstrator{% else %}{{ u.get_profile.get_group_display }}{% endif %}</td>
+       <td>{{ u.is_active|yesno:"Y,N" }}</td>
+       <td>
+         {% if user.is_superuser %}
+         <a href="{% url staff:edit_user u.id %}">Edit</a>
+         {% endif %}
+       </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    <tbody>
+      <tr>
+        <td colspan="6">
+         {% if user.is_superuser %}
+          <a href="{% url staff:new_user %}">Create new user</a>
+         {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock right %}

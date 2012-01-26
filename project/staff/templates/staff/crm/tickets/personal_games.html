@@ -1,0 +1,43 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <table>
+    <thead>
+     <tr>
+       <td>Date</td>
+       <td>Status</td>
+       <td>Customer</td>
+       <td>Order</td>
+       <td>Barcode ID</td>
+       <td>Item</td>
+       <td>Platform</td>
+       <td>UPC</td>
+       <td>Message</td>
+       <td>&nbsp;</td>
+     </tr>
+    </thead>
+    <tbody>
+    {% for t in tickets %}
+      <tr class="case-status-{{ t.status }}">
+       <td>{{ t.created|date }} {{ t.created|time }}</td>
+       <td>{{ t.get_status_display }}</td>
+       <td><a href="{% url staff:customer_view t.order.user.id %}" target="_blank">{{ t.order.user.get_profile.get_name_display }}</a></td>
+       <td><a href="{% url staff:rent_order_details t.order.id %}" target="_blank">#{{ t.order.order_no }}</a></td>
+       <td>{{ t.order.inventory.barcode }}</td>
+       <td><a href="{{ t.order.item.get_absolute_url }}">{{ t.order.item }}</a></td>
+       <td>{{ t.order.item.category }}</td>
+       <td>{{ t.order.item.upc }}</td>
+       <td>{{ t.message }}</td>
+       <td><a href="{% url staff:personal_game_details t.id %}">Details</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% pagination %}
+
+{% endblock right %}

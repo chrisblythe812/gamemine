@@ -1,0 +1,18 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Dear {{ user.first_name|default:user.username }},</p>
+
+<p>We have been successful in reprocessing your {{ cc_type }} ending in {{ cc_num }}. The amount due of
+  ${{ amount }} to Gamemine has been charged successfully. We appreciate your prompt attention to this matter,
+  and thank you for your continued support.</p>
+
+<p>If we can be of assistance, please visit Customer Service at <a href="{{ help_url }}">{{ help_url }}</a> or call
+  us anytime at
+{% include "emails/includes/phone_number.html" %}
+Monday thru Saturday 11AM to 5PM EST.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}

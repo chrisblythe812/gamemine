@@ -1,0 +1,33 @@
+{% load star_rating %}
+{% load percents %}
+
+<table>
+    <tr>
+        <th class="column-no">&nbsp;</th>
+        <th class="column-title">Title</th>
+        <th class="column-esrb">ESRB</th>
+        <th class="column-system">System</th>
+        <th class="column-rating-2">Star Rating</th>
+        <th class="column-actions">&nbsp;</th>
+    </tr>
+    {% for i in reviews %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        <td class="column-no">{{ forloop.counter }}.</td>
+        <td class="column-title"><a href="{% url catalog:edit_review i.id %}">{{ i.item.short_name }}</a></td>
+        <td class="column-esrb">{{ i.item.rating }}</td>
+        <td class="column-system">{{ i.item.category.description }}</td>
+        <td class="column-rating-2">
+            <div class="item-rating">
+				<div class="catalog-item-rating"><div class="catalog-item-rating-content" style="width: {{ i.ratio|percents:5 }}%">{{ i.ratio|percents:5 }}&nbsp;of&nbsp;100</div></div>
+            </div>
+        </td>
+        <td class="column-actions">
+            <a class="grid-action" href="{% url catalog:delete_review i.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        <td colspan="6">&mdash;</td>
+    </tr>
+    {% endfor %}
+</table>

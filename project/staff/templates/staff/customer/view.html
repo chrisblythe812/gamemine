@@ -1,0 +1,396 @@
+{% extends "staff/customer/base.html" %}
+
+{% block right %}
+
+<div class="module">
+<h2>Personal Information {% if not account_is_blocked and can_block_account %}<input type="button" style="margin-left: 20px;" value="Block Account" id="block-account-button" />{% endif %}
+<input type="button" style="margin-left: 20px;" value="Impersonate" id="impersonate-button">
+<input type="button" style="margin-left: 20px;" value="Change Password" id="change-password-button">
+</h2>
+  {% if account_is_blocked %}
+  <p style="background:#f99; padding: 10px !important; text-align: center; font-weight: bold;">ACCOUNT IS BLOCKED.
+    {% if can_block_account %}
+    <input type="button" style="margin-left: 20px;" value="Unblock Account" id="unblock-account-button" />
+    {% endif %}
+  </p>
+  {% else %}
+    {% if not_activated_user %}
+    <p style="background:#ff9; padding: 10px !important; text-align: center; font-weight: bold;" id="resend-activation-banner">ACCOUNT ISN'T ACTIVATED YET. <input type="button" style="margin-left: 20px;" value="Re-send activation code" id="resend-activation-code" /></p>
+    {% endif %}
+  {% endif %}
+
+  <div id="id-customer-password-form">
+    <form method="post" action="{% url staff:customer_set_password user.id %}">
+      {% csrf_token %}
+      <div>
+        <label for="id_password">Password</label>
+        <input type="text" name="password" id="id_password" />
+      </div>
+      <div>
+        <input type="submit" value="Set Password" />
+      </div>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+  function generatePassword() {
+    var alphabet = '0123456789absdefghijklmnopqrstuvwxyzABSDEFGHIJKLMNOPQRSTUVWXYZ';
+    var p = '';
+    for (i = 0; i < 10; ++i) {
+      var r = Math.floor(Math.random() * 62);
+      p += alphabet.substring(r, r+1);
+    }
+    return p;
+  }
+
+  $(document).ready(function () {
+    $('#resend-activation-code').click(function () {
+      if (!confirm('Whould you like to re-send activation e-mail?')) {
+        return;
+      }
+      var button = $(this);
+      button.attr('disabled', true);
+      $.get('?action=resend-activation-link', function (data, status) {
+        button.attr('disabled', false);
+        if (status == 'success') {
+          button.hide();
+          var b = $('#resend-activation-banner');
+          b.text(b.text() + 'Email was successfully re-sent.');
+        }
+      });
+    });
+
+    $('#block-account-button').click(function () {
+      if (!confirm('Are you sure you want to block this account?')) {
+        return;
+      }
+      var button = $(this);
+      button.attr('disabled', true);
+      $.get('?action=block', function (data, status) {
+        button.attr('disabled', false);
+        if (status == 'success') {
+          window.location.reload();
+        }
+      });
+    });
+
+    $('#unblock-account-button').click(function () {
+      if (!confirm('Are you sure you want to unblock this account?')) {
+        return;
+      }
+      var button = $(this);
+      button.attr('disabled', true);
+      $.get('?action=unblock', function (data, status) {
+        button.attr('disabled', false);
+        if (status == 'success') {
+          window.location.reload();
+        }
+      });
+    });
+
+    $('#impersonate-button').click(function () {
+      if (confirm('Are you sure you want to impersonate this customer?')) {
+        window.location = '?impersonate=';
+      }
+    });
+
+    $('#change-password-button').click(function () {
+      $('#id-customer-password-form').toggle();
+    });
+
+    $('#id-customer-password-form [name=password]').val(generatePassword());
+
+    $('#id-customer-password-form form').submit(function(){
+      var p = $(this).find('[name=password]').val();
+      if (!p) {
+        alert('Password can\'t be empty.');
+        return false;
+      }
+      return confirm('Do you really want to change a password of this customer?');
+    });
+
+    $('#add-extra-slot').click(function () {
+      if (!confirm('Are you sure you want to add extra game for rent?')) {
+        return;
+      }
+      var button = $(this);
+      button.attr('disabled', true);
+      $.get('?action=add-extra-slot', function (data, status) {
+        button.attr('disabled', false);
+        if (status == 'success') {
+          window.location.reload();
+        }
+      });
+    });
+
+    $('#rm-extra-slot').click(function () {
+      if (!confirm('Are you sure you want to remove extra game for rent?')) {
+        return;
+      }
+      var button = $(this);
+      button.attr('disabled', true);
+      $.get('?action=rm-extra-slot', function (data, status) {
+        button.attr('disabled', false);
+        if (status == 'success') {
+          window.location.reload();
+        }
+      });
+    });
+  });
+  </script>
+
+  <dl style="width: 300px;">
+    <dt>First Name:</dt><dd>{{ user.first_name }}</dd>
+    <dt>E-mail Address:</dt><dd>{{ user.email }}</dd>
+    <dt>Phone:</dt><dd>{{ user.profile.phone|default:"&mdash;" }}</dd>
+    <dt>Billing Address:</dt><dd>
+    {% if billing_address.address1 %}
+      {{ billing_address.address1 }}<br/>
+      {% if billing_address.address2 %}{{ billing_address.address2 }}<br/>{% endif %}
+      {{ billing_address.city }}, {{ billing_address.state }} {{ billing_address.zip_code }}
+    {% else %}
+      &nbsp;
+    {% endif %}
+    </dd>
+    <dt>AM Factor:</dt><dd>&mdash;</dd>
+    <dt>Home DC:</dt><dd>{{ user.get_profile.dropship.code|default:"--" }}</dd>
+    <dt>Date Registered:</dt><dd>{{ user.date_joined|date }} {{ user.date_joined|time }}</dd>
+    <dt>Last Login:</dt><dd>{{ user.last_login|date }} {{ user.last_login|time }}</dd>
+  </dl>
+  <dl style="width: 350px;">
+    <dt>Last Name:</dt><dd>{{ user.last_name }}</dd>
+    <dt>Payment Method:</dt><dd>{{ user.profile.get_billing_card_display }}</dd>
+    <dt>Shipping Address:</dt><dd>
+    {% if user.get_profile.shipping_address1 %}
+      {{ user.get_profile.shipping_address1 }}<br/>
+      {% if user.get_profile.shipping_address2 %}{{ user.get_profile.shipping_address2 }}<br/>{% endif %}
+      {{ user.get_profile.shipping_city }}, {{ user.get_profile.shipping_state }} {{ user.get_profile.shipping_zip }}
+    {% else %}
+      &nbsp;
+    {% endif %}
+    </dd>
+    <dt>IP Address:</dt><dd>&mdash;</dd>
+    <dt>Total Store Credits:</dt><dd>${{ user.get_profile.store_credits }}</dd>
+    <dt>Locked Credits:</dt><dd>${{ user.get_profile.locked_store_credits }}</dd>
+    <dt>Unlocked Credits:</dt><dd>${{ user.get_profile.unlocked_store_credits}}</dd>
+  </dl>
+  <dl>
+    <dt>Exp:</dt><dd>{{ user.profile.get_billing_card_data.exp_month }}/{{ user.profile.get_billing_card_data.exp_year }}</dd>
+    <dt>Claims:</dt><dd>{{ claims.count }}</dd>
+    <dt>Stikes:</dt><dd>{{ user.get_profile.strikes }}</dd>
+  </dl>
+  <dl>
+    <dt>Campaign:</dt><dd>{{ user.profile.get_campaign_cid_display }}</dd>
+    <dt>SID:</dt><dd>{{ user.profile.sid|default:'--' }}</dd>
+    <dt>Affiliate:</dt><dd>{{ user.profile.affiliate }}</dd>
+    <dt>Entry Point:</dt><dd>{{ user.profile.get_entry_point_display }}</dd>
+    <dt>Rent Pixel flag:</dt><dd>{{ user.profile.rent_pixels_flag|yesno }}</dd>
+  </dl>
+  <div class="clear"></div>
+</div>
+
+<div class="module">
+<h2>Sales Statistics</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Website</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Lifetime Sales</th>
+    <th>Average Sale</th>
+  </tr>
+</thead>
+<tbody>
+  <tr class="row1">
+    <td>Buy</td>
+    <td>{{ stat.buy.last_date|date }}</td>
+    <td>{{ stat.buy.status }}</td>
+    <td>${{ stat.buy.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.buy.earned_avg|floatformat:2 }}</td>
+  </tr>
+  <tr class="row2">
+    <td>Trade</td>
+    <td>{{ stat.trade.last_date|date }}</td>
+    <td>{{ stat.trade.status }}</td>
+    <td>${{ stat.trade.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.trade.earned_avg|floatformat:2 }}</td>
+  </tr>
+  <tr class="row1">
+    <td>Rent</td>
+    <td>{{ stat.rent.last_date|date }}</td>
+    <td>
+        {{ stat.rent.status }}{% if stat.rent.hold_until %} ({{ stat.rent.hold_until|date }}){% endif %}
+
+        {% if is_superuser and stat.rent.rent_plan.status == 4 %}
+          (<a href="?action=reactivate" class="ask-to-continue simple-ajax-action">Reactivate</a>)
+        {% endif %}
+
+        {% if is_superuser and stat.rent.cancelable %}
+          <a href="{% url staff:cancel_customer_rent_account user.id %}" id="cancel-rent-account" class="ask-to-continue">Cancel</a>
+        {% endif %}
+        {% if can_change_extra_slots %}
+        | Extra game(s): <button id="rm-extra-slot"{% if user.get_profile.extra_rent_slots == 0 %} disabled="disabled"{% endif %}>-</button> {{ user.get_profile.extra_rent_slots }} <button id="add-extra-slot">+</button>
+        {% endif %}
+    </td>
+    <td>${{ stat.rent.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.rent.earned_avg|floatformat:2 }}</td>
+  </tr>
+</tbody>
+<tbody class="total">
+  <tr>
+    <td colspan="3">All Store Views</td>
+    <td>${{ stat.earned_total|floatformat:2 }}</td>
+    <td>${{ stat.earned_avg|floatformat:2 }}</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<div class="module">
+<h2>Recent Orders</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Order #</th>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Grand Total</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  {% for o in last_order.buy %}
+  <tr>
+    <td><a href="{% url staff:buy_order_details o.id %}" target="_blank">{{ o.order_no }}</a></td>
+    <td>{{ o.create_date|date }}</td>
+    <td>Buy</td>
+    <td>{{ o.get_status_display }}</td>
+    <td>${{ o.total|default:'0.00' }} {% if o.tax %}(+${{ o.get_tax_amount }} Tax){% endif %}</td>
+    <td><a href="{% url staff:buy_order_details o.id %}">View</a></td>
+  </tr>
+  {% endfor %}
+  {% if last_order.trade %}
+  <tr>
+    <td>{{ last_order.trade.order_no }}</td>
+    <td>{{ last_order.trade.create_date|date:"m/d/y g:i:s A" }}</td>
+    <td>Trade</td>
+    <td>{{ last_order.trade.status }}</td>
+    <td>${{ last_order.trade.total|floatformat:2 }}</td>
+    <td><a href="{% url staff:trade_order_details last_order.trade.id %}">View</a></td>
+  </tr>
+  {% endif %}
+  {% if last_order.rent %}
+  <tr>
+    <td>{{ last_order.rent.order_no }}</td>
+    <td>{{ last_order.rent.last_date|date:"m/d/y g:i:s A" }}</td>
+    <td>Rent</td>
+    <td>{{ last_order.rent.get_status_display }}</td>
+    <td>&mdash;</td>
+    <td><a href="{% url staff:rent_order_details last_order.rent.id %}">View</a></td>
+  </tr>
+  {% endif %}
+</tbody>
+</table>
+</div>
+
+<div class="module">
+<h2>Shopping Cart</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Title</th>
+    <th>Platform</th>
+    <th>Quantity</th>
+    <th>Condition</th>
+    <th>Price</th>
+  </tr>
+</thead>
+{% if cart.items.all.count %}
+<tbody>
+  {% for item in cart.items.all %}
+  <tr class="{% cycle 'row1' 'row2' %}">
+    <td>{{ item.item.id|stringformat:"08d" }}</td>
+    <td>{{ item.item.short_name }}</td>
+    <td>{{ item.item.category }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{% if item.is_new %}New Game{% else %}Used Game{% endif %}</td>
+    <td>${{ item.get_retail_price|floatformat:2 }}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+{% endif %}
+<tbody class="total">
+  <tr>
+    <td colspan="3">&nbsp;</td>
+    <td>{{ cart.size }}</td>
+    <td>&nbsp;</td>
+    <td>${{ cart_total }}</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<!-- Buy List -->
+
+<div class="module">
+<h2>Trade List</h2>
+<table class="admin-grid">
+<thead>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Title</th>
+    <th>Platform</th>
+    <th>Condition</th>
+    <th>UPC</th>
+    <th>Value</th>
+  </tr>
+</thead>
+<tbody>
+{% for item in trade_list %}
+  <tr class="{% cycle 'row1' 'row2' %}">
+    <td>{{ item.item.id|stringformat:"08d" }}</td>
+    <td>{{ item.item.short_name }}</td>
+    <td>{{ item.item.category }}</td>
+    <td>{% if item.is_complete %}Complete Game{% else %}Incomplete Game{% endif %}</td>
+    <td>{{ item.item.upc }}</td>
+    <td>${{ item.get_price|floatformat:2 }}</td>
+  </tr>
+{% endfor %}
+</tbody>
+<tbody class="total">
+  <tr>
+    <td colspan="5">&nbsp;</td>
+    <td>${{ cart_total }}</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.ask-to-continue').click(function () {
+    return confirm('Are you sure you want to continue?');
+  });
+
+  $('.simple-ajax-action').click(function () {
+    var href = $(this).attr('href');
+    $(this).text('please wait...').unbind('onclick').click(function () { return false; });
+    $.get(href, function (data, status) {
+      if (status == 'success') {
+        window.location.reload();
+      }
+      else {
+        alert('error');
+      }
+    });
+    return false;
+  });
+
+});
+</script>
+
+{% endblock %}
+

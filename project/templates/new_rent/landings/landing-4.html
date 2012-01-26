@@ -1,0 +1,44 @@
+{% extends "new_rent/landings/base.html" %}
+
+{% block head %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/intro.js?rev={{ REV }}"></script>
+{% endblock %}
+
+{% block header %}
+  {% include "header.html" %}
+{% endblock header %}
+
+{% block page-class %}rent landings landing4{% endblock %}
+
+{% block aftertop %}
+{# Start Content Wrapper #}
+<div class="container_full">
+  <div class="left_side"></div>
+  <div class="right_side"></div>
+  <div id="container">
+    <!-- Featured Area -->
+    <div class="featured_row">
+      <a href="{% url catalog:item item_slug="Assassins-Creed-Revelations-PlayStation-3", id=100000505 %}"><div class="featured_pic"></div></a>
+      <a href="{% url new_rent:sign_up %}" title="Start Now!" class="featured_banner link-dialog btn_start_now">Start for only $7.95</a>
+      <a href="{% url catalog:item item_slug="Legend-Zelda-Skyward-Sword-Nintendo-Wii", id=100000548 %}"><div class="featured_pic_right"></div></a>
+      <div class="clear"></div>
+    </div>
+    <!-- Carousel area -->
+    <div class="carousel_row">
+        <a href="{% url catalog:index %}" title="Most Popular" class="btn_popular">Most Popular</a>
+        <div id="carousel">
+          <ul id="intro-new-releases-carousel" class="games-thumb-list">
+            {% for i in popular_releases %}
+            <li><div class="catalog-item{% if not i.get_thumb_image %} empty{% endif %}"><a href="{{ i.get_absolute_url }}">{% if i.get_thumb_image %}<img src="{{ i.get_thumb_image }}" width="55" height="70" />{% else %}{{ i }}{% endif %}</a></div></li>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+{# End Content Wrapper #}
+{% endblock %}
+
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock footer %}

@@ -1,0 +1,142 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module simple-filter-form">
+  <form method="post">{% csrf_token %}
+    <label for="id_barcode">Enter Barcode or PLANET ID:</label>
+    <input type="text" id="id_barcode" name="barcode" autocomplete="off" />
+    <input type="submit" value="Add to prepared list" />
+    {% if message %}
+    <div class="message"><strong>MESSAGE:</strong> {{ message|safe }}</div>
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function () {
+        $('#id_barcode').searchbox('Enter "Manually" or "Scan with barcode scanner"');
+      });      
+    </script>    
+  </form>
+</div>
+
+<div class="module">
+  <h2>Picked List</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Title</td>
+        <td>UPC</td>
+        <td>Platform</td>
+        <td>Type</td>
+        <td>Condition</td>
+        <td>DC</td>
+        <td>Pick Quantity</td>
+        <td>&nbsp;</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for picked in picked_list %}
+      <tr>
+        <td><a href="{{ picked.item.get_absolute_url }}" target="_blank">{{ picked.item.name }}</a></td>
+        <td>{{ picked.item.upc }}</td>
+        <td>{{ picked.item.category }}</td>
+        <td>Rent</td>
+        <td>--</td>
+        <td>{{ picked.dropship.code }}</td>
+        <td><a class="pick_list_detais" href="{% url staff:rent_pick_list_details picked.item.id picked.dropship.id %}">{{ picked.quantity }}</a></td>
+        <td>
+        {% if user.is_superuser %}
+          <a href="{% url staff:page 'Reports/Inventory' %}?dc={{ picked.dropship.id }}&status=3&platform={{ picked.item.category.id }}&q={{ picked.item.upc }}" target="_blank">Lookup</a>
+        {% endif %}
+        </td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+    <tbody class="total">
+      <tr>
+        <td colspan="6">All Picked Games</td>
+        <td>{{ all_picked_games }}</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="pick_list_detais"></div>
+
+<div class="module">
+  <h2>Prepared List</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Customer</td>
+        <td>Inventory ID</td>
+        <td>Title</td>
+        <td>Platform</td>
+        <td>Date</td>
+        <td>Condition</td>
+        <td>DC</td>
+        <td>Labels / Packslips</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order in prepared_list %}
+      <tr>
+        <td><a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a></td>
+        <td>{{ order.inventory.barcode }}</td>
+        <td><a href="{{ order.item.get_absolute_url }}" target="_blank">{{ order.item.name }}</a></td>
+        <td>{{ order.item.category }}</td>
+        <td>{{ order.date_prepared|date }}</td>
+        <td>{{ order.inventory.is_new|yesno:"NG,UG" }}</td>
+        <td>{{ order.source_dc.code }}</td>
+        <td>
+          <a href="{% url staff:rent_labels %}?t=mailing&amp;ids={{ order.id }}" target="_blank">Mailing</a>
+          | <a href="{% url staff:rent_labels %}?t=return&amp;ids={{ order.id }}" target="_blank">Return</a>
+        </td>
+        <td>
+          <a href="?cancel={{ order.id }}" class="cancel-report" title="{{ order.inventory.barcode }}">Cancel</a>
+          | <a href="{% url staff:rent_order_details order.id %}">Details</a>
+        </td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+    <tbody class="total">
+      <tr>
+        <td colspan="9">
+        {% if prepared_list_ids %}
+          <a href="{% url staff:rent_labels %}?ids={{ prepared_list_ids|join:"," }}" target="_blank">Print All Rent Labels</a>
+          | <a href="{% url staff:rent_mark_shipped %}?ids={{ prepared_list_ids|join:"," }}">Clear Prepared List</a>
+        {% else %}
+          &nbsp;
+        {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('a.pick_list_detais').click(function () {
+    $.get($(this).attr('href'), function(data, status) {
+      if (status != 'success') {
+        alert('error');
+        return;
+      }      
+      var target = $('#pick_list_detais');
+      target.empty().append(data);
+      $('html, body').animate({scrollTop: target.offset().top}, 500);
+    });
+    return false;
+  });
+  
+  $('.cancel-report').click(function () {
+    var barcode = $(this).attr('title');
+    if (!confirm('Are you sure you want to move ' + barcode + ' to picked list?'))
+      return false;
+    return true;
+  });
+});
+</script>
+
+{% endblock right %}

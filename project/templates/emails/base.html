@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>GameMine</title>
+  </head>
+
+  <body>
+    <table width="592" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="30">
+	  <table width="578" border="0" cellspacing="7" cellpadding="0">
+	    <tr>
+	      <td height="16" valign="bottom" align="right"><font face="Arial, Helvetica, sans-serif" size="-2">add <a href="#">info@gamemine.com</a> to your address book.</font></td>
+	    </tr>
+	  </table>
+	</td>
+      </tr>
+      <tr>
+        <td valign="top">
+	  <table width="592" border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+	      <td width="20"><img src="{{ STATIC_URL }}img/emails/spacer.gif" width="20" height="1"></td>
+	      <td width="552" valign="top">
+		<table width="552" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td height="62" valign="top">
+		      <table width="552" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td width="119" height="62"><a href="#"><img src="{{ STATIC_URL }}img/emails/gamemine_logo.gif" alt="GameMine the Game Station" width="119" height="62" border="0"></a></td>
+			  <td width="295" height="62"><img src="{{ STATIC_URL }}img/emails/top_gradient.gif" width="295" height="62" alt=""></td>
+			  <td width="124" height="62">
+			    <table width="124" border="0" cellspacing="0" cellpadding="0">
+			      <tr>
+				<td width="124" height="24"><img src="{{ STATIC_URL }}img/emails/top_part1.gif" width="124" height="24" alt=""></td>
+			      </tr>
+			      <tr>
+				<td width="124" height="15" valign="top" align="left">
+				  <table width="124" border="0" cellspacing="0" cellpadding="0">
+				    <tr>
+				      <td width="80" height="15"><a href="{{ SITE_URL }}/Account/Name-and-Address/" title="Your Account"><img src="{{ STATIC_URL }}img/emails/your_account.gif" alt="Your Account" width="80" height="15" border="0"></a></td>
+				      <td width="16" height="15"><img src="{{ STATIC_URL }}img/emails/divider.gif" width="16" height="15" alt="|"></td>
+				      <td width="28" height="15"><a href="{{ help_url }}" title="Help"><img src="{{ STATIC_URL }}img/emails/help.gif" alt="Help" width="28" height="15" border="0"></a></td>
+				    </tr>
+				  </table>
+				</td>
+			      </tr>
+			      <tr>
+				<td width="124" height="23"><img src="{{ STATIC_URL }}img/emails/top_part2.gif" width="124" height="23" alt=""></td>
+			      </tr>
+			    </table>
+			  </td>
+			  <td width="14" height="62"><img src="{{ STATIC_URL }}img/emails/top_right.gif" width="14" height="62" alt=""></td>
+			</tr>
+		      </table>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td height="35" valign="top">
+		      <table width="552" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td width="37" height="35"><img src="{{ STATIC_URL }}img/emails/corner_tl.gif" width="37" height="35" alt=""></td>
+			  <td width="478" height="35"><img src="{{ STATIC_URL }}img/emails/spacer.gif" width="1" height="35" alt=""></td>
+			  <td width="37" height="35"><img src="{{ STATIC_URL }}img/emails/corner_tr.gif" width="37" height="35" alt=""></td>
+			</tr>
+		      </table>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td height="125" valign="top">
+		      <table width="552" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td width="37"><img src="{{ STATIC_URL }}img/emails/px_l.gif" width="37" height="100%" alt=""></td>
+			  <td width="478" align="left" valign="top">
+			    <font face="Arial, Helvetica, sans-serif" size="-1">
+                              {% block content %}
+                              <h1>Lorem ipsum</h1>
+                              Dolor sit amet, consectetur adipiscing elit. Nullam non justo mi. Donec varius tempus mauris, id condimentum nisi pretium ac. Fusce ut urna risus, quis feugiat lectus. Morbi venenatis convallis eros, vulputate ultrices nisl fringilla eget. Sed id quam vitae felis scelerisque elementum vel id dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eget nisl ac lorem adipiscing aliquet rhoncus ut mi. Praesent non felis ut risus pulvinar elementum a id nibh. Mauris id mauris nec nibh pulvinar tincidunt quis quis enim. Aliquam odio orci, malesuada nec fermentum vel, ultrices vestibulum purus. Nunc purus neque, tincidunt et posuere quis, imperdiet ut ligula. Sed laoreet vulputate lectus vel volutpat. Nunc ante urna, viverra a ultrices eget, tincidunt id lacus. Aenean ut augue non dolor porttitor mattis eu malesuada dolor.
+                              {% endblock content %}
+                            </font>
+                            {% block custom-footer %}
+                            {% endblock custom-footer %}
+			  </td>
+			  <td width="37"><img src="{{ STATIC_URL }}img/emails/px_r.gif" width="37" height="100%" alt=""></td>
+			</tr>
+		      </table>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td height="45" valign="top">
+		      <table width="552" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td width="37" height="45"><img src="{{ STATIC_URL }}img/emails/corner_bl.gif" width="37" height="45" alt=""></td>
+			  <td width="478" height="45"><img src="{{ STATIC_URL }}img/emails/px_b.gif" width="478" height="45" alt=""></td>
+			  <td width="37" height="45"><img src="{{ STATIC_URL }}img/emails/corner_br.gif" width="37" height="45" alt=""></td>
+			</tr>
+		      </table>
+		    </td>
+		  </tr>
+		</table>
+	      </td>
+	      <td width="20"><img src="{{ STATIC_URL }}img/emails/spacer.gif" width="20" height="1"></td>
+	    </tr>
+	  </table>
+	</td>
+      </tr>
+      <tr>
+        <td>
+	  <table width="592" border="0" cellspacing="0" cellpadding="0">
+	    <tr>
+	      <td width="20"><img src="{{ STATIC_URL }}img/emails/spacer.gif" width="20" height="1"></td>
+	      <td width="552" valign="top"
+	      align="left"><font face="Arial, Helvetica, sans-serif"
+	      size="-2"><p>This message was mailed to
+	      ({{ user.email }})<br>Use of the Gamemine
+	      service and website constitutes acceptance of
+	      our <a href="{{ SITE_URL }}{% url simple-page page='Terms' %}">Terms of Us</a> and <a href="{{ SITE_URL }}{% url simple-page page='Privacy' %}">Privacy Policy</a></p><p>&copy; Gamemine Direct, LLC 2011, All Rights Reserved.</p></font></td>
+	      <td width="20"><img src="{{ STATIC_URL }}img/emails/spacer.gif" width="20" height="1"></td>
+	    </tr>
+	  </table>
+	</td>
+      </tr>
+      <tr>
+        <td width="592" height="30"><img src="{{ STATIC_URL }}img/emails/spacer.gif" width="1" height="30"></td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<div class="module">
+  <h2>Trade Order ID: {{ order.order_no }}</h2>
+
+  <dl>
+    <dt>Member ID:</dt>
+    <dd><a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a> ({{ order.user.email }})</dd>
+
+    <dt>Customer Address:</dt>
+    <dd>{{ order.shipping_address1 }}<br />{% if order.shipping_address2 %}{{ order.shipping_address2 }} {% endif %}{{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}</dd>
+
+    <dt>Date Submitted:</dt>
+    <dd>{{ order.create_date|date }}</dd>
+
+    <dt>Total Trade Value:</dt>
+    <dd>${{ order.total }} (+ ${{ order.get_shipping_reimbursements }})</dd>
+  </dl>  
+
+  <table>
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Title</td>
+        <td>Platform</td>
+        <td>UPC</td>
+        <td>Release Date</td>
+        <td>Complete</td>
+        <td>Value</td>
+        <td>Comments</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in order.items.all %}
+      <tr>
+        <td>{{ forloop.counter }}.</td>
+        <td><a href="{{ item.item.get_absolute_url }}" target="_blank">{{ item.item }}</a></td>
+        <td>{{ item.item.category }}</td>
+        <td>{{ item.item.upc }}</td>
+        <td>{{ item.item.release_date|date }}</td>
+        <td>{{ item.is_complete|yesno:"CG,IG" }}</td>
+        <td>${{ item.price|default:"0.00" }}</td>
+        <td>{{ item.get_comments }}</td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+  </table>
+</div>

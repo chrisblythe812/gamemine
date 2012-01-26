@@ -1,0 +1,200 @@
+@import "mixins";
+@import "compass/css3";
+
+
+.banner-page {
+	#content-header {
+		margin: -22px auto 0 !important;
+		width: 1006px;
+		height: 237px;
+		background: bottom center url($images_url + "simple-page-bg.png") repeat-y;
+		
+		.banner-featured-game {
+			padding: 0 12px;
+
+            .nivo-controlNav {
+                // position: absolute;
+                // left: 47%;
+                // bottom: -30px;
+                float: right;
+                margin: 190px 25px 0 0;                
+            
+                a {
+                    display: block;
+                    width: 25px;
+                    height: 25px;
+                    background: url($images_url + 'catalog/bullet.png') no-repeat;
+                    text-indent: -9999px;
+                    border: 0;
+                    margin-right: 3px;
+                    float: left;
+ 
+                    &.active {
+                        background-position: -25px 0;
+                    }
+                }
+            }
+
+			.banner-header {
+				background: url($images_url + "banner-top-shaddow.png") repeat-x;
+				height: 10px;
+				position: absolute;
+				width: 982px;
+				z-index: 500;
+				left: 0;
+				top: 0;
+			}
+			
+			.banner-content {
+        position: relative;
+				background: #666;
+				width: 982px;
+				height: 227px;
+				overflow: hidden;
+				text-align: center;
+				
+				img {
+					margin: 0 auto;
+					display: block;
+				}
+			}
+		}
+	}
+	
+	#content {
+		min-height: 100px !important;
+	}
+}
+
+.what-is-my-game-worth-page {
+	.banner-content {
+		height: 231px !important;
+		background: url($images_url + 'what-is-my-game-worth.jpg') no-repeat !important;
+		
+		.search-area {
+			// background: rgba(255, 255, 0, .3);
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin: 150px 0 0 40px;
+			width: 420px;
+			text-align: center;
+			
+			.field {
+				@include inline-block-ex;
+				
+				.input { 
+					@include input-box-icon($images_url + "icons/header-search-icon.gif");
+					width: 200px;
+					
+					input {
+						font-weight: bold;
+                        color: #666 !important;
+					} 
+				}
+				
+				.select {
+				    .text-wrapper {
+                        text-align: left !important;
+                        padding-left: 10px;
+				    }
+				
+				    span {
+				        font-weight: bold;
+                        color: #666 !important;
+				    }
+				}
+				select { 
+				    width: 100px;
+				}
+			}
+		}
+	}
+	
+	#what-is-my-game-worth-page-content {
+		padding-top: 5px; 
+	
+		h1 {
+			clear: both;
+			background: center top url($images_url + 'hot-trade-values.png') no-repeat;
+			height: 80px;
+			margin: 0 !important;
+			text-indent: -9999px;
+			overflow: hidden;
+		}
+		
+		h2 {
+			color: #08172d;
+			font-size: 20px;
+			background: left bottom no-repeat;
+			// background-color: rgba(255, 255, 0, .3);
+			padding-top: 200px;
+		}
+		
+		.xbox-360-games h2 { background-image: url($images_url + 'consoles/xbox360.jpg'); }
+		.nintendo-wii-games h2 { background-image: url($images_url + 'consoles/wii.jpg'); }
+		.nintendo-ds-games h2 { background-image: url($images_url + 'consoles/ds.jpg'); }
+		.playstation-3-games h2 { background-image: url($images_url + 'consoles/ps3.jpg'); }
+		.playstation-2-games h2 { background-image: url($images_url + 'consoles/ps2.jpg'); }
+		.sony-psp-games h2 { background-image: url($images_url + 'consoles/psp.jpg'); }
+		.xbox-games h2 { background-image: url($images_url + 'consoles/xbox.jpg'); }
+		.gamecube-games h2 { background-image: url($images_url + 'consoles/gc.jpg'); }
+		
+		.consoles {
+			// background: rgba(255, 255, 0, .2);
+			padding: 0 30px !important;
+			margin: 0 0 !important;
+		
+			li.console {
+				// background: rgba(255, 255, 0, .2);
+				width: 200px;
+				@include inline-block-ex;
+				margin: 0 47px;
+				
+				color: #000;
+				font-size: 13px;
+				
+				a {
+					color: #000;
+				}
+
+				ul {
+					padding: 0 !important;
+					
+					li {
+						margin: 0 0 4px 0 !important;
+						
+						a {
+							// background: rgba(255, 255, 0, .2);
+							display: block;
+							width: 155px;
+							overflow: hidden;
+							line-height: 1.2em;
+							
+							span {
+								display: block;
+								width: 500px;
+							}
+						}
+						
+						span.price {
+							float: right;
+							margin-top: -1.2em;
+							line-height: 1.2em;
+						}
+					}
+				}
+				
+				.view-all {
+					text-align: right;
+					
+					a {
+						color: #c00;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		
+	}
+}

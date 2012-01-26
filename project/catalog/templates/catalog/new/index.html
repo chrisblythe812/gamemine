@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}{% if category %} – {{ category.description }}{% endif %}{% endblock title %}
+{% block meta-description %}{% if category %}{{ category.meta_description }}{% else %}{{ block.super }}{% endif %}{% endblock meta-description %}
+{% block meta-keywords %}{% if category %}{{ category.meta_keywords }}{% else %}{{ block.super }}{% endif %}{% endblock meta-keywords %}
+
+
+{% block head %}
+  <link href="{{ STATIC_URL }}css/editor.css?rev={{ REV }}" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+  var catalogConfig = {
+    autoFilter: {{ auto_filter|yesno:"true,false" }},
+    mediaUrl: "{{ STATIC_URL }}",
+    currentCategory: {% if category %}"{{ category.slug }}"{% else %}null{% endif %}
+  },
+  introConfig = {
+    wimgwURL: '{% url project.views.wimgw %}'
+  };
+
+{% if not category %}
+  $(function () {
+    $('.banner-content').balalaykaBanner({url: '{% url project.banners.views.balalayka %}'});
+  });
+{% endif %}
+
+  </script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/intro.js?rev={{ REV }}"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/catalog.js?rev={{ REV }}"></script>
+{% endblock %}
+
+{% block page-class %}banner-page intro2-browse-games-page intro2-page {% if category %}catalog-slim-banner{% else %}catalog-fat-banner{% endif %}{% endblock %}
+
+{% block content-header %}
+
+  <div class="banner-featured-game">
+    <div class="banner-content">
+    {% if category %}
+      <div class="banner-header"></div>
+      <div id="banner-rotator">
+        {% for featured_game in featured_games %}
+        <a href="{{ featured_game.get_absolute_url }}"{% if featured_game.link_class %} class="{{ featured_game.link_class }}"{% endif %}>
+          <img width="982" height="227" src="{{ featured_game.image.url }}" />
+        </a>
+        {% endfor %}
+      </div>
+      <script type="text/javascript">
+      $(document).ready(function () {
+        $('#banner-rotator').nivoSlider({
+          pauseTime: 8000,
+          directionNav: false,
+          keyboardNav: false,
+          controlNav: true
+        });
+      });
+      </script>
+    {% endif %}
+    </div>
+
+    <div class="banner-carousel">
+      {% include 'partials/wimgw/best_sellers_carousel.html' %}
+    </div>
+
+    <div class="banner-line">
+
+      <div id="banner-line-a">
+        <div id="id_sidebar_subscription">
+          <form method="post" action="">
+            {% csrf_token %}
+            <input type="text" name="email" autocomplete="off"/>
+            <input type="submit" value="Sign Up"/>
+          </form>
+        </div>
+      </div>
+
+      <div id="banner-line-b">
+        <a href="{% url simple-page 'Free-Shipping' %}"><span>Free Shipping</span></a>
+      </div>
+
+      <div id="banner-line-c">
+        <a href="/ESRB/"><span>ESRB</span></a>
+      </div>
+
+    </div>
+
+{% if not category %}
+    <div class="banner-categories">
+      <ul>
+        {% for c in CATALOG_CATEGORIES %}
+        <li id="banner-category-{{ c.0 }}" class="banner-category{% if forloop.last  %} last-item{% endif %}"><a href="{% url catalog:category_sub c.0 %}"{% if category.slug == c.0 %} class="selected"{% endif %}><span>{{ c.1 }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+{% endif %}
+  </div>
+{% endblock content-header %}
+
+{% block content %}
+
+<div id="intro-browse-games-page-content">
+
+
+  <div id="catalog-grid">
+    <div id="catalog-grid-title">
+      <div class="legend">
+        = Pre-Owned Games
+      </div>
+
+      {% include 'catalog/new/partials/paginator.html' %}
+    </div>
+
+    <div id="catalog-grid-content">
+      <ul class="catalog-items{% if not page.object_list %} empty{% endif %}">
+      {% for item in page.object_list %}
+        <li class="catalog-item" id="catalog-item-{{ item.id }}">
+          <div class="catalog-item-record">
+            <div class="catalog-item-cover{% if not item.get_catalog_grid_cover %} empty{% endif %}">
+              <a href="{{ item.get_absolute_url }}" title="{{ item }}">
+              {% if item.get_catalog_grid_cover %}
+                <img src="{{ item.get_cover }}" width="170" height="220" />
+              {% else %}
+                {{ item }}
+              {% endif %}
+              </a>
+            </div>
+            <div class="catalog-item-title">
+              <a href="{{ item.get_absolute_url }}" title="{{ item }}"><span>{{ item.get_cropped_name }}</span></a>
+              <div class="catalog-item-title-overlay"></div>
+            </div>
+            <div class="catalog-item-category">
+              {{ item.category }}
+            </div>
+            <div class="catalog-item-price">
+              <span{% if item.is_pre_owned %} class="pre_owned"{% endif %}>{% if item.get_min_price %}${{ item.get_min_price }}{% else %}--{% endif %}</span>
+            </div>
+            <div class="catalog-item-actions">
+              <a href="{% url cart:add item.id %}{% if item.is_pre_owned %}?is_pre_owned=True{% endif %}" class="link-dialog catalog-item-action-buy" title="Buy">Buy</a>
+              <a href="{% url trade:add item.id %}" class="link-dialog catalog-item-action-trade" title="Trade">Trade</a>
+              <a href="{% url rent:add item.id %}" class="link-dialog catalog-item-action-rent" title="Rent">Rent</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+
+    <div id="catalog-grid-footer">
+      {% include 'catalog/new/partials/paginator.html' %}
+    </div>
+  </div>
+
+  <div id="catalog-sidebar">
+    <div id="catalog-sidebar-filters">
+      <div class="sidebar-block checkbox-block-type-1">
+        <h4>Genres</h4>
+        <ul id="genres-filter">
+          <li{% if not wimgw %} class="checked"{% endif %}><input type="checkbox" class="first" id="genre-all" {% if not wimgw %}checked="checked" {% endif %}/><label for="genre-all">View All <span>({{ all_games_count }})</span></label></li>
+        {% for g in genres %}
+          <li><input name="genre" class="other" type="checkbox" id="genre-{{ g.id }}" /><label for="genre-{{ g.id }}">{{ g.name }} <span>({{ g.item_count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-1">
+        <h4>Date Released</h4>
+        <ul id="years-filter">
+          <li{% if not wimgw %} class="checked"{% endif %}><input type="checkbox" class="first" id="years-all" {% if not wimgw %}checked="checked" {% endif %}/><label for="years-all">View All <span>({{ all_games_count }})</span></label></li>
+        {% for y in years %}
+          <li><input name="year" class="other" type="checkbox" id="year-{{ y.year }}" /><label for="year-{{ y.year }}">{{ y.year }} <span>({{ y.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block checkbox-block-type-2">
+        <h4>User Rating</h4>
+        <ul id="rating-filter">
+        {% for r in ratings %}
+          <li><input name="rating" class="other" type="checkbox" id="rating-{{ r.rating }}" /><label for="rating-{{ r.rating }}">{{ r.rating }} stars <span>({{ r.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-2">
+        <h4>Buy Price</h4>
+        <ul id="price-filter">
+        {% for r in prices %}
+          <li><input name="price" class="other" type="checkbox" id="price-{{ r.price }}" /><label for="price-{{ r.price }}">{{ r.text }} <span>({{ r.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block checkbox-block-type-2">
+        <h4>Trade Values</h4>
+        <ul id="trade-filter">
+        {% for r in trade %}
+          <li><input name="trade" class="other" type="checkbox" id="trade-{{ r.price }}" /><label for="trade-{{ r.price }}">{{ r.text }} {% if r.count %}<span>({{ r.count }})</span>{% endif %}</label></li>
+        {% endfor %}
+          <li><input name="trade" type="checkbox" id="goto-wimgw"/><label for="goto-wimgw">What is My Game Worth?</label></li>
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-2">
+        <h4>Rent Availabilty</h4>
+        <ul id="availability-filter">
+        {% for r in availability %}
+          <li><input name="availability" class="other" type="checkbox" id="availability-{{ r.id }}" /><label for="availability-{{ r.id }}">{{ r.text }} <span>({{ r.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block checkbox-block-type-2">
+        <h4>ESBR Ratings</h4>
+        <ul id="esrb-filter">
+        {% for r in esrb %}
+          <li><input name="esrb" class="other" type="checkbox"
+    id="esrb-{{ r.id }}" /><img src="{% if r.image %}{{ r.image.url }}{% endif %}" height="30" /><label for="esrb-{{ r.id }}"> {{ r.title }} <span>({{ r.item_count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-block alt checkbox-block-type-3">
+        <h4>Coming soon</h4>
+        <ul id="coming-filter">
+        {% for g in coming %}
+          <li><input name="coming" type="checkbox" id="coming-{{ g.id }}" /><label for="coming-{{ g.id }}">{{ g.name }} <span>({{ g.count }})</span></label></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div id="catalog-sidebar-banners">
+      <span id="buySAFE_Kicker" name="buySAFE_Kicker" type="Kicker Guaranteed Ribbon 200x90"></span>
+    </div>
+  </div>
+
+  <div class="clear">&nbsp;</div>
+
+  <div id="offer_msg_buy" class="bottom-message" style="color: #000; padding-bottom: 0">
+  </div>
+
+  <div id="offer_msg_trade" class="bottom-message" style="color: #000">
+  </div>
+
+</div>
+
+{% endblock content %}
+{% block seals-params%}?t=browse{% endblock %}"

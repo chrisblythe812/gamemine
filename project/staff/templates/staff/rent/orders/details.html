@@ -1,0 +1,208 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}
+
+<div style="float: right">
+    {% if can_be_resent or user.is_superuser %}
+    <form method="post" id="resend-form">{% csrf_token %}
+       {{ form.dc.label }} {{ form.dc }} <input type="submit" value="Re-send order" />
+    </form>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $('#resend-form').submit(function () {
+        return confirm('Are you sure you want to re-send the order?\n\nNote: The order will be placed to the list of prepared items.');
+      });
+    });
+    </script>
+    {% endif %}
+</div>
+
+{{ block.super }}
+
+<div class="module general-info">
+  <h2>Barcode ID: {{ order.inventory.barcode }} (<a style="color: #fff" href="{% url staff:page 'Reports/Inventory' %}?q={{ order.inventory.barcode }}" target="_blank">Lookup</a>)</h2>
+
+  <ul>
+    <li>
+      <strong>Member ID:</strong>
+      <a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a>
+      ({{ order.user.get_profile.dropship.code|default:"--" }})
+    </li>
+
+    <li>
+      <strong>Game Title ID:</strong>
+      <a href="{{ order.item.get_absolute_url }}" target="_blank">{{ order.item.short_name }}</a>
+    </li>
+
+    <li>
+      <strong>Game Product ID:</strong>
+      {{ order.item.id }}
+    </li>
+
+    <li>
+      <strong>Game Platform ID:</strong>
+      {{ order.item.category }}
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <strong>Date Prepared</strong>
+      {{ order.date_prepared|date|default:"--" }} {{ order.date_prepared|time }} <br />
+      {% if order.prepared_by %}
+      Prepared by: {{ order.prepared_by.get_profile.get_name_display }} {% if order.prepared_by.get_profile.dc.code %}({{ order.prepared_by.get_profile.dc.code }}){% endif %}
+      {% endif %}
+    </li>
+
+    <li>
+      <strong>Date Shipped</strong>
+      {% if order.date_shipped %}{{ order.date_shipped|date }} {{ order.date_shipped|time }} from {{ order.source_dc.code }}{% else %}--{% endif %}
+    </li>
+
+    <li>
+      <strong>Date Returned</strong>
+      {{ order.date_returned|date|default:"--" }} {{ order.date_returned|time }} <br />
+      {% if order.return_accepted_by %}
+      Accepted by: {{ order.return_accepted_by.get_profile.get_name_display }} {% if order.return_accepted_by.get_profile.dc.code %}({{ order.return_accepted_by.get_profile.dc.code }}){% endif %}
+      {% endif %}
+    </li>
+
+    <li>
+      <a href="{% url staff:rent_labels %}?ids={{ order.id }}" target="_blank">Labels</a>
+    </li>
+
+{% comment %}
+    <li>
+      <strong>Date Delivered</strong>
+      {{ order.date_delivered|date|default:"--" }} {{ order.date_delivered|time }}
+    </li>
+
+    <li>
+      <strong>Date Returned</strong>
+      {{ order.date_shipped_back|date|default:"--" }} {{ order.date_shipped_back|time }}
+    </li>
+
+    <li>
+      <strong>Date Received</strong>
+      {{ order.date_received|date|default:"--" }} {{ order.date_received|time }}
+    </li>
+{% endcomment %}
+
+    {% if order.penalty_payment %}
+    <li>
+      <strong>Penalty Payment</strong>
+      ${{ order.penalty_payment.get_debit_total }}  ({{ order.penalty_payment.payment_method_display2 }} - {{ order.penalty_payment.status_display }})
+      <br /><a href="{% url staff:transaction_details order.penalty_payment.id %}" target="_blank">Details</a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+
+<h1>Mailing Label - PLANET ID: {{ order.outgoing_tracking_number|default:"--" }}</h1>
+
+<p>
+  <strong>Shipping Address:</strong><br />
+  {{ order.shipping_address1 }}<br />
+  {% if order.shipping_address2 %}{{ order.shipping_address2 }}<br />{% endif %}
+  {{ order.shipping_city }} {{ order.shipping_state }}, {{ order.shipping_zip_code }}
+</p>
+
+<div class="module">
+  <h2>Mail Tracking Scans</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Status Code</td>
+        <td>Status Message</td>
+        <td>Date and Time</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for c in order.get_mail_tracking_scan %}
+      <tr>
+        <td>{{ c.code }}</td>
+        <td>{{ c.message }}</td>
+        <td>{{ c.timestamp|date }} {{ c.timestamp|time }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h1>Return Label - PLANET ID: {{ order.incoming_tracking_number|default:"--" }}</h1>
+
+<div class="module">
+  <h2>Mail Tracking Scans</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Status Code</td>
+        <td>Status Message</td>
+        <td>Date and Time</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for c in order.get_return_tracking_scan %}
+      <tr>
+        <td>{{ c.code }}</td>
+        <td>{{ c.message }}</td>
+        <td>{{ c.timestamp|date }} {{ c.timestamp|time }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Event History</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Action</td>
+        <td>Date and Time</td>
+        <td>Comments</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for e in order.events.all %}
+      <tr>
+        <td>{{ e.get_action_display }}</td>
+        <td>{{ e.timestamp|date }} {{ e.timestamp|time }}</td>
+        <td>{{ e.comment|default:"--" }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Claims</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Date and Time</td>
+        <td>Claim</td>
+        <td>Status</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for c in order.list_claims %}
+      <tr class="case-status-{{ c.status }}">
+        <td>{{ c.date|date }} {{ c.date|time }}</td>
+
+        <td>{{ c.get_type_display }}</td>
+        <td>{{ c.get_status_display }}</td>
+        <td><a href="{% url staff:claim_details c.id %}">Details</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock right %}

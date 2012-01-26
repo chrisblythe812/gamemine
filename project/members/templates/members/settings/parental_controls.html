@@ -1,0 +1,80 @@
+{% extends "members/settings/settings.html" %}
+
+{% block page-class %}{{ block.super }} settings-parental-control{% endblock page-class %}
+
+{% block heading %}
+	<li><a href="{% url members:settings_my_systems %}">Consoles Owned</a></li>
+	<li class="selected"><a href="{% url members:settings_parental_controls %}">Parental Controls</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<form method="post" action=".">{% csrf_token %}
+
+<div id="settings-parental-control">
+	<p class="intro">
+		Entertainment Softwrare Rating (ESRB) ratings are designed to provide information about 
+		video and computer game content. ESRB ratings have two parts; rating symbols suggest age 
+		appropriateness for the game, and content descriptors indicate elements in a game that 
+		mat have triggered a particular rating and/or may be of interest or concern.
+	</p>
+
+  <h3>What parental controls would you like set?</h3>
+
+  <ul class="choices">
+    <li id="choice-0">
+      <div class="input"><input type="radio" name="parental_control" value="0"{% if form.initial.parental_control == 0 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Access to All Games</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-1">
+      <div class="input"><input type="radio" name="parental_control" value="1"{% if form.initial.parental_control == 1 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow E, EC Only</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-2">
+      <div class="input"><input type="radio" name="parental_control" value="2"{% if form.initial.parental_control == 2 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow E10+, E, EC Only</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-3">
+      <div class="input"><input type="radio" name="parental_control" value="3"{% if form.initial.parental_control == 3 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow T, E10+, E, EC Only</div>
+      <div class="image"></div>
+    </li>
+    <li id="choice-4">
+      <div class="input"><input type="radio" name="parental_control" value="4"{% if form.initial.parental_control == 4 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow EC Only</div>
+      <div class="image"></div>
+    </li>
+  </ul>
+
+	<div class="links">
+		<a href="http://www.esrb.org/ratings/ratings_guide.jsp" target="_blank">View ESRB Game Ratings</a>
+	</div>
+
+  <h3>User reviews</h3>
+  <ul class="choices choices-2">
+    <li>
+      <div class="input"><input type="radio" name="parental_control_reviews" value="0"{% if form.initial.parental_control_reviews == 0 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Reading/Writing All User Reviews</div>
+    </li>
+    <li>
+      <div class="input"><input type="radio" name="parental_control_reviews" value="1"{% if form.initial.parental_control_reviews == 1 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Reading User Reviews Only</div>
+    </li>
+    <li>
+      <div class="input"><input type="radio" name="parental_control_reviews" value="2"{% if form.initial.parental_control_reviews == 2 %} checked="checked"{% endif %} /></div>
+      <div class="label">Allow Reading/Writing User Reviews Bases on My Game and Movie Settings</div>
+    </li>
+  </ul>
+	
+	<div class="actions">
+       <input type="submit" class="cancel-button" name="action" value="Cancel" />
+	   <input type="submit" class="save-button" name="action" value="Save" />
+	</div>
+</div>
+
+</form>
+
+{% endblock page-content %}

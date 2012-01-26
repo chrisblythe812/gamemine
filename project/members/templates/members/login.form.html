@@ -1,0 +1,29 @@
+<form method="post" action="{% url members:login %}" class="simple">
+	{% csrf_token %}
+	{{ form.next }}
+	
+	{% include "partials/form_errors.html" %}
+
+	<div class="input-field">
+		<label for="id_email">{{ form.email.label }}</label> {{ form.email }}
+		{{ form.email.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_password">{{ form.password.label }}</label> {{ form.password }}
+		{{ form.password.errors }}
+	</div>
+
+	<div class="checkbox-field">
+		{{ form.remember }} <label for="id_remember">{{ form.remember.label }}</label> 
+	</div>
+
+	<div class="checkbox-field" id="forgot-password-div">
+		<a href="{% url members:amnesia %}">Forgot Password?</a> 
+	</div>
+
+	<p class="form-actions">
+		<a class="cancel-button" href="{% url index %}">Cancel</a>
+		<input type="submit" value="Continue" class="login-button" />
+	</p>
+</form>

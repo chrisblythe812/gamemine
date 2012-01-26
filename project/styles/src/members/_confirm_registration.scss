@@ -1,0 +1,30 @@
+@mixin debug {
+//    background-color: rgba(255, 255, 0, .3);
+}
+
+.confirm-registration {
+    #confirm-registration-content {
+        @include debug;
+        margin: 40px 250px;
+        color: #333;
+        
+        .side1 {
+        
+        }
+        
+        .side2 {
+            h2 {
+                line-height: 32px;
+                height: 32px;
+                background: left center url($images_url + 'profile/verify_email_check.png') no-repeat;
+                padding-left: 40px;
+                margin-bottom: 30px !important;
+            }
+                
+            .actions {
+                padding-top: 30px;
+                text-align: center;
+            } 
+        }
+    }
+}

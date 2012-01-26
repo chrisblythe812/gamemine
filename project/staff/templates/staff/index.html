@@ -1,0 +1,14 @@
+{% extends "staff/base.html" %}
+
+{% block content %}
+<div id="wrapper">
+  <div id="sidebar">
+    {% block menu %}{% endblock %}
+  </div>
+  <div id="content">
+    {% block right %}{% endblock %}
+  </div>
+  <div class="clear"></div>
+</div>
+{% endblock %}
+

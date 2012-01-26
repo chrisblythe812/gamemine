@@ -1,0 +1,91 @@
+<form action="{% url cart:add item.id %}" method="post" id="cart-add-form">{% csrf_token %}
+	<div class="boxed" id="cart-add-form-hint">
+		<h2>Purchased Games:</h2>
+		<ul>
+			<li>Standard Shipping is always Free (USPS).</li>
+			<li>Usually Ships in 24 Hours.</li>
+			<li>Ships to U.S. Addresses Only.</li>
+			{% if not item.is_prereleased_game %}
+			<li>Used Games are pre-inspected and may includes manual and original case.</li>
+			{% endif %}
+			<li>Pre-Order low price is guaranteed if the price drops before the release date.</li>
+		</ul>
+	</div>
+
+	<ul id="cart-add-choices">
+		<li id="cart-add-new">
+			<div class="choice">
+				<input type="radio" name="condition" value="new" id="id_condition_new"{% if not check_used_by_default %} checked="checked"{% endif %}{% if item.available_for_selling_n %} class="item-in-stock"{% endif %} />
+                <label for="id_condition_new">New Game
+                {% if not item.is_prereleased_game %}
+				    {% if item.available_for_selling_n %}<span class="in-stock">(In Stock)</span>{% else %}<span class="out-of-stock">(Out of Stock)</span>{% endif %}
+		        {% else %}
+				    <span class="prereleased">(Ships {{ item.release_date|date }})</span>
+		        {% endif %}
+				</label>
+			</div>
+			<div class="price">
+      {% comment %}
+				Price <span>{% if item.available_for_selling_n %}${{ item.retail_price_new|floatformat:2 }}{% else %}--{% endif %}</span>
+      {% endcomment %}
+        Price <span>{% if item.retail_price_new %}${{ item.retail_price_new|floatformat:2 }}{% else %}--{% endif %}</span>
+			</div>
+		</li>
+		{% if not item.is_prereleased_game %}
+		<li id="cart-add-used">
+			<div class="choice">
+				<input type="radio" name="condition" value="used" id="id_condition_used"{% if check_used_by_default %} checked="checked"{% endif %}{% if item.available_for_selling_u %} class="item-in-stock"{% endif %} />
+				<label for="id_condition_used">Used Game {% if item.available_for_selling_u %}<span class="in-stock">(In Stock)</span>{% else %}<span class="out-of-stock">(Out of Stock)</span>{% endif %}</label>
+			</div>
+			<div class="price">
+      {% comment %}
+				Price <span>{% if item.available_for_selling_u %}${{ item.retail_price_used|floatformat:2 }}{% else %}--{% endif %}</span>
+      {% endcomment %}
+        Price <span>{% if item.retail_price_used %}${{ item.retail_price_used|floatformat:2 }}{% else %}--{% endif %}</span>
+			</div>
+		</li>
+		{% endif %}
+	</ul>
+
+	<div class="actions">
+		<div class="right">
+			<div class="right">
+				<input type="hidden" name="submit" value=""/>
+				<input type="submit" value="list" class="save-to-list-button" />
+                <input type="submit" value="cart" class="add-to-cart-button" />
+				<input type="submit" value="buy-alert" class="buy-alert-button" />
+			</div>
+		</div>
+    <a href="#" class="dialog-close-button back-button-block">Back</a>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('input[type=submit]').click(function(){
+			$('input[name=submit]').val($(this).val());
+			return true;
+		});
+
+		$('#cart-add-choices input[type=radio]').each(function () {
+			function updateBuyAlert(radioButton) {
+				if (radioButton.hasClass('item-in-stock')) {
+                    $('#cart-add-form input[value=cart]').show();
+                    $('#cart-add-form input[value=buy-alert]').hide();
+				}
+				else {
+                    $('#cart-add-form input[value=cart]').hide();
+                    $('#cart-add-form input[value=buy-alert]').show();
+				}
+			}
+            var r = $(this);
+			if (r.attr('checked')) {
+				updateBuyAlert(r);
+			}
+	        r.click(function () {
+                updateBuyAlert(r);
+	        });
+		});
+	});
+	</script>
+</form>
+

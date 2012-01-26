@@ -1,0 +1,18 @@
+{% extends "members/account/base.html" %}
+
+{% block content %}
+
+<ul class="heading">
+	{% block heading %}{% endblock heading %}
+	<li class="heading-details">
+		{% if user.is_authenticated %}
+		Store Credits: <strong>${{ user.get_profile.unlocked_store_credits|default:"0.00" }}</strong> <span class="separator">|</span>
+		Pending Credits: <strong>${{ user.get_profile.get_pending_credits|default:"0.00" }}</strong> <span class="separator">|</span>
+        <a href="{% url members:report_problems %}">Report Problem</a>
+		{% endif %}
+	</li>
+</ul>
+
+{% block page-content %}{% endblock page-content %}
+
+{% endblock content %}

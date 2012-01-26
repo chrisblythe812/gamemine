@@ -1,0 +1,22 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <form method="post">{% csrf_token %}
+    {{ formset.management_form }}
+    <div>
+      {% for form in formset.forms %}
+      <h3>{{ form.instance }}</h3>
+      <table style="width: 150px">
+        {{ form }}
+      </table>
+      {% endfor %}
+    </div>
+    <div class="actions">
+       <input type="submit" value="Save" />
+    </div>
+  </form>
+</div>
+
+{% endblock right %}

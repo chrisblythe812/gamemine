@@ -1,0 +1,38 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Dear {{ user.first_name|default:user.username }},</p>
+
+<p>This is to notify you that the recent video game we received on your account could not be 
+  processed because it was not the game sent to you by the Gamemine Distribution Center.</p>
+
+<p>Your account has temporarily been placed on hold until this issues is resolved.</p>
+
+<p>Below are the games you still have rented on your account:</p>
+
+<table>
+  <tr>
+    <th>Mailed Date</th>
+    <th>Game Title</th>
+  </tr>
+  {% for o in orders %}
+  <tr>
+    <th>{{ o.date_shipped|date }}</th>
+    <th>{{ o.item }} ({{ o.item.category }})</th>
+  </tr>
+  {% endfor %}
+</table>
+
+<p>Once the correct Gamemine game has been returned to the Distribution Center, the account hold 
+  will be removed automatically.</p>
+
+<p>If you have any questions at all, please give Customer Service a
+  call at
+  {% include "emails/includes/phone_number.html" %}
+  Monday thru Saturday 11AM to 5PM EST.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}
+

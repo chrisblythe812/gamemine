@@ -1,0 +1,78 @@
+{% extends "members/account/account.html" %}
+
+{% block heading %}
+	<li class="selected"><a href="{% url members:name_and_address %}">Name and Address</a></li>
+	<li><a href="{% url members:payment_method %}">Payment Method</a></li>
+	<li><a href="{% url members:login_and_password %}">Login/Password</a></li>
+	<li><a href="{% url members:billing_history %}">Billing History</a></li>
+	<li><a href="{% url members:report_problems %}">Report Problem</a></li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<p class="center">Please note that your address will be <a href="#">formatted</a> and validated according to US Postal Service standards.</p>
+
+<form method="post" action="." class="simple440">
+	{% csrf_token %}
+
+  {% if form.correction_warning %}
+    <div class="autoboxed boxed information" style="margin-bottom: 30px;">
+        <div class="title">Your name and your address have been formatted according to US Postal standards.</div>
+    </div>
+  {% else %}
+    {% include "partials/form_errors.html" %}
+  {% endif %}
+
+	<div class="input-field">
+		<label for="id_first_name">{{ form.first_name.label }}</label> {{ form.first_name }}
+		{{ form.first_name.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_last_name">{{ form.last_name.label }}</label> {{ form.last_name }}
+		{{ form.last_name.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_phone_number">{{ form.phone_number.label }}</label> {{ form.phone_number }}
+		{{ form.phone_number.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_address1_name">{{ form.address1.label }}</label> {{ form.address1 }}
+		{{ form.address1.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_address2_name">{{ form.address2.label }}</label> {{ form.address2 }}
+		{{ form.address2.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_city_name">{{ form.city.label }}</label> {{ form.city }}
+		{{ form.city.errors }}
+	</div>
+
+	<div class="input-field">
+		<label for="id_state_name">{{ form.state.label }}</label> {{ form.state }}
+		{{ form.state.errors }}
+	</div>
+
+	<div class="input-field zip-code-field">
+		<label for="id_zip_code_name">{{ form.zip_code.label }}</label> {{ form.zip_code }}
+		{{ form.zip_code.errors }}
+	</div>
+
+	<p class="form-actions">
+		<a class="cancel-button" href="{% url index %}">Cancel</a>
+		<input type="submit" value="Save" class="save-button" />
+	</p>
+</form>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('select').setupSelect('w179px');
+  });
+</script>
+
+{% endblock page-content %}

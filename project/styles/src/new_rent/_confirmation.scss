@@ -1,0 +1,21 @@
+.rent-confirmation-page {
+  #rent-confirmation-page-title {
+    background: url($images_url + "content-header.png") no-repeat;
+    height: 20px;
+    width: 1006px;
+  }
+
+  .acc_summary_pic {
+      width: 860px;
+      height: 135px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto 40px;
+      background: 0 0 no-repeat;
+      margin-left: -150px;
+  }
+
+  #content h1 {
+      font-size: 22px !important;
+  }
+}

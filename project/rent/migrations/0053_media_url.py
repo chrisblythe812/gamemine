@@ -1,0 +1,420 @@
+# encoding: utf-8
+import datetime
+from south.db import db
+from south.v2 import DataMigration
+from django.db import models
+
+from project.utils.migrations import migrate_media_field_forwards, \
+    migrate_media_field_backwards
+from project.rent.models import RentOrder
+
+
+class Migration(DataMigration):
+    def forwards(self, orm):
+        migrate_media_field_forwards(RentOrder, "incoming_mail_label")
+        migrate_media_field_forwards(RentOrder, "outgoing_mail_label")
+
+    def backwards(self, orm):
+        migrate_media_field_backwards(RentOrder, "incoming_mail_label")
+        migrate_media_field_backwards(RentOrder, "outgoing_mail_label")
+
+    models = {
+        'auth.group': {
+            'Meta': {'object_name': 'Group'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
+            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
+        },
+        'auth.permission': {
+            'Meta': {'ordering': "('content_type__app_label', 'content_type__model', 'codename')", 'unique_together': "(('content_type', 'codename'),)", 'object_name': 'Permission'},
+            'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+        },
+        'auth.user': {
+            'Meta': {'object_name': 'User'},
+            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
+            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Group']", 'symmetrical': 'False', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
+            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
+            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
+            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
+        },
+        'catalog.category': {
+            'Meta': {'ordering': "['ordering', 'id']", 'object_name': 'Category'},
+            'active': ('django.db.models.fields.BooleanField', [], {'default': 'True', 'db_index': 'True'}),
+            'bid': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'game_weight': ('django.db.models.fields.DecimalField', [], {'default': "'6.0'", 'max_digits': '5', 'decimal_places': '1'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'meta_description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'meta_keywords': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'meta_title': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
+            'ordering': ('django.db.models.fields.SmallIntegerField', [], {'default': '0', 'null': 'True', 'db_index': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Type']"})
+        },
+        'catalog.game': {
+            'Meta': {'ordering': "['id']", 'object_name': 'Game'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100', 'db_index': 'True'})
+        },
+        'catalog.genre': {
+            'Meta': {'ordering': "['type', 'ordering', 'name']", 'unique_together': "(('name', 'type'),)", 'object_name': 'Genre'},
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'}),
+            'ordering': ('django.db.models.fields.SmallIntegerField', [], {'null': 'True', 'db_index': 'True'}),
+            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Type']", 'null': 'True', 'blank': 'True'})
+        },
+        'catalog.item': {
+            'Meta': {'ordering': "['name']", 'object_name': 'Item'},
+            'active': ('django.db.models.fields.BooleanField', [], {'default': 'True', 'db_index': 'True'}),
+            'base_retail_price_new': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '10', 'decimal_places': '2'}),
+            'base_retail_price_used': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '10', 'decimal_places': '2'}),
+            'base_trade_price': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '10', 'decimal_places': '2'}),
+            'bre_id': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'db_index': 'True'}),
+            'bsid': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'db_index': 'True'}),
+            'category': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'items'", 'to': "orm['catalog.Category']"}),
+            'description': ('django.db.models.fields.TextField', [], {}),
+            'details_page_views': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'game': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Game']", 'null': 'True'}),
+            'game_weight': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '2'}),
+            'genre_list': ('django.db.models.fields.CharField', [], {'max_length': '1024', 'null': 'True', 'db_index': 'True'}),
+            'genres': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['catalog.Genre']", 'null': 'True', 'symmetrical': 'False'}),
+            'hot_trade': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'ingram_code': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'db_index': 'True'}),
+            'muze_cache': ('django_snippets.thirdparty.models.json_field.JSONField', [], {'null': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'}),
+            'number_of_online_players': ('django.db.models.fields.SmallIntegerField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'number_of_players': ('django.db.models.fields.SmallIntegerField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'pre_owned': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'prebook_date': ('django.db.models.fields.DateField', [], {'null': 'True'}),
+            'publisher': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Publisher']", 'null': 'True'}),
+            'rating': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Rating']", 'null': 'True'}),
+            'ratio': ('django.db.models.fields.FloatField', [], {'default': '0', 'db_index': 'True'}),
+            'release_date': ('django.db.models.fields.DateField', [], {'null': 'True', 'db_index': 'True'}),
+            'rent_amount': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'rent_flag': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'rent_status': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'retail_price_new': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '10', 'decimal_places': '2', 'db_index': 'True'}),
+            'retail_price_used': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '10', 'decimal_places': '2'}),
+            'short_name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255', 'db_index': 'True'}),
+            'sold_amount': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'tag_list': ('django.db.models.fields.CharField', [], {'max_length': '1024', 'null': 'True', 'db_index': 'True'}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['catalog.Tag']", 'null': 'True', 'symmetrical': 'False'}),
+            'top_rental': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'trade_amount': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'trade_flag': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'trade_price': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '10', 'decimal_places': '2', 'db_index': 'True'}),
+            'trade_price_incomplete': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '10', 'decimal_places': '2'}),
+            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Type']", 'null': 'True'}),
+            'upc': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'votes': ('django_snippets.thirdparty.models.json_field.JSONField', [], {'null': 'True'})
+        },
+        'catalog.publisher': {
+            'Meta': {'ordering': "['id']", 'unique_together': "(('name', 'type'),)", 'object_name': 'Publisher'},
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '150', 'db_index': 'True'}),
+            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Type']", 'null': 'True', 'blank': 'True'}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
+        },
+        'catalog.rating': {
+            'Meta': {'ordering': "['type', 'title']", 'unique_together': "(('type', 'title'),)", 'object_name': 'Rating'},
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'esrb_symbol': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '20', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Type']"})
+        },
+        'catalog.tag': {
+            'Meta': {'ordering': "['name']", 'object_name': 'Tag'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'})
+        },
+        'catalog.type': {
+            'Meta': {'ordering': "['id']", 'object_name': 'Type'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'}),
+            'plural_name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'})
+        },
+        'claims.claim': {
+            'Meta': {'ordering': "['date']", 'object_name': 'Claim'},
+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
+            'date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'imported': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'object_id': ('django.db.models.fields.PositiveIntegerField', [], {}),
+            'old_claim_id': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
+            'sphere_of_claim': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'tmp_processed': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
+            'type': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'})
+        },
+        'contenttypes.contenttype': {
+            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
+            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
+        'inventory.distributor': {
+            'Meta': {'object_name': 'Distributor'},
+            'address': ('django.db.models.fields.TextField', [], {}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'new_games_vendor': ('django.db.models.fields.BooleanField', [], {'default': 'True'})
+        },
+        'inventory.dropship': {
+            'Meta': {'object_name': 'Dropship'},
+            'address': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'bid': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'city': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'code': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
+            'enable_for_rent': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'label_sizes': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'lat': ('django.db.models.fields.FloatField', [], {'null': 'True'}),
+            'lon': ('django.db.models.fields.FloatField', [], {'null': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'postal_code': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'printers': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'state': ('django.db.models.fields.CharField', [], {'max_length': '2'})
+        },
+        'inventory.inventory': {
+            'Meta': {'object_name': 'Inventory'},
+            'added_at_manual_check': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'barcode': ('django.db.models.fields.CharField', [], {'max_length': '100', 'unique': 'True', 'null': 'True', 'blank': 'True'}),
+            'buy_only': ('django.db.models.fields.NullBooleanField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'dropship': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['inventory.Dropship']", 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_new': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'item': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Item']", 'null': 'True'}),
+            'manual_check_discarded': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'manual_checked': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'manual_checked_dc': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'manual_checked'", 'null': 'True', 'to': "orm['inventory.Dropship']"}),
+            'not_expected_to_return': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'purchase_item': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['inventory.PurchaseItem']", 'null': 'True', 'blank': 'True'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'tmp_new_dc_code_aproved': ('django.db.models.fields.NullBooleanField', [], {'null': 'True', 'blank': 'True'}),
+            'tmp_saved_dc_code': ('django.db.models.fields.CharField', [], {'max_length': '2', 'null': 'True'})
+        },
+        'inventory.purchase': {
+            'Meta': {'object_name': 'Purchase'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True'}),
+            'distributor': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['inventory.Distributor']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_new': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'})
+        },
+        'inventory.purchaseitem': {
+            'Meta': {'object_name': 'PurchaseItem'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'item': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Item']"}),
+            'purchase': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'items'", 'to': "orm['inventory.Purchase']"}),
+            'quantity': ('django.db.models.fields.IntegerField', [], {})
+        },
+        'members.billinghistory': {
+            'Meta': {'ordering': "['-timestamp']", 'object_name': 'BillingHistory'},
+            'aim_response': ('django_snippets.models.blowfish_field.BlowfishField', [], {'null': 'True'}),
+            'aim_transaction_id': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
+            'applied_credits': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '12', 'decimal_places': '2'}),
+            'card_data': ('django_snippets.models.blowfish_field.BlowfishField', [], {'null': 'True'}),
+            'credit': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '12', 'decimal_places': '2'}),
+            'debit': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '12', 'decimal_places': '2'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '512'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'message': ('django.db.models.fields.CharField', [], {'max_length': '1024', 'null': 'True'}),
+            'payment_method': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
+            'reason': ('django.db.models.fields.CharField', [], {'max_length': '32', 'null': 'True'}),
+            'refered_transaction': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['members.BillingHistory']", 'null': 'True'}),
+            'setted': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'tax': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'null': 'True', 'max_digits': '12', 'decimal_places': '2'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'}),
+            'type': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'})
+        },
+        'rent.allocationfactor': {
+            'Meta': {'object_name': 'AllocationFactor'},
+            'key': ('django.db.models.fields.CharField', [], {'max_length': '50', 'primary_key': 'True'}),
+            'value': ('django.db.models.fields.IntegerField', [], {'default': '0', 'blank': 'True'})
+        },
+        'rent.cancellationreason': {
+            'Meta': {'object_name': 'CancellationReason'},
+            'confirmation_code': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'db_index': 'True'}),
+            'confirmation_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
+            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_confirmed': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'moving_traveling': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'not_enough_variety_of_games': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'notes': ('django.db.models.fields.TextField', [], {}),
+            'only_signed_up_for_promotion': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'plan': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
+            'poor_customer_service': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'poor_inventory_availability': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'service_costs_too_much': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'shipping_to_slow': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'switching_to_another_service': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'too_many_shipping_problems': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'}),
+            'website_is_not_user_friendly': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
+        },
+        'rent.memberrentalplan': {
+            'Meta': {'ordering': "['-created']", 'object_name': 'MemberRentalPlan'},
+            'cancel_confirmation_code': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'db_index': 'True'}),
+            'cancel_confirmation_timestamp': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
+            'cancellation_date': ('django.db.models.fields.DateField', [], {'null': 'True', 'db_index': 'True'}),
+            'card_expired': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'delinquent_amout': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '12', 'decimal_places': '2', 'blank': 'True'}),
+            'delinquent_next_check': ('django.db.models.fields.DateField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'delinquent_tax': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '12', 'decimal_places': '2', 'blank': 'True'}),
+            'downgraded_plan': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'expiration_date': ('django.db.models.fields.DateField', [], {'null': 'True'}),
+            'first_payment': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['members.BillingHistory']", 'null': 'True'}),
+            'hold_reactivate_timestamp': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
+            'hold_start_timestamp': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'next_payment_amount': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '12', 'decimal_places': '2', 'blank': 'True'}),
+            'next_payment_date': ('django.db.models.fields.DateField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'payment_fails_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'plan': ('django.db.models.fields.IntegerField', [], {}),
+            'restored_from_history': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'scheduled_plan': ('django.db.models.fields.SmallIntegerField', [], {'null': 'True'}),
+            'start_date': ('django.db.models.fields.DateField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'status_message': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '1024', 'blank': 'True'}),
+            'suspend_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'})
+        },
+        'rent.memberrentalplanhistory': {
+            'Meta': {'object_name': 'MemberRentalPlanHistory'},
+            'finish_date': ('django.db.models.fields.DateField', [], {'default': 'datetime.datetime.now'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'plan': ('django.db.models.fields.IntegerField', [], {}),
+            'start_date': ('django.db.models.fields.DateField', [], {}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'rent.rentalplan': {
+            'Meta': {'ordering': "['plan']", 'object_name': 'RentalPlan'},
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'expire_in': ('django.db.models.fields.IntegerField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
+            'first_month': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '2', 'blank': 'True'}),
+            'games_allowed': ('django.db.models.fields.IntegerField', [], {'default': '2'}),
+            'months': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'plan': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'}),
+            'store_credits': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'max_digits': '10', 'decimal_places': '2', 'blank': 'True'}),
+            'thereafter_months': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '2', 'blank': 'True'})
+        },
+        'rent.rentlist': {
+            'Meta': {'ordering': "['order', 'added']", 'object_name': 'RentList'},
+            'added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'item': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Item']"}),
+            'notes': ('django.db.models.fields.TextField', [], {'default': "''"}),
+            'order': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'session_id': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'db_index': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'}),
+            'weight': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'})
+        },
+        'rent.rentorder': {
+            'Meta': {'ordering': "['-date_rent']", 'object_name': 'RentOrder'},
+            'date_delivered': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'date_prepared': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'date_rent': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'}),
+            'date_returned': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'date_shipped': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'date_shipped_back': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
+            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'incoming_endicia_data': ('django_snippets.thirdparty.models.json_field.JSONField', [], {'null': 'True'}),
+            'incoming_mail_label': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
+            'incoming_tracking_number': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
+            'incoming_tracking_scans': ('django_snippets.thirdparty.models.json_field.JSONField', [], {'null': 'True'}),
+            'inventory': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['inventory.Inventory']", 'null': 'True', 'blank': 'True'}),
+            'item': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['catalog.Item']"}),
+            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
+            'list_item': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'rent_order'", 'unique': 'True', 'null': 'True', 'to': "orm['rent.RentList']"}),
+            'map': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
+            'next_penalty_check': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
+            'outgoing_endicia_data': ('django_snippets.thirdparty.models.json_field.JSONField', [], {'null': 'True'}),
+            'outgoing_mail_label': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
+            'outgoing_tracking_number': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
+            'outgoing_tracking_scans': ('django_snippets.thirdparty.models.json_field.JSONField', [], {'null': 'True'}),
+            'penalty_payment': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['members.BillingHistory']", 'unique': 'True', 'null': 'True'}),
+            'prepared_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'prepared_games'", 'null': 'True', 'to': "orm['auth.User']"}),
+            'return_accepted_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'return_accepted_games'", 'null': 'True', 'to': "orm['auth.User']"}),
+            'returned_to_dc': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'returns'", 'null': 'True', 'to': "orm['inventory.Dropship']"}),
+            'scanned_in_route': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'shipped_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'shipped_rent_orders'", 'null': 'True', 'to': "orm['auth.User']"}),
+            'shipping_address1': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True'}),
+            'shipping_address2': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'shipping_city': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True'}),
+            'shipping_county': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True'}),
+            'shipping_state': ('django.db.models.fields.CharField', [], {'max_length': '2', 'null': 'True'}),
+            'shipping_zip_code': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True'}),
+            'source_dc': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['inventory.Dropship']", 'null': 'True', 'blank': 'True'}),
+            'speed_2x': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'status_message': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '512'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'rent.rentorderevent': {
+            'Meta': {'ordering': "['timestamp']", 'object_name': 'RentOrderEvent'},
+            'action': ('django.db.models.fields.CharField', [], {'max_length': '256', 'null': 'True'}),
+            'claim': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['claims.Claim']", 'null': 'True'}),
+            'comment': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'order': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'events'", 'to': "orm['rent.RentOrder']"}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'})
+        },
+        'rent.rentorderpoll': {
+            'Meta': {'object_name': 'RentOrderPoll'},
+            'game_broken': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'game_missing': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'game_unplayable': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_damaged': ('django.db.models.fields.NullBooleanField', [], {'null': 'True', 'blank': 'True'}),
+            'message': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'order': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'return_poll'", 'unique': 'True', 'to': "orm['rent.RentOrder']"}),
+            'received_match_shipped': ('django.db.models.fields.NullBooleanField', [], {'null': 'True', 'blank': 'True'}),
+            'returned_personal_game': ('django.db.models.fields.NullBooleanField', [], {'null': 'True', 'blank': 'True'})
+        },
+        'rent.rentplancancellationreason': {
+            'Meta': {'object_name': 'RentPlanCancellationReason'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'moving_traveling': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'not_enough_variety_of_games': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'notes': ('django.db.models.fields.TextField', [], {'default': "''"}),
+            'only_signed_up_for_promotion': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'plan': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
+            'poor_customer_service': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'poor_inventory_availability': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'service_costs_too_much': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'shipping_to_slow': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'switching_to_another_service': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'db_index': 'True'}),
+            'too_many_shipping_problems': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'website_is_not_user_friendly': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'db_index': 'True'})
+        }
+    }
+
+    complete_apps = ['rent']

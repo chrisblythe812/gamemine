@@ -1,0 +1,146 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module" style="height: 300px">
+  <dl>
+    <dt>Customer:</dt>
+    <dd><a href="{% url staff:customer_view claim.user.id %}" target="_blank">{{ claim.user.get_profile.get_name_display }}</a></dd>
+
+    <dt>Issue:</dt>
+    <dd>{{ claim.get_title }}</dd>
+
+    <dt>Date Reported:</dt>
+    <dd>{{ claim.date|date }}</dd>
+
+    <dt>Status:</dt>
+    <dd>
+      <form action="." method="post">{% csrf_token %}
+        {{ status_form.status }}
+        <script type="text/javascript">
+        $(document).ready(function () {
+          $('#id_status').change(function () {
+            $(this).parents('form').submit();
+          });
+        });
+        </script>
+      </form>
+    </dd>
+
+{% if claim.type == 0 or claim.type == 1 or claim.type == 2 or claim.type == 3 or claim.type == 4 %}
+    <dt>Order:</dt>
+    <dd><a href="{% url staff:rent_order_details claim.claim_object.id %}" target="_blank">{{ claim.claim_object.order_no }}</a> (Shipped: {{ claim.claim_object.date_shipped|date }})</dd>
+
+    <dt>Title:</dt>
+    <dd><a href="{{ claim.claim_object.item.get_absolute_url }}" target="_blank">{{ claim.claim_object.item }}</a></dd>
+
+    <dt>Platform:</dt>
+    <dd>{{ claim.claim_object.item.category }}</dd>
+
+    <dt>UPC:</dt>
+    <dd>{{ claim.claim_object.item.upc }}</dd>
+{% endif %}
+
+{% if claim.type == 0 %}
+    <dt>Damages:</dt>
+    <dd>{{ claim.get_damages_display|default:"--" }}</dd>
+{% endif %}
+
+{% if claim.type == 1 %}
+    <dt>Not on Rent List:</dt>
+    <dd>{{ claim.game_not_in_list|yesno:"YES,NO" }}</dd>
+
+    <dt>Not match the sleeve:</dt>
+    <dd>{{ claim.game_not_match_white_sleeve|yesno:"YES,NO" }}</dd>
+{% endif %}
+
+{% if claim.type == 2 %}
+    <dt>Shipping Address:</dt>
+    <dd>
+      {{ claim.first_name }} {{ claim.last_name }} <br />
+      {{ claim.shipping_address1 }} <br />
+      {% if claim.shipping_address2 %}{{ claim.shipping_address2 }} <br />{% endif %}
+      {{ claim.shipping_city }}, {{ claim.shipping_state }} {{ claim.shipping_zip_code }}
+    </dd>
+{% endif %}
+
+{% if claim.type == 3 %}
+    <dt>Comment:</dt>
+    <dd>{{ claim.comment|default:"--" }}</dd>
+{% endif %}
+
+{% if claim.type == 4 %}
+    <dt>Mailed Date:</dt>
+    <dd>{{ claim.mailed_date|date|default:"--" }}</dd>
+{% endif %}
+
+{% if claim.type == 5 or claim.type == 6 %}
+    <dt>Order:</dt>
+    <dd><a href="{% url staff:trade_order_details claim.claim_object.order.id %}" target="_blank">{{ claim.claim_object.order.order_no }}</a> (Date: {{ claim.claim_object.order.create_date|date }})</dd>
+
+    <dt>Title:</dt>
+    <dd><a href="{{ claim.claim_object.item.get_absolute_url }}" target="_blank">{{ claim.claim_object.item }}</a></dd>
+
+    <dt>Platform:</dt>
+    <dd>{{ claim.claim_object.item.category }}</dd>
+
+    <dt>UPC:</dt>
+    <dd>{{ claim.claim_object.item.upc }}</dd>
+{% endif %}
+
+{% if claim.type == 5 %}
+    <dt>Service:</dt>
+    <dd>{{ claim.get_service_display }}</dd>
+
+    <dt>Tracking No:</dt>
+    <dd>{{ claim.tracking_number }}</dd>
+{% endif %}
+{% if claim.type == 6 %}
+    <dt>Received Credits:</dt>
+    <dd>${{ claim.received }}</dd>
+
+    <dt>Expected Cedits:</dt>
+    <dd>${{ claim.expected }}</dd>
+{% endif %}
+  </dl>
+</div>
+
+{% if replies %}
+<div class="module replies-list">
+  <h2>Replies</h2>
+  <table>
+    <thead>
+     <tr>
+       <td>Date</td>
+       <td>Status</td>
+       <td>E-mail</td>
+       <td>Message</td>
+     </tr>
+    </thead>
+    <tbody>
+  {% for r in replies %}
+     <tr>
+       <td>{{ r.timestamp|date }} {{ r.timestamp|time }}</td>
+       <td>{{ r.get_status_display }}</td>
+       <td>{{ r.mailed_to }}</td>
+       <td>{{ r.message|linebreaksbr }}</td>
+     </tr>
+  {% endfor %}
+    <tbody>
+  </table>
+</div>
+{% endif %}
+
+<div class="module">
+  <h2>Send reply</h2>
+  <form action="{% url staff:reply_to_claim claim.id %}" method="post">{% csrf_token %}
+  <table>
+    {{ reply_form.as_table }}
+    <tr>
+      <th>&nbsp;</th><td><input type="submit" /></td>
+    </tr>
+  </table>
+  </form>
+</div>
+
+{% endblock right %}

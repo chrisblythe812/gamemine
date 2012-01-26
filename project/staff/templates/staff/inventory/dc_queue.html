@@ -1,0 +1,55 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>DC Queue</h2>
+
+  {% if dcs %}  
+  <div id="id_inventory_filter">
+    <strong>DC:</strong>
+    <ul>
+    {% for dc in dcs %}
+      <li><a href="{% url staff:page 'Inventory/DC-Queue' %}?dc={{ dc.code }}">{{ dc.code }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Platform</th>
+        <th>Publisher</th>
+        <th>Release Date</th>
+        <th>Total Count</th>
+        <th>In Stock Count</th>
+        <th>Entries</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.short_name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.publisher }}</td>
+        <td>{{ item.release_date }}</td>
+        <td>{{ item.total_count }}</td>
+        <td>{{ item.instock_count }}</td>
+        <td><a class="entries" href="{% url staff:entries dc.code item.id %}">Entries</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $('a.entries').colorbox();
+	});
+</script>
+
+{% endblock right %}

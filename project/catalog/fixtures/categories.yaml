@@ -1,0 +1,176 @@
+- fields:
+    active: true
+    bid: '1'
+    description: Xbox 360
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Microsoft Xbox 360 Video Games at
+      affordable prices in one place all the time! New & Used
+    meta_keywords: Microsoft Xbox 360, video games, game rental, used games, buy video
+      games, video game rental, trade video games, rent video games, game rental online,
+      preowned games, game rentals, buy used games, trade used games, rent games online,
+      video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: XBOX 360
+    ordering: 1
+    slug: Xbox-360-Games
+    type: 1
+  model: catalog.category
+  pk: 1
+- fields:
+    active: true
+    bid: '2'
+    description: Xbox
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Microsoft Xbox Video Games at affordable
+      prices in one place all the time! New & Used
+    meta_keywords: Microsoft Xbox, Xbox, video games, game rental, used games, buy
+      video games, video game rental, trade video games, rent video games, game rental
+      online, preowned games, game rentals, buy used games, trade used games, rent
+      games online, video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: XBOX
+    ordering: 2
+    slug: Xbox-Games
+    type: 1
+  model: catalog.category
+  pk: 2
+- fields:
+    active: true
+    bid: '3'
+    description: PlayStation 3
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Sony PlayStation 3 Video Games at
+      affordable prices in one place all the time! New & Used
+    meta_keywords: Sony PS3, PlayStation 3, Play Station 3, PS3, video games, game
+      rental, used games, buy video games, video game rental, trade video games, rent
+      video games, game rental online, preowned games, game rentals, buy used games,
+      trade used games, rent games online, video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: PS3
+    ordering: 3
+    slug: PlayStation-3-Games
+    type: 1
+  model: catalog.category
+  pk: 3
+- fields:
+    active: true
+    bid: '4'
+    description: PlayStation 2
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Sony PlayStation 2 Video Games at
+      affordable prices in one place all the time! New & Used
+    meta_keywords: Sony PS2, PlayStation 2, Play Station 2, PS2, video games, game
+      rental, used games, buy video games, video game rental, trade video games, rent
+      video games, game rental online, preowned games, game rentals, buy used games,
+      trade used games, rent games online, video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: PS2
+    ordering: 4
+    slug: PlayStation-2-Games
+    type: 1
+  model: catalog.category
+  pk: 4
+- fields:
+    active: true
+    bid: '5'
+    description: Sony PSP
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Sony PSP (PlayStation Portable) Video
+      Games at affordable prices in one place all the time! New & Used
+    meta_keywords: Sony PSP, Portable PlayStation, PSP, video games, game rental,
+      used games, buy video games, video game rental, trade video games, rent video
+      games, game rental online, preowned games, game rentals, buy used games, trade
+      used games, rent games online, video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: PSP
+    ordering: 5
+    slug: Sony-PSP-Games
+    type: 1
+  model: catalog.category
+  pk: 5
+- fields:
+    active: true
+    bid: '7'
+    description: Nintendo Wii
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Nintendo Wii Video Games at affordable
+      prices in one place all the time! New & Used
+    meta_keywords: Nintendo Wii, Wii, video games, game rental, used games, buy video
+      games, video game rental, trade video games, rent video games, game rental online,
+      preowned games, game rentals, buy used games, trade used games, rent games online,
+      video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: Wii
+    ordering: 6
+    slug: Nintendo-Wii-Games
+    type: 1
+  model: catalog.category
+  pk: 6
+- fields:
+    active: true
+    bid: '6'
+    description: Nintendo DS
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Sony Nintendo DS Video Games at affordable
+      prices in one place all the time! New & Used
+    meta_keywords: Nintendo DS, Dual Screen, DS, video games, game rental, used games,
+      buy video games, video game rental, trade video games, rent video games, game
+      rental online, preowned games, game rentals, buy used games, trade used games,
+      rent games online, video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: NDS
+    ordering: 7
+    slug: Nintendo-DS-Games
+    type: 1
+  model: catalog.category
+  pk: 7
+- fields:
+    active: true
+    bid: '8'
+    description: Nintendo 3DS
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the 3DS Video Games at affordable prices
+      in one place all the time! New & Used
+    meta_keywords: 3DS, Dual Screen, DS, video games, game rental, used games, buy
+      video games, video game rental, trade video games, rent video games, game rental
+      online, preowned games, game rentals, buy used games, trade used games, rent
+      games online, video game rentals
+    meta_title: Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS,  New & Used
+    name: 3DS
+    ordering: 8
+    slug: Nintendo-3DS-Games
+    type: 1
+  model: catalog.category
+  pk: 13
+- fields:
+    active: true
+    bid: 09
+    description: GameCube
+    game_weight: '6.0'
+    meta_description: Buy, Trade or Rent all the Nintendo GameCube Video Games at
+      affordable prices in one place all the time! New & Used
+    meta_keywords: Nintendo GameCube, GC, GameCube, video games, game rental, used
+      games, buy video games, video game rental, trade video games, rent video games,
+      game rental online, preowned games, game rentals, buy used games, trade used
+      games, rent games online, video game rentals
+    meta_title: "Buy, Trade, Rent Xbox, PS3, PS2, PSP, Wii, DS \u2013 New & Used"
+    name: GC
+    ordering: 9
+    slug: GameCube-Games
+    type: 1
+  model: catalog.category
+  pk: 8
+- fields:
+    active: false
+    bid: '10'
+    description: PSP Movies
+    game_weight: '6.0'
+    meta_description: ''
+    meta_keywords: ''
+    meta_title: ''
+    name: PSP Movies
+    ordering: 10
+    slug: psp-movies
+    type: 2
+  model: catalog.category
+  pk: 12

@@ -1,0 +1,15 @@
+{% extends "members/rent/base.html" %}
+
+{% block heading %}
+  <li class="selected"><a href="{% url members:cancel_membership %}">Cancel Membership</a></li>
+{% endblock heading %}
+
+{% block page-class %}{{ block.super }} members-cancel-rent-plan{% endblock %}
+
+{% block page-content %}
+
+{% if plan %}
+  You have to return outstanding Games within 7 days of cancelling to avoid charges to your credit card.
+{% endif %}
+
+{% endblock page-content %}

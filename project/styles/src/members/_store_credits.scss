@@ -1,0 +1,71 @@
+@mixin debug {
+//    background-color: rgba(255, 255, 0, .3);
+}
+
+.profile-store-credits {
+
+    font-size: 13px;
+    color: #333;
+    
+    #profile-store-credits-content {
+       @include debug;
+       
+       margin: 40px 60px 0; 
+    }
+    
+    .total-1,
+    .total-2 {
+        @include debug;
+        float: right;
+        clear: right;
+        width: 200px;
+        height: 32px;    
+        line-height: 32px;    
+        padding: 0 10px;
+        
+        .money {
+            float: right;
+            color: #C30000;
+            font-weight: bold;
+        }
+    }
+    
+    .total-1 {
+        border-bottom: 1px solid #3568C1;
+    }
+
+    #profile-store-credits-buttons {
+       height: 181px;
+       background: -625px 0 url($images_url + 'store-credits.png') no-repeat;
+       clear: right;
+       
+       .buttons {
+           @include debug;
+           
+           padding: 30px 60px 0 250px !important;
+           
+           li {
+                float: left;
+                @include debug;
+                margin-right: 30px;
+                
+                a {
+                    width: 151px;
+                    height: 81px;
+                    display: block;
+                    text-indent: -9999px;
+                    overflow: hidden;
+                    background: 0 -36px url($images_url + 'store-credits.png') no-repeat;
+                }
+                
+                &#button-rent-games a {
+                    background-position: -156px -36px;
+                }
+                
+                &#button-cash-back a {
+                    background-position: -312px -36px;
+                }
+           }
+       }
+    }
+}

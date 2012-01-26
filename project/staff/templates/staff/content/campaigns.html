@@ -1,0 +1,29 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Campaigns</h2>
+  
+  <table>
+    <tr>
+      <th>CID</th>
+      <th>Name</th>
+      <th>Delete</th>
+    </tr>
+    {% for i in campaigns %}
+    <tr>
+      <td><a href="{% url staff:edit_campaign i.cid %}">{{ i.cid }}</a></td>
+      <td>{{ i.name }}</td>
+      <td><a href="{% url staff:del_campaign i.cid %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="actions">  
+    <a href="{% url staff:add_campaign %}">Add Campaign</a>
+  </div>
+</div>
+
+{% endblock right %}
+

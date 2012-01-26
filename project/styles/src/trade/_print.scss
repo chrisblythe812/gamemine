@@ -1,0 +1,151 @@
+@import "mixins";
+@import "constants";
+@import "compass/css3";
+
+#trade-print {
+  .text {
+    padding: 39px 16px 10px;
+    color: #333;
+
+    h2 {
+      color: #c60000;
+
+      em {
+        color: #0764c4;
+        font-style: normal !important;
+      }
+    }
+
+    p {
+      a {
+        color: #0764c4;
+        font-style: normal;
+        font-weight: bold;
+      }
+
+      em {
+        color: #0764c4;
+        font-style: normal !important;
+        font-weight: bold;
+//        text-decoration: underline;
+      }
+    }
+  }
+  
+  .box {
+    @include box('w');
+    
+    .content {
+      padding: 25px 50px 10px;
+      color: #333;
+
+      #trade-print-address {
+        float: left;
+        
+        div {
+          margin: 4px 0;
+        }
+      }
+
+      #trade-print-t1 {
+        margin: 70px 0 0 460px;
+        width: 280px;
+        text-align: center;
+      }
+
+      .grayed {
+        clear: both;
+        background-color: #ededed;
+        margin: 15px -50px 0px;
+      }
+      
+      ul {
+        margin: 16px 0 16px 50px !important;
+        padding: 0 !important;
+        list-style: square;
+        float: left;
+
+        li {
+          margin: 0 !important;
+          padding: 0;
+        }
+      }
+      
+      #print-button {
+        margin: 0 0 0 510px;
+        width: 280px;
+        text-align: center;
+        padding: 10px 0;
+
+        a {
+          @include inline-block-ex;
+          @include image-anchor(204px, 58px, url($images_url + 'trade/print-button.gif') no-repeat left top);
+          text-indent: 0;
+          text-align: center;
+          line-height: 58px;
+          font-size: 16px;
+          color: #047dd6;
+        }
+      }
+    }
+  }
+  
+  .clear {
+    clear: both;
+    height: 0;
+  }
+
+  .buttons {
+    margin-top: 16px;
+    text-align: right;
+  }
+
+  #trade-shipping-instructions {
+    color: #333;
+    margin: 0 20px;
+
+    h3 {
+      margin-left: 35px;
+    }
+    
+    ol {
+      margin: 0;
+      padding: 0;
+      list-style: decimal inside;
+
+      li {
+        padding: 0 0 0 35px !important;
+        margin: 5px !important;
+
+        &:first-line {
+          padding-left: 35px;
+        }
+
+        &.odd {
+          background-color: #ededed;
+        }
+
+        &.even {
+        }
+      }
+    }
+    
+    a {
+      font-weight: bold;
+    }
+  }
+
+  .footer {
+    margin-top: 25px;
+    padding-top: 16px;
+    text-align: right;
+    border-top: 1px solid #e9e9e9;
+    font-size: 12px;
+    font-weight: normal;
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+

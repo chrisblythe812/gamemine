@@ -1,0 +1,142 @@
+@mixin debug {
+//  background-color: rgba(255, 255, 0, .3);
+}
+
+#personalize-your-games-dialog {
+  width: 730px;
+  
+  #dialog-heading {
+    // @include debug;
+
+    h1 {
+      // @include debug;
+      font-size: 18px !important;
+      font-weight: bold;
+      color: #666;
+      line-height: 30px;
+      margin-top: 5px;
+    }
+    
+    #dialog-title {
+      // @include debug;
+      margin-top: -45px;
+    }
+  }
+  
+  #dialog-content {
+    @include debug;
+
+    padding: 20px 20px 15px;
+    color: #333;
+    
+    h2 {
+      clear: left;
+      font-size: 14px !important;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    ul.consoles {
+      background: center top url($images_url + 'rent/consoles-small.jpg') no-repeat;
+      height: 150px;
+      margin-bottom: 20px;
+      @include debug;
+      
+      li {
+        float: left;
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 100px;
+        text-align: center;
+        width: 85px;
+        
+        label {
+          display: block;
+          height: 30px;
+        }
+      }
+    }
+    
+    ul.genres {
+      padding: 0 30px;
+      margin-bottom: 20px;
+    
+      li {
+        @include debug;
+        @include inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        width: 150px;
+      }
+    }
+    
+    ul.parental-control,
+    ul.parental-control-reviews {
+      @include debug;
+      padding: 0 30px;
+      height: 110px;
+      
+      li {
+        @include debug;
+        padding: 0;
+        margin: 0;
+        //@include inline-block;
+        width: 200px;
+        height: 65px;
+        float: left;
+        font-size: 11px;
+          
+        .input {
+          @include debug;
+          float: left;
+          width: 30px;
+          height: 60px;
+          line-height: 60px;
+          text-align: left;
+        }
+          
+        .label {
+          margin: 0 0 5px 30px;
+        }
+        
+        .image {
+          width: 145px;
+          height: 35px;
+          background: left top url($images_url + 'profile/mteececeecteecc.png') no-repeat;
+        }
+      }            
+          
+      #choice-0 .image { background-position: 0 0; }
+      #choice-1 .image { background-position: 0 -35px; }
+      #choice-2 .image { background-position: 0 -70px; }
+      #choice-3 .image { background-position: 0 -105px; }
+      #choice-4 .image { background-position: 0 -140px; }
+    }
+
+    ul.parental-control-reviews {
+      height: auto;
+    } 
+
+    .links {
+      margin: 40px 0 0 30px;
+    
+      a {
+          color: #c00;
+          text-decoration: underline;
+          font-size: 11px;
+      }
+    }
+    
+    h3 {
+      clear: both;
+      font-weight: bold;
+      padding: 20px 30px;
+    }
+    
+    .actions {
+      @include debug;
+      text-align: right;
+      clear: both;
+    }
+  }
+}

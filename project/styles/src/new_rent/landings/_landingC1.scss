@@ -1,0 +1,43 @@
+.rent.landings.landingC1 {
+    background: black;
+
+    .left_side {
+        background: url($images_url + "rent/landings/landing_trial_left_side.png") top right no-repeat;
+    }
+
+    .right_side {
+        background: url($images_url + "rent/landings/landing_trial_right_side.png") top left no-repeat;
+    }
+
+    .featured_pic {
+        width: 708px;
+        height: 372px;
+        float: left;
+        overflow: hidden;
+        text-indent: -9999px;
+        background: url($images_url + "rent/landings/landing_trial_main_slide.jpg") 0 0 no-repeat;
+    }
+
+    .featured_banner {
+        width: 274px;
+        height: 372px;
+        float: right;
+        overflow: hidden;
+        display: block;
+        cursor: pointer;
+        text-indent: -9999px;
+        background: url($images_url + "rent/landings/landing_trial_try_for_free.jpg") 0 0 no-repeat;
+    }
+ 
+    .carousel_row {
+        height: 103px;
+        background: url($images_url + "rent/landings/landing_trial_main_slide_part2.jpg") 0 0 no-repeat;        
+    }
+    
+    #footer {
+        #footer-menu li a {
+            color: white;
+        }
+    }
+}
+

@@ -1,0 +1,90 @@
+{% load percents %}
+
+{% if related_searches %}
+<div class="relative-searches"><strong>Relative Searches: </strong> 
+	{% for r in related_searches %}
+		<a href="{{ r.url }}">{{ r.title }}</a>{% if not forloop.last %}, {% endif %}
+	{% endfor %}
+</div>
+{% endif %}
+
+{% include "search/results-paginator.html" %}
+
+<div class="subinfo">
+	<div class="sort-ordering">
+		<label>Sort By</label>
+		<select name="sorting">
+			<option value="0"{% if order_by == 0 %} selected="selected"{% endif %}>Relevance</option>
+            <option value="1"{% if order_by == 1 %} selected="selected"{% endif %}>Price: Low to High</option>
+            <option value="2"{% if order_by == 2 %} selected="selected"{% endif %}>Price: High to Low</option>
+            <option value="3"{% if order_by == 3 %} selected="selected"{% endif %}>Value: Low to High</option>
+            <option value="4"{% if order_by == 4 %} selected="selected"{% endif %}>Value: High to Low</option>
+            <option value="5"{% if order_by == 5 %} selected="selected"{% endif %}>Rent Availability</option>
+            <option value="6"{% if order_by == 6 %} selected="selected"{% endif %}>Release Date</option>
+            <option value="7"{% if order_by == 7 %} selected="selected"{% endif %}># of Players</option>
+		</select>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('select[name=sorting]').setupSelect('w150px');
+            });
+        </script>
+	</div>
+
+	<div class="results-stat">Showing {{ page.start_index }} &ndash; {{ page.end_index }} of {{ paginator.count }} Results</div>
+</div>
+
+<div id="search-results-list">
+	<table class="results-list">
+	{% for item in page.object_list %}
+		<tr>
+			<td rowspan="2" class="main-row counter">{{ forloop.counter0|add:page.start_index }}.</td>
+			<td rowspan="2" class="main-row item-cover"><a href="{{ item.get_absolute_url }}"><img src="{{ item.get_catalog_grid_cover }}" width="140" height="190" /></a></td>
+			<td colspan="4" class="main-row item-title">
+				<a href="{{ item.get_absolute_url }}" class="item-title">{{ item.short_name }}</a> by <span class="item-publisher">{{ item.publisher }}</span> ({{ item.category.description }})
+			</td>
+			<td rowspan="2" class="main-row item-rating">
+				{% if item.rating.image %}
+				<img src="{{ MEDIA_URL }}{{ item.rating.image }}" />
+				{% else %}
+				&nbsp;
+				{% endif %}
+			</td>
+		</tr>
+		<tr>
+			<td class="item-info-1">
+				<div class="release-date">Release: {{ item.release_date|date|default:"--" }}</div>
+				<div class="catalog-item-stars">
+					<div class="catalog-item-rating"><div class="catalog-item-rating-content" style="width: {{ item.ratio|percents:5 }}%">Ratio: {{ item.ratio|percents:5 }} of 100</div></div> 
+					({{ item.votes.total|default:0 }})
+				</div>
+				<div class="item-buy-price">Buy Price: {% if item.get_min_price %}<span>${{ item.get_min_price }}</span>{% else %}--{% endif %}
+				<div class="catalog-item-actions">
+            <a href="{% url cart:add item.id %}" class="link-dialog catalog-item-action-buy" title="Buy">Buy</a>
+  	    </div>
+			</td>
+			<td class="item-info-2">
+				<div class="rating">ESRB: {{ item.rating|default:"--" }}</div>
+				<div class="item-trade-price">Trade Value: {% if item.trade_flag and item.trade_price %}<span>${{ item.trade_price }}</span>{% else %}--{% endif %}
+        <div class="catalog-item-actions">
+            <a href="{% url trade:add item.id %}" class="link-dialog catalog-item-action-trade" title="Trade">Trade</a>
+        </div>
+			</td>
+			<td class="item-info-3">
+				<div class="players">Players: {{ item.number_of_players|default:"--" }}</div>
+				<div class="item-rent-price">Rent: <span>{{ item.get_rent_status }}</span>
+        <div class="catalog-item-actions">
+          <a href="{% url rent:add item.id %}" class="link-dialog catalog-item-action-rent" title="Rent">Rent</a>
+        </div>
+			</td>
+			<td class="item-info-4">
+				{{ item.description|truncatewords:30 }}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div style="clear: both; margin: 20px 0 0">
+  {% include "search/results-paginator.html" %}
+</div>
+

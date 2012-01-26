@@ -1,0 +1,28 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <h2>Subscribers</h2>
+
+  <table>
+    <tr>
+      <th>E-mail</th>
+      <th>Active</th>
+      <th>Date</th>
+      <th>CID</th>
+    </tr>
+    {% for i in subscribers %}
+    <tr>
+      <td>{{ i.email }}</td>
+      <td>{{ i.active|yesno }}</td>
+      <td>{{ i.timestamp|date:"DATETIME_FORMAT" }}</td>
+      <td>{{ i.get_campaign_cid_display }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% pagination %}
+</div>
+{% endblock right %}
+

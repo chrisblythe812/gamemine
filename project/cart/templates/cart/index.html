@@ -1,0 +1,23 @@
+{% extends "cart/base.html" %}
+
+{% block page-class %}{{ block.super }} cart-index{% endblock %}
+
+{% block cart-heading %}
+{% comment %}
+<input class="coupon-input do_not_wrap" type="text"/>
+<a href="#" class="anchor-apply-credits">Apply Credits</a> 
+{% endcomment %}
+<span class="total">Total: ${{ cart.total|floatformat:2|default:"0.00" }}</span>
+{% endblock cart-heading %}
+
+{% block cart-title-content %}
+<p>{% if user.is_authenticated %}{{ user.get_profile }}, {% endif %}Please Confirm your items and <a href="{% url cart:checkout %}" class="complete-order-button link-dialog">Complete Order</a></p>
+{% endblock cart-title-content %}
+
+{% block content %}
+
+<div id="cart-index-content">
+	{% include "cart/partials/cart-table.html" %}
+</div>
+
+{% endblock content %}

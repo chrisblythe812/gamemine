@@ -1,0 +1,50 @@
+.rent.landings.landing3 {
+    background: url($images_url + "rent/landings/bg_hor.gif") top center repeat-y #D0D0D0;
+
+    .featured_pic_left {
+        width: 220px;
+        height: 470px;
+        float: left;
+        overflow: hidden;
+        background: url($images_url + "rent/landings/affiliate_non_trial3_left_side.jpg") 0 0 no-repeat;
+    }
+
+    .featured_pic_center {
+        width: 546px;
+        height: 470px;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        background: url($images_url + "rent/landings/affiliate_non_trial3_center.jpg") 0 0 no-repeat;
+    }
+
+    .featured_pic_right {
+        width: 216px;
+        height: 470px;
+        float: left;
+        overflow: hidden;
+        background: url($images_url + "rent/landings/affiliate_non_trial3_right_side.jpg") 0 0 no-repeat;
+    }
+
+    .membership {
+        top: 40px;
+        left: 4px;
+        background: url($images_url + "rent/landings/pick_membership_bg2.png") 0 0 no-repeat;
+    }
+
+    .carousel_row {
+        background: url($images_url + "rent/landings/affiliate_non_trial3_part2.jpg") 0 0 no-repeat;
+    }
+
+    #footer {
+        top: -100px;
+
+        .free_shipping {
+            background: url($images_url + "rent/landings/free_shipping.png") 0 0 no-repeat;
+        }
+
+        #footer-menu li a {
+            color: white;
+        }
+    }
+}

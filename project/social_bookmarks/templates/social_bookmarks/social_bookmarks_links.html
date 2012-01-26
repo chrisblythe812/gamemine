@@ -1,0 +1,13 @@
+{% load i18n %}
+<div class="socialbookmarks">
+    <span><strong>{% trans "Add to" %}:</strong></span>
+    &nbsp;
+    {% for s in social_bookmark_sites %}
+    <span class="social">
+        {% if s.js %}{{ s.js|safe }}{% endif %}
+        <a href="{{ s.href }}" title="{{ s.title }}" rel="nofollow" {% if s.onclick %}onclick="{{ s.onclick }}"{% else %}{% if newwindow %}target="_blank"{% endif %}{% endif %}>
+            <img src="{{ STATIC_URL }}social_bookmarks/img/{{ s.image }}" width="16" height="16" alt="{{ s.title }}" border="0" />
+        </a>
+    </span>
+    {% endfor %}
+</div>

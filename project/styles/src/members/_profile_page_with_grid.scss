@@ -1,0 +1,100 @@
+.profile-page-with-grid {
+    h3 {
+        color: #CD0000;
+        font-size: 16px;
+    }
+    
+    .page-with-grid-content {
+        width: 700px;
+        margin: 30px auto;
+
+        &.small-grid {
+            width: 300px !important;
+        }
+    }
+    
+    table {
+        width: 100%;
+        color: #0F71D4;
+
+        th {
+            padding: 2px 10px !important;
+            font-weight: bold;
+            font-size: 13px;
+            height: 20px;
+        }
+        
+        td {
+            padding: 5px 10px !important;
+            font-weight: bold;
+            font-size: 13px;
+            height: auto;
+        }
+        
+        a {
+            color: #0F71D4;
+            @include heading-anchor;
+        }
+        
+        td.column-rating {
+            .item-rating {
+                margin: 0;
+                padding: 0;
+                
+                ul {
+                    margin: 0 !important;
+                }
+            }
+        }
+        
+        td.column-rating-2 {
+            .item-rating {
+                // background: red;
+            }
+            
+            .catalog-item-rating {
+                width: 75px;
+                height: 15px;
+                text-indent: -9999px;
+                background: url($images_url + 'star-matrix-big.gif') no-repeat;
+                
+                .catalog-item-rating-content {
+                    width: 75px;
+                    height: 15px;
+                    background: 0 -75px url($images_url + 'star-matrix-big.gif') no-repeat;
+                }
+            }
+        }
+        
+        td.column-actions {
+            a {
+                font-weight: normal;
+                color: #333;
+                background: right center url($images_url + 'profile/trash.png') no-repeat;
+                padding: 0 25px 0 0;
+                line-height: 18px;                
+                height: 18px;
+            } 
+        }
+        
+        .row1 {
+            background: #EBEBEB;
+
+            td.column-actions {
+                background: #D7D7D7;
+            }
+        }
+        
+        .row2 {
+            background: #FFF;
+
+            td.column-actions {
+                background: #EBEBEB;
+            }
+        }
+        
+        .column-no { text-align: center; width: 40px; }
+        .column-actions { text-align: left; width: 60px;  }
+        .column-actions-2 { text-align: left; width: 70px;  }
+    }
+}

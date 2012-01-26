@@ -1,0 +1,183 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ block.super }}{% if category %} – {{ category.description }}{% endif %}{% endblock title %}
+{% block meta-description %}{% if category %}{{ category.meta_description }}{% else %}{{ block.super }}{% endif %}{% endblock meta-description %}
+{% block meta-keywords %}{% if category %}{{ category.meta_keywords }}{% else %}{{ block.super }}{% endif %}{% endblock meta-keywords %}
+
+{% block page-class %}banner-page{% endblock %}
+
+{% block content-header %}
+	<div class="banner-featured-game">
+		<div class="banner-content">
+			<div class="banner-header"></div>
+			<div id="banner-rotator">
+				{% for featured_game in featured_games %}
+				<a href="{{ featured_game.get_absolute_url }}"{% if featured_game.link_class %} class="{{ featured_game.link_class }}"{% endif %}>
+					<img width="982" height="227" src="{{ featured_game.image.url }}" />
+				</a>
+				{% endfor %}
+			</div>
+		</div>	
+		<script type="text/javascript">
+		$(document).ready(function () {
+			$('#banner-rotator').nivoSlider({
+				pauseTime: 8000,
+				directionNav: false,
+				keyboardNav: false,
+				controlNav: true
+			});
+		});
+		</script>
+	</div>
+{% endblock content-header %}
+
+{% block content %}
+
+<div id="catalog-toolbar">
+	<ul id="catalog-toolbar-filter">
+	{% if category %}
+		{% for f in filters %}
+			<li{% if f.0 == filter.0 %} class="selected"{% endif %}><a href="{% url catalog:category category.slug f.0 %}">{{ f.1 }}</a></li>
+		{% endfor %}
+	{% else %}
+		{% for f in filters %}
+			<li{% if f.0 == filter.0 %} class="selected"{% endif %}><a href="{% url catalog:index f.0 %}">{{ f.1 }}</a></li>
+		{% endfor %}
+	{% endif %}
+	</ul>
+	
+	<div id="catalog-toolbar-search">
+		<form method="get" action="{% if category %}{% url catalog:category category.slug %}{% else %}{% url catalog:index %}{% endif %}">
+			<input type="text" name="q" />
+		</form>
+	</div>
+</div>
+
+<div id="catalog-content">
+	<div id="catalog-grid">
+		<div id="catalog-grid-title">
+			<div id="catalog-filter-by-genre">
+				<a href="#" id="catalog-filter-by-genre-current">By Genre <span>&#9656;</span> {{ genre|default:"All" }}</a>
+				<div id="catalog-genre-list">
+					<div class="popop-title"><a href="#">By Genre <span>&#9662;</span></a></div>
+					<ul>
+						<li><a href="?genre=*">All</a></li>
+					{% for g in genres %}
+						<li><a href="?genre={{ g.pk }}" class="{% cycle "even" "odd" %}">{{ g }}</a></li>
+					{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<div class="paginator">
+        {% if page_range.left_end %}
+				  {% for p in page_range.left_end %}
+    				<a href="?p={{ p }}">{{ p }}</a>
+				    {% if not forloop.last %}|{% endif %}
+				  {% endfor %}
+				  ...
+			  {% endif %}
+				{% for p in page_range.range %}
+				  {% ifequal p page.number %}
+				  <span class="current">{{ p }}</span>
+				  {% else %}
+  				<a href="?p={{ p }}">{{ p }}</a>
+				  {% endifequal %}
+				  {% if not forloop.last %}|{% endif %}
+				{% endfor %}
+        {% if page_range.right_end %}
+				  ...
+				  {% for p in page_range.right_end %}
+    				<a href="?p={{ p }}">{{ p }}</a>
+				    {% if not forloop.last %}|{% endif %}
+				  {% endfor %}
+			  {% endif %}
+			</div>
+		</div>
+		<div id="catalog-grid-content">
+			<ul class="catalog-items{% if not page.object_list %} empty{% endif %}">
+			{% for item in page.object_list %}
+				<li class="catalog-item" id="catalog-item-{{ item.id }}">
+					<div class="catalog-item-record">
+						<div class="catalog-item-cover{% if not item.get_catalog_grid_cover %} empty{% endif %}">
+							<a href="{{ item.get_absolute_url }}" title="{{ item }}">
+							{% if item.get_catalog_grid_cover %}
+								<img src="{{ item.get_catalog_grid_cover }}" width="140" height="190" />
+							{% else %}
+								{{ item }}
+							{% endif %}
+							</a>
+						</div>
+						<div class="catalog-item-title">
+							<a href="{{ item.get_absolute_url }}" title="{{ item }}"><span>{{ item.get_cropped_name }}</span></a>
+							<div class="catalog-item-title-overlay"></div>
+						</div>
+						<div class="catalog-item-actions">
+					    <a href="{% url cart:add item.id %}" class="link-dialog catalog-item-action-buy" title="Buy">Buy</a>
+              <a href="{% url trade:add item.id %}" class="link-dialog catalog-item-action-trade" title="Trade">Trade</a>
+							<a href="{% url rent:add item.id %}" class="link-dialog catalog-item-action-rent" title="Rent">Rent</a>
+						</div>
+					</div>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div id="catalog-grid-footer">
+			<div class="paginator">
+        {% if page_range.left_end %}
+				  {% for p in page_range.left_end %}
+    				<a href="?p={{ p }}">{{ p }}</a>
+				    {% if not forloop.last %}|{% endif %}
+				  {% endfor %}
+				  ...
+			  {% endif %}
+				{% for p in page_range.range %}
+				  {% ifequal p page.number %}
+				  <span class="current">{{ p }}</span>
+				  {% else %}
+  				<a href="?p={{ p }}">{{ p }}</a>
+				  {% endifequal %}
+				  {% if not forloop.last %}|{% endif %}
+				{% endfor %}
+        {% if page_range.right_end %}
+				  ...
+				  {% for p in page_range.right_end %}
+    				<a href="?p={{ p }}">{{ p }}</a>
+				    {% if not forloop.last %}|{% endif %}
+				  {% endfor %}
+			  {% endif %}
+			</div>
+		</div>
+	</div>
+
+	<div id="catalog-sidebar">
+    <div id="id_sidebar_subscription">
+      <img src="{{ STATIC_URL }}img/signup.gif"/>
+      <form method="post" action="">
+        {% csrf_token %}
+        <input type="text" name="email" autocomplete="off"/>
+        <input type="submit" value="Sign Up"/>
+      </form>
+      <div class="note">
+        Great way to save on games, and<br/>
+        stay up-to-date with special offers.
+      </div>
+    </div>
+
+    <a href="{% url simple-page 'What-is-My-Game-Worth' %}" title="What is my Game Worth?"><img src="{{ STATIC_URL }}img/what-is-my-game-worth.png" alt="What is my Game Worth?"/></a>
+
+    <a href="{% url simple-page 'Free-Shipping' %}" title="Free Shipping"><img src="{{ STATIC_URL }}img/free-shipping.png" alt="Free Shipping"/></a>
+
+    <a href="{% url catalog:esrb %}" title="ESRB Ratings"><img src="{{ STATIC_URL }}img/esrb-ratings.png" alt="ESRB Ratings"/></a>
+    
+{% comment %}
+    {% if not user.is_authenticated %}
+    <a href="{% url deck_the_halls %}"><img src="{{ STATIC_URL }}img/deck-the-hall/deck-the-hall-side-banner.jpg" /></a>
+    {% endif %}
+{% endcomment %}
+	</div>
+	
+	<div class="clear"></div>
+</div>
+
+{% endblock content %}

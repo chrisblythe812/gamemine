@@ -1,0 +1,157 @@
+@import "constants";
+
+@mixin debug {
+//  background-color: rgba(255, 255, 0, .3);
+}
+
+.rent-confirmation-page {
+    .acc_summary {
+        margin-top: 40px;
+    }
+    .acc_summ_bottom_text {
+        width: 345px;
+        font-size: 17px;
+        font-weight: bold;
+        line-height: normal;
+        color: #3566BE;
+        float: left;
+
+        .red {
+            color: #BF2127;
+        }
+    }
+
+    .btn_add_games {
+        width: 149px;
+        height: 40px;
+        float: right;
+        display: block;
+        overflow: hidden;
+        text-indent: -9999px;
+        line-height: 9999px;
+        background: image-url("rent/btn_add_games.png") 0 0 no-repeat;
+    }
+
+
+  #rent-confirmation-page-title {
+    width: 1006px;
+    height: 355px;
+    overflow: hidden;
+    background: url($images_url + 'rent/rent-confirmation.png') no-repeat;
+    margin: 0 auto;
+    
+    a {
+      // @include debug;
+      display: block;
+      width: 510px;
+      height: 55px;
+      text-indent: -9999px;
+      overflow: hidden;
+      margin: 255px 0 0 120px;
+    }
+  }
+  
+  #rent-confirmation-page {
+    @include debug;
+    padding: 40px 200px;
+    font-size: 11px;
+    color: #333;
+    
+    h1 {
+      font-size: 16px !important;
+      font-weight: bold;
+      color: #3566be;
+    }
+    
+    .side-1 {
+      @include debug;
+      width: 250px;
+      margin-right: 60px;
+      float: left;
+    
+      .name {
+        font-weight: bold;
+        color: #c00;
+        margin-bottom: 20px;
+        font-size: 14px;
+        
+        strong {
+          margin-right: 10px;
+          color: #333;
+        }
+      }
+      
+      dt {
+        font-weight: bold;
+        line-height: 2em;
+        font-size: 12px;
+      }
+
+      dd {
+        margin-bottom: 10px;
+      }
+      
+      td {
+        padding: 0 10px;
+        line-height: 2em;
+      }
+
+      table {
+        width: 100%;
+      }
+            
+      .row-1 {
+        background-color: #EEEEEE;
+      }
+      
+      .price {
+        text-align: right;
+      }
+      
+      .total {
+        text-align: right;
+        font-weight: bold;
+      }
+      
+      .membership-plan {
+        line-height: 2em;
+        
+        div { 
+          padding: 0 10px; 
+        }
+      }
+    }
+    
+    .side-2 {
+      @include debug;
+      width: 250px;
+      margin-left: 0;
+      // padding-left: 330px;
+      float: left;
+      
+      dt {
+        font-weight: bold;
+        line-height: 2em;
+        background-color: #F2F2F2;
+        padding: 0 0 0 10px;
+        font-size: 12px;
+        
+        a {
+          float: right;
+          background: #E7E6EA;
+          line-height: 2em;
+          padding: 0 5px;
+          font-weight: normal;
+        }
+      }
+      
+      dd {
+        margin-bottom: 10px;
+        padding: 0 10px;
+        line-height: 1.5em;
+      }
+    }
+        
+    .clear { clear: left; }
+  }
+}

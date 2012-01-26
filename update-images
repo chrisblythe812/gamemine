@@ -1,0 +1,6 @@
+#!/bin/sh
+
+python organize_covers.py "$1" "$1" 
+sudo -u www-data cp -Rfv "$1"/* static/media/covers 
+cat static/media/covers/ITEMS | ./manage muze make-covers 
+

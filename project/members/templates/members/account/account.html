@@ -1,0 +1,16 @@
+{% extends "members/account/base.html" %}
+
+{% block title %}{{ block.super }} – My Account{% if title %} – {{ title }}{% endif %}{% endblock title %}
+
+{% block content %}
+<ul class="heading">
+	{% block heading %}{% endblock heading %}
+</ul>
+
+{% block account-banner %}
+{% include "members/partials/account_banner.html" %}
+{% endblock account-banner %}
+
+{% block page-content %}{% endblock page-content %}
+
+{% endblock content %}

@@ -1,0 +1,64 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}
+{{ block.super }}
+
+
+
+<form method="POST" id="dc_form">{% csrf_token %}
+<div class="module" style="height:110px;">
+  <h2>Distribution Information {{ dcform.dc }}</h2>
+  <dl>
+    <dt>DC ID:</dt><dd>{{ dc.code }}</dd>
+    <dt>DC Name:</dt><dd>{{ dc.name }}</dd>
+    <dt>DC Address:</dt><dd>{{ dc.address|linebreaksbr }}</dd>
+  </dl>
+  <dl>
+    <dt>DC Printers:</dt><dd>{{ dc.printers }}</dd>
+    <dt>Label Sizes:</dt><dd>{{ dc.label_sizes }}</dd>
+  </dl>
+</div>
+</form>
+
+<div class="module">
+  <h2>Current Allocation</h2>
+  <table>
+  <tr><th class="l">Website</th><th>Orders</th><th>Transfers</th><th>Titles</th><th>Pick Quantity</th></tr>
+  {% for row in current_allocation %}
+  <tr><td>{{ row.website }}</td><td class="c">{{ row.orders }}</td><td class="c">{{ row.transfers }}</td><td class="c">{{ row.titles }}</td><td class="c">{{ row.pick }}</td></tr>
+  {% endfor %}
+  </table>
+</div>
+
+<div class="module">
+  <h2>Buy Statistics</h2>
+  <table>
+  <tr><th class="l">Platform</th><th>Lifetime Approved</th><th>Lifetime Declined</th></tr>
+  {% for row in buy_statistics %}
+  <tr><td>{{ row.platform }}</td><td class="c">{{ row.approved }}</td><td class="c">{{ row.declined }}</td></tr>
+  {% endfor %}
+  </table>
+</div>
+
+<div class="module">
+  <h2>Rent Statistics</h2>
+  <table>
+  <tr><th class="l">Platform</th><th>Lifetime Shipped</th><th>Lifetime Returned</th></tr>
+  {% for row in rent_statistics %}
+  <tr><td>{{ row.platform }}</td><td class="c">{{ row.shipped }}</td><td class="c">{{ row.returned }}</td></tr>
+  {% endfor %}
+  </table>
+</div>
+
+
+<script>
+$(document).ready(function(){
+	$('#id_dc').bind('change', function(){
+		$('#dc_form').submit();
+	})
+});
+</script>
+
+
+{% endblock right %}
+

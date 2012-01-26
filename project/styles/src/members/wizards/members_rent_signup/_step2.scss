@@ -1,0 +1,146 @@
+#form-signup-member-2 {
+    font-size: 11px;
+    
+    h3 {
+        padding: 5px 10px 20px;
+        font-size: 13px;
+        font-weight: bold;
+        
+        em {
+            font-size: 11px;
+            font-weight: normal;
+        }
+    }
+
+    .side-1 {
+        // background: rgba(255, 255, 0, .2);
+        float: left;
+        width: 350px;
+        height: 250px;
+        
+        #div-same-as-shipping-address {
+          float: right;
+          line-height: 13px;
+          padding: 2px 40px 0 0;
+        }
+        
+        dt {
+            float: left;
+            clear: left;
+            width: 100px;
+            text-align: right;
+            padding-top: 4px;
+        }
+        
+        dd.field {
+            float: left;
+            margin-left: 8px;
+            width: 190px;
+            margin-bottom: 7px;
+            
+            .input {
+                width: 190px;
+            }
+        }
+    }
+    
+    .side-2 {
+        // background: rgba(0, 255, 255, .2);
+        width: 340px;
+        margin-left: 350px;
+        height: 250px;
+        
+        h3 {
+            padding-left: 108px;
+        }
+        
+        dl {
+            height: 120px;
+        }
+        
+        dt {
+            float: left;
+            padding-top: 4px;
+            text-align: right;
+            width: 100px;  
+        }
+        
+        dd.field {
+            float: left;
+            margin-left: 8px;
+            width: 210px;
+            margin-bottom: 7px;
+            
+            .input {
+                width: 190px;
+            }
+            
+            &.cc_exp {
+                select {
+                    width: 90px !important;
+                    margin-right: 10px;
+                }
+            }
+            
+            &.cc_code {
+                .input {
+                  @include inline-block;
+                  width: 55px;
+                }
+                
+                a {
+                  line-height: 23px;
+                  @include inline-block;
+                }
+            }
+        }
+
+        .extra {
+            // background: rgba(255, 255, 0, .4);
+            
+            img {
+                color: #666;
+                margin-left: 20px;
+            }
+            
+            .error {
+                .boxed-wrapper {
+                    padding: 10px 10px 10px 70px;
+                    background: 5px center #fff url($images_url + 'attention-w.png') no-repeat;
+                }
+            
+                .title {
+                    color: #E61824;
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-bottom: 2px;
+                }
+            }
+        }
+    }
+    
+    .clear { clear: left; }
+    
+    .actions {
+        // background: rgba(255, 0, 0, 0.2);
+        text-align: center;
+        height: 23px;
+        clear: both;
+        padding: 0 70px;
+        
+        .back-button {
+            float: left;
+        }
+        
+        .terms {
+            @include inline-block;
+            height: 23px;
+            line-height: 23px;
+            color: #666;
+        }
+        
+        .start-now-red-button {
+            float: right;
+        }
+    }
+}

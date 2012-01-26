@@ -1,0 +1,76 @@
+@import "compass/css3/inline-block";
+@import "constants";
+
+
+#dialog-heading, .dialog-heading {
+    background:url($images_url + "wizards/wizard-heading.png") 0 0 no-repeat #e0e0e0;
+    height:30px;
+    padding:14px 20px 13px;
+    overflow:hidden;
+    
+    #dialog-heading-step, .dialog-heading-step {
+        color:#666666;
+        font-weight:bold;
+        font-size:11px;
+        display:block;
+    }
+    
+    h1 {
+        font-size: 13px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    h2 {
+        font-size:12px;
+        font-weight:bold;
+        color:#333;
+        margin:8px 0 0;
+    }
+    h3 {
+        font-size:10px;
+        font-weight:bold;
+        color:#000;
+        margin:0;
+    }
+    
+    #dialog-title, .dialog-title {
+	//background: rgba(255, 255, 0, .4);
+        
+	float: right;
+	font-weight: bold;
+	font-size: 18px;
+	color: #666;
+	width: 200px;
+	height: 57px;
+	line-height: 57px;
+	margin-top: -40px;
+        text-align: right;
+    }
+    
+    .dialog-close-button {
+	float: right;
+	display: block;
+	width: 13px;
+	height: 13px;
+	@include hide-text;
+	background: url($images_url + "wizards/wizard-close-button.gif") no-repeat;
+        line-height: 57px;
+        margin: 4px 0 0 10px;
+    }
+}
+
+#dialog-content {
+    padding: 20px;
+    
+    h1 {
+	font-size: 20px;
+	font-weight: bold;
+	color: #e30e17;	
+    }
+}
+
+@import "members/payment_method_dialog";
+@import "cart/checkout_wizard";
+@import "rent/add_dialog";
+@import "new_members/dialogs";

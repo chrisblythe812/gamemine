@@ -1,0 +1,39 @@
+<div id="edit-tax-form">
+  <h1>{{ title }}</h1>
+  
+  <form action="{{ form_action }}" method="post">{% csrf_token %}
+    {% if error_message %}
+    <div class="error">{{ error_message }}</div>
+    {% endif %}
+    
+    {{ form.as_p }}
+    
+    <div class="actions">
+      <input type="submit" value="Save" />
+      <input type="button" value="Close" onclick="$.fn.colorbox.close()" />
+    </div>
+  </form>
+  
+  <script type="text/javascript">
+  $('#edit-tax-form form').ajaxForm({
+    success: function (response, status) {
+      if (status != 'success')
+        return;    
+
+      if (response.redirect_to) {
+        window.location = response.redirect_to;
+      }
+      else if (response.goto_url) {
+        $.fn.openWizardByUrl(response.goto_url);    
+      }
+      else if (response.close) {
+          $.fn.colorbox.close();  
+      }
+      else {
+        $.fn.colorbox.setContent(response.form);
+        $.fn.colorbox.resize();
+      }
+    }
+  });
+  </script>
+</div>

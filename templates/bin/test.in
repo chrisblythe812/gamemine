@@ -1,0 +1,5 @@
+#!/bin/sh
+
+BUILDOUT_ROOT=${buildout:directory}
+
+$BUILDOUT_ROOT/bin/django test --settings=project.test_settings --logging-clear-handlers $@

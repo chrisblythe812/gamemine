@@ -1,0 +1,113 @@
+{% extends "intro/base.html" %}
+
+{% block title %}Rent Xbox, PS3, PS2, PSP, Wii, DS – Start for only $8.99{% endblock %}
+{% block meta-description %}Gamemine offers more than 7,000 game titles to Buy, Trade or Rent online by mail - New Video Game Releases, Preowned and Used Video Games right from the comfort of your home. All your video game needs in one place all the time. – The Game Station!{% endblock meta-description %}
+{% block meta-keywords %}video game rentals, video game rental, game rental, rent games, game rentals, game rental video, rent video games, video game rental online, rent video games online, rent video game, online video game rentals, video game rental mail, video game rental by mail, video game rental stores, video games rentals, video game rental service, video game renting, rent video game online, best video game rental, unlimited video game rental, video game rental services, video game rental store, video game rental sites, video game rentals by mail, video game rental price, on line video game rental, video game rental prices, top video game rental, video game rental business, online dvd and video game rental, best video game rental service, video game rental websites, mail order video game rental, video game rental places, video game rental subscription, video game rental websites{% endblock meta-keywords %}	
+
+{% block page-class %}{{ block.super }} rent-landing-page{% endblock %}
+
+{% block banner-id %}rent-banner2{% endblock %}
+
+{% block welcome-link %}<a href="/Browse-Games/#top-rentals" id="item-welcome">Top Rentals</a>{% endblock %}
+
+{% block inside-banner %}
+
+	<div class="banner-part" id="banner-part-1"></div>
+	<div class="banner-part" id="banner-part-2"></div>
+	<div class="banner-part" id="banner-part-3"></div>
+	<div class="banner-part" id="banner-part-4"></div>
+	<div class="banner-part" id="banner-part-5"></div>
+
+<form action="{% url new_rent:change_plan2 %}" method="post" id="the-form" class="link-dialog">{% csrf_token %}
+
+<div style="position: absolute; right:10px; top:10px;">
+	<div class="input-field">
+		<label for="id_username">Username/Profile ID</label><br />
+		{{ form.username }}
+	</div>
+</div>
+<div style="position:absolute; right:175px; top:10px;">
+	<div class="input-field">
+		<label for="id_password">Create a Password</label><br />
+    {{ form.password }}
+	</div>
+</div>
+<div style="position:absolute; right:340px; top:10px;">
+	<div class="input-field">
+		<label for="id_email">Email Address</label><br />
+    {{ form.email }}
+	</div>
+</div>
+<div style="position:absolute; right:10px; top:60px;">
+	<div class="input-field">
+		<label for="id_hear">How did you hear about us?</label><br />
+    {{ form.how_did_you_hear }}
+	</div>
+</div>
+<div style="position:absolute; right:175px; top:60px;">
+	<div class="input-field">
+		<label for="id_password2">Confirm Password</label><br />
+    {{ form.confirm_password }}
+	</div>
+</div>
+<div style="position:absolute; right:340px; top:60px;">
+	<div class="input-field">
+		<label for="id_email2">Confirm Email</label><br />
+    {{ form.confirm_email }}
+	</div>
+</div>
+
+
+<div style="position:absolute; width:500px; height:240px; overflow:hidden; right:15px; top:117px;">
+
+<ul id="signup-paymentplan">
+{% for plan in all_plans %}
+{% if plan.plan != 2 or user.get_profile.has_game_perks %}
+
+    <li id="signup-paymentplan-{{ plan.plan }}"{% if rental_plan.plan == plan.plan %} class="selected"><div id="current-plan-badge"{% if forloop.first %} class="alternate"{% endif %}></div{% endif %}>
+        <p class="signup-paymentplan-description">
+            {% if plan.plan == 0 %}
+              Limited <strong>Monthly</strong>
+            {% else %}
+              Unlimited <strong>Monthly</strong>
+            {% endif %}
+            {{ plan.allowed }} Game Plan
+        </p>
+        <div class="signup-paymentplan-extra">
+          <p class="red">{{ plan.features2.0|default:"&nbsp;" }}</p>
+          <p>{{ plan.features2.1|default:"&nbsp;" }}</p>
+          <p class="strong">{{ plan.features2.2|default:"&nbsp;" }}</p>
+        </div>
+        {% if plan.plan != rental_plan.plan %}
+            <input type="submit" value="{{ plan.plan }}" />
+        {% endif %}
+        <p class="signup-paymentplan-price">{{ plan.price_display }}</p>
+    </li>
+
+
+{% endif %}
+{% endfor %}
+</ul>
+
+
+<p class="signup-paymentplan-notes">*Credits can only be used after one billing cycle and are not eligible for cash-out.</p>
+
+</div> 
+
+<input type="hidden" name="0-plan" />
+<input type="hidden" name="secret_option" value="naturlich" />
+
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#id_how_did_you_hear").setupSelect("w150px");
+	
+	$('#the-form input[type=submit]').click(function () {
+    var v = $(this).val();
+    $('#the-form input[name="0-plan"]').val(v);
+	});
+});
+</script>
+
+{% endblock %}

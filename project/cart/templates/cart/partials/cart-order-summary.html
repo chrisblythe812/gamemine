@@ -1,0 +1,88 @@
+<div id="order-summary">
+	<h3>Games you are buying:</h3>
+	<dl class="order-items">
+	{% for i in cart.get_items %}
+		<dt>{{ i.item.short_name }}</dt>
+		<dd>{% if i.quantity > 1 %}{{ i.quantity }} x {% endif %}${{ i.price|floatformat:2|default:"0.00" }}</dd>
+	{% endfor %}
+	</dl>
+
+	<dl class="order-shipping">
+		<dt>Shipping</dt>
+		<dd>$0.00</dd>
+    <div></div>
+	</dl>
+
+  <div class="spacer">&nbsp;</div>
+
+	<dl class="order-discounts">
+		<dt>Discounts</dt>
+		<dd><span{% if cart.get_discount_amount %} class="discounted"{% endif %}>${{ cart.get_discount_amount }}</span></dd>
+
+		<dt>Applied Credits</dt>
+		<dd>${{ cart.applied_credits|floatformat:2|default:"0.00" }}</dd>
+    <div></div>
+	</dl>
+
+  <div class="spacer">&nbsp;</div>
+
+	<dl>
+		<dt>Total</dt>
+		<dd>${{ cart.total|floatformat:2|default:"0.00" }}</dd>
+    <div></div>
+	</dl>
+
+  <div class="spacer">&nbsp;</div>
+
+	{% if user.is_authenticated and user.profile.get_billing_card_display %}
+	<h3>Payment method (<a href="{% url members:payment_method %}" class="link-dialog">edit</a>)</h3>
+	<div class="payment-details">
+		<div class="card-number {{ user.profile.get_payment_card.type }}">{{ user.profile.get_billing_card_display }}</div>
+	</div>
+	{% endif %}
+
+  <form method="post" action="{% url cart:apply_credits %}" class="apply-credits-form">{% csrf_token %}
+    	<dl class="coupon">
+    		<dt>
+           <input class="coupon-input do_not_wrap" type="text" name="amount" />
+    	     <span class="hint">(enter amount here)</span>
+    		</dt>
+    		<dd><input class="coupon-apply" type="submit" value="Apply" /></dd>
+      </dl>
+	</form>
+
+	<script type="text/javascript">
+	$(document).ready(function () {
+		var opts = {
+			store_credits_str: '{{ user.get_profile.unlocked_store_credits|floatformat:2|default:"0.00" }}',
+			store_credits: parseFloat('{{ user.get_profile.unlocked_store_credits|floatformat:2|default:"0.00" }}')
+		};
+        $('#order-summary .coupon input[type=text]').searchbox('Store Credit Balance: $' + opts.store_credits_str);
+		$('#order-summary .apply-credits-form').ajaxForm({
+			beforeSubmit: function () {
+				var form = $('#order-summary .apply-credits-form');
+				var val = parseFloat(form.find('.coupon-input').val());
+				if (isNaN(val)) {
+					alert('Please specify a valid amount of store credit.');
+				    return false;
+				}
+				if (val > opts.store_credits) {
+                    alert('You have only $' + opts.store_credits_str + ' of store credit.');
+                    return false;
+				}
+                return true;
+			},
+			success: function (data, status, xhr, form) {
+	            if (status != 'success')
+	            {
+	                getForm().enableForm();
+	                return;
+	            }
+				Cart.updateCartContent(data);
+			}
+		});
+	});
+
+	</script>
+</div>
+

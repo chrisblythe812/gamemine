@@ -1,0 +1,74 @@
+api_version: 1
+source_dir: src
+output_dir: javascripts                            
+default_compilation_level: whitespace
+
+targets:
+  jquery.js:
+    sources:
+      - jquery/jquery-1.4.2.js
+
+  jquery.plugins.js:
+    sources:
+      - jquery/jquery.colorbox-1.3.8.js
+      - jquery/jquery.colorbox.extra.js
+      - jquery/jquery.form-2.43.js
+      - jquery/jquery.form.extra.js
+      - jquery/jquery.jcarousel.js
+      - jquery/jquery.dom.js
+      - jquery/jquery.nivo.slider.js
+      - jquery/flowplayer-3.2.3.min.js
+      - jquery/jquery.jeditable.js
+      - jquery/jquery.tablednd.js
+      - jquery/jquery.autocomplete.js
+      - jquery/jquery.date_input.js
+      - catalog/jquery.details-hint.js
+      - jquery/jquery.tools.ui.tooltip.js
+      
+  debug.js:
+    sources:
+      - debug/hashgrid.js
+      
+  core.js:
+    sources:
+      - searchbox.js
+      - url-router.js
+      - top-popup.js
+      - core.js
+      - wizards.js
+      - forms.js
+      - cart/core.js
+      - rent/core.js
+      - trade/core.js
+      - search/core.js
+      - search/ololo.js
+      - profile/core.js
+      - tooltip.js
+      - banners.js
+      
+  catalog.js:
+    sources:
+      - catalog/attach-popup.js
+      - catalog/core.js
+      - catalog/categories.js
+      - catalog/items.js
+  
+
+  intro.js:
+    sources:
+      - intro.js
+
+  searchbox.js:
+    sources:
+      - searchbox.js
+
+  backbone.js:
+    sources:
+      - underscore.js
+      - backbone.js
+      - backbone-relational.js
+      - backbone-tastypie.js
+
+  app.js:
+    sources:
+      - app.js

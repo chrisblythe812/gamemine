@@ -1,0 +1,60 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+{% regroup taxes by county.state as taxes_list %}
+
+<div>
+</div>
+
+<div class="module">
+  <h2>Taxes:
+    
+  {% for t in taxes_list %}
+  <a href="#{{ t.grouper }}" style="color: #fff">{{ t.grouper }}</a> |
+  {% endfor %}
+    
+  <a href="{% url staff:add_county_tax %}" class="edit-tax-action" style="color: #fff">Add new tax</a>
+    
+  </h2>
+  <table>
+  {% for t in taxes_list %}
+    <thead>
+      <tr>
+        <td colspan="3" id="{{ t.grouper }}">{{ t.grouper }}</td>
+      </tr>
+      <tr>
+        <td>County</td>
+        <td>Value</td>
+        <td>&nbsp;</td>
+      </tr>
+    </thead>
+    {% for tax in t.list %}
+    <tbody class="{% cycle odd,even %}">
+      <tr>
+        <td>{{ tax.county }}</td>
+        <td>{{ tax.value }}%</td>
+        <td><a href="{% url staff:edit_county_tax tax.id %}" class="edit-tax-action">Edit</a> | <a href="{% url staff:delete_county_tax tax.id %}" class="delete-tax">Delete</a></td>
+      </tr>
+    </tbody>
+    {% endfor %}      
+  {% endfor %}
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('a.edit-tax-action').colorbox();
+    
+    $('a.delete-tax').click(function (){
+      if (!confirm('Do you really want to delete the tax?'))
+        return false;
+      $.post($(this).attr('href'), function (data) {
+        window.location = data.redirect_to;         
+      });
+      return false;
+    });
+  });
+</script>
+
+{% endblock right %}

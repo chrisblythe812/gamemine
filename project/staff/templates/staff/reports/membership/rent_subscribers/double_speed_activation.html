@@ -1,0 +1,29 @@
+{% extends "staff/fulfillment.html" %}
+{% load pagination %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <table>
+      <tr>
+        <th>Customer</th>
+        <th>Email</th>
+        <th>Rental Plan</th>
+      </tr>
+      {% for user in users %}
+      {% with user.rental_plan as plan %}
+      <tr>
+        <td><a href="{% url staff:customer_view user.id %}" target="_blank">{{ user.get_profile.get_name_display }}</a></td>
+        <td>{{ user.email }}</td>
+        <td>{{ plan.get_plan_display }}</td>
+      </tr>
+      {% endwith %}
+      {% endfor %}
+    </table>
+    
+    {% pagination %}
+  </div>
+</div>
+
+{% endblock right %}

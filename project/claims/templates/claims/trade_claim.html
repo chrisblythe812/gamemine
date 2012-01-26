@@ -1,0 +1,109 @@
+{% extends "claims/claim_base.html" %}
+
+{% block page-class %}{{ block.super }} trade-claim-page{% endblock page-class %}
+
+{% block game-shipped-date %}
+{% endblock game-shipped-date %}
+
+{% block page-content %}
+{% if less_than_7_days %}
+    <dt><a class="minimize-action" href="#">Minimize</a>I mailed the game but Gamemine has not received it</dt>
+    <dd>
+        <p>Most games usually arrive <strong>3 to 5 days</strong> after you ship it, but occasionally there are postal 
+		delays that can postpone their deliverly.</p>
+
+        <p class="strong attention">If by {{ date_x_plus_7|date }}, you have not received an email confirming your game was
+        received, please come back and report as lost.</p>
+
+        <div class="actions">
+            <input type="reset" value="Close" class="red-close-button" />
+        </div>  
+    </dd>
+{% else %}
+    {% with forms.gamemine_not_receive_trade_game as form %}
+    <dt {% if form.instance.id %}class="expanded-by-default"{% endif %}><a class="minimize-action" href="#">Minimize</a>I mailed the game but Gamemine has not received it</dt>
+    <dd>
+    <form action="{% url claims:post_claim 'Trade' item.id 'Gamemine-Not-Receive-Trade-Game' %}" method="post" id="gamemine-not-receive-trade-game-form">{% csrf_token %}
+        {% if form.instance.id %}
+        <h3 class="attention">Thank you. Your report will be processed shortly.</h3>
+        <br/>
+        {% endif %}
+
+        <p>Please provide the tracking information that confirms we received your Game(s) so we can
+		investigate and resolve the problem.</p>
+
+        <h3 class="attention">What service did you use to ship the Game(s)?</h3>
+        <div class="input-field">
+        	{{ form.service }}
+        </div>
+
+        <h3 class="attention">What is the tracking number for the pachage(s)?</h3>
+        <div class="input-field">
+            {{ form.tracking_number }}
+        </div>
+		
+		<div class="actions">
+            <input type="submit" value="Report Problem" class="report-problem-button" />
+            <input type="reset" value="Cancel" class="red-cancel-button" />
+        </div>  
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#gamemine-not-receive-trade-game-form').submit(function () {
+                    var form = $(this);
+                    if (!form.find('input#id_tracking_number').val()) {
+                        alert('Please specify tracking number.');
+                        return false;
+                    }
+                    return true;
+                });
+            });
+        </script>
+    </form>
+    </dd>
+    {% endwith %}
+{% endif %}
+    {% with forms.wrong_trade_value_credit as form %}
+    <dt {% if form.instance.id %}class="expanded-by-default"{% endif %}><a class="minimize-action" href="#">Minimize</a>I received the wrong trade value credit for my game</strong></dt>
+    <dd>
+    <form action="{% url claims:post_claim 'Trade' item.id 'Wrong-Trade-Value-Credit' %}" method="post" id="wrong-trade-value-credit-form">{% csrf_token %}
+        {% if form.instance.id %}
+        <h3 class="attention">Thank you. Your report will be processed shortly.</h3>
+        <br/>
+        {% endif %}
+
+	    <p>Please provide the Trade Credit Value received your Game(s) including the amount it should
+		have been so we can investigate and resolve the problem.</p>
+	
+        <h3 class="attention">Credit(s) Recevied</h3>
+        <div class="input-field">
+            <span class="readonly-textbox">${{ form.initial.received|default:"0.00" }}</span>
+			{{ form.received }}
+        </div>
+
+        <h3 class="attention">Dispute Amount (enter amount you were expecting)</h3>
+        <div class="input-field">
+            {{ form.expected }}
+        </div>
+        
+        <div class="actions">
+            <input type="submit" value="Report Problem" class="report-problem-button" />
+            <input type="reset" value="Cancel" class="red-cancel-button" />
+        </div>  
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#gamemine-not-receive-trade-game-form').submit(function () {
+                    var form = $(this);
+                    if (!form.find('input#id_tracking_number').val()) {
+                        alert('Please specify tracking number.');
+                        return false;
+                    }
+                    return true;
+                });
+            });
+        </script>
+    </form>
+    </dd>
+    {% endwith %}
+{% endblock page-content %}

@@ -1,0 +1,17 @@
+<div id="signup-wizard">
+	<div id="dialog-heading">
+		<div id="dialog-heading-step">Step {{ step }} of {{ step_count }}</div>
+		{% if form.title %}<h1>{{ form.title }}</h1>{% endif %}
+		
+		{% if step0 == 0 %}
+		<div id="signup-wizard-login-question">
+			Already have an account? <a href="{% url members:login %}" class="link-dialog" title="Login">Login</a>
+		</div>
+		{% endif %}
+		
+		<div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>{{ wizard.title }}</div>
+	</div>
+	
+	{% include "members/signup.form.html" %}
+
+</div>

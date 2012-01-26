@@ -1,0 +1,43 @@
+<form action="{% url members:buy_list_change list_item.id %}" method="post" id="cart-add-form">
+    <div class="boxed" id="cart-add-form-hint">
+        <h2>Purchased Games:</h2>           
+        <ul>
+            <li>Standard Shipping is always Free (USPS).</li>
+            <li>Usually Ships in 24 Hours.</li>         
+            <li>Ships to U.S. Addresses Only.</li>          
+            <li>Used Games are pre-inspected and may includes manual and original case.</li>            
+            <li>Pre-Order low price is guaranteed if the price drops before the release date.</li>
+        </ul>
+    </div>
+
+    <ul id="cart-add-choices">
+        <li id="cart-add-new">
+            <div class="choice">
+                <input type="radio" name="condition" value="new" id="id_condition_new"{% if list_item.is_new %} checked="checked"{% endif %} />
+                <label for="id_condition_new">New Game {% if item.available_for_selling_n %}<span class="in-stock">(In Stock)</span>{% else %}<span class="out-of-stock">(Out of Stock)</span>{% endif %}</label>
+            </div>
+            <div class="price">
+                Price <span>{% if item.retail_price_new %}${{ item.retail_price_new|floatformat:2 }}{% else %}&mdash;{% endif %}</span>
+            </div>
+        </li>
+        <li id="cart-add-used">
+            <div class="choice">
+                <input type="radio" name="condition" value="used" id="id_condition_used"{% if not list_item.is_new %} checked="checked"{% endif %} />
+                <label for="id_condition_used">Used Game {% if item.available_for_selling_u %}<span class="in-stock">(In Stock)</span>{% else %}<span class="out-of-stock">(Out of Stock)</span>{% endif %}</label>
+            </div>
+            <div class="price">
+                Price <span>{% if item.retail_price_used %}${{ item.retail_price_used|floatformat:2 }}{% else %}&mdash;{% endif %}</span>
+            </div>
+        </li>
+    </ul>
+    
+    <div class="actions">
+        <a href="#" class="dialog-close-button back-button">Back</a>
+        <div class="right">
+            <div class="right">
+                <input type="submit" class="update-button" />
+            </div>
+        </div>
+    </div>
+</form>
+

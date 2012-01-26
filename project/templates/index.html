@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}{% endblock title %}
+{% block meta-description %}{{ block.super }}{% endblock meta-description %}
+{% block meta-keywords %}{{ block.super }}{% endblock meta-keywords %}
+
+{% block head %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/intro.js?rev={{ REV }}"></script>
+{% endblock %}
+
+{% block page-class %}intro-page{% if free_trial %} free_trial{% endif %}{% endblock %}
+
+{%block aftertop%}
+{# Start Content Wrapper #}
+<div class="container_full notrial">
+<div class="left_side"></div>
+<div class="right_side"></div>
+<div class="shadow"></div>
+<div id="container">
+  <!-- Featured Area -->
+<div class="featured_row">
+<a href="{% url catalog:item item_slug="Assassins-Creed-Revelations-PlayStation-3", id=100000505 %}">
+  <div class="featured_pic">
+    <ul>
+      <li>Buy for $56.99</li>
+      <li>Trade for $30</li>
+      <li>Rent for only $8.99</li>
+    </ul>
+  </div>
+</a>
+<a href="{% url catalog:index %}" class="featured_banner" title="Start Now">Buy, Trade, Rent</a>
+<a href="{% url catalog:item item_slug="Elder-Scrolls-V-Skyrim-PlayStation-3", id=100000504 %}">
+  <div class="featured_pic_right">
+    <ul>
+      <li>Pre-order for $56.99!</li>
+      <li>(that’s $3 bucks cheaper than GameFly)</li>
+    </ul>
+  </div>
+</a>
+<div class="clear"></div>
+</div>
+
+<!-- Carousel area -->
+<div class="carousel_row">
+  <a href="{% url catalog:index %}" title="Most Popular" class="btn_popular">Most Popular</a>
+  <div id="carousel">
+    <ul id="intro-new-releases-carousel" class="games-thumb-list">
+      {% for i in popular_releases %}
+      <li><div class="catalog-item{% if not i.get_thumb_image %} empty{% endif %}"><a href="{{ i.get_absolute_url }}">{% if i.get_thumb_image %}<img src="{{ i.get_thumb_image }}" width="55" height="70" />{% else %}{{ i }}{% endif %}</a></div></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+</div>
+
+</div>
+{# End Content Wrapper #}
+{% endblock %}
+
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock footer %}

@@ -1,0 +1,525 @@
+.rent-landing-page {
+    #intro-new-releases {
+        margin-top: -91px !important;
+    }    
+    
+    form {
+        input[type=submit] {
+            @include inline-block;
+            background: transparent -84px 0 url($images_url + "buttons.png") no-repeat;
+            width: 83px;
+            height: 23px;
+            text-indent: -9999px;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+    }
+    
+}
+
+.intro-page {
+    #root::after, #root .after {
+        background: none;
+    }
+
+    overflow-x: hidden;
+
+    #header_wrapper {
+        height: 82px;
+    }
+
+    #root-wrapper {
+        background: #D0D0D0;
+    }
+
+    .container_full {
+        width: 100%;
+        position: relative;
+    }
+    
+    #container {
+        width: 982px;
+        min-height: 400px;
+        position: relative;
+        z-index: 20;
+        margin: 0 auto;
+        background-color: black;
+    }
+    
+    .left_side {
+        width:519px;
+        height:620px;
+        position:absolute;
+        left:50%;
+        margin-left:-1010px;
+        background:url($images_url + "intro/welcome_left_side.png") top right no-repeat;
+    }
+    
+    .right_side {
+        width:519px;
+        height:620px;
+        position:absolute;
+        left:50%;
+        margin-left:491px;
+        background:url($images_url + "intro/welcome_right_side.png") top left no-repeat;
+    }
+    
+    .shadow {
+        width: 1047px;
+        height: 760px;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 50%;
+        margin-left: -524px;
+        background: url($images_url + "intro/main_shadow.png") 0 -120px no-repeat;
+    }
+    
+    .featured_pic {
+        width:390px;
+        height:372px;
+        float:left;
+        overflow:hidden;
+        text-indent:-9999px;
+        background:url($images_url + "intro/welcome_non_trial_main_slide_left.jpg") 0 0 no-repeat;
+    }
+    
+    .featured_pic_right {
+        width: 392px;
+        height: 372px;
+        float: right;
+        overflow: hidden;
+        text-indent: -9999px;
+        background: url($images_url + "intro/welcome_non_trial_main_slide_right.jpg") 0 0 no-repeat;
+    }
+    
+    .featured_banner {
+        width: 200px;
+        float: left;
+        background: url($images_url + "intro/welcome_non_trial_start_now.jpg") 0 0 no-repeat;
+        height: 372px;
+        overflow: hidden;
+        display: block;
+        cursor: pointer;
+        text-indent: -9999px;
+    }
+
+
+    &.free_trial {
+        .featured_pic {
+            background:url($images_url + "intro/welcome_trial_main_slide_left.jpg") 0 0 no-repeat;
+        }
+        .featured_pic_right {
+            background: url($images_url + "intro/welcome_trial_main_slide_right.jpg") 0 0 no-repeat;        
+        }
+        .featured_banner {
+            background: url($images_url + "intro/welcome_trial_start_now.jpg") 0 0 no-repeat;
+        }
+    }
+
+    .carousel_row {
+        width: 982px;
+        height: 89px;
+        position: relative;
+        background: url($images_url + "intro/welcome_trial_main_slide_part2.jpg") 0 0 no-repeat;
+
+        #carousel {
+            height: 78px;
+            margin-left: 455px;
+            margin-top: 15px;
+            overflow: hidden;
+            position: absolute;
+            width: 541px;
+        }
+    }
+    
+    .btn_popular {
+        width: 111px;
+        height: 40px;
+        overflow: hidden;
+        cursor: pointer;
+        text-indent: -9999px;
+        position: absolute;
+        top: 25px;
+        left: 330px;
+        background: url($images_url + "intro/btn_most_popular.png") 0 0 no-repeat;
+        z-index: 10;
+    }
+    
+    .jcarousel-container {
+	//background: rgba(255, 255, 0, .2);
+	width: 515px;
+        
+	.jcarousel-clip {
+	    margin: 0 0 0 35px;
+	    width: 440px;
+	}
+        
+	.jcarousel-item {
+	    //background: rgba(255, 0, 0, .2);
+	    width: 63px;
+	    height: 70px;
+	    margin: 0 !important;
+	}
+        
+	.jcarousel-next {
+	    width: 30px;
+	    height: 37px;
+	    cursor: pointer;
+	    margin-top: -50px;
+	    float: right;
+	    background: -30px 0 url($images_url + "carousel-prev-next.png") no-repeat;
+	}
+        
+	.jcarousel-prev {
+	    width: 30px;
+	    height: 37px;
+	    cursor: pointer;
+	    background: red;
+	    position: absolute;
+	    margin-top: -50px;
+	    background: 0 0 url($images_url + "carousel-prev-next.png") no-repeat;
+	}
+        
+	.jcarousel-next-disabled {
+	    background-position: -30px -37px;
+	}
+        
+	.jcarousel-prev-disabled {
+	    background-position: 0 -37px;
+	}
+        
+	.catalog-item {
+	    margin: 0 4px;
+	    height: 70px;
+	    width: 55px;
+            
+	    a {
+		display: block;
+		width: 55px;
+		height: 70px;
+		overflow: hidden;
+	    }
+            
+	    &.empty {
+		a {
+		    text-indent: -9999px;
+		}
+	    }
+	}
+    }
+
+    #footer {
+        background: url($images_url + "footer_px.gif") top repeat-x;
+    }
+    
+
+
+    // OLD
+    #content-header {
+	margin: -22px auto 0 !important;
+	background: bottom center url($images_url + "simple-page-bg.png") repeat-y;
+    }
+    
+    #content {
+	padding: 0 !important;
+	overflow: hidden;
+    }
+    
+    .banner-part {
+	height: 113px;
+	margin: 0;
+	padding: 0;
+	background: #000 center bottom no-repeat;
+    }
+    
+    .form-textbox-wrapper{
+	width:155px;
+    }
+    
+    #rent-banner2 {
+        .input-field {
+            label {
+                font-size: 11px;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+    
+    .signup-paymentplan-notes {
+        clear: left;
+        text-align: center;
+        font-size: 10px;
+        color: #666;
+        padding-top: 10px;
+    }
+    
+    #signup-paymentplan {
+        padding: 0 !important;
+        
+	li {
+	    text-align: center;
+	    font-size: 11px;
+	    background: -238px 45px url($images_url + "paymentplan-images.png") no-repeat;
+	    float: left;
+	    width: 125px;
+	    margin: 0 !important;
+	    padding: 0 !important;
+            
+            p {
+                margin-bottom: 0 !important;
+                padding: 0 !important;
+            }
+            
+	    &#signup-paymentplan-0 {
+		background-position: -40px 45px;
+                
+		.signup-paymentplan-extra {
+		    // padding: 1.2em 0;
+		}
+	    }
+            
+	    .signup-paymentplan-description {
+		font-weight: bold;
+		color: #333;
+                
+		strong {
+		    font-size: 17px;
+		    display: block;
+		}
+	    }
+            
+	    .signup-paymentplan-extra {
+		margin-top: 90px;
+		color: #333;
+		line-height: 1em;
+                
+		.red {
+		    font-weight: bold;
+		    color: red;
+		}
+                
+		.strong {
+		    font-weight: bold;
+		}
+	    }
+            
+	    .signup-paymentplan-price {
+		margin-top: 5px;
+		color: #666;
+		font-size: 13px !important;
+                
+		strong { font-weight: bold; }
+	    }
+            
+	}
+    }
+    
+    
+    
+    #intro-banner {
+	position: relative;
+        
+	#banner-part-1 { background-image: url($images_url + "intro/intro_01.jpg"); height: 112px; }
+	#banner-part-2 { background-image: url($images_url + "intro/intro_02.jpg"); }
+	#banner-part-3 { background-image: url($images_url + "intro/intro_03.jpg"); }
+	#banner-part-4 { background-image: url($images_url + "intro/intro_04.jpg"); background-color: transparent; }
+	#banner-part-5 { background-image: url($images_url + "intro/intro_05.png"); background-color: transparent; height: 11px; }
+    }
+    
+    #buy-banner {
+	position: relative;
+        
+	#banner-part-1 { background-image: url($images_url + "intro/buy/buy-intro_01.jpg"); }
+	#banner-part-2 { background-image: url($images_url + "intro/buy/buy-intro_02.jpg"); }
+	#banner-part-3 { background-image: url($images_url + "intro/buy/buy-intro_03.jpg"); }
+	#banner-part-4 { background-image: url($images_url + "intro/buy/buy-intro_04.jpg"); }
+	#banner-part-5 { background-image: url($images_url + "intro/intro-5.png"); background-color: transparent; height: 24px; }
+    }
+    
+    #trade-banner {
+	position: relative;
+        
+	#banner-part-1 { background-image: url($images_url + "intro/trade/trade-intro_01.jpg"); }
+	#banner-part-2 { background-image: url($images_url + "intro/trade/trade-intro_02.jpg"); }
+	#banner-part-3 { background-image: url($images_url + "intro/trade/trade-intro_03.jpg"); }
+	#banner-part-4 { background-image: url($images_url + "intro/trade/trade-intro_04.jpg"); }
+	#banner-part-5 { background-image: url($images_url + "intro/intro-5.png"); background-color: transparent; height: 24px; }
+    }
+    
+    #rent-banner {
+	position: relative;
+        
+	#banner-part-1 { background-image: url($images_url + "intro/rent/rent-intro_01.jpg"); }
+	#banner-part-2 { background-image: url($images_url + "intro/rent/rent-intro_02.jpg"); }
+	#banner-part-3 { background-image: url($images_url + "intro/rent/rent-intro_03.jpg"); }
+	#banner-part-4 { background-image: url($images_url + "intro/rent/rent-intro_04.jpg"); }
+	#banner-part-5 { background-image: url($images_url + "intro/intro-5.png"); background-color: transparent; height: 24px; }
+    }
+    
+    #rent-banner2 {
+	position: relative;
+        
+	#banner-part-1 { background-image: url($images_url + "intro/rent/rent-intro2_01.jpg"); }
+	#banner-part-2 { background-image: url($images_url + "intro/rent/rent-intro2_02.jpg"); }
+	#banner-part-3 { background-image: url($images_url + "intro/rent/rent-intro2_03.jpg"); }
+	#banner-part-4 { background-image: url($images_url + "intro/rent/rent-intro2_04.jpg"); }
+	#banner-part-5 { background-image: url($images_url + "intro/intro-5.png"); background-color: transparent; height: 24px; }
+    }
+    
+    
+    #banner-monster {
+	background: url($images_url + "intro/intro-monster.png") no-repeat;
+	width: 40px;
+	height: 69px;
+	top: 382px;
+	margin-left: -8px;
+	position: absolute;
+    }
+    
+    #intro-menu {
+	position: absolute;
+	left: 0;
+	top: 0;
+        
+	ul {
+	    padding: 0 !important;
+	}
+        
+	a {
+	    position: absolute;
+	    left: 0;
+	    display: block;
+	    text-indent: -9999px;
+	    overflow: hidden;
+	    // background: rgba(255, 255, 0, .5);
+            
+	    &#item-catalog-index { width: 982px; height: 371px; margin-left: 0px; top: 0; }
+            
+	    &#item-buy   { width: 175px; height: 93px; margin-left: 24px; top: 168px; }
+	    &#item-trade { width: 226px; height: 74px; margin-left: 17px; top: 281px; }
+	    &#item-rent  { width: 219px; height: 92px; margin-left: 26px; top: 359px; }
+            
+	    &#item-xbox     { width: 32px; height: 13px; margin-left: 24px; top: 265px; }
+	    &#item-ps       { width: 78px; height: 13px; margin-left: 82px; top: 265px; }
+	    &#item-nintendo { width: 63px; height: 13px; margin-left: 180px; top: 265px; }
+	}
+    }
+    
+    #item-welcome {
+	display: block;
+	position: absolute;
+	left: 338px;
+	top: 396px;
+	width: 103px;
+	height: 40px;
+	text-indent: -9999px;
+	overflow: hidden;
+    }
+    
+    #free-shipping-banner {
+	position: absolute;
+	left: 0;
+	width: 100%;
+        
+	&.class-a {
+            top: 566px + 105px;
+	}
+        
+        &.class-b {
+            top: 566px;
+        }
+        
+        #free-shipping-banner-inner {
+  	    width: 982px;
+  	    height: 78px;
+	    margin: 0 auto;
+	    padding-left: 14px;
+        }
+    }
+    
+    #buy-banner,
+    #rent-banner,
+    #trade-banner {
+	#intro-new-releases {
+	    margin-top: -91px;
+	}
+    }
+    
+    #intro-new-releases {
+	//background: rgba(255, 255, 0, .3);
+	position: absolute;
+	margin-left: 441px;
+	margin-top: -78px;
+	width: 541px;
+	height: 78px;
+	overflow: hidden;
+    }
+    
+    #intro-main-actions {
+	padding: 0 0 0 14 !important;
+        
+	li {
+	    float: left;
+	    margin: 0 6px 0 0 !important;
+	}
+        
+	a {
+	    display: block;
+	    height: 23px;
+	    text-indent: -9999px;
+	    overflow: hidden;
+	    background: url($images_url + "intro/intro-main-actions.png") no-repeat;
+            
+	    &#intro-action-how-it-works { width: 134px; }
+	    &#intro-action-pick-a-plan  { width: 90px; background-position: -134px 0; }
+	}
+    }
+    
+    /* #footer-menu { */
+    /*     margin-top: 16px; */
+    /*     float: right; */
+    /*     // background: rgba(255, 255, 0, .3); */
+    /*     padding: 0 !important; */
+        
+    /*     li { */
+    /*         float: left; */
+    /*         font-size: 12px; */
+    /*         margin: 0 16px 0 10px !important; */
+            
+    /*         a { */
+    /*     	text-decoration: none; */
+    /*     	color: $header_blue; */
+                
+    /*     	&:hover { */
+    /*     	    text-decoration: underline; */
+    /*     	} */
+    /*         } */
+    /*     } */
+    /* } */
+    
+    /* #footer-content { */
+    /*     padding-top: 0 !important; */
+    /* } */
+    
+    #slim_banner {
+	width: 982px;
+	height: 105px;
+	display: block;
+	background: #000 center center no-repeat;
+        
+	span { display: none }
+        
+	&.deck-the-halls {
+	    background-image: url($images_url + 'deck-the-hall/deck-the-hall-welcome-banner-1.jpg');
+	}
+    }
+}
+
+@import "intro_page_buy2";
+@import "intro_page_rent2";
+@import "intro_page_trade2";
+@import "new_wimgw";

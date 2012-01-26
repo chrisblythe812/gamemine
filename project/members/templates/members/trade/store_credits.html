@@ -1,0 +1,53 @@
+{% extends "members/trade/base.html" %}
+
+{% block page-class %}{{ block.super }} profile-store-credits{% endblock page-class %}
+
+{% block heading %}
+    <li class="selected">Store Credits</li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<div id="profile-store-credits-content">
+	<table class="credits-table candy-table">
+		<thead>
+			<tr>
+				<td class="left column-no">&nbsp;</td>
+                <td class="inner column-method">Description</td>
+                <td class="inner column-date center">Date</td>
+                <td class="right column-credits" style="text-align: right">Credits</td>
+			</tr>
+		</thead>
+		<tbody>
+		{% for c in credits %}
+            <tr class="{% cycle 'odd' 'even' %}">
+                <td class="left column-no">{{ forloop.counter }}.</td>
+                <td class="inner column-method">{{ c.description }}</td>
+                <td class="inner column-date center">{{ c.timestamp|date }}</td>
+                <td class="right column-credits" style="text-align: right">${{ c.credit }}</td>
+            </tr>
+	    {% empty %}
+            <tr>
+                <td class="empty" colspan="5">&mdash;</td>
+            </tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	
+	<div class="total-1">
+		<strong>Total Store Credits</strong> <span class="money">${{ total_store_credits|default:'0.00' }}
+	</div>
+    <div class="total-2">
+        <strong>Cashable Credits</strong> <span class="money">${{ cashable_credits|default:'0.00' }}
+    </div>
+</div>
+
+<div id="profile-store-credits-buttons">
+	<ul class="buttons">
+		<li id="button-buy-games"><a href="/Buy/">Buy Games</a></li>
+        <li id="button-rent-games"><a href="/Rent/">Rent Games</a></li>
+        <li id="button-cash-back"><a href="{% url members:cash_back %}">Cash Back</a></li>
+	</ul>
+</div>
+
+{% endblock page-content %}

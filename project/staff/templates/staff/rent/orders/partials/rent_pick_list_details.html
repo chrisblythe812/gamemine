@@ -1,0 +1,26 @@
+<div class="module">
+  <h2>{{ item.upc }}: {{ item.name }}</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Member Name</td>
+        <td>Order #</td>
+        <td>Home DC</td>
+        <td>MAP</td>
+        <td>Platform</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+      <tr>
+        <td><a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a></td>
+        <td>{{ order.order_no }}</td>
+        <td>{{ order.user.get_profile.dropship.code }}</td>
+        <td>{{ order.map }}</td>
+        <td>{{ order.item.category }}</td>
+      </tr>
+    {% endfor %}      
+    </tbody>
+  </table>
+</div>

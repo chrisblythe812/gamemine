@@ -1,0 +1,21 @@
+{% extends "members/account/base.html" %}
+
+{% block content %}
+
+<ul class="heading">
+    {% block heading %}{% endblock heading %}
+</ul>
+
+<div id="page-heading">
+  <h1>My Account</h1>
+  <img id="page-heading-user-avatar" src="{{ user.get_profile.get_icon_url }}" width="60" height="60" />
+  <div id="page-heading-user">Hi, {{ user.get_profile }}</div>
+  <div id="page-heading-extra-info">
+    <strong>Store credits:</strong> <span class="store-credits">${{ user.get_profile.store_credits }}</span>
+    <strong class="pending-credits">Pending credits:</strong> <span class="pending-credits">${{ user.get_profile.pending_credits }}</span>
+  </div>
+</div>
+
+{% block page-content %}{% endblock page-content %}
+
+{% endblock content %}

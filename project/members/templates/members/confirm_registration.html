@@ -1,0 +1,72 @@
+{% extends "members/base.html" %}
+
+{% block title %}Account Confirmation{% endblock title %}
+
+{% block page-class %}{{ block.super }} confirm-registration{% endblock page-class %}
+
+{% block content %}
+
+<ul class="heading">
+    <li class="selected">Account Confirmation</li>
+</ul>
+
+<div id="confirm-registration-content">
+	<div class="side1">
+		
+	</div>
+	
+	<div class="side2">
+		<h2>Email address has been verified.</h2>
+		
+		<p>The address <strong>{{ email|default:"example@example.com" }}</strong> has been verified 
+		successfully, Thank You!</p>
+		
+		<div class="actions"><a href="{% url members:login %}?next={{ next_url|default:'/' }}" class="login-button">Login</a></div>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block body_end %}
+
+<!-- Google Code for Free Signup 1 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 994558147;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "GkGKCI289QEQw4Gf2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/994558147/?label=GkGKCI289QEQw4Gf2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Google Code for Free Signup 2 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 996118130;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "SKSfCLaUgwIQ8pz-2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/996118130/?label=SKSfCLaUgwIQ8pz-2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+@mixin debug {
+//    background: rgba(255, 255, 0, .2);
+}
+
+
+.account-report-problems {
+    #account-report-problems-content {
+        @include debug;
+        margin: 40px 70px;
+        color: #333;
+        
+        h2 {
+            text-align: center;
+            font-size: 16px !important;
+            margin: 0 0 20px;
+        }
+        
+        .games-list {
+            width: 100%;
+        }
+        
+        table {
+            width: 100%;
+            font-size: 13px;
+            color: #333;
+            
+            .column-image {
+                padding: 5px 10px 5px 20px;
+                width: 80px;
+            }
+            
+            .column-title {
+                width: 180px;
+                padding: 0 10px 0 0;
+                a {
+                    @include heading-anchor;
+                    color: #333;
+                    font-weight: bold;
+                }
+            }
+            
+            .column-sphere {
+                font-weight: bold;
+                width: 60px;
+            }
+            
+            .rent-items .column-sphere { color: #039238; }
+            .trade-items .column-sphere { color: #0169C2; }
+            .buy-items .column-sphere { color: #CB0400; }
+            
+            .column-platform {
+                width: 130px;
+            }
+            
+            .column-shipped {
+                width: 220px;
+            }
+            
+            .column-action {
+                padding-right: 20px;
+            }
+            
+            tr.row2 {
+                background: #F5F5F5;
+            }
+        }
+    }
+}

@@ -1,0 +1,316 @@
+.intro-buy2-page {
+  
+  &.banner-page {
+    #content-header {
+      height: 676px;
+    }
+  }
+
+  .banner-content {
+    height: 345px !important;
+    background: url($images_url + 'intro/buy2/top-banner.jpg') no-repeat !important;
+  }
+  
+  #item-catalog-index div {
+    height: 345px;
+  }
+  
+  .banner-carousel {
+    height: 232px;
+    background: url($images_url + 'intro/buy2/carousel.jpg') no-repeat !important;
+    margin-top: 4px;
+    overflow: hidden;
+    
+    #intro-best-sellers {
+      // background: rgba(255, 255, 0, .2);
+      width: 775px;
+      position: absolute;
+      margin: 10px 0 0 185px;
+
+      .jcarousel-clip {
+        // background: rgba(255, 255, 0, .2);
+        margin: 0 0 0 50px;
+        width: 674px;
+      }
+    
+      .jcarousel-item {
+        //background: rgba(255, 0, 0, .2);
+          width: 134px;
+          height: 215px;
+          margin: 0 !important;
+      }   
+
+      .jcarousel-next {
+          width: 50px;
+          height: 60px;
+          cursor: pointer;
+          // background: rgba(255, 255, 0, .2);
+          margin-top: -150px;
+          float: right;
+      }
+
+      .jcarousel-prev {
+          width: 50px;
+          height: 60px;
+          cursor: pointer;
+          // background: rgba(255, 255, 0, .2);
+          position: absolute;
+          margin-top: -150px;
+      }
+
+      .catalog-item-2 {
+        margin: 0 4px;
+        height: 210px;
+        width: 120px;
+        overflow: hidden;
+        // background: rgba(255, 255, 0, .2);
+        
+        a.image {
+            display: block; 
+            width: 120px;
+            height: 160px;
+            overflow: hidden;
+        }
+        
+        div.title {
+          margin-top: 10px;
+          font-weight: bold;            
+          
+          a {
+            color: #fff;
+            text-decoration: none;          
+            width: 140px;
+            margin-left: -10px;
+            display: block;
+            text-align: center;
+          }
+        }
+        
+        div.price {
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+          color: #1F8DDC;
+          margin-top: 4px;            
+        }
+      }
+    }
+  }
+
+  .banner-categories {
+    height: 58px !important;
+    background: url($images_url + 'intro/buy2/cats.jpg') no-repeat !important;
+    margin-top: 18px;
+    
+    ul {
+      padding-left: 315px;
+      overflow: hidden;
+    
+      span { display: none; }
+      
+      a { 
+        display: block; 
+        width: 50px; 
+        height: 58px; 
+        
+        &:hover,
+        &.selected{
+          background: -316px -58px url($images_url + 'intro/buy2/cats.jpg') no-repeat !important;
+        }     
+      }
+      
+      li {
+        float: left;
+        padding-left: 1px;
+      }
+      
+      #banner-category-Xbox-360-Games a      { width: 71px; }
+      #banner-category-Xbox-Games a          { width: 88px; } 
+      #banner-category-PlayStation-3-Games a { width: 82px; } 
+      #banner-category-PlayStation-2-Games a { width: 86px; } 
+      #banner-category-Sony-PSP-Games a      { width: 85px; } 
+      #banner-category-Nintendo-Wii-Games a  { width: 69px; } 
+      #banner-category-Nintendo-DS-Games a   { width: 112px; } 
+      #banner-category-GameCube-Games a      { width: 66px; } 
+
+      #banner-category-Xbox-360-Games a.selected,      #banner-category-Xbox-360-Games a:hover      { background-position: -316px -58px !important; }
+      #banner-category-Xbox-Games a.selected,          #banner-category-Xbox-Games a:hover          { background-position: -388px -58px !important; } 
+      #banner-category-PlayStation-3-Games a.selected, #banner-category-PlayStation-3-Games a:hover { background-position: -477px -58px !important; } 
+      #banner-category-PlayStation-2-Games a.selected, #banner-category-PlayStation-2-Games a:hover { background-position: -560px -58px !important; } 
+      #banner-category-Sony-PSP-Games a.selected,      #banner-category-Sony-PSP-Games a:hover      { background-position: -647px -58px !important; } 
+      #banner-category-Nintendo-Wii-Games a.selected,  #banner-category-Nintendo-Wii-Games a:hover  { background-position: -733px -58px !important; } 
+      #banner-category-Nintendo-DS-Games a.selected,   #banner-category-Nintendo-DS-Games a:hover   { background-position: -803px -58px !important; } 
+      #banner-category-GameCube-Games a.selected,      #banner-category-GameCube-Games a:hover      { background-position: -916px -58px !important; } 
+    }
+  }
+  
+  .clear { clear: both; }
+  
+  .bottom-message {
+    font-size: 11px;
+    color: #666;
+    padding: 20px 10px 30px;
+    line-height: 13px;
+    
+    span.tag {
+        padding-left: 18px;
+        background: left top url($images_url + 'intro/buy2/tag-s.png') no-repeat;
+    }
+  }
+}
+
+#intro-buy2-page-content {
+  #catalog-grid {
+//    background: rgba(255, 255, 0, .3);
+    
+    width: 717px;
+    float: left;
+    margin-left: 25px;
+    
+    #catalog-grid-title {
+      // background: rgba(255, 255, 0, .3);
+      
+      padding-left: 0;
+      margin-bottom: 1em;
+      font-size: 14px;
+      height: 30px;
+      
+      .legend {
+        float: left;
+        font-size: 12px;
+        line-height: 21px;
+        padding-left: 30px;
+        background: left top url($images_url + 'intro/buy2/tag-l.png') no-repeat;
+        height: 21px;
+        color: #333;
+      }
+    }
+    
+    #catalog-path {
+      // background: rgba(255, 255, 0, .3);
+    
+      float: right;
+      font-style: italic;
+      color: #333;
+      font-size: 13px;
+      padding-right: 15px;
+      
+      a {
+        color: #333;
+        @include heading-anchor;
+      }
+    }
+  
+    #catalog-grid-content {
+      //background: rgba(255, 255, 0, .2);
+      margin-left: -3px;
+
+      &.loading {
+        background: center center url($images_url + 'catalog/loading.gif') no-repeat;
+        height: 300px;
+        
+        .catalog-items {
+          display: none;
+        }
+      }
+      
+      .catalog-items 
+      {
+        padding: 0 !important;
+        
+		&.empty {
+		    background: center top url($images_url + 'catalog/qs_no_item.gif') no-repeat;
+		    height: 200px;
+		}
+
+        .catalog-item {
+          // background: rgba(255, 255, 0, .3);
+          
+          @include inline-block-ex;
+          width: 170px;
+          padding: 0 !important;
+          margin: 0 0 30px 6px;
+          overflow: hidden;
+          
+          .catalog-item-cover {
+            // background: rgba(255, 0, 0, 0.1);
+            height: 220px;
+            margin-bottom: 10px;
+
+            a {
+              // background: rgba(255, 255, 0, 0.3);
+              background: transparent;
+              display: block;
+              width: 170px;
+              height: 220px;
+              overflow: hidden;
+            }
+          }
+          
+          .catalog-item-title {
+            height: 15px;
+            overflow: hidden;
+            font-size: 13px;
+            
+            a {
+              // background: rgba(255, 255, 0, 0.3);
+              @include heading-anchor;
+              color: #333;
+              
+              overflow: hidden;
+              height: 20px;
+              width: 2000px;
+              display: block;
+              font-size: 14px;
+              font-weight: bold;
+              padding-left: 15px;
+            }
+          }
+          
+          .catalog-item-category {
+            padding-left: 15px;
+            font-size: 12px;
+            color: #666;
+            height: 20px;
+          }
+          
+          .catalog-item-price {
+            padding-left: 15px;
+            color: #E52429;
+            font-weight: bold;
+            font-size: 18px;
+            height: 20px;
+            
+            .pre_owned {
+                background: right top url($images_url + 'intro/buy2/tag-l.png') no-repeat;
+                padding-right: 32px;
+            }
+          }
+          
+          .catalog-item-actions {
+            padding-left: 13px;
+            padding-top: 5px;
+            height: 20px;
+
+            a {
+              // @include inline-block-ex;
+              display: block;
+              @include image-anchor(20px, 20px, url($images_url + "catalog/catalog-actions.png") no-repeat);
+              float: left;
+              margin-right: 4px;
+            }
+
+            a.catalog-item-action-rent { background-position: -40px 0; }
+            a.catalog-item-action-trade { background-position: -20px 0; }
+          }
+        }
+        
+        .empty-list {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .clear { clear: both; }
+}

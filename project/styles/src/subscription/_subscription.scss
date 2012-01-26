@@ -1,0 +1,191 @@
+#id_subscription_thankyou_dialog {
+  width: 720px;
+  height: 330px;
+  
+  #dialog-heading {
+    padding: 0;
+    height: 53px;
+  }
+  
+  #dialog-left-title {
+    height: 53px;
+    float: left;
+    line-height: 1.1em;
+    padding-left: 20px;
+    
+    .title-1 {
+      font-size: 11px;
+      font-weight: bold;
+      color: #666;
+      margin-top: 7px;
+    }
+    
+    .title-2 {
+      font-weight: bold;
+      color: #fff;
+      font-size: 13px;
+    }
+  }
+   
+  #dialog-title {
+    height: 53px;
+    line-height: 53px;
+    margin: 0 20px 0 0;
+  }
+   
+  .dialog-content {
+//    background: rgba(255, 255, 0, 0.3);
+    height: 250px;
+    
+    .dialog-content-text {
+      padding-top: 70px;
+    }
+  }
+  
+  .actions {
+    text-align: right;
+    padding-right: 30px;
+  }
+  
+  .field {
+    margin: 10px 0 5px;
+  
+    label {
+        width: 110px;
+        text-align: right;
+        display: block;
+        float: left;
+        clear: left;
+        height: 23px;
+        line-height: 23px;
+        font-size: 11px;
+        color: #333;
+//        background: rgba(255, 255, 0, 0.3);
+        margin-right: 7px;
+    }
+    
+    .input {
+        width: 190px;
+    }
+  }
+  
+  .info {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    line-height: 1.3em;
+    margin-top: 20px;
+  }
+  
+  h1 {
+    font-size: 42px;
+    color: #666;
+    font-weight: bold;
+  }
+  
+  .info2 {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.3em;
+    margin-top: 20px;
+  }
+  
+  .errorlist {
+     color: red;
+     font-size: 11px;
+     padding: 0 0 0 5px;
+     margin-left: 120px;
+     list-style-position: outside;
+  }
+}
+
+#wizard-subs-decor-1 {
+  width: 156px;
+  height: 96px;
+  position: absolute;
+  z-index: 9999999;
+  background: url($images_url + 'subscription/i2.png');
+}
+
+#wizard-subs-decor-2 {
+  width: 88px;
+  height: 71px;
+  position: absolute;
+  z-index: 9999999;
+  background: url($images_url + 'subscription/i3.png');
+}
+
+#wizard-subs-decor-3 {
+  width: 71px;
+  height: 78px;
+  position: absolute;
+  z-index: 9999999;
+  background: url($images_url + 'subscription/i4.png');
+}
+
+#wizard-subs-decor-4 {
+  width: 50px;
+  height: 112px;
+  position: absolute;
+  z-index: 9999999;
+  background: url($images_url + 'subscription/i1.png');
+}
+
+#id_subscription_thankyou_dialog-123 {
+    width: 600px;
+
+    #dialog-left-title {
+      height: 27px;
+   }
+
+    .dialog-content {
+        padding: 20px 80px;
+        
+        h1 {
+            font-size: 30px;
+            margin: 0 0 20px 0;
+            color: #333;
+        }
+        
+        p {
+            color: #333;
+        }
+        
+        .actions {
+            margin: 40px 0 0 0;
+            text-align: right;
+        }
+    }
+    
+    .errorlist {
+      color: red;
+      font-size: 12px;
+      padding: 5px 0 0 10px;      
+    }
+}
+
+.confirm-subscription {
+    #confirm-subscription-content {
+        margin: 40px 250px;
+        color: #333;
+
+        .side1 {
+        
+        }
+
+        .side2 {
+            h2 {
+                line-height: 32px;
+                height: 32px;
+                background: left center url($images_url + 'profile/verify_email_check.png') no-repeat;
+                padding-left: 40px;
+                margin-bottom: 30px !important;
+            }
+                
+            .actions {
+                padding-top: 30px;
+                text-align: center;
+            } 
+        }
+    }
+}

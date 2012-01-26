@@ -1,0 +1,22 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ user.first_name|default:user.username }},</p>
+
+<p>This is confirmation that the video game below has been received by our
+Distribution Center.</p>
+
+<table>
+<tr><th>Game Title:</th><td>{{ order.item.name }}</td></tr>
+<tr><th>Platform:</th><td>{{ order.item.category }}</td></tr>
+</table>
+
+<p>Please remember, we pride ourselves in the relentless effort to offer the
+best level of service possible for video game rentals and the more titles you
+have on your Rent List, the faster turnaround times we can provide.</p>
+
+<p>- The Gamemine Team</p>
+
+{% endblock content %}
+

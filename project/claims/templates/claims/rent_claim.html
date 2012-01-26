@@ -1,0 +1,255 @@
+{% extends "claims/claim_base.html" %}
+
+{% block page-class %}{{ block.super }} rent-claim-page{% endblock page-class %}
+
+{% block page-content %}
+    {% with forms.game_is_damaged as form %}
+    <dt {% if form.instance.id %}class="expanded-by-default"{% endif %}><a class="minimize-action" href="#">Minimize</a>Game is damaged, scratched or unplayable</dt>
+    <dd>
+    <form action="{% url claims:post_claim 'Rent' item.id 'Game-Is-Damaged' %}" method="post" id="game-is-damaged-form">{% csrf_token %}
+      {% if form.instance.id %}
+      <h3 class="attention">Thank you. Your report will be processed shortly.</h3>
+      <br/>
+      {% endif %}
+
+    	<h3>Troubleshooting unplayable discs</h3>
+		<p>Try whiping the discs with glass cleaner and a paper towel from the center hole to the outer edge.</p>
+
+        <h3 class="attention">Please describe the damage...</h3>
+		<div class="checkbox-field">
+			{{ form.game_is_scratched }} {{ form.game_is_scratched.label }}
+		</div>
+        <div class="checkbox-field">
+            {{ form.game_skips_playing }} {{ form.game_skips_playing.label}}
+        </div>
+        <div class="checkbox-field">
+            {{ form.game_is_cracked }} {{ form.game_is_cracked.label }}
+        </div>
+
+		<div class="actions">
+			<input type="submit" value="Report Problem" class="report-problem-button" />
+			<input type="reset" value="Cancel" class="red-cancel-button" />
+		</div>
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('#game-is-damaged-form').submit(function () {
+                    var form = $(this);
+					if (form.find('input[checked]').size() == 0) {
+						alert('Please select at least one problem.');
+						return false;
+					}
+					return true;
+				});
+			});
+		</script>
+	</form>
+    </dd>
+	{% endwith %}
+
+    {% with forms.wrong_game as form %}
+    <dt {% if form.instance.id %}class="expanded-by-default"{% endif %}><a class="minimize-action" href="#">Minimize</a>I received the wrong Game</dt>
+    <dd>
+    <form action="{% url claims:post_claim 'Rent' item.id 'Wrong-Game' %}" method="post" id="wrong-game-form">{% csrf_token %}
+        {% if form.instance.id %}
+        <h3 class="attention">Thank you. Your report will be processed shortly.</h3>
+        <br/>
+        {% endif %}
+
+        <p>By reporting this we will automatically send you a replacement after the wrong game is
+		returned to Gamemine.</p>
+
+        <h3 class="attention">Please describe the the damage...</h3>
+        <div class="checkbox-field">
+            {{ form.game_not_in_list }} {{ form.game_not_in_list.label }}
+        </div>
+        <div class="checkbox-field">
+            {{ form.game_not_match_white_sleeve }} {{ form.game_not_match_white_sleeve.label }}
+        </div>
+
+        <div class="actions">
+            <input type="submit" value="Report Problem" class="report-problem-button" />
+            <input type="reset" value="Cancel" class="red-cancel-button" />
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#wrong-game-form').submit(function () {
+                    var form = $(this);
+                    if (form.find('input[checked]').size() == 0) {
+                        alert('Please select at least one problem.');
+                        return false;
+                    }
+                    return true;
+                });
+            });
+        </script>
+	</form>
+    </dd>
+    {% endwith %}
+
+    {% with forms.mailer_is_empty as form %}
+    <dt {% if form.instance.id %}class="expanded-by-default"{% endif %}><a class="minimize-action" href="#">Minimize</a>The mailer was empty</dt>
+    <dd>
+    <form action="{% url claims:post_claim 'Rent' item.id 'Mailer-Is-Empty' %}" method="post" id="mailer-is-empty-form">{% csrf_token %}
+        {% if form.instance.id %}
+        <h3 class="attention">Thank you. Your report will be processed shortly.</h3>
+        <br/>
+        {% endif %}
+
+{% comment %}
+        <div class="input-field">
+        	{{ form.comment }}
+        </div>
+{% endcomment %}
+	    <div class="actions">
+            <input type="submit" value="Report Problem" class="report-problem-button" />
+            <input type="reset" value="Cancel" class="red-cancel-button" />
+        </div>
+    </form>
+    </dd>
+    {% endwith %}
+
+{% if less_than_7_days %}
+    <dt><a class="minimize-action" href="#">Minimize</a>I haven't received the Game yet</dt>
+    <dd>
+        <p>Most games are usually arrive <strong>3 to 5 days</strong> after you ship it, but
+		occasionally there are postal delays that can postpone their delivery.</p>
+
+        <p class="strong attention">If by {{ shipped_date_plus_7|date }}, you have not received the game,
+		please come back and report it as lost.</p>
+
+        <div class="actions">
+            <input type="reset" value="Close" class="red-close-button" />
+        </div>
+    </dd>
+{% else %}
+    {% with forms.dont_receive_yet as form %}
+    <dt {% if form.instance.id %}class="expanded-by-default"{% endif %}><a class="minimize-action" href="#">Minimize</a>I haven't received the Game yet</dt>
+    <dd>
+    <form action="{% url claims:post_claim 'Rent' item.id 'Havent-Receive-Game-Yet' %}" method="post" id="dont-receive-form">{% csrf_token %}
+        {% if form.instance.id %}
+        <h3 class="attention">Thank you. Your report will be processed shortly.</h3>
+        <br/>
+        {% endif %}
+
+        <p class="strong">{{ game.short_name }} ({{ game.category }}) should have arrived by {{ shipped_date_plus_7|date }}.
+		We regret the delay and will send you if available or the next game on your list. If the
+		game arrives in the future, please return it back to Gamemine.</p>
+
+        <div class="shipping-address-info address-info">
+            <div class="shipping-address-name">{{ order.display_name }}</div>
+            <div class="shipping-address-addr1">{{ order.shipping_address1 }}</div>
+            {% if order.shipping_address2 %}
+            <div class="shipping-address-addr2">{{ order.shipping_address2 }}</div>
+            {% endif %}
+            <div class="shipping-address-addr3">{{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}</div>
+        </div>
+        <dl class="hidden shipping-address-form address-form">
+            <dt>First Name</dt>
+            <dd class="field">{{ form.first_name }}</dd>
+
+            <dt>Last Name</dt>
+            <dd class="field">{{ form.last_name }}</dd>
+
+            <dt>Address 1</dt>
+            <dd class="field">{{ form.shipping_address1 }}</dd>
+
+            <dt>Address 2</dt>
+            <dd class="field">{{ form.shipping_address2 }}</dd>
+
+            <dt>City</dt>
+            <dd class="field">{{ form.shipping_city }}</dd>
+
+            <dt>State</dt>
+            <dd class="field">{{ form.shipping_state }}</dd>
+
+            <dt>Zip Code</dt>
+            <dd class="field">{{ form.shipping_zip_code }}</dd>
+        </dl>
+        <div class="shipping-address-action"><a href="#" class="update-your-address">(update your address)</a></div>
+
+		<div class="actions">
+            <input type="submit" value="Report Problem" class="report-problem-button" />
+            <input type="reset" value="Cancel" class="red-cancel-button" />
+        </div>
+    </form>
+    </dd>
+    {% endwith %}
+{% endif %}
+
+{% if less_than_7_days %}
+    <dt><a class="minimize-action" href="#">Minimize</a>I mailed the game back but Gamemine has not received it</dt>
+    <dd>
+        <p>Most games are usually arrive <strong>3 to 5 days</strong> after you ship it, but
+        occasionally there are postal delays that can postpone their delivery.</p>
+
+        <p class="strong">If by {{ shipped_date_plus_7|date }}, you have not received an email confirming your game was
+		received, please come back and report as lost.</p>
+
+        <div class="actions">
+            <input type="reset" value="Close" class="red-close-button" />
+        </div>
+    </dd>
+{% else %}
+    {% with forms.gamemine_not_receive_game as form %}
+    <dt {% if form.instance.id %}class="expanded-by-default"{% endif %}><a class="minimize-action" href="#">Minimize</a>I mailed the game back but Gamemine has not received it</dt>
+    <dd>
+    <form action="{% url claims:post_claim 'Rent' item.id 'Gamemine-Not-Receive-Game' %}" method="post" id="gamemine-not-receive-game-form">{% csrf_token %}
+        {% if form.instance.id %}
+        <h3 class="attention">Thank you. Your report will be processed shortly.</h3>
+        <br/>
+        {% endif %}
+
+        <h3>When was the game mailed?</h3>
+
+        <div class="input-field date-input">
+            {{ form.mailed_date }}
+        </div>
+
+        <div class="actions">
+            <input type="submit" value="Report Problem" class="report-problem-button" />
+            <input type="reset" value="Cancel" class="red-cancel-button" />
+        </div>
+    </form>
+    </dd>
+    {% endwith %}
+{% endif %}
+
+    <dt><a class="minimize-action" href="#">Minimize</a>Missing white sleeve or mailer?</dt>
+    <dd>
+        <h3 class="attention">No red, white and blue mailer?</h3>
+		<p>If you no longer have the postage-paid mailer to return the Game, you can either:</p>
+		<ul>
+            <li>Mail up to 2 DVDs in the same mailer.</li>
+            <li><strong>OR</strong> you may mail your DVD to:
+                <div>Gamemine</div>
+                <div>P.O. Box 810940</div>
+				<div>Boca Raton, FL 33481-0940</div>
+			</li>
+		</ul>
+
+        <h3 class="attention">No white sleeve?</h3>
+		<p>If you no longer have the white sleeve for the DVD:</p>
+        <ul>
+            <li>Please send the Game back in one of our red, white and blue prepaid return mailers.
+			The mailer includes a barcode we can use to associate your returned disc with your
+			Gamemine Account.</li>
+        </ul>
+
+        <div class="actions">
+            <input type="reset" value="Close" class="red-close-button" />
+        </div>
+    </dd>
+
+    <dt><a class="minimize-action" href="#">Minimize</a>Lost or Damaged the GAME and would like to pay for it?</dt>
+    <dd>
+        <p>If "<strong>{{ game.name }}</strong>" is lost or damaged and you would like to pay for it, clicking 'Pay for disc' button below
+		will authorize us to charge "<strong>${{ game.retail_price_used }}</strong>" (used game price) plus any applicable tax to your credit card on file.</p>
+        <div class="actions">
+            <input style="float: left" type="reset" value="Close" class="red-close-button" />
+            <a style="float: right" class="pay-for-disc-button" href="#">Pay for disc</a>
+        </div>
+    </dd>
+
+{% endblock page-content %}

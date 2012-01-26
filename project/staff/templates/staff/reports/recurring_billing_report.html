@@ -1,0 +1,104 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div>
+    <form method="get">
+      {{ form.p }}
+      <input type="submit" value="Display" />
+    </form>
+  </div>
+  
+  <div>
+    <h3>Gross Sales</h3>
+    <p>{{ gross_sales }}</p>
+
+    <h3>New Registrations</h3>
+    
+    <table style="width: 600px">
+      <tr>
+        <th rowspan="2"></th>
+        <th colspan="2">Authorized</th>
+        <th colspan="2">Captured</th>
+        <th colspan="2">Declined</th>
+        <th rowspan="2">Total<br/>(Authorized+Captured)</th>
+      </tr>
+      <tr>
+        <th>Users</th>
+        <th>Amount</th>
+        <th>Users</th>
+        <th>Amount</th>
+        <th>Users</th>
+        <th>Amount</th>
+      </tr>
+    {% for i in new_registrations %}
+      <tr>
+        <th>${{ i.plan }}</th>
+        <td align="right">{{ i.authorized_users|default:0 }}</td>
+        <td align="right">${{ i.authorized_amount|default:"0.00" }}</td>
+        <td align="right">{{ i.captured_users|default:0 }}</td>
+        <td align="right">${{ i.captured_amount|default:"0.00" }}</td>
+        <td align="right">{{ i.declined_users|default:0 }}</td>
+        <td align="right">${{ i.declined_amount|default:"0.00" }}</td>
+        <td align="right">${{ i.total|default:"0.00" }}</td>
+      </tr>
+    {% endfor %}
+      <tr>
+        <th>Total</th>
+        <td align="right"><strong>{{ new_registrations_totals.authorized_users|default:0 }}</strong></td>
+        <td align="right"><strong>${{ new_registrations_totals.authorized_amount|default:"0.00" }}</strong></td>
+        <td align="right"><strong>{{ new_registrations_totals.captured_users|default:0 }}</strong></td>
+        <td align="right"><strong>${{ new_registrations_totals.captured_amount|default:"0.00" }}</strong></td>
+        <td align="right"><strong>{{ new_registrations_totals.declined_users|default:0 }}</strong></td>
+        <td align="right"><strong>${{ new_registrations_totals.declined_amount|default:"0.00" }}</strong></td>
+        <td align="right"><strong>${{ new_registrations_totals.total|default:"0.00" }}</strong></td>
+      </tr>
+    </table>
+
+    <h3>Recurring Registrations</h3>
+    
+    <table style="width: 600px">
+      <tr>
+        <th rowspan="2"></th>
+        <th colspan="2">Authorized</th>
+        <th colspan="2">Captured</th>
+        <th colspan="2">Declined</th>
+        <th rowspan="2">Total<br/>(Authorized+Captured)</th>
+      </tr>
+      <tr>
+        <th>Users</th>
+        <th>Amount</th>
+        <th>Users</th>
+        <th>Amount</th>
+        <th>Users</th>
+        <th>Amount</th>
+      </tr>
+    {% for i in recurring_registrations %}
+      <tr>
+        <th>${{ i.plan }}</th>
+        <td align="right">{{ i.authorized_users|default:0 }}</td>
+        <td align="right">${{ i.authorized_amount|default:"0.00" }}</td>
+        <td align="right">{{ i.captured_users|default:0 }}</td>
+        <td align="right">${{ i.captured_amount|default:"0.00" }}</td>
+        <td align="right">{{ i.declined_users|default:0 }}</td>
+        <td align="right">${{ i.declined_amount|default:"0.00" }}</td>
+        <td align="right">${{ i.total }}</td>
+      </tr>
+    {% endfor %}
+      <tr>
+        <th>Total</th>
+        <td align="right"><strong>{{ recurring_registrations_totals.authorized_users|default:0 }}</strong></td>
+        <td align="right"><strong>${{ recurring_registrations_totals.authorized_amount|default:"0.00" }}</strong></td>
+        <td align="right"><strong>{{ recurring_registrations_totals.captured_users|default:0 }}</strong></td>
+        <td align="right"><strong>${{ recurring_registrations_totals.captured_amount|default:"0.00" }}</strong></td>
+        <td align="right"><strong>{{ recurring_registrations_totals.declined_users|default:0 }}</strong></td>
+        <td align="right"><strong>${{ recurring_registrations_totals.declined_amount|default:"0.00" }}</strong></td>
+        <td align="right"><strong>${{ recurring_registrations_totals.total|default:"0.00" }}</strong></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+{% endblock right %}
+

@@ -1,0 +1,69 @@
+html,body{height:100%;width:100%}
+@font-face {
+    font-family: 'TwCenMTBold';
+    src: url('/m/fonts/tw_cen_mt_bold_wwww.font-cat.com-webfont.eot');
+    src: url('/m/fonts/tw_cen_mt_bold_wwww.font-cat.com-webfont.eot?#iefix') format('eot'),
+         url('/m/fonts/tw_cen_mt_bold_wwww.font-cat.com-webfont.woff') format('woff'),
+         url('/m/fonts/tw_cen_mt_bold_wwww.font-cat.com-webfont.svg#webfontvp8gwGZx') format('svg'),
+         url('/m/fonts/tw_cen_mt_bold_wwww.font-cat.com-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TwCenMTCondensedBold';
+    src: url('/m/fonts/tccb-webfont.eot');
+    src: url('/m/fonts/tccb-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/m/fonts/tccb-webfont.woff') format('woff'),
+         url('/m/fonts/tccb-webfont.svg#TwCenMTCondensedBold') format('svg'),
+         url('/m/fonts/tccb-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.hi{overflow:hidden}
+#inner_back{background:#d0d0d0 url(/m/img/inner/back.png) repeat-x;}
+#inner-bottom-logo{height:100%;width:100%;background:#D0D0D0 url(/m/img/inner/bottom_logo.png) no-repeat right bottom;}
+.footer-inner{background:none !important}
+#footer-margin{background:#000;width:982px;margin:0 auto;padding-bottom:80px}
+/*main*/
+#main-inner{width:950px; margin:-15px auto;}
+#black-back{background:#000;width:982px;margin:0 auto;height:100%}
+/*disc*/
+.disc{height:339px;width:520px;background:url(/m/img/inner/back_disc.png) no-repeat}
+.limite{width:260px;float:left;text-align:center;overflow:hidden}
+.limite-title{margin-top:15px;color:#333333;font:bold 20px/20px 'TwCenMTBold',tahoma,sans-serif}
+.limite-title-big{font-size:30px}
+.red{color:#ca242b}
+.bold{font-weight:bold}
+.more_red{color:#ff0000}
+.limite-term{margin:95px 0 0 0 !important;overflow:hidden;font:bold 13px/16px arial,sans-serif}
+.limite-term-margin{margin:15px 0 13px 0;display:block}
+.limite-price{font-style:italic;font-weight:bold;color:#666666;margin-top:10px;}
+/*button*/
+.limite-button{display:block;margin:20px auto 0;height:62px;width:124px;background:url(/m/img/inner/start_now.png) no-repeat;}
+/*pick-plan3*/
+#pick-plan3{min-height:564px;background:#000 url(/m/img/inner/back3.jpg) no-repeat;overflow:hidden}
+#pick-plan-disc{margin:100px auto 0;width:520px;}
+#pick-plan2-disc{margin:95px 0 0 430px; }
+#pick-plan1-disc{margin:65px 15px 0 0;float:right;}
+/**/
+#pick-plan1{min-height:451px;background:#000 url(/m/img/inner/back1.jpg) no-repeat;overflow:hidden}
+#intro-actions-inner{overflow:hidden;}
+.intro-actions-inner-box{margin:40px 0 0 40px;height:73px;width:172px;background:url(/m/img/inner/box.png) no-repeat;float:left}
+.intro-actions-inner-box2{margin:50px 0 0 80px;height:73px;width:172px;background:url(/m/img/inner/box2.png) no-repeat;float:left}
+#intro-actions-inner-menublock,#intro-actions-inner-menublock2{margin-top:60px;overflow:hidden}
+#intro-actions-inner-menublock2 #footer-menu {float:right; }
+#intro-actions-inner-menublock2 #footer-menu li{ margin-left:10px; float:left; font-size:10pt;}
+#intro-actions-inner-menublock2 #footer-menu li a{ text-decoration:none;}
+
+#intro-actions-inner-menublock #footer-menu li a{color:#fff}
+#intro-actions-inner-menublock2 #footer-menu li a{color:#0066cc}
+.footer_buttons_list li{margin-left:3px;}
+/*pick-plan2*/
+#pick-plan2{min-height:590px; background-image:url(/m/img/inner/back2.jpg); background-repeat:no-repeat; background-position:center top; overflow:hidden;margin-top:-20px}
+/**/
+#footer-3-copy-inner{float:left;color:#999999;}
+/**/
+#pick-plan1{min-height:451px;background:url(/m/img/inner/back1.jpg) no-repeat;overflow:hidden;margin-top:-15px}
+/*pick-plan1-rotate*/
+#pick-plan1-rotate{height:304px;width:424px;background:url(/m/img/inner/rotate_block.png) no-repeat;float:left;margin:85px 0 0 0}
+#bottom_logo{min-height:100%;height:auto !important;width:100%;background:url(/m/img/inner/bottom_logo.png) no-repeat right bottom;}

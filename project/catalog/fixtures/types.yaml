@@ -1,0 +1,17 @@
+- model: catalog.type
+  pk: 1
+  fields:
+    name: Game
+    plural_name: Games
+
+- model: catalog.type
+  pk: 2
+  fields:
+    name: Movie
+    plural_name: Movies
+
+- model: catalog.type
+  pk: 9
+  fields:
+    name: Acessory
+    plural_name: Acessories

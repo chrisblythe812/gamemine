@@ -1,0 +1,10 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+
+<p>Hi {{ nickname }},</p>
+
+<p>To confirm subscription cancellation please click <a href="{{ url }}">here</a>. 
+  This link will expire in 2 days.</p>
+
+{% endblock content %}

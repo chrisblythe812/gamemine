@@ -1,0 +1,129 @@
+{% extends "members/account/account.html" %}
+
+{% block head %}
+  {{ block.super }}
+
+  <style type="text/css">
+
+  .details ul {
+    margin-bottom: 40px !important;
+    list-style-image:url("{{ STATIC_URL }}img/bullet.png");
+    padding-left: 30px !important;
+    list-style-position: outside !important;
+  }
+
+  .details li {
+    font-size: 12px;
+    line-height: 1.4em !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .roundedcornr_box_953779 {
+     background: #e5e5e5;
+     margin-top: 25px;
+  }
+  .roundedcornr_top_953779 div {
+     background: url({{ STATIC_URL }}img/roundedcornr_953779_tl.png) no-repeat top left;
+  }
+  .roundedcornr_top_953779 {
+     background: url({{ STATIC_URL }}img/roundedcornr_953779_tr.png) no-repeat top right;
+  }
+  .roundedcornr_bottom_953779 div {
+     background: url({{ STATIC_URL }}img/roundedcornr_953779_bl.png) no-repeat bottom left;
+  }
+  .roundedcornr_bottom_953779 {
+     background: url({{ STATIC_URL }}img/roundedcornr_953779_br.png) no-repeat bottom right;
+  }
+
+  .roundedcornr_top_953779 div, .roundedcornr_top_953779,
+  .roundedcornr_bottom_953779 div, .roundedcornr_bottom_953779 {
+     width: 100%;
+     height: 8px;
+     font-size: 1px;
+  }
+  .roundedcornr_content_953779 { margin: 0 8px; }
+
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% if current_rental_plan.status != 12 %}
+
+  <div style="float:right; width: 400px; margin: 0 0 20px 20px;">
+
+    <h1 style="font-size:26px; color: #D3242B; margin-bottom: 2px;">Too busy for games right now?</h1>
+
+    <div style="margin-right: 20px;">
+      <p style="text-align: right; color: #D3242B; font-weight: bold; font-size: 12px;">Place your account on hold starting today</p>
+
+      <div class="roundedcornr_box_953779">
+         <div class="roundedcornr_top_953779"><div></div></div>
+            <div class="roundedcornr_content_953779">
+
+              <div style="padding: 12px;">
+                <p><strong>Hold Start Date:</strong> {% now "F j, Y" %}</p>
+                <form method="post">
+                  {% csrf_token %}
+                  <p>{{ form.d.label_tag }}</p>
+
+                  <p>
+                  {{ form.d.errors }}
+                  {{ form.d }}
+                  </p>
+                  <p style="font-size:10pt;">Your reactivation date must be between <b>{{ fromdate }}</b> and <b>{{ todate }}</b>.</p>
+                  <div><input type="submit" value="Start Account Hold Now" class="start-account-hold-now-blue-button" /></div>
+                </form>
+             </div>
+           </div>
+        <div class="roundedcornr_bottom_953779"><div></div></div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="details">
+    <h1 style="color:#3E74CA; margin-bottom: 50px;">Account Hold</h1>
+
+    <div style="margin-left: 30px;">
+      <h3 style="color:#3E74CA">Here's how it works:</h3>
+      <ul>
+        <li>Hold starts immediately</li>
+        <li>Set reactivation date 7 to 30 days out</li>
+        <li>No billing during your hold</li>
+        <li>No game delivery</li>
+        <li>Other site services remain available</li>
+      </ul>
+      <h3 style="color:#3E74CA">Important details:</h3>
+      <ul>
+        <li>$50.00 authorization is assessed for each outstanding game and is removed when returned.</li>
+      </ul>
+      <h3 style="color:#3E74CA">How to reactivate:</h3>
+      <ul>
+        <li>Account reactivates automatically on your selected reactivation date</li>
+        <li>At any time, you may log-in to the Gamemine website to reactivate immediately, change your automatic reactivation date, or cancel your account</li>
+      </ul>
+    </div>
+  </div>
+
+  {% else %}
+  <h1 style="color: #D3242B;">Reminder: Your Account Is On Hold</h1>
+  <p>While your account is on hold, you will not receive games. Other site services will remain available. Your account is scheduled to reactivate on <strong>{{ current_rental_plan.hold_reactivate_timestamp|date:"F j, Y" }}</strong>.</p>
+  <div class="form-actions">
+    <a href="{% url members:reactivate %}" class="reactivate-account-blue-button">Reactivate Account</a>
+    <a href="{% url members:change_reactivation_date %}" class="change-reactivation-date-blue-button">Change Reactivation Date</a>
+    <a href="{% url members:cancel_membership %}" class="cancel-membership-blue-button">Cancel Membership</a>
+  </div>
+  {% endif %}
+
+<div style="clear:both"></div>
+
+<script type="text/javascript">
+$(function(){
+  $('select').setupSelect('w150px');
+});
+</script>
+
+{% endblock content %}
+

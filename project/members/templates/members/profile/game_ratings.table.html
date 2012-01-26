@@ -1,0 +1,30 @@
+{% load star_rating %}
+
+<table>
+    <tr>
+        <th class="column-no">&nbsp;</th>
+        <th class="column-title">Title</th>
+        <th class="column-esrb">ESRB</th>
+        <th class="column-system">System</th>
+        <th class="column-rating">Star Rating</th>
+        <th class="column-actions">&nbsp;</th>
+    </tr>
+    {% for i in ratings %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        <td class="column-no">{{ forloop.counter }}.</td>
+        <td class="column-title"><a href="{{ i.item.get_absolute_url }}">{{ i.item.short_name }}</a></td>
+        <td class="column-esrb">{{ i.item.rating }}</td>
+        <td class="column-system">{{ i.item.category.description }}</td>
+        <td class="column-rating">
+            <div class="item-rating">
+            	{{ i.item|star_rating:user }}
+			</div>
+        </td>
+        <td class="column-actions"><a class="grid-action" href="{% url catalog:delete_rate i.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        <td colspan="6">&mdash;</td>
+    </tr>
+    {% endfor %}
+</table>

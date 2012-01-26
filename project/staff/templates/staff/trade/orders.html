@@ -1,0 +1,185 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<div class="module simple-filter-form">
+  <form method="post">{% csrf_token %}
+    <label for="id_barcode">Enter Order Number or Barcode ID:</label>
+    <input type="text" id="id_barcode" name="barcode" autocomplete="off" />
+    <input type="submit" value="Search" />
+    {% if message %}
+    <div class="message"><strong>MESSAGE:</strong> {{ message|safe }}</div>
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function () {
+        $('#id_barcode').searchbox('Enter "Manually" or "Scan with barcode scanner"');
+      });      
+    </script>    
+  </form>
+</div>
+
+<div class="module">
+  <h2>Partially Processed Orders</h2>
+  {% with partially_processed_orders as orders %}
+    {% include "staff/trade/orders/partials/order_list.html" %}
+  {% endwith %}
+</div>
+
+<div id="detais"></div>
+
+<div class="module">
+  <h2>Latest Processed Items <a href="{% url staff:page 'Trade/Orders/Processed-Items' %}" style="color: #fff; float: right">View All</a></h2>
+  <table>
+    <thead>
+      <tr>
+        <td width="150">Order</td>
+        <td>Customer</td>
+        <td>Title</td>
+        <td>UPC</td>
+        <td>Platform</td>
+        <td>Comments</td>
+        <td width="150">Inventory</td>
+        <td align="center" width="75">Date Processed</td>
+      </tr>
+    </thead>
+    {% for item in latest_processed_items %}
+      <tr>
+        <td><a href="{% url staff:trade_order_details item.order.id %}" target="_blank">{{ item.order.barcode }}</a></td>
+        <td><a href="{% url staff:customer_view item.order.user.id %}" target="_blank">{{ item.order.user.get_profile.get_name_display }}</a></td>
+        <td><a href="{{ item.item.get_absolute_url }}" target="_blank">{{ item.item }}</a></td>
+        <td>{{ item.item.upc }}</td>
+        <td>{{ item.item.category }}</td>
+        <td>{{ item.get_comments }}</td>
+        <td>
+          {% if item.inventory %}
+            <a href="{% url staff:page 'Reports/Inventory' %}?q={{ item.inventory.id }}" target="_blank">{{ item.inventory.barcode|default:"Barcode Not Assigned" }}</a>
+          {% else %}
+            <span style="color: #999">Unknown</span>
+          {% endif %}
+        </td>
+        <td align="center">{% if item.processed_date %}{{ item.processed_date|date }}{% else %}<span style="color: #999">Unknown</span>{% endif %}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="module">
+  <h2>Latest Reported Problems <a href="{% url staff:page 'Trade/Claims-and-Disputes' %}" style="color: #fff; float: right">View All</a></h2>
+  
+  {% with problems as claims %}
+    {% include "staff/trade/orders/partials/claims_list.html" %}
+  {% endwith %}
+</div>
+
+{% comment %}
+
+<div class="module">
+  <h2>Pending Arrival</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Order #</td>
+        <td>Customer Name</td>
+        <td>Customer ID</td>
+        <td>Date Submitted</td>
+        <td>Date Expires</td>
+        <td>Games Quantity</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order in pending_arrival %}
+      <tr>
+        <td>{{ order.order_no }}</td>
+        <td><a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.get_profile.get_name_display }}</a></td>
+        <td><a href="{% url staff:customer_view order.user.id %}" target="_blank">{{ order.user.id }}</a></td>
+        <td>{{ order.create_date|date }}</td>
+        <td>&nbsp;</td>
+        <td><a href="{% url staff:trade_order_details order.id %}" class="order_detais">{{ order.size }}</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    <tbody class="total">
+      <tr>
+        <td colspan="5">All Trade Games</td>
+        <td>{{ pending_arrival_all }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="order_detais"></div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('a.order_detais').click(function () {
+    $.get($(this).attr('href'), function(data, status) {
+      if (status != 'success') {
+        alert('error');
+        return;
+      }      
+      $('#order_detais').empty().append(data);
+    });
+    return false;
+  });
+});
+</script>
+
+<div class="module">
+  <h2>Problems</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Customer Name</td>
+        <td>Order #</td>
+        <td>Title</td>
+        <td>Issue</td>
+        <td>Action</td>
+      </tr>
+    </thead>
+    {% for item in problems %}
+    {% with item.user as user %}
+      <tr>
+        <td><a href="{% url staff:customer_view user.id %}" target="_blank">{{ user.get_profile.get_name_display }}</a></td>
+        <td><a href="{% url staff:trade_order_details_item item.claim_object.order.id item.claim_object.id %}">{{ item.claim_object.order.order_no }}</a></td>
+        <td>{{ item.claim_object.item.short_name }}</td>
+        <td>{{ item.get_normalized_display }}</td>
+        <td>Approved | Declined</td>
+      </tr>
+    {% endwith %}
+    {% endfor %}
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<div class="module">
+  <h2>Returns</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Customer Name</td>
+        <td>Order #</td>
+        <td>Title</td>
+        <td>Comments</td>
+        <td>Labels / Packslips</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in returns %}
+    {% with item.order.user as user %}
+      <tr>
+        <td><a href="{% url staff:customer_view user.id %}" target="_blank">{{ user.get_profile.get_name_display }}</a></td>
+        <td><a href="{% url staff:trade_order_details_item item.order.id item.id %}">{{ item.order.order_no }}</a></td>
+        <td>{{ item.item.short_name }}</td>
+        <td>{{ item.get_comments }}</td>
+        <td>{% if item.returning_mail_label %}<a href="{{ item.returning_mail_label.url }}">Mailing Label</a>{% else %}&nbsp;{% endif %}</td>
+      </tr>
+    {% endwith %}
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endcomment %}
+
+{% endblock right %}

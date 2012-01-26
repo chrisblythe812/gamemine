@@ -1,0 +1,48 @@
+.profile-history-page {
+    #history-page-content {
+        padding: 20px;
+    
+        h1 {
+            font-size: 16px !important;
+            font-weight: bold;
+            color: #C70000;
+        }
+        
+        table {
+            width: 100%;
+            font-size: 13px;
+            color: #006AD2;
+            
+            td, th {
+                font-weight: bold;
+                padding: 5px 10px;
+            }
+            
+            a {
+                color: #006AD2;
+                @include heading-anchor;
+            }
+            
+            .row1 {
+                background: #EBEBEB;
+            }
+            
+            .condition-column { text-align: center; }
+            .platform-column { text-align: center; }
+            .date-column { text-align: center; width: 90px; }
+            .order-number-column { text-align: center; }
+            .quantity-column { text-align: center; }
+            .trade-result-column { text-align: center; }
+            
+            .price-column { text-align: right; }
+            
+            .claim {
+                td {
+                    font-weight: normal !important;
+                    color: #666;
+                }
+                font-size: 11px;
+            }
+        }
+    }
+}

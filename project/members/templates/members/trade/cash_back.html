@@ -1,0 +1,175 @@
+{% extends "members/trade/base.html" %}
+
+{% block page-class %}{{ block.super }} profile-cash-back{% endblock page-class %}
+
+{% block heading %}
+    <li class="selected">Cash Out</li>
+{% endblock heading %}
+
+{% block page-content %}
+
+<form id="id_cash_out_form" method="post">{% csrf_token %}
+
+<div id="id_cash_out_method">
+  <div id="id_cash_out_method_wrapper">{{ form.payment_method.label_tag }} {{ form.payment_method }}
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div id="id_cash_out_amount">
+  <div id="id_cash_out_amount_wrapper">
+    {{ form.amount.label_tag }} <input type="text" id="id_amount_dollars" class="right"/> <span>.</span> <input type="text" id="id_amount_cents"/>
+    <a href="#" id="id_calculate" class="calculate-blue-button">Calculate</a>
+  </div>
+  {{ form.amount }}
+</div>
+
+<div id="id_cash_out_rate">
+  <strong>1 Credit</strong> = ${{ store_credit_rate }}
+</div>
+
+<div id="id_cash_out_confirmation" class="cash_out_module">
+  <div class="header">Order Confirmation</div>
+  <div class="content">
+    <div id="id_cash_out_selected">Selected Cash Amount: <span class="money-amount"></span></div>
+
+    <div class="left">Check Payable to:</div>
+    <div class="right">
+      <div><strong>{{ user.get_full_name }}</strong></div>
+
+      <div class="labels">{{ address_lines.1 }}</div>
+      <div class="labels">{{ address_lines.2 }}</div>
+      <div class="labels">{{ address_lines.3 }}</div>
+
+      <div class="inputs">{{ form.address1.label_tag }}{{ form.address1 }}</div>
+      <div class="inputs">{{ form.address2.label_tag }}{{ form.address2 }}</div>
+      <div class="inputs">{{ form.city.label_tag }}{{ form.city }}</div>
+      <div class="inputs">{{ form.state.label_tag }}{{ form.state }}</div>
+      <div class="inputs">{{ form.zip_code.label_tag }}{{ form.zip_code }}</div>
+
+      <a id="id_cash_out_change_address" href="#">Send to different address</a>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="footer"></div>
+</div>
+
+<div id="id_cash_out_submit">
+  <input type="checkbox" id="id_checkbox_confirm" />
+  <label for="id_checkbox_confirm">I have read and agree to the GameMine <a href="{% url simple-page 'Terms' %}" target="_blank">Terms of Use</a></label>
+  &nbsp;
+  <input type="submit" class="submit-order-red-button" value="Submit Order" />
+</div>
+
+</form>
+
+<div class="cash_out_module">
+  <div class="header">Pending Requests</div>
+  <div class="content">
+    {% if pending_requests %}
+      <table>
+        <tr>
+          <th class="col1">Date</th>
+          <th class="col2">Amount</th>
+          <th class="col3">Method</th>
+          <th class="col4">Status</th>
+          <th class="col5 delete-column">&nbsp;</th>
+        </tr>
+        {% for req in pending_requests %}
+        <tr>
+          <td class="col1">{{ req.submit_date|date }}</td>
+          <td class="col2">${{ req.amount }}</td>
+          <td class="col3">{{ req.get_payment_method_display }}</td>
+          <td class="col4">{{ req.get_status_display }}</td>
+          <td class="col5 delete-column"><a href="{% url members:cash_back_delete req.id %}" class="delete-request delete-gray-button">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <div id="id_cash_out_no_data_message">No Pending Requests</div>
+    {% endif %}
+  </div>
+  <div class="footer"></div>
+</div>
+
+<div class="cash_out_module">
+  <div class="header">Completed Requests</div>
+  <div class="content">
+    {% if completed_requests %}
+      <table>
+        <tr>
+          <th class="col1">Date</th>
+          <th class="col2">Amount</th>
+          <th class="col3">Method</th>
+          <th class="col4">Status</th>
+        </tr>
+        {% for req in completed_requests %}
+        <tr>
+          <td class="col1">{{ req.submit_date|date }}</td>
+          <td class="col2">${{ req.amount }}</td>
+          <td class="col3">{{ req.get_payment_method_display }}</td>
+          <td class="col4">{{ req.get_status_display }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <div id="id_cash_out_no_data_message">No Completed Requests</div>
+    {% endif %}
+  </div>
+  <div class="footer"></div>
+</div>
+
+<script text='text/javascript'>
+  var store_credit_rate = {{ store_credit_rate|default:"0" }};
+  var errors = [ {% for e in errors %}'{{ e|escapejs }}'{% if not forloop.last %},{% endif %}{% endfor %} ];
+
+  function parseIntOrZero(value) {
+    var i = parseInt(value, 10);
+    if (isNaN(i))
+      return 0;
+    return i;
+  }
+
+  $(document).ready(function(){
+    if (errors.length)
+      alert(errors.join('\n'));
+
+    $('#id_payment_method').setupSelect("w190px");
+    $('#id_state').setupSelect("w94px");
+
+    $('#id_calculate').click(function(){
+      var amount = parseIntOrZero($('#id_amount_dollars').val()) + parseIntOrZero($('#id_amount_cents').val()) / 100.0;
+      $('#id_amount').val(amount);
+      $('.money-amount').text('$' + (amount * store_credit_rate).toFixed(2));
+      return false;
+    });
+
+    $('#id_cash_out_form').submit(function(){
+      var $amount = $('#id_amount');
+      var amount = $amount.val();
+      if (!amount) {
+        alert('You have to enter amount you wish to cash out.');
+        $amount.focus();
+        return false;
+      }
+      if (!$('#id_checkbox_confirm').is(':checked')) {
+        alert('You have to agree to the GameMine terms of use.');
+        return false;
+      }
+      return true;
+    });
+
+    $('.delete-request').click(function(){
+      return confirm('Do you really want to delete this request?');
+    });
+
+    $('#id_cash_out_change_address').click(function(){
+      $('#id_cash_out_confirmation .labels').hide();
+      $(this).hide();
+      $('#id_cash_out_confirmation .inputs').show();
+      return false;
+    });
+  });
+</script>
+
+{% endblock page-content %}

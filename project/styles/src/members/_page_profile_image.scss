@@ -1,0 +1,111 @@
+@mixin debug {
+//    background-color: rgba(255, 255, 0, .2);
+}
+
+.page-profile-image {
+    #page-profile-image-content {
+        @include debug;
+        
+        margin: 15px 20px;
+        font-size: 14px;
+    }
+    
+    #current-profile-image {
+        float: left;
+        
+        p {
+            margin-bottom: 5px !important;
+            font-size: 13px;
+        }
+    }
+    
+    .form1 {
+        @include debug;
+        
+        margin-left: 270px;
+        
+        .fields {
+            @include debug;
+            
+            padding-top: 50px;
+            width: 400px;
+            
+            p {
+                font-weight: bold;
+                font-size: 13px;
+            }
+        }
+        
+        .errors {
+            @include debug;
+            
+            padding: 0 !important;
+            font-size: 13px;
+            color: red;
+        }
+        
+        .actions {
+            @include debug;
+            padding: 10px 0 0 0;
+            
+            input { 
+                margin-left: 5px;
+            }
+        }
+    }
+    
+    .form2 {
+        padding-top: 20px;
+        clear: left;
+        
+        h2 {
+            @include debug;
+            
+            line-height: 20px;
+            height: 20px;
+            margin: 0 !important;
+            float: left;
+        }
+        
+        .paginator {
+            @include debug;
+            height: 20px;
+            line-height: 20px;
+            margin: 0 0 10px 0;
+        }
+    }
+    
+    #page-profile-image-default-images {
+        @include debug;
+        
+        ul {
+            @include debug;
+            
+            padding: 0 !important;
+            margin-left: -5px;
+            width: 920px;
+            
+            
+            li {
+                float: left;
+                margin: 0px 10px 15px 5px;
+                @include debug;
+                width: 160px;
+                height: 160px;
+                overflow: hidden;
+            }
+        }
+    }
+    
+    .form2 {
+        .actions {
+            padding-top: 25px;
+            clear: both;
+            text-align: center;
+            
+            a, input {
+                margin: 0 5px;
+            }
+        }
+    }
+}

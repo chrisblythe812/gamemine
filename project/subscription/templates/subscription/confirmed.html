@@ -1,0 +1,28 @@
+{% extends "members/base.html" %}
+
+{% block title %}Subscription Confirmation{% endblock title %}
+
+{% block page-class %}{{ block.super }} confirm-subscription{% endblock page-class %}
+
+{% block content %}
+
+<ul class="heading">
+    <li class="selected">Subscription Confirmation</li>
+</ul>
+
+<div id="confirm-subscription-content">
+  <div class="side1">
+    
+  </div>
+  
+  <div class="side2">
+    <h2>Email address has been verified.</h2>
+    
+    <p>The address <strong>{{ email|default:"example@example.com" }}</strong> has been verified 
+    successfully, Thank You!</p>
+    
+    <div class="actions"><a href="{% url catalog:index %}" class="continue-button">Browse Games</a></div>
+  </div>
+</div>
+
+{% endblock content %}

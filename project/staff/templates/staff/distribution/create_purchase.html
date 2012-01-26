@@ -1,0 +1,94 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+{% spaceless %}
+<div class="module" id="purchase-module">
+  <h2>Purchase Items</h2>
+
+  <form method="post" id="purchase-form">
+    {% csrf_token %}
+    <div class="form">
+    {{ form.as_p }}
+    </div>
+    {{ formset.management_form }}
+    <table>
+    <thead>
+      <th>UPC</th>
+      <th>Quantity</th>
+    </thead>
+    <tbody>
+    {% for form in formset.forms %}
+    <tr>
+      <td>
+        {{ form.id }}{{ form.upc }}{{ form.quantity }}
+        <span class="upc">{{ form.upc.data }}</span>
+      </td>
+      <td>
+        <span class="quantity">{{ form.quantity.data }}</span>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+    <div id="purchase-submit">
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
+  <div id="purchase-add-item">
+    <div class="form">
+    <form id="add_item_form">
+    <p><label for="id_upc">Upc:</label>
+      <input type="text" name="upc" id="id_upc" /></p>
+    <p><label for="id_quantity">Quantity:</label>
+      <input type="text" name="quantity" id="id_quantity" /></p>
+    <input type="submit" value="Add"/>
+    </form>
+    </div>
+  </div>
+</div>
+{% endspaceless %}
+
+<script type="text/javascript">
+  $('#add_item_form').submit(function(){
+    var upc = $(this).find('#id_upc').val();
+    var quantity = $(this).find('#id_quantity').val() || '1';
+    var is_new = $(this).find('#id_is_new').is(':checked');
+    if (!upc) {
+      alert('Please enter UPC');
+      return false;
+    } 
+    $.getJSON('/Staff/Check-UPC/' + upc + '/', function(d){
+      if (d.success) {
+        var $total = $('#id_form-TOTAL_FORMS');
+        var total = parseInt($total.val()); 
+
+        $('table tbody').append('<tr><td>' +
+          '<input type="hidden" name="form-' + total + '-id" value="' + (total + 1) + '" />' +
+          '<input type="hidden" name="form-' + total + '-upc" id="id_form-' + total + '-upc" value="' + upc + '" />' +
+          '<input type="hidden" name="form-' + total + '-quantity" id="id_form-' + total + '-quantity" value="' + quantity + '" />' +
+          '<span class="upc">' + upc + '</span>' + 
+          '</td>' + 
+          '<td><span class="quantity">' + quantity + '</span></td></tr>');
+
+        $total.val(total + 1);
+      } else {
+        alert('UPC you\'ve entered is not correct. Please check your input and try again.');
+      }
+    });
+    return false;
+  });
+  
+  $('#purchase-form').submit(function(){
+    var $total = $('#id_form-TOTAL_FORMS');
+    var total = parseInt($total.val());
+    if (!total) {
+      alert('Please add some items to purchase');
+      return false;
+    }
+    return true;
+  });
+</script>
+
+{% endblock right %}

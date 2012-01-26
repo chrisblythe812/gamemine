@@ -1,0 +1,265 @@
+{% extends "members/base.html" %}
+
+{% block title %}{{ block.super }} – Buy Confirmation{% if title %} – {{ title }}{% endif %}{% endblock title %}
+
+{% block page-class %}{{ block.super }} buy-confirmation-page{% endblock page-class %}
+
+{% block content %}
+
+<div id="buy-confirmation-page-content">
+
+<h1>Order Confirmation</h1>
+<div class="order-number">Store Order #{{ order.order_no }}</div>
+
+<div class="order-details">
+  <h2>Hi {{ order.user.get_profile }}!</h2>
+  
+  <p>Your order will be processed within the next 24 hours and we will send you a second email 
+    when the order is complete and has been shipped. Thanks for choosing GameMine!</p>
+
+  <h3>Order Details</h3>
+  
+  <ul class="order-items">
+  {% for order_item in order.items.all %}
+    <li class="order-item">
+      <a href="{{ order_item.item.get_absolute_url }}" target="_blank"><img src="{{ order_item.item.get_thumb_image2 }}" width="80" height="100" /></a>
+      <div class="details">
+        <div class="title"><a href="{{ order_item.item.get_absolute_url }}" target="_blank">{{ order_item.item.short_name }} ({{ order_item.item.category }})</a></div>
+        <div class="price">Price ${{ order_item.price }}</div>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+
+  <div class="general-info">
+    <div class="address">
+      {{ order.shipping_address1 }}</br>
+      {% if order.shipping_address2 %}{{ order.shipping_address2 }}</br>{% endif %}
+      {{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}
+    </div>
+    <div class="cc">
+      <strong>Charged to: </strong> {{ order.get_card_type_display }}</br>
+      {{ order.card_display_number }}
+    </div>
+  </div>
+  
+  <div class="detailed-info">
+    <div class="store-credits">Applied Trade-In Credits - ${{ order.applied_credits }}</div>
+    <div class="tax">Tax: ${{ order.get_tax_amount }}</div>
+    <div class="discounts">Discounts: ${{ order.discounts }}</div>
+    <div class="total">Grand Total: ${{ order.get_charge_amount }}</div>
+  </div>
+  
+  <div class="clear">&nbsp;</div>
+  
+  <div class="banner">
+    <h3>How are we able to do this?</h3>
+    <p>Because we are an online store only, less overhead for us, which means
+      the savings get passed on to you. Have fun playing games again!</p>
+  </div>
+</div>
+
+</div>
+
+{% endblock content %}
+
+
+{% block body_end %}{{ block.super }}
+
+<!-- Google Code for BUY Sales 1 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 994558147;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "BQ-sCKW59QEQw4Gf2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/994558147/?label=BQ-sCKW59QEQw4Gf2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- Google Code for BUY Sales 2 Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 996118130;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "YryQCM6RgwIQ8pz-2gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/996118130/?label=YryQCM6RgwIQ8pz-2gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+<script type="text/javascript">if (!window.mstag) mstag = {loadTag : function(){},time : (new Date()).getTime()};</script> <script id="mstag_tops" type="text/javascript" src="//flex.atdmt.com/mstag/site/5d7b59b5-93b4-457e-9e6c-578b07349936/mstag.js"></script> <script type="text/javascript"> mstag.loadTag("conversion", {cp:"5050",dedup:"1"})</script> <noscript> <iframe src="//flex.atdmt.com/mstag/tag/5d7b59b5-93b4-457e-9e6c-578b07349936/conversion.html?cp=5050&dedup=1" frameborder="0" scrolling="no" width="1" height="1" style="visibility:hidden; display:none"> </iframe> </noscript>
+
+<img src="https://tracking.searchmarketing.com/thankyou.asp?SMCID=40000530&oVal={{ order.total }}&OrderID={{ order.get_order_number }}&ProductID={{ order.list_upc|join:',' }}" width="1" height="1" border="0">
+
+<!-- BEGIN: buySAFE Guarantee -->
+<script src="https://seal.buysafe.com/private/rollover/rollover.js"></script>
+<span id="BuySafeSealSpan"></span>
+<span id="BuySafeGuaranteeSpan"></span>
+<script type="text/javascript">
+  buySAFE.Hash = "VC%2fwtPH%2fSOLI4hwoPugMZ%2fvCiSXkl85awowm8NmGfFTOKbg62M8dVoXxxt2WV8HdkLMX6n%2faBAZ03CrcO7pHDg%3d%3d";
+  WriteBuySafeSeal("BuySafeSealSpan", "GuaranteedSeal");
+  WriteBuySafeGuarantee("JavaScript");
+</script>
+<!-- END: buySAFE Guarantee -->
+
+<!-- Google Code for SALE Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1037374983;
+var google_conversion_language = "en_US";
+var google_conversion_format = "1";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "4SFMCKvDcBCHrNTuAw";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1037374983/?label=4SFMCKvDcBCHrNTuAw&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- ---------------------------------------------------------------------------------------------- -->
+
+{% comment %}
+
+<!-- Start of shopzilla performance Code -->
+<script language="javascript">
+<!--
+  /* Performance Tracking Data */
+  var mid            = '239264';
+  var cust_type      = '{{ new_customer|yesno:"1,0" }}';
+  var order_value    = '{{ order.get_order_total }}';
+  var order_id       = '{{ order.order_no }}';
+  var units_ordered  = '{{ order.size }}';
+//-->
+</script>
+<script language="javascript" src="https://www.shopzilla.com/css/roi_tracker.js"></script>
+<!-- End of shopzilla performance Code -->
+
+<!-- Start of NexTag performance Code -->
+<script type="text/javascript">
+<!--
+    /* NexTag ROI Optimizer Data */
+    var id = '4832568';
+    var rev = '{{ order.total }}';
+    var order = '{{ order.order_no }}';
+    var cats = '{{ order.list_genres|join:"|" }}';
+    var prods = '{{ order.list_names|join:"|" }}';
+    var units = '{{ order.list_units|join:"|" }}';
+//-->
+</script>
+<script type="text/javascript" src="https://imgsrv.nextag.com/imagefiles/includes/roitrack.js"></script>
+<!-- End of NexTag performance Code -->
+
+<!-- Start of Shopping performance Code -->
+<script language="JavaScript">
+var merchant_id = '492361';
+var order_id = '{{ order.order_no }}';
+var order_amt = '{{ order.total }}';
+var category_id = '777';
+var category_name = '{{ order.list_platforms|join:"," }}';
+var product_id = '{{ order.list_ids|join:"," }}';
+var product_name = '{{ order.list_names|join:"," }}';
+</script>
+<script language="JavaScript" src="https://stat.DealTime.com/ROI/ROI.js?mid=492361"></script>
+<!-- End of Shopping performance Code -->
+
+<!-- Start of PriceGrabber performance Code -->
+<img src="https://www.pricegrabber.com/conversion.php?retid=20312&item1=a|b|c|d|e|f&item2=a|b|c|d|e|f&item3=a|b|c|d|e|f">
+<!-- End of PriceGrabber performance Code -->
+
+{% endcomment %}
+
+<!-- ---------------------------------------------------------------------------------------------- -->
+
+{% comment %}
+
+<!-- Start of bizrate survey Code -->
+
+<script language="JavaScript">
+<script language="JavaScript">
+var passin = 'Q104626=';
+</script>
+<script language="JavaScript">
+var br_cartzip = 'Q113198=&Q113199=';
+</script>
+<script language ="Javascript"> 
+var br_cartdata = 'SKU=&MPID=&ITEMAMOUNT=|SKU=&MPID=&ITEMAMOUNT=|SKU=&MPID=&ITEMAMOUNT=|SKU=&MPID=&ITEMAMOUNT=|SKU=&MPID=&ITEMAMOUNT='; 
+</script>
+<script type="text/javascript" src="https://eval.bizrate.com/js/pos_239264.js"> 
+</script>
+
+<!-- End of bizrate survey Code -->
+
+
+<!-- Start of NexTag survey Code -->
+
+<link rel="stylesheet" href="https://merchants.nextag.com/serv/main/buyer/dhtmlpopup/dhtmlwindow.css" type="text/css" />
+<script type="text/javascript">
+    var seller_id = 4832568;
+    //popup_left and popup_top default to the center of browser window if commented
+    //var popup_left=50;
+    //var popup_top=50;
+    //var popup_width=345; // default 345
+    //var popup_height=205; // default 205
+    //var popup_resize=0; // default 0
+
+ 
+
+document.write('<'+ 'script type="text/javascript" src="https://merchants.nextag.com/seller/review/popup_include.js"><\/script>'); </script>
+
+<!-- End of NexTag survey Code -->
+
+<!-- Start of Shopping survey Code -->
+
+<script type="text/javascript" language="JavaScript" src="https://www.shopping.com/xMSJ?pt=js&direct=1&mid=492361&lid=1"></script>
+
+<!-- End of Shopping survey Code -->
+
+<!-- Start of PriceGrabber survey Code -->
+
+<script type="text/javascript"><!--
+// Adjust the values of popup_pos_x, popup_pos_y to change the location of the popup layer on your confirmation page
+popup_pos_x=50;
+popup_pos_y=50;
+// fill in the order number below
+popup_order_number = '{{ order.order_no }}';
+// fill in the email address below
+popup_email = '{{ order.user.email }}';
+//-->
+</script>
+<!-- PriceGrabber Merchant Evaluation Code -->
+<script type="text/javascript" charset="UTF-8" src="https://www.pricegrabber.com/rating_merchrevpopjs.php?retid=20312"></script>
+<noscript><a href="http://www.pricegrabber.com/rating_merchrev.php?retid=20312" target=_blank>
+<img src="https://images.pricegrabber.com/images/mr_noprize.jpg" border="0" width="272" height="238" alt="Merchant Evaluation"></a></noscript>
+
+<!-- End of PriceGrabber survey Code -->
+
+{% endcomment %}
+
+{% endblock %}

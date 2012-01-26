@@ -1,0 +1,60 @@
+import os
+
+from project.settings import *
+
+DEBUG = True
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'site_media/media')
+# MEDIA_URL = '/media/'
+MEDIA_URL = 'http://www.gamemine.com/m/media/'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gamemine',
+        'USER': 'postgres',
+        # 'OPTIONS': {
+        #     'autocommit': True,
+        # }
+    }
+}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'dev.db',
+    }
+}
+
+MUZE_DATABASE = {
+    'database': 'gamemine_muze',
+    'user': 'postgres',
+}
+
+SSL_ENABLED = False
+MELISSA_CONFIG['use_melissa'] = False
+ENDICIA_CONF["test_mode"] = True
+AUTH_NET_CONF['test_mode'] = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = "/Users/t0ster/Downloads"
+
+INSTALLED_APPS += ("testrecorder",)
+
+# --
+TEMPLATE_DEBUG = DEBUG                                                                                                                                        
+                                                                                                                                                              
+LOGGING_LEVEL = "DEBUG"
+                                                                                                                                                              
+                                                                                                                                                              
+if SSL_ENABLED:                                                                                                                                               
+    MIDDLEWARE_CLASSES += ['django_snippets.thirdparty.views.SSLMiddleware']                                                                                  
+                                                                                                                                                              
+AUTH_NET_TEST_MODE = AUTH_NET_CONF.get('test_mode', False)                                                                                                    
+AUTH_NET_GATEWAY = AUTH_NET_CONF['gateway']                                                                                                                   
+AUTH_NET_API_LOGIN_ID = AUTH_NET_CONF['api_login_id']                                                                                                         
+AUTH_NET_TRANS_KEY = AUTH_NET_CONF['trans_key']                                                                                                               
+                                                                                                                                                              
+MELISSA = Melissa(MELISSA_CONFIG) if MELISSA_CONFIG['use_melissa'] else None                                                                                  
+                                                                                                                                                              
+MUZE_DB = psycopg2.connect(**MUZE_DATABASE)                                                                                                                   
+MUZE = Muze(MUZE_DB)

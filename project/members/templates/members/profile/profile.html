@@ -1,0 +1,12 @@
+{% extends "members/account/base.html" %}
+
+{% block title %}{{ block.super }} – Profile{% if title %} – {{ title }}{% endif %}{% endblock title %}
+
+{% block content %}
+<ul class="heading">
+	{% block heading %}{% endblock heading %}
+</ul>
+
+{% block page-content %}{% endblock page-content %}
+
+{% endblock content %}

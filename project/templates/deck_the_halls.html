@@ -1,0 +1,110 @@
+{% extends "simple_pages/base.html" %}
+
+{% block page-class %}deck-the-halls-page banner-page{% endblock page-class %}
+
+{% block content-header %}
+  <div id="deck-the-halls-title"></div>
+{% endblock content-header %}
+
+{% block content %}
+<div id="deck-the-halls-page">
+
+<div id="deck-the-halls-form">
+  <form method="post">{% csrf_token %}
+    <div class="fields">
+      <table>
+        <tr>
+          <td><label class="black">{{ form.first_name.label }}</label> {{ form.first_name }}</td>
+          <td><label>{{ form.email.label }}</label> {{ form.email }}</td>
+          <td><label>{{ form.password.label }}</label> {{ form.password }}</td>
+          <td><label>{{ form.username.label }}</label> {{ form.username }}</td>
+        </tr>
+        <tr>
+          <td><label>{{ form.last_name.label }}</label> {{ form.last_name }}</td>
+          <td><label>{{ form.confirm_email.label }}</label> {{ form.confirm_email }}</td>
+          <td><label>{{ form.confirm_password.label }}</label> {{ form.confirm_password }}</td>
+          <td><label class="fckng">{{ form.how_did_you_hear.label }}</label> {{ form.how_did_you_hear }}</td>
+        </tr>
+      </table>
+      {% if error %}
+      <div class="errors-message">{{ error }}</div>
+      {% endif %}
+    </div>
+    <div class="actions">
+      <input type="submit" class="submit-blue-button" />
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $("#id_how_did_you_hear").setupSelect("w140px");
+
+  {% if error %}
+  $('html, body').animate({scrollTop: $('#deck-the-halls-form').offset().top}, 500);
+  {% endif %}
+
+{% comment %}
+  $('#deck-the-halls-form form').submit(function () {
+    var $this = $(this);
+    if ($this.find('input:text[value=""], select[value=""]').size()) {
+      alert('All fields are required. Please review the form and try again.');
+      return false;
+    } else if ($this.find('#id_password').val() != $this.find('#id_confirm_password').val()) {
+      alert('Password Confirmation FAILED.');
+      return false;
+    } else if ($this.find('#id_email').val() != $this.find('#id_confirm_email').val()) {
+      alert('Email Confirmation FAILED.');
+      return false;
+    }
+    $this.ajaxSubmit({success: function (response, status, xhr, form) {
+      if (status != 'success') {
+        alert('Error');
+      }
+      else if (response.redirect_to) {
+        window.location = response.redirect_to;
+      }
+      else if (response.error) {
+        alert(response.error);
+      }
+    }});
+    return false;
+  });
+{% endcomment %}
+
+});
+</script>
+
+<div class="deck-the-hall-content">
+
+<h1>OFFICIAL RULES</h1>
+
+<p>Sponsors: Gamemine Direct, LLC d/b/a Gamemine.com, Mailing Address: GameMine Giveaways, GAMEMINE | PO Box 810940 | Boca Raton, FL 33481-0940 [<a href="mailto:giveaways@gamemine.com">giveaways@gamemine.com</a>]</p>
+ 
+<p>DRAWING INCLUDES THOSE INDIVIDUALS WHO REGISTER FOR GAMEMINE.COM SUBSCRIPTION SERVICE WHO HAVE REGISTERED FOR A FREE ACCOUNT ON WWW.GAMEMINE.COM BEFORE JANUARY 30TH, 2011, EXCEPT WHERE OTHERWISE EXCLUDED; THOSE INDIVIDUALS WHO REGISTERED NO LATER THAN THE PRESCRIBED DATE ARE ELIBILE FOR THE FOLLOWING DRAWING.  NO PURCHASE NECESSARY FOR EILIBILITY.  PURCHASING DOES NOT INCREASE ODDS. Eligibility: All individuals who are registered on www.gamemine.com at the date of the drawing of Gamemine.com are eligible for the drawing.  Those people who do not want to sign up for the service in order to enter shall send their entry in accordance with the terms set below for Mail-In Entry.  Purchase or subscription will not increase odds of winning. Gamemine.com Giveaway is open only to legal residents of the United States and the District of Columbia; age restrictions are consistent with the restrictions of the product being awarded, eligible minors, by definition of the state of primary residence, may claim their prize by and through their legal guardians.  The drawing is for the account holder, rather than any beneficiary of the account. Employees of Gamemine.com, and its subsidiaries, affiliates, distributors, retailers, advertising and promotion agencies, and their immediate family members and/or those living in the same household of each are not eligible to enter or win. Sweepstakes governed by U.S. law. Sweepstakes is subject to all applicable federal, state and local laws and regulations.  Military service-personnel are eligible to win on bases internationally who are residents or citizens of the US, and the prize will be sent to their APO/FPO addresses; there is no increase in odds of winning based on being military personnel or families thereof or citizens.  You must have an active registered account with Gamemine.com at the time of the drawing.  Any accounts that have been suspended, delinquent or any delineation  suggesting an account not in good standing with GameMine, or otherwise any account that has failed to complete registration, whereby it is pending will not be eligible for the drawing.  Account nominations are defined by meaning as set forth under the terms and conditions of the Gamemine.com service found on <a href="{% url simple-page 'Terms' %}">www.gamemine.com/Terms</a>.</p>
+
+<p>Exclusions: Those customers who signed up through third party retailers who received free trials, days of trial dependent on purchase, are therefore not entitled by law to be participants under Sweepstakes law.</p>
+
+<p>Disclaimer. Sponsor and its affiliates, subsidiaries, directors, officers, professional advisors, employees and agencies will not be responsible for: (a) any late, lost, misrouted, garbled or distorted or damaged transmissions or entries; (b) telephone, electronic, hardware, software, network, Internet, or other computer- or communications-related malfunctions or failures; (c) any Promotion disruptions, injuries, losses or damages caused by events beyond the control of Sponsor; or (d) any printing or typographical errors in any materials associated with the Promotion.</p>
+
+<p>How to enter: (1) Registration. To enter visit www.gamemine.com and register for a free account with GameMine up and until the date of the drawing, otherwise, midnight, 12:00am, EST, January 30th, 2011, and confirm the account registration through email verification.  Any engagement of any rental plan subscription or purchase on the website will not change the odds of winning and is not required for eligibility.  If you are not a member of Gamemine.com you may visit the following link, <a href="{% url members:create_account %}">https://www.gamemine.com</a> to register; no purchase is necessary for eligibility for any registrant. Any registrations after the deadline will not be eligible for this drawing. Entrants subject to all notices posted online including but not limited to Sponsors' privacy policies. Limit: One online entry per account, and multiple registrations shall not be counted as additional entries; (2) Mail-In Entry: To enter without signing up for the subscription service, you must send one 3x5 index card addressed to GameMine Giveaways, P.O. Box 810940, Boca Raton, Florida 33481-0940.  Mail-In Entries must have the following information otherwise will not be deemed received or valid entry, full name, address, telephone number, email, age and birthday.  You stipulate that any mail in entry will be registered with the system as a registered account.  Account holders must be over eighteen (18) years of age to enter, not available for those states that restrict. Mail-In Entries opt in to receive information from GameMine or its affiliates and partners, otherwise, privacy policy applies. Proof of sending or submission will not be deemed to be proof of receipt by Sponsor. By entering, participants acknowledge compliance with the Official Rules, including eligibility requirements and agree to be bound by these Official Rules and the decisions of the Sponsors and independent judging organization shall be final and binding. The use of any device to automate the entry process is prohibited. Any ineligible signups for the service will also not count as an entry.  Illegible or mechanically reproduced entries are not eligible. All entries and requests become the Sponsor's property and will not be returned or acknowledged. The Sponsors are not responsible for lost, late, damaged, or misdirected entries. Entries contact information may be used according to the Privacy Policy for the Sponsor,  <a href="{% url simple-page 'Privacy' %}">http://www.gamemine.com/Privacy</a>.</p>
+
+<p>Winner Selection/Notification: Potential winners will be selected in a random drawing from all eligible entries received. Winners will be notified by email and will be required to follow the instructions in such notification in order to verify eligibility. This may include the requirement to complete and return an Affidavit of Eligibility and Liability and a Publicity Release ("Affidavit/Release"). A response to the notification must be received within five (5) business days or prize will be forfeited and an alternate winner will be selected. If the notification email or the Affidavit/Release is returned as undeliverable, it will result in disqualification, and the prize will be awarded to an alternate winner in a separate random drawing. If winner is otherwise eligible under these Official Rules, but is nevertheless deemed a minor in his or her state of primary residence, all required documents must be signed by the winner's parent or legal guardian on behalf of the minor. If prize is forfeited for any reason whatsoever, the prize will be awarded to an alternate winner in a separate random drawing. No substitution of prize offered is permitted, no transfer of prize to a third party is permitted and prize may not be redeemed for cash value, except that Sponsor (due to circumstances beyond its control), reserve the right at their sole discretion to substitute the prize for one of comparable or greater value. Prize awarded within ninety (90) days from winner verification. Entry and acceptance of prize constitutes permission to use winner's name, prize won, hometown, likeness, video tape, and statements for promotional purposes, including but not limited to online posting, radio, print and TV media, without further compensation, except where prohibited by law.  During the time from the drawing and the ninety (90) day grace period, Winner must maintain an active registered account with GameMine in order to maintain eligibility, any negative status on the account will result in a forfeit of the prize and the next random drawing entry will be the alternate winner consistent with the language and terms under this section.  In the event that the email address is not a working address, by meaning of the terms herein, and the Winning notification cannot be sent the Winner forfeits the win on the Sweepstakes and a random drawing will be made for an alternate Winner. In the event the Grand Prize is sent to the address of the Winner and is returned for an invalid address, incomplete address, or former address with no forwarding address, the Winner forfeits the prize and a random drawing will be made for an alternate Winner.</p>
+
+<p>Prize/Odds: Grand Prize (1 Winner) -  One (1) Grand Prize winner, ("Winner" as defined and described herein) will receive a flat screen high definition television, a video game console and a year free subscription to GameMine Rental Program.  For more information, please visit, <a href="{% url index %}">www.gamemine.com</a> for more information.  Total value of the package is approximately $1,000.00. Odds of winning the prize are determined by the total number of eligible entries received.</p>
+
+<p>General: Participating entrants agree to these Official Rules and the decisions of the judges and the Sponsor, which shall be without legal or other recourse and final in all aspects, and release the Sponsor and their affiliated companies, and all other businesses involved in this Sweepstakes, as well as the employees, officers, directors and agents of each, from all liability, claims or actions of any kind whatsoever, including the unauthorized or illegal access to personally identifiable or sensitive information and for injuries, damages or losses of any kind to persons (including death) and property which may be sustained in connection with either directly or indirectly, 1) the awarding, receipt, ownership use or misuse of a prize awarded here; or 2) participation in the Sweepstakes or any prize related activities, including but not limited to traveling to or from any prize related activity. The Sponsors are not responsible for any typographical or other error in the printing of the offer, administration of the Sweepstakes or in the announcement of the prize.</p>
+
+<p>Winners Information: For Winner's name, available after January 31th, 2011, please mail a self addressed envelope to Gamemine.com, GameMine Giveaways, P.O. Box 810940, Boca Raton, Florida 33481-0940 or email to  <a href="mailto:services@gamemine.com">giveaways@gamemine.com</a> - Subject: Gamemine.com Giveaway. Winners authorize Gamemine.com to use their name and information for notices, promotions and advertisements as part of entry.</p>
+ 
+<p>NOTICE TO ONLINE ENTRANTS<p>
+
+<p>In the event of a dispute over the identity of an online entrant, entry will be deemed submitted by the "Authorized Account Holder" of the Gamemine.com Account submitted at time of entry. Authorized Account Holder means the natural person who is assigned to a Gamemine.com by creating such account on the Gamemine.com website and designates the Account Name for their account.  The notice of winning the Sweepstakes will be forwarded to the email address included in the Account Holder's Gamemine.com Account.  Email address, means the natural person who is assigned to an e-mail address by an Internet access provider, online service provider, or other organization that is responsible for assigning e-mail addresses for the domain associated with the submitted e-mail address. Entry materials/data that have been tampered with or altered, or mass entries or entries generated by a script, macro or use of automated devices are void. The Sponsor is not responsible for: (i) lost, late, misdirected, damaged, illegible or postage due mail/entries; or (ii) error, omission, interruption, deletion, defect, delay in operations or transmission, theft or destruction or unauthorized access to or alterations of entry materials, or for technical, network, telephone equipment, electronic, computer, hardware or software malfunctions of any kind, or inaccurate transmission of or failure to receive entry information by Sponsor on account of technical problems or traffic congestion on the Internet or at any web site or any combination thereof; or (iii) any injury or damage to entrant's or any other person's computer related to or resulting from participating in the sweepstakes. By participating in the Sweepstakes, you (i) agree to be bound by these official rules, including all eligibility requirements, and (ii) agree to be bound by the decisions of Sponsor and the independent judging organization, which are final and binding in all matters relating to the Sweepstakes. Failure to comply with these official rules may result in disqualification from the Sweepstakes. Sponsor reserves the right to: (i) permanently disqualify from any sweepstakes it sponsors any person it believes has intentionally violated these official rules; and (ii) withdraw the online method of entry if it becomes technically corrupted, (including if a computer virus or system malfunction inalterably impairs its ability to conduct the sweepstakes), and to select winner from among all eligible entries received prior to withdrawal.</p>
+
+<p>LEGAL WARNING: ANY ATTEMPT BY AN INDIVIDUAL TO DELIBERATELY DAMAGE, DESTROY, TAMPER OR VANDALIZE THIS WEB SITE OR INTERFERE WITH THE OPERATION OF THE SWEEPSTAKES, IS A VIOLATION OF CRIMINAL AND CIVIL LAWS.  SPONSOR RESERVES ALL RIGHTS UNDER LAW.</p>
+
+</div>
+
+</div>
+
+{% endblock content %}

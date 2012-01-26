@@ -1,0 +1,45 @@
+#non-authenticated-checkout-wizard {
+    #dialog-title {
+        margin-top: -50px;
+    }
+    .dialog-close-button {
+        margin: 20px 0 0 30px;
+    }
+    .non-authenticated-checkout-wizard-1 {
+        height: 220px;
+        background: 50px bottom url($images_url + 'cart/soldier.png') no-repeat;
+
+        .login-actions {
+            height: 100px;
+            line-height: 100px;
+            margin-top: 55px;
+            text-align: center;
+            background: center center url($images_url + 'cart/vline.png') no-repeat;
+
+            a {
+                margin: 0 50px;
+            }
+
+            .pepyaka {
+                width: 34px;
+                height: 42px;
+                background: center center url($images_url + 'cart/pepyaka.png') no-repeat;
+                position: absolute;
+                margin-top: -136px;
+                margin-left: 398px;
+            }
+        }
+    }
+}
+
+/*
+#wizard-starfighters {
+    width: 327px;
+    height: 263px;
+    position: absolute;
+    z-index: 9999999;
+    background: url($images_url + 'starfighters.png');
+    margin-top: 120px;
+    margin-left: -60px;
+}
+*/

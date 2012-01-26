@@ -1,0 +1,377 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block head %}{{ block.super }}
+<style type="text/css">
+  #filter-form {
+    width: 400px;
+  }
+
+  #main-report-table td,
+  #main-report-table th {
+    border: none;    
+  }
+
+  #main-report-table td {
+    vertical-align: top;
+  }
+
+  #main-report-table .h1 {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    background: #C0C0C0;    
+  }
+  
+  #main-report-table h2 {
+    color: #000;
+    background: #fff;
+    font-size: 16px;
+  }
+  
+  #main-report-table h3 {
+    margin-left: 20px;
+  }
+  
+  #main-report-table h4 {
+    margin: 0.5em 0 0 40px;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  #main-report-table .h4 {
+    margin: 0.5em 0 0 40px !important;
+    font-size: 14px;
+    font-weight: normal;
+    display: block;
+    clear: both;    
+  }
+  
+  #main-report-table .h5 {
+    margin: 0.5em 0 0 60px;
+    display: block;
+    clear: both;    
+  }
+
+  #main-report-table li ul {
+    margin: 0 0 0 20px;
+    display: block;
+    clear: both;  
+    font-size: 12px;  
+  }
+  
+  #main-report-table li {
+    display: block;
+    clear: both;    
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  #main-report-table .strong {
+    font-weight: bold !important;
+  }
+  
+  #main-report-table .highlight {
+    background: #FFFF99;
+    color: #993300;
+  }
+  
+  span.r {
+    float: right;    
+  }
+</style>
+{% endblock head %}
+
+
+{% block right %}{{ block.super }}
+
+<div class="module">
+  <div style="display: none">
+  <form method="get" id="filter-form">
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <th>&nbsp;</th>
+        <td><input type="submit"></td>
+      </tr>
+    </table>
+  </form>
+  </div>
+
+  <table id="main-report-table">
+    <tr>
+      <td class="h1" colspan="3">BUY DASHBOARD</td>
+    </tr>
+    <tr>
+    {% with data.buy as buy %}
+      <td style="width: 33%; padding: 10px">
+        <h2>BUY SUBSCRIBERS</h2>
+          
+          <h3>Order Statistics</h3>
+          
+            <h4>Received <span class="r">{{ buy.subs.order_stats.received.total }}</span></h4>
+            
+            <ul class="h5">
+              <li># of New Games ({{ buy.subs.order_stats.received.new }})</li>
+              <li># of Used Games ({{ buy.subs.order_stats.received.used }})</li>
+              <li>By $$ ({{ buy.subs.order_stats.received.money }})</li>
+              <li>By Credits ({{ buy.subs.order_stats.received.credits }})</li>
+              <li>By Gift Certificates ({{ buy.subs.order_stats.received.gifts }})</li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ buy.subs.order_stats.received.total }}</span></h4>
+            
+            <br />
+
+            <h3>Order Revenue</h3>
+            
+            <ul class="h4">
+              <li>Gross Sales by $$ <span class="r">${{ buy.subs.order_stats.revenue.money }}</span></li>
+              <li>Gross Sales by GC+GC <span class="r">${{ buy.subs.order_stats.revenue.credits }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">${{ buy.subs.order_stats.revenue.total }}</span></h4>
+      </td>
+  
+      <td style="width: 33%; padding: 10px">
+        <h2>BUY FULFILLMENT</h2>
+            <h3>Paid Subscribers</h3>
+            
+            <ul class="h4">
+              <li>Home DC - Florida <span class="r">{{ buy.fulf.paid_subs.FL }}</span></li>
+              <li>Home DC - New Jersey <span class="r">{{ buy.fulf.paid_subs.NJ }}</span></li>
+              <li>Home DC - Nevada <span class="r">{{ buy.fulf.paid_subs.NV }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ buy.fulf.paid_subs.total }}</span></h4>
+            
+            <br />
+
+            <h3>Order Processing</h3>
+            
+            <h4 class="strong highlight">Oldest Order <span class="r">?????</span></h4>
+
+            <ul class="h4">
+              <li>Pending Shipment <span class="r">{{ buy.fulf.proc.prepared }}</span></li>
+              <li>Shipped to Customer <span class="r">{{ buy.fulf.proc.shipped }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ buy.fulf.proc.total }}</span></h4>
+      </td>
+
+      <td style="width: 33%; padding: 10px">
+        <h2>BUY INVENTORY</h2>
+            <h3>Game Assets (IN STOCK)</h3>
+            
+            <ul class="h4">
+              <li>New <span class="r">{{ buy.inv.in_stock.new }}</span></li>
+              <li>Used <span class="r">{{ buy.inv.in_stock.used }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ buy.inv.in_stock.total }}</span></h4>
+            
+            <br />
+
+            <h3>Game Assets (SOLD)</h3>
+            
+            <ul class="h4">
+              <li>New <span class="r">{{ buy.inv.sold.new }}</span></li>
+              <li>Used <span class="r">{{ buy.inv.sold.used }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ buy.inv.sold.total }}</span></h4>
+      </td>
+    {% endwith %}
+    </tr>
+
+    <!-- --------------------------------------------------------------------------------- -->
+
+    <tr>
+      <td class="h1" colspan="3">TRADE DASHBOARD</td>
+    </tr>
+    <tr>
+    {% with data.trade as trade %}
+      <td style="width: 33%; padding: 10px">
+        <h2>TRADE SUBSCRIBERS</h2>
+          
+          <h3>Orders</h3>
+            
+            <ul class="h4">
+              <li>Pending Arrival <span class="r">{{ trade.subs.pending }}</span></li>
+              <li>Processed by DC <span class="r">{{ trade.subs.processed }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ trade.subs.total }}</span></h4>
+      </td>
+
+      <td style="width: 33%; padding: 10px">
+        <h2>TRADE FULFILLMENT</h2>
+          
+          <h3>Trade-In Subscribers</h3>
+            
+            <ul class="h4">
+              <li>Home DC - Florida <span class="r">{{ trade.fulf.subs.FL }}</span></li>
+              <li>Home DC - New Jersey <span class="r">{{ trade.fulf.subs.NJ }}</span></li>
+              <li>Home DC - Nevada <span class="r">{{ trade.fulf.subs.NV }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ trade.fulf.subs.total }}</span></h4>
+      </td>
+
+      <td style="width: 33%; padding: 10px">
+        <h2>TRADE INVENTORY</h2>
+          
+          <h3>Game Assets</h3>
+            
+            <ul class="h4">
+              <li>Approved <span class="r">{{ trade.inv.approved }}</span></li>
+              <li>Declined <span class="r">{{ trade.inv.declined }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ trade.inv.total }}</span></h4>
+      </td>
+      
+      {% endwith %}
+    </tr>
+
+    <!-- ------------------------------------------------------------------- -->
+
+    <tr>
+      <td class="h1" colspan="3">RENT DASHBOARD</td>
+    </tr>
+    <tr>
+    {% with data.rent as rent %}    
+      <td style="width: 33%; padding: 10px">
+        <h2>RENT SUBSCRIBERS</h2>
+          
+          <h3>New Registrations</h3>
+            
+            <ul class="h4">
+              <li>Pending <span class="r">{{ rent.subs.new.pending }}</span></li>
+              <li>Active <span class="r">{{ rent.subs.new.active }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ rent.subs.new.total }}</span></h4>
+          
+          <br />
+          
+          <h3>Recurring Billings</h3>
+            
+            <ul class="h4">
+              <li>Active <span class="r">{{ rent.subs.billing.active }}</span></li>
+              <li>Delinquent <span class="r">{{ rent.subs.billing.delinquent }}</span></li>
+              <li>Canceled <span class="r">??</span></li>
+              <li>
+                <ul>
+                  <li>Canceled (<span>??</span>)</li>
+                  <li>Pending (<span>??</span>)</li>
+                </ul>
+              </li>
+              <li>On Hold <span class="r">{{ rent.subs.billing.on_hold }}</span></li>
+              <li>Suspended <span class="r">{{ rent.subs.billing.suspended }}</span></li>
+              <li>
+                <ul>
+                  <li>Fraud (<span>??</span>)</li>
+                  <li>Excessive Claims (<span>??</span>)</li>
+                </ul>
+              </li>
+              <li>Restricted <span class="r">??</span></li>
+              <li>
+                <ul>
+                  <li>Bad Address (<span>??</span>)</li>
+                  <li>Personal Game (<span>??</span>)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">??</span></h4>
+      </td>
+
+      <td style="width: 33%; padding: 10px">
+        <h2>RENT FULFILLMENT</h2>
+          
+          <h3>Rental Subscribers</h3>
+            
+            <ul class="h4">
+              <li>Home DC - Florida <span class="r">{{ rent.fufl.subs.FL }}</span></li>
+              <li>Home DC - New Jewsey <span class="r">{{ rent.fufl.subs.NJ }}</span></li>
+              <li>Home DC - Nevada <span class="r">{{ rent.fufl.subs.NV }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ rent.fufl.subs.total }}</span></h4>
+
+          <br />
+          
+          <h3>Game Matrix Allocation</h3>
+            
+            <ul class="h4">
+              <li>Assigned to Customer <span class="r">??</span></li>
+              <li>Add to Pick List <span class="r">??</span></li>
+              <li>Shipped to Customer <span class="r">{{ rent.fufl.matrix.shipped.total }}</span></li>
+              <li>
+                <ul>
+                  <li>Florida DC (<span>{{ rent.fufl.matrix.shipped.FL }}</span>)</li>
+                  <li>New Jersey DC (<span>{{ rent.fufl.matrix.shipped.NJ }}</span>)</li>
+                  <li>Nevada DC (<span>{{ rent.fufl.matrix.shipped.NV }}</span>)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">??</span></h4>
+        
+          <br />
+
+          <h3>Game Availability</h3>
+            
+            <ul class="h4">
+              <li>Available <span class="r">{{ rent.fufl.game_avalaibility.5 }}</span></li>
+              <li>High <span class="r">{{ rent.fufl.game_avalaibility.2 }}</span></li>
+              <li>Medium <span class="r">{{ rent.fufl.game_avalaibility.3 }}</span></li>
+              <li>Low <span class="r">{{ rent.fufl.game_avalaibility.4 }}</span></li>
+              <li>Very Low <span class="r">{{ rent.fufl.game_avalaibility.0 }}</span></li>
+              <li>Not Released <span class="r">{{ rent.fufl.game_avalaibility.1 }}</span></li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">{{ rent.fufl.game_avalaibility.total }}</span></h4>
+      </td>
+
+      <td style="width: 33%; padding: 10px">
+        <h2>RENT INVENTORY</h2>
+          
+          <h3>Game Assets</h3>
+            
+            <ul class="h4">
+              <li>In Stock <span class="r">{{ rent.inv.assets.0 }}</span></li>
+              <li>Pending <span class="r">{{ rent.inv.assets.1 }}</span></li>
+              <li>Rented <span class="r">{{ rent.inv.assets.2 }}</span></li>
+              <li>Unreturned <span class="r">??</span></li>
+              <li>Sale <span class="r">{{ rent.inv.assets.4 }}</span></li>
+              <li>Unreconciled <span class="r">{{ rent.inv.assets.5 }}</span></li>
+              <li>Unknown <span class="r">{{ rent.inv.assets.6 }}</span></li>
+              <li>Problems <span class="r">{{ rent.inv.assets.7 }}</span></li>
+              <li>
+                <ul>
+                  <li>Claim L (<span>??</span>)</li>
+                  <li>Claim D (<span>??</span>)</li>
+                  <li>Claim W (<span>??</span>)</li>
+                  <li>Claim L (<span>??</span>)</li>
+                  <li>Claim D (<span>??</span>)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4 class="strong">TOTAL <span class="r">??</span></h4>
+       
+        <br />
+            
+        <div class="highlight">
+          <h3 style="color: black">Shipping Problems - Asset Loss</h3>
+            <h4 class="strong">Game Assets <span class="r">??</span></h4>
+            <h4 class="strong">Game Values <span class="r">??</span></h4>
+        </div>
+      </td>
+    {% endwith %}
+    </tr>
+  </table>
+</div>
+
+{% endblock right %}

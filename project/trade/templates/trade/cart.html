@@ -1,0 +1,36 @@
+{% extends "trade/base.html" %}
+
+{% block heading %}
+	<li class="selected">Submit Trade-Ins</li>
+	<li>Manage Address</li>
+	<li>Select Shipping Method</li>
+	<li>Print Shipping Label</li>
+{% endblock heading %}
+
+{% block page-content %}
+<div id="trade-cart">
+
+<div class="text">
+  <h2>Submit Your Trade-In</h2>
+
+  <p>We ONLY accept games in good condition and you can ship them for FREE.
+    Credits for your trade-ins will not be deposited into your account until
+    items have been received, inspected and verified.</p>
+</div>
+
+<div id="trade-cart-grid">
+  {% include "trade/partials/cart_grid.html" %}
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".quantity-input").keydown(function(event){
+		if (!(event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode >= 48 && event.keyCode <= 57))
+			event.preventDefault();	
+	});
+});
+</script>
+
+</div>
+{% endblock page-content %}
+

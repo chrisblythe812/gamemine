@@ -1,0 +1,28 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+<form method="post">{% csrf_token %}
+  {{ formset.management_form }}
+<div class="module">
+  <table>
+    <thead>
+      <tr>
+        <td>Key</td>
+        <td>Value, %</td>
+      </tr>  
+    </thead>
+    <tbody>
+    {% for form in formset.forms %}
+      <tr>
+        <td>{{ form.instance.name }}</td>
+        <td>{{ form.id }}{{ form.value }}{{ form.value.errors }}</td>
+      </tr>  
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="actions"><input type="submit" value="Save values" /></div>
+</div>
+</form>
+
+{% endblock right %}

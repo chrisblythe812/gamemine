@@ -1,0 +1,15 @@
+- fields:
+    date_joined: 2010-07-12 16:06:19.118100
+    email: admin@gamemine.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2010-07-12 16:06:19.118100
+    last_name: ''
+    password: sha1$aaca0$9aa0b95f65d1655a4ef88f519501fd1e16d62004
+    user_permissions: []
+    username: admin
+  model: auth.user
+  pk: 1

@@ -1,0 +1,26 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block right %}{{ block.super }}
+
+{% if message %}
+  {{ message|safe }}
+  {% if not_found %}
+  <div class="module">
+    <h2>Not found items:</h2>
+    <textarea cols="120" rows="20">{{ not_found }}</textarea>
+  </div>
+  {% endif %}
+{% else %}
+<form enctype="multipart/form-data" method="post" action=".">{% csrf_token %}
+<div class="module">
+  <table>
+    {{ form.as_table }}
+    <tr>
+      <td colspan="2"><input type="submit" /></td>
+    </tr>
+  </table>
+</div>
+</form>
+{% endif %}
+
+{% endblock right %}

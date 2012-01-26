@@ -1,0 +1,18 @@
+<div id="trade-add-dialog">
+	<div id="dialog-heading">
+		<div id="trade-add-game-details">
+			{% if item.get_nano_thumb %}
+			<img width="37" height="47" src="{{ item.get_nano_thumb }}" />
+			{% endif %}
+			<h1>{{ item }} ({{ item.category.description }})</h1>
+		</div>
+		
+		<div id="dialog-title"><a class="dialog-close-button" href="#" title="Close">Close</a>Trade Games</div>
+	</div>
+
+	<div id="dialog-content">
+		<h1>What condition is your Game?</h1>
+
+		{% include "trade/add.form.html" %}
+	</div>
+</div>

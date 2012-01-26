@@ -1,0 +1,271 @@
+{% extends "staff/fulfillment.html" %}
+
+{% block head %}
+<style type="text/css">
+  #item-details-grid td,
+  #item-details-grid th {
+    border: none;
+    background: white;
+    color: black;
+  }
+  
+  td.action {
+    background-color: #ffc;
+  }
+  
+  td.action a {
+    font-weight: bold;
+    color: #FF7000;
+  }
+  
+  .clean-table td,
+  .clean-table th {
+    border: none !important;
+    background: white !important;
+    color: black !important;
+    text-align: left !important;
+    vertical-align: top !important; 
+  }
+  
+  tr.claim td {
+    background: #ff9 !important;    
+  }
+  
+  tr.claim strong.red {
+    color: #930;
+  }
+  
+  .yes-no-field {      
+    width: 150px;
+  }
+  
+  .yes-no-field ul {
+    overflow: hidden;
+  }
+  
+  .yes-no-field li {
+    float: left;
+  }
+  
+  #damage-questions div {
+    margin: 0 !important;
+    padding: 0 !important;    
+  }
+  
+</style>
+{% endblock head %}
+
+{% block right %}{{ block.super }}
+
+<table cellpadding="0" cellspacing="0" width="100%"><tr valign="top">
+<td width="50%" style="padding-right:10px;">
+<div class="module">
+  <h2>Rent Information</h2>
+
+  <dl>
+    <dt>Member ID:</dt>
+    <dd><a target="_blank" href="{% url staff:customer_view  order.user.id %}">{{ order.user.get_profile.get_name_display }}</a> ({{ order.user.email }})</dd>
+  </dl>  
+
+  <dl>
+    <dt>Member Address:</dt>
+    <dd>{{ order.shipping_address1 }}<br />{% if order.shipping_address2 %}{{ order.shipping_address2 }} {% endif %}{{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}</dd>
+  </dl>  
+
+  <dl>
+    <dt>Product ID:</dt>
+    <dd><a href="{{ order.item.get_absolute_url }}" target="_blank">{{ order.item.id }}</a></dd>
+
+    <dt>Date Rented:</dt>
+    <dd>{{ order.date_rent|date }} (In Rent: <strong>{{ order.date_rent|timesince }}</strong>)</dd>
+
+    <dt>Barcode ID:</dt>
+    <dd>{{ order.inventory.barcode }}</dd>
+  </dl>  
+  
+  <div style="padding: 0 5px; clear: left">
+  <table id="item-details-grid">
+    <tr>
+      <th align="left">Item</th>
+      <th>Condition</th>
+      <th>Quantity</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td align="left"><a href="{{ order.item.get_absolute_url }}" target="_blank">{{ order.item }} ({{ order.item.category }})</a></td>
+      <td align="center">{{ order.inventory.is_new|yesno:"NG,UG" }}</td>
+      <td align="center">1</td>
+      <td align="center">{% if order.item.trade_price %}${{ order.item.trade_price }}{% else %}--{% endif %}</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="clear"></div>
+</div>
+</td>
+
+<td>
+<div class="module">
+  <h2>Game: {{ order.item }} ({{ order.item.category }})</h2>
+  
+  {% if lost_claim or damaged_claim %}
+  <div>
+  <table class="clean-table">
+    <tr>
+      <th>&nbsp;</th>
+      <th>TYPE</th>
+      <th>DATE</th>
+      <th>&nbsp;</th>
+    </tr>
+    {% if lost_claim %}
+    <tr class="claim">
+      <td><strong>THIS ITEM HAS A CLAIM</strong></td>
+      <td><strong class="red">LOST GAME</strong></td>
+      <td><strong class="red">{{ lost_claim.date|date }}</strong></td>
+      <td>&nbsp;</td>
+    </tr>
+    {% endif %}
+    {% if damaged_claim %}
+    <tr class="claim">
+      <td><strong>THIS ITEM HAS A CLAIM</strong></td>
+      <td><strong class="red">DAMAGED</strong></td>
+      <td><strong class="red">{{ damaged_claim.date|date }}</strong></td>
+      <td>&nbsp;</td>
+    </tr>
+    {% endif %}
+  </table>
+  </div>
+  {% endif %}
+  
+  <div>
+  <form action="" method="post" id="poll-form">{% csrf_token %}
+  <table class="clean-table">
+    <tr>
+      <th>{{ form.received_match_shipped.label }}</th>
+      <td class="yes-no-field">{{ form.received_match_shipped }}</td>
+      <td rowspan="3"><a href="{% url inventory_tyvek order.inventory.id %}" target="_blank">Reprint&nbsp;Tyvek</a></td>
+    </tr>
+    <tr class="answer-branch-a">
+      <th>{{ form.returned_personal_game.label }}</th>
+      <td class="yes-no-field">{{ form.returned_personal_game }}</td>
+    </tr>
+    <tr class="answer-branch-a">
+      <th>{{ form.is_damaged.label }}</th>
+      <td class="yes-no-field">{{ form.is_damaged }}</td>
+    </tr>
+    <tr class="answer-branch-a" id="damage-questions">
+      <td colspan="3">
+        <div>{{ form.game_broken }}{{ form.game_broken.label }}</div>
+        <div>{{ form.game_unplayable }}{{ form.game_unplayable.label }}</div>
+        <div>{{ form.game_missing }}{{ form.game_missing.label }}</div>
+      </td>
+    </tr>
+    <tr class="answer-branch-b" style="display: none">
+      <td colspan="3">
+        <strong>{{ form.message.label }}</strong><br />
+        {{ form.message }}
+      </td>
+    </tr>
+  </table>
+  <div style="text-align: right; padding: 0">
+    <input type="submit" value="Process" />
+  </div>
+  </form>
+  </div>
+
+  <script type="text/javascript">
+  $(document).ready(function () {
+    $('#id_is_damaged_0').click(function () {
+      $('#damage-questions').show();
+    });    
+    $('#id_is_damaged_1').click(function () {
+      $('#damage-questions').hide();
+      $('#damage-questions input').attr('checked', false);
+    });
+    if (!$('#id_is_damaged_0').attr('checked')) {
+      $('#damage-questions').hide();
+    }    
+    $('#poll-form').submit(function () {
+      if ($('#id_message:hidden').size()) {
+        var count = $('#poll-form input[type=radio]:checked').size();
+        if (count != 2) {
+          alert('Please give answers to all questions.');
+          return false;  
+        }
+        if ($('#id_is_damaged_0').attr('checked') && $('#poll-form input[type=checkbox]:checked').size() == 0) {
+          alert('Please select kind of damage.');
+          return false;  
+        }
+      } else {
+        if ($.trim($('#id_message').val()) == '') {
+          alert('Please enter a message.');
+          return false;  
+        }
+      }
+      return true;
+    });
+    $('#damage-questions input[type=checkbox]').each(function () {
+      $(this).click(function () {
+        var checked = $(this).attr('checked');
+        if (checked) {
+          $('#damage-questions input[type=checkbox]').attr('checked', false);
+          $(this).attr('checked', true);
+        }
+      });
+    });
+    
+    $('#id_received_match_shipped_1, #id_returned_personal_game_0').click(function () {
+      $('.answer-branch-a').hide();
+      $('.answer-branch-b').show();
+    });
+    
+    $('#id_received_match_shipped_0, #id_returned_personal_game_1').click(function () {
+      $('.answer-branch-a').show();
+      if ($('#id_is_damaged_0').attr('checked')) {
+        $('#damage-questions').show();
+      } else {
+        $('#damage-questions').hide();
+      }    
+      $('.answer-branch-b').hide();
+    });
+
+    if ($('#id_received_match_shipped_0:checked').size()) {
+      $('.answer-branch-a').show();
+      if ($('#id_is_damaged_0').attr('checked')) {
+        $('#damage-questions').show();
+      } else {
+        $('#damage-questions').hide();
+      }    
+      $('.answer-branch-b').hide();
+    } if ($('#id_received_match_shipped_1:checked').size()) {
+      $('.answer-branch-a').hide();
+      $('.answer-branch-b').show();
+    }
+  });
+  </script>
+  
+</div>
+</td>
+</tr></table>
+
+<div class="module">
+  <h2>Other Games Rented by Member</h2>
+  <table>
+    <tr>
+      <th align="left">Platform</th>
+      <th align="left">Title</th>
+      <th align="left">Date Rented</th>
+      <th align="left">Status</th>
+    </tr>
+    {% for o in other_orders %}
+    <tr>
+      <td>{{ o.item.category }}</td>
+      <td><a href="{{ o.item.get_absolute_url }}" target="_blank">{{ o.item }}</a></td>
+      <td>{{ o.date_rent|date }}</td>
+      <td class="action"><a href="{% url staff:do_rent_returns o.id dc.code %}">Return Game</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock right %}
